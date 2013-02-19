@@ -831,7 +831,7 @@ public String include(String templateName) {
 <pre class="brush: xml;">${include("foo.httl")}
 </pre>
 
-<h3>导入属性</h3>
+<h3>导入属性获取器</h3>
 
 <p>缺省导入了get,getProperty,getAttribute四个属性取值方法：(缺省值不用配)</p>
 
@@ -839,6 +839,17 @@ public String include(String templateName) {
 </pre>
 
 <p>将查找String和Object参数的属性取值方法，如：get(String)或get(Object)</p>
+
+<h3>导入大小获取器</h3>
+
+<p>缺省导入了size,length,getSize,getLength四个大小取值方法：(缺省值不用配)</p>
+
+<pre class="brush: xml;">import.sizers=size,length,getSize,getLength
+</pre>
+
+<p>将查找空参数的大小取值方法，如：size()</p>
+
+<p>大小获取器，将用于#if()判断，${a ? b : c}三元操作符判断等判断空值的地方。</p>
 
 <h3>导入宏</h3>
 
