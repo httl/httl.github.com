@@ -754,7 +754,7 @@ text.filters+=httl.spi.filters.CompressBlankFilter
 
 <p>缺省导入了parent,context,template,engine四个变量：(缺省值不用配)</p>
 
-<pre class="brush: xml;">import.variables=Context parent,Context context,Template template,Engine engine
+<pre class="brush: xml;">import.variables=Context parent,Template super,Template this,Engine engine
 </pre>
 
 <p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入request,response,session,application四个变量：(缺省值不用配)</p>
@@ -763,9 +763,10 @@ text.filters+=httl.spi.filters.CompressBlankFilter
 </pre>
 
 <p>这样你就可以在模板内直接使用这些变量，而不用每个模板都声明：</p>
-#var(HttpServletRequest request, HttpServletResponse response)
 
-你可以使用"+="保留缺省导入包的同时，导入新的包，多个包用逗号分隔：
+<pre class="brush: xml;">#var(HttpServletRequest request, HttpServletResponse response)</pre>
+
+<p>你可以使用"+="保留缺省导入包的同时，导入新的包，多个包用逗号分隔：</p>
 
 <pre class="brush: xml;">import.variables+=Foo foo,Bar bar
 </pre>
