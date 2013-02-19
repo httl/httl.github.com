@@ -836,6 +836,15 @@ public String include(String templateName) {
 <pre class="brush: xml;">${include("foo.httl")}
 </pre>
 
+<h3>导入属性</h3>
+
+<p>缺省导入了get,getProperty,getAttribute四个属性取值方法：(缺省值不用配)</p>
+
+<pre class="brush: xml;">import.getters=get,getProperty,getAttribute
+</pre>
+
+<p>将查找String和Object参数的属性取值方法，如：get(String)或get(Object)</p>
+
 <h3>导入宏</h3>
 
 <p>导指定模板中的所有宏，多个模板用逗号分隔，这些宏可在其它任意模板中使用，如：</p>
@@ -891,16 +900,28 @@ January February March May June July August September October November December 
 
 <p>注：当日志级别为DEBUG时，HTTL将向日志中输出编译的模板源码，方便排错。</p>
 
-<h2>运行时属性</h2>
+<h2>变量决策</h2>
 
-<p>缺省只从引擎配置中获取属性：(缺省值不用配)</p>
+<p>缺省只从上下文中获取属性：(缺省值不用配)</p>
 
-<pre class="brush: xml;">resolvers=httl.spi.resolvers.EngineResolver
+<pre class="brush: xml;">resolvers=httl.spi.resolvers.ContextResolver
 </pre>
 
-<p>如果你是Web应用，可以配置优先从Web请求中获取运行时属性，其次再从引擎配置中获取缺省属性：</p>
+<p>如果你使用HTTL内置的MVC集成，已经自动导入ServletResolver，</p>
 
-<pre class="brush: xml;">resolvers=httl.web.WebResolver,httl.spi.resolvers.EngineResolver
+<p>它会读取request,session,servletContext等中获取变量：</p>
+
+<pre class="brush: xml;">resolvers+=httl.spi.resolvers.ServletResolver
+</pre>
+
+<p>如果你想在模板中直接都读取到httl.properties中的值，可以配置：</p>
+
+<pre class="brush: xml;">resolvers+=httl.spi.resolvers.EngineResolver
+</pre>
+
+<p>如果你想在模板中直接都读取到System.getProperty()中的值，可以配置：</p>
+
+<pre class="brush: xml;">resolvers+=httl.spi.resolvers.SystemResolver
 </pre>
 
 <p>比如：用户的locale区域国际化信息，换上面的配置先从请求中获取，这样就可以根据用户区域设置显示不同语言。</p>
