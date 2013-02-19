@@ -249,7 +249,7 @@ $!{body}
 #var(User user, List&lt;Book&gt; books)
 </pre>
 
-<p>如果有全局的变量，可以用配置全局导入变量，就不需要在每个模板声明：</p>
+<p>如果有全局的变量，可以用配置全局导入变量类型声明，就不需要在每个模板声明：</p>
 
 <pre class="brush: java;">import.variables+=User loginUser
 </pre>
@@ -259,10 +259,7 @@ $!{body}
 <pre class="brush: java;">import.variables=Context parent,Template super,Template this,Engine engine
 </pre>
 
-<p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入：(可以在模板中直接使用)</p>
-
-<pre class="brush: java;">import.variables+=HttpServletRequest request,HttpServletResponse response,HttpSession session,ServletContext application,Map cookie,Map parameter,Map header
-</pre>
+<p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入一些相关的常用变量，详见<a href="config.html#导入变量类型声明">配置-导入变量类型声明</a>一节。
 
 <p>如果未声明的变量，缺省为Object：(如果是直接输出变量，可不声明类型)</p>
 
