@@ -1,0 +1,185 @@
+/* Style adjustments for viewports 768px and over go here */
+header .logo {
+	width: 100% !important;
+}
+header .logo a {
+	display: block;
+	width: 100%;
+	height: 0px;
+	padding-top: 100px;
+	overflow: hidden;
+	background: url('../img/logo-mobile.png') no-repeat;
+	background-size: 100%;
+	margin: 0px 0px 0px 0px;
+	float: left;
+}
+.body-content {
+    width: 100%;
+}
+
+.body-content section {
+	padding: 0;
+}
+.standard-page header .logo {
+	float: left;
+}
+.standard-page header h1 {
+	display: none !important;
+}
+.motto {
+    display: none;
+}
+.headline { display: none; }
+.container {
+	min-width: 300px;
+	width: 100%;
+}
+nav{
+	border-bottom: none;
+}
+.primary-nav {
+	width: 100%;
+	min-width: 300px;
+	border-top: none;
+	border-bottom: dotted 1px #81c100;
+}
+.primary-nav a {
+	width: 100%;
+	padding: 10px 0px 10px 0px;
+	border-top: dotted 1px #81c100;
+}
+.secondary-nav {
+	min-width: 300px;
+	width: 100%;
+	border-top: none;
+	border-bottom: dotted 1px #81c100;
+	clear:left;
+}
+.secondary-nav li {
+	padding: 0px;
+}
+.secondary-nav a {
+	width: 100%;
+	padding: 10px 0px 10px 0px !important;
+	border-top: dotted 1px #81c100 !important;
+	border-bottom: none !important;
+}
+.secondary-nav .signup-newsletter a {
+	width: 100%;
+	padding: 10px 0px 0px 0px !important;
+	background: none;
+}
+.secondary-message {
+	clear:left;
+	min-width: 300px;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.secondary-message a {
+	height: auto;
+}
+.body-content {
+	font-size: 120%;
+}
+.standard-page .body-content {
+	width: 100%;
+	font-size: 120%;
+}
+aside {
+	min-width: 300px;
+	width: 100% !important;
+	clear:left;
+}
+/*
+.footer-primary-nav {
+	display: none;
+}
+
+.footer-primary-nav a{
+	width: 100%;
+	size: 170%;
+}
+*/
+
+.footer-secondary-nav {
+	/*display: none;*/
+	font-size: 160%;
+}
+.footer-secondary-nav .sub-col{
+	border-bottom: dotted 1px #81c100;
+	padding: .5em 0 .5em 0;
+}
+
+.footer-secondary-nav .nav-top-level {
+	font-size: 110%;
+}
+
+footer .sub-col {
+	width: 100%;
+}
+footer .sub-col a{
+    font-size: 85%;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+}
+
+/*
+.footer-primary-nav {
+	width: 100%;
+	font-size: 1.3em;
+	min-width: 300px;
+	border-top: none;
+	border-bottom: dotted 1px #81c100;
+}
+.footer-primary-nav a {
+	width: 100%;
+	padding: 10px 0px 10px 0px;
+	border-top: dotted 1px #81c100;
+}
+ .footer-secondary-nav a {
+	float: none;
+	display: block;
+	padding: 10px 0px 10px 0px;
+}
+.footer-secondary-nav a:hover {
+	float: none;
+	display: block;
+	padding: 10px 0px 10px 0px;
+}*/
+
+.companies ul {
+	height:	120px;
+}
+.companies li {
+	float: left;
+	width: 33% !important;
+}
+.primary-message {
+	min-width: 300px;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.primary-message div {
+	height: auto;
+	min-height: 300px;
+}
+form label {
+	text-align: left !important;
+}
+
+.bio {
+	background: none !important;
+}
+
+.bio h2 {
+	padding-top: 0px;
+}
+
+.bio-title {
+	width: 100%;
+}
+
+.bio-content {
+	padding: 0px 0px 0px 0px;
+}

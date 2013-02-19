@@ -1,0 +1,42 @@
+.fork-me-on-github {
+    display: none;
+}
+
+div.body-content {
+    padding: 0;
+}
+aside {
+    display: none;
+}
+
+nav.primary-nav {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.primary-message div {
+    margin: 0;
+}
+.secondary-message {
+    width: 100%;
+}
+header div.logo {
+    float: none;
+    text-align: center;
+}
+header div.logo a {
+    margin: 0 auto;
+    padding:1;
+}
+
+div.companies {
+    display: none;
+}
+
+footer {
+    border-top: dotted 1px #81C100;
+}
+
+nav {
+    min-width: 100%;
+}
