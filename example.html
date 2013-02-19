@@ -166,7 +166,7 @@ template.render(parameters, response.getOutputStream());
 $!{extends("/layout.httl")}
 
 &lt;!--#macro(crumbs)--&gt;
-    $!{super.crumbs} &gt; &lt;a href="/books"&gt;Books&lt;/a&gt;
+    $!{super.crumbs} &amp;gt; &lt;a href="/books"&gt;Books&lt;/a&gt;
 &lt;!--#end--&gt;
 
 &lt;!--#macro(main(List&lt;Book&gt; books))--&gt;
