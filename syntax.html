@@ -63,17 +63,35 @@
 <p>基于Html注释: (缺省使用该语法)</p>
 
 <pre class="brush: xml;">
-&lt;!--#var(List&lt;Book&gt; books)--&gt;
+&lt;!--## 定义变量类型，未定义的变量以Object类型处理 --&gt;
+&lt;!--#var(User user, List&lt;Book&gt; books)--&gt;
 &lt;html&gt;
     &lt;body&gt;
-        &lt;!--#if(books)--&gt;
+    	&lt;!--## 定义宏，可当变量或方法执行 --&gt;
+    	&lt;!--#macro(cover(Book book))--&gt;
+            <a href="${book.cover}"><img alt="${book.title}" src="${book.cover}" width="200" /></a>
+        &lt;!--#end--&gt;
+        &lt;!--## 条件判断 --&gt;
+        &lt;!--#if(user.role == "admin")--&gt;
         &lt;table&gt;
+            &lt;!--## 循环输出 --&gt;
             &lt;!--#foreach(book in books)--&gt;
             &lt;tr&gt;
+                &lt;!--## 条件中断循环 --&gt;
+                &lt;!--#breakif(foreach.index >= 10)--&gt;
+                &lt;!--## 变量输出 --&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
+                &lt;td&gt;${cover(book)}&lt;/td&gt;
+                &lt;!--## 变量赋值 --&gt;
+                &lt;!--#set(price = book.price * book.discount)--&gt;
+                &lt;td&gt;${price}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;!--#end--&gt;
         &lt;/table&gt;
+        &lt;!--#elseif(user)--&gt;
+            Have no privilege.
+        &lt;!--#else--&gt;
+            Not Logined.
         &lt;!--#end--&gt;
     &lt;/body&gt;
 &lt;/html&gt;
