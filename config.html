@@ -65,6 +65,12 @@
 <p>如果使用缺省值，不用配置，缺省值参见：
 <a href="https://github.com/httl/httl/blob/master/src/main/resources/httl-default.properties">httl-default.properties</a></p>
 
+<p>HTTL会顺序加载配置文件：<b>1)</b> httl-default.properties（HTTL缺省） <b>2)</b> httl.properties（应用提供的配置文件）。
+
+<br /># 后加载配置文件中配置项的值会更新之前加载的，或许说前加载的作为缺省值。
+
+<p> <a href="#模式配置">模式配置</a> 和 <a href="integration.html#MVC集成">MVC集成</a> 会加载新的配置文件，详见对应小节说明。
+
 <h2>配置一览表</h2>
 
 <table>
@@ -453,9 +459,9 @@ translator=httl.spi.translators.DefaultTranslator
 
 <p>模式的作用是用于选择性加载HTTL的配置文件。可以设置多个值（或说成是开启了多个模式）。</p>
 
-<p>模式中设置了<code>develop</code>（开启develop模式），HTTL会对应加载<code>httl-develop.properties</code>。模式名根据自己需要取成有实际的。</p>
+<p>模式中设置了<code>develop</code>（开启develop模式），HTTL会对应加载<code>httl-develop.properties</code>。模式名根据自己需要取成有实际意义的。</p>
 
-<p>HTTL配置文件的加载顺序是：httl-default.properties（HTTL缺省），httl-&lt;mode&gt;.properties（模式配置文件），httl.properties（应用提供的配置文件）。
+<p>HTTL配置文件的加载顺序是：<b>1)</b>httl-default.properties（HTTL缺省） <b>2)</b>httl-&lt;mode&gt;.properties（模式配置文件，可以有多个） <b>3)</b> httl.properties（应用提供的配置文件）。
 
 <p>有了模式可以方便配置一组配置值，并可以灵活切换。
 
