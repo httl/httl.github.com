@@ -75,7 +75,7 @@
 <td>示例值</td>
 </tr>
 <tr>
-<td>mode</td>
+<td>modes</td>
 <td>配置模式</td>
 <td>debug</td>
 </tr>
@@ -448,6 +448,22 @@ translator=httl.spi.translators.DefaultTranslator
 
 <pre class="brush: xml;">foreach.variable=foreach
 </pre>
+
+<h2>模式配置</h2>
+
+<p>模式的作用是用于选择性加载HTTL的配置文件。可以设置多个值（或说成是开启了多个模式）。</p>
+
+<p>模式中设置了<code>develop</code>（开启develop模式），HTTL会对应加载<code>httl-develop.properties</code>。模式名根据自己需要取成有实际的。</p>
+
+<p>HTTL配置文件的加载顺序是：httl-default.properties（HTTL缺省），httl-&lt;mode&gt;.properties（模式配置文件），httl.properties（应用提供的配置文件）。
+
+<p>有了模式可以方便配置一组配置值，并可以灵活切换。
+
+<p>要调整模式可以在应用配置文件httl.properties中加上：</p>
+
+<pre class="brush: xml;">modes+=develop</pre>
+
+<p>并添加httl-develop.properties即可。
 
 <h2>模板缓存配置</h2>
 
@@ -929,14 +945,14 @@ January February March May June July August September October November December 
 
 <h2>变量决策</h2>
 
-<p>缺省只从上下文中获取属性：(缺省值不用配)</p>
+<p>变量决策即从哪里获取变量，缺省只从上下文中获取属性：(缺省值不用配)</p>
 
 <pre class="brush: xml;">resolvers=httl.spi.resolvers.ContextResolver
 </pre>
 
 <p>如果你使用HTTL内置的MVC集成，已经自动导入ServletResolver，</p>
 
-<p>它会读取request,session,servletContext等中获取变量：</p>
+<p>它会读取<code>request</code>、<code>session</code>、<code>servletContext</code>等中获取变量：</p>
 
 <pre class="brush: xml;">resolvers+=httl.spi.resolvers.ServletResolver
 </pre>
