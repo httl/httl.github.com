@@ -66,12 +66,11 @@
 并保持最简洁指令集，只保留最基本的条件迭代控制指令，防止模板复杂化。默认使用HTML注释语法，避免干扰原生HTML页面。</p>
 
 <pre class="brush: xml;">
-&lt;!--#var(List&lt;Book&gt; books)--&gt;
 &lt;html&gt;
     &lt;body&gt;
         &lt;!--#if(books)--&gt;
         &lt;table&gt;
-            &lt;!--#foreach(book in books)--&gt;
+            &lt;!--#foreach(Book book in books)--&gt;
             &lt;tr&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
             &lt;/tr&gt;
