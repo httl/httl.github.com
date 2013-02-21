@@ -63,17 +63,45 @@
 <p>books.httl: </p>
 
 <pre class="brush: xml;">
+&lt;!--## 定义变量类型，未定义的变量以Object类型处理 --&gt;
+&lt;!--#var(User user, List&lt;Book&gt; books)--&gt;
 &lt;html&gt;
     &lt;body&gt;
-        &lt;!--#if(books)--&gt;
+    
+    	&lt;!--## 定义宏，可当变量或方法执行 --&gt;
+    	&lt;!--#macro(cover(Book book))--&gt;
+            &lt;img alt="${book.title}" src="${book.cover}" /&gt;
+        &lt;!--#end--&gt;
+        
+        &lt;!--## 条件判断 --&gt;
+        &lt;!--#if(user.role == "admin")--&gt;
         &lt;table&gt;
-            &lt;!--#foreach(Book book in books)--&gt;
+        
+            &lt;!--## 循环输出，类型可省，将基于泛型推导 --&gt;
+            &lt;!--#foreach(book in books)--&gt;
             &lt;tr&gt;
+                &lt;!--## 条件中断循环 --&gt;
+                &lt;!--#breakif(foreach.index >= 10)--&gt;
+                
+                &lt;!--## 变量输出 --&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
+                
+                &lt;!--## 执行宏输出，也可以用$!{cover} --&gt;
+                &lt;td&gt;$!{cover(book)}&lt;/td&gt;
+                
+                &lt;!--## 变量赋值，类型可省，将基于表达式推导 --&gt;
+                &lt;!--#set(price = book.price * book.discount)--&gt;
+                &lt;td&gt;${price}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;!--#end--&gt;
+        
         &lt;/table&gt;
+        &lt;!--#elseif(user)--&gt;
+            Have no privilege.
+        &lt;!--#else--&gt;
+            Not Logined.
         &lt;!--#end--&gt;
+    
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -88,8 +116,8 @@
 
 <pre class="brush: java;">
 import.packages+=com.xxx
-template.directory=/META-INF/templates
-message.basename=/META-INF/messages
+template.directory=
+message.basename=messages
 input.encoding=UTF-8
 output.encoding=UTF-8
 reloadable=false

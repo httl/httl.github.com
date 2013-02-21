@@ -58,75 +58,9 @@
 
 <p>此文档详细说明了HTTL的核心功能，如果你打算用HTTL开发，请详读。</p>
 
-<h2>注释语法</h2>
+<h2>基本语法</h2>
 
-<p>基于Html注释: (缺省使用该语法)</p>
-
-<pre class="brush: xml;">
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;!--#if(books)--&gt;
-        &lt;table&gt;
-            &lt;!--#foreach(Book book in books)--&gt;
-            &lt;tr&gt;
-                &lt;td&gt;${book.title}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;!--#end--&gt;
-        &lt;/table&gt;
-        &lt;!--#end--&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</pre>
-
-<p>完备示例：(共8个指令)</p>
-
-<pre class="brush: xml;">
-&lt;!--## 定义变量类型，未定义的变量以Object类型处理 --&gt;
-&lt;!--#var(User user, List&lt;Book&gt; books)--&gt;
-&lt;html&gt;
-    &lt;body&gt;
-    
-    	&lt;!--## 定义宏，可当变量或方法执行 --&gt;
-    	&lt;!--#macro(cover(Book book))--&gt;
-            &lt;img alt="${book.title}" src="${book.cover}" /&gt;
-        &lt;!--#end--&gt;
-        
-        &lt;!--## 条件判断 --&gt;
-        &lt;!--#if(user.role == "admin")--&gt;
-        &lt;table&gt;
-        
-            &lt;!--## 循环输出，类型可省，将基于泛型推导 --&gt;
-            &lt;!--#foreach(book in books)--&gt;
-            &lt;tr&gt;
-                &lt;!--## 条件中断循环 --&gt;
-                &lt;!--#breakif(foreach.index >= 10)--&gt;
-                
-                &lt;!--## 变量输出 --&gt;
-                &lt;td&gt;${book.title}&lt;/td&gt;
-                
-                &lt;!--## 执行宏输出，也可以用$!{cover} --&gt;
-                &lt;td&gt;$!{cover(book)}&lt;/td&gt;
-                
-                &lt;!--## 变量赋值，类型可省，将基于表达式推导 --&gt;
-                &lt;!--#set(price = book.price * book.discount)--&gt;
-                &lt;td&gt;${price}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;!--#end--&gt;
-        
-        &lt;/table&gt;
-        &lt;!--#elseif(user)--&gt;
-            Have no privilege.
-        &lt;!--#else--&gt;
-            Not Logined.
-        &lt;!--#end--&gt;
-    
-    &lt;/body&gt;
-&lt;/html&gt;
-</pre>
-
-<h2>文本语法</h2>
-
-<p>和Velocity类似：(指令和表达式与注释语法相同)</p>
+<p>和Velocity类似，不同点参见：<a href="#与Velocity对比"></a></p>
 
 <pre class="brush: xml;">
 &lt;html&gt;
@@ -144,9 +78,24 @@
 &lt;/html&gt;
 </pre>
 
-<p>需要配置：</p>
+<h2>注释语法</h2>
 
-<pre class="brush: java;">parser=httl.spi.parsers.TextParser
+<p>指令两边可以套上HTML注释，以免干扰原生HTML页面。(缺省已开启)</p>
+
+<pre class="brush: xml;">
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;!--#if(books)--&gt;
+        &lt;table&gt;
+            &lt;!--#foreach(Book book in books)--&gt;
+            &lt;tr&gt;
+                &lt;td&gt;${book.title}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;!--#end--&gt;
+        &lt;/table&gt;
+        &lt;!--#end--&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </pre>
 
 <h2>属性语法</h2>
@@ -167,7 +116,7 @@
 
 <p>需要配置：</p>
 
-<pre class="brush: java;">parser=httl.spi.parsers.AttributeParser
+<pre class="brush: java;">template.filter=httl.spi.filters.AttributeSyntaxFilter
 </pre>
 
 <p>属性语法需要用到jericho包解析HTML标签：</p>
@@ -190,25 +139,6 @@
 <p>名称空间写法如：</p>
 
 <pre class="brush: xml;">&lt;tr httl:foreach="book in books" /&gt;
-</pre>
-
-<p>在一些没有标签的地方，也可以将属性写在注释中：(可以和上面的标签属性混合使用)</p>
-
-<pre class="brush: xml;">
-&lt;!--var="List&lt;Book&gt; books"--&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;!--if="user.role == 'admin'"--&gt;
-        &lt;table&gt;
-            &lt;!--foreach="book in books"--&gt;
-            &lt;tr&gt;
-                &lt;td&gt;${book.title}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;!--end="foreach"--&gt;
-        &lt;/table&gt;
-        &lt;!--end="if"--&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
 </pre>
 
 <h1>指令</h1>
