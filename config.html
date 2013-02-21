@@ -58,18 +58,48 @@
 
 <p>HTTL所有配置都有合理缺省值，你可以不做任何配置，即可在常见场景有良好表现。当然，因为业务场景千变万化，你可以通过配置，使HTTL能更好的贴近你的业务，和保持内部的使用习惯。</p>
 
-<p>配置中，<code>+=</code>表示在缺省配置上追加配置，<code>=<code>表示覆盖缺省配置。</p>
+<p>HTTL会顺序加载以下配置内容：</p>
+
+<ol>
+<li> httl-default.properties（HTTL缺省） 
+<li> httl.properties（应用提供的配置文件）
+<li> JVM -D选项（只会读取以<code>httl.</code>开头键值，读入的键值会把键名的<code>httl.</code>去掉）
+<li> 系统的环境变量（只会读取以<code>httl_</code>开头键值，读入的键值会把键名的<code>httl.</code>去掉）
+</ol>
+<p># 这4项配置中，后面的优先生效。即后加载配置内容中配置项的值会更新之前加载的，或许说前加载的作为缺省值。</p>
+
+<p>如果使用缺省值，可以不用配置，缺省值参见：
+<a href="https://github.com/httl/httl/blob/master/src/main/resources/httl-default.properties">httl-default.properties</a></p>
+
+<p> <a href="#模式配置">模式配置</a> 和 <a href="integration.html#MVC集成">MVC集成</a> 会加载新的配置文件，详见对应小节说明。
+
+<h2>配置格式惯例</h2>
 
 <p>以复数命名的配置项，表示可以填<b>多个值</b>，用逗号分隔。</p>
 
-<p>如果使用缺省值，不用配置，缺省值参见：
-<a href="https://github.com/httl/httl/blob/master/src/main/resources/httl-default.properties">httl-default.properties</a></p>
+<p>配置中，</p>
+<p><ol>
+<li><b><code>=</code></b>表示覆盖缺省配置。
+<li><b><code>+=</code></b>表示在前一级配置值上追加值（对于可以有多值的配置项）
+<li><b><code>-=</code></b>表示在前一级配置值上删除值（对于可以有多值的配置项）
+</ol></p>
 
-<p>HTTL会顺序加载配置文件：<b>1)</b> httl-default.properties（HTTL缺省） <b>2)</b> httl.properties（应用提供的配置文件）。
+<p>Linux下Bash中使用环境变量配置HTTL时注意：</p>
 
-<br /># 后加载配置文件中配置项的值会更新之前加载的，或许说前加载的作为缺省值。
+<p><ol>
+<li>名不支持使用点，用下划线替代。
+<li><b><code>+=</code></b>设置环境不会HTTL要求，改用<b><code>=+</code></b>。
+<li><b><code>-=</code></b>设置环境会出错，改用<b><code>=-</code></b>。
+<li>要export环境变更，否则子进程读不到，不会生效。
+</ol></p>
 
-<p> <a href="#模式配置">模式配置</a> 和 <a href="integration.html#MVC集成">MVC集成</a> 会加载新的配置文件，详见对应小节说明。
+<p>Bash中使用环境变量配置HTTL的示例：</p>
+
+<pre class="brush: java;">$ export httl_reloadable=true
+$ export httl_template_cache_capacity=1024
+$ export httl_import_packages=+com.foo.pack1,com.foo.pack1
+$ export httl_import_packages=-com.foo.pack3
+</pre>
 
 <h2>配置一览表</h2>
 
