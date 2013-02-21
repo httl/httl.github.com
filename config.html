@@ -64,7 +64,7 @@
 <li> httl-default.properties（HTTL缺省） 
 <li> httl.properties（应用提供的配置文件）
 <li> JVM -D选项（只会读取以<code>httl.</code>开头键值，读入的键值会把键名的<code>httl.</code>去掉）
-<li> 系统的环境变量（只会读取以<code>httl_</code>开头键值，读入的键值会把键名的<code>httl.</code>去掉）
+<li> 系统的环境变量（只会读取以<code>httl_</code>开头键值，读入的键值会把键名的<code>httl_</code>去掉）
 </ol>
 <p># 这4项配置中，后面的优先生效。即后加载配置内容中配置项的值会更新之前加载的，或许说前加载的作为缺省值。</p>
 
@@ -84,13 +84,14 @@
 <li><b><code>-=</code></b>表示在前一级配置值上删除值（对于可以有多值的配置项）
 </ol></p>
 
-<p>Linux下Bash中使用环境变量配置HTTL时注意：</p>
+<p>Linux下Bash中使用环境变量配置HTTL时<b>注意</b>：</p>
 
 <p><ol>
 <li>环境变量名不支持使用点，改用下划线。
 <li><b><code>+=</code></b>设置环境不会HTTL要求，改用<b><code>=+</code></b>。
 <li><b><code>-=</code></b>设置环境会出错，改用<b><code>=-</code></b>。
 <li>要export环境变更，否则子进程读不到，不会生效。
+<li>键名要加上<code>httl_</code>前缀。
 </ol></p>
 
 <p>Bash中使用环境变量配置HTTL的示例：</p>
@@ -99,6 +100,17 @@
 $ export httl_template_cache_capacity=1024
 $ export httl_import_packages=+com.foo.pack1,com.foo.pack1
 $ export httl_import_packages=-com.foo.pack3
+</pre>
+
+<p>使用JVM -D选项配置HTTL时<b>注意</b>：</p>
+
+p><ol>
+<li>键名加上<code>httl.</code>前缀。
+</ol></p>
+
+<p>使用JVM -D选项配置HTTL的示例：</p>
+<pre class="brush: java;">$ java -Dhttl.reloadable=true \
+-Dhttl.import.packages+=com.foo.pack1,com.foo.pack1 com.foo.Main
 </pre>
 
 <h2>配置一览表</h2>
@@ -517,8 +529,8 @@ translator=httl.spi.translators.DefaultTranslator
 <li> httl-default.properties（HTTL缺省） 
 <li> httl-&lt;mode&gt;.properties（模式配置文件，可以有多个）
 <li> httl.properties（应用提供的配置文件）
-<li> JVM -D选项（只会读取以<code>httl.</code>开头键值，读入的键值会把键名的<code>httl.</code>去掉）
-<li> 系统的环境变量（只会读取以<code>httl_</code>开头键值，读入的键值会把键名的<code>httl.</code>去掉）
+<li> JVM -D选项
+<li> 系统的环境变量
 </ol>
 
 <p>有了模式可以方便配置一组配置值，并可以灵活切换。
