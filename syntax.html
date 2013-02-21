@@ -505,10 +505,15 @@ $!{xxx}
 <p>隐藏注释的内容，用于注解过程，或屏蔽指令内容。</p>
 
 <pre class="brush: xml;">格式：
-&lt;--## comment --&gt;
+## line comment
+#* block comment *#
 
 示例：
-&lt;--## This is comment --&gt;
+## This is line comment
+
+#* 
+   This is block comment
+*#
 </pre>
 
 <h3>不解析块</h3>
@@ -516,10 +521,10 @@ $!{xxx}
 <p>原样输出模板内容，用于输出纯文本内容。</p>
 
 <pre class="brush: xml;">格式：
-&lt;![CDATA[## block literal ]]&gt;
+#[ block literal ]#
 
 示例：
-&lt;![CDATA[## This is literal ]]&gt;
+#[ This is literal ]#
 </pre>
 
 <h3>特殊符转义</h3>
@@ -862,26 +867,26 @@ uuid()
 </tr>
 <tr>
 <td>${xxx.yyy}</td>
-<td>$xxx.yyy<br>${xxx.yyy}</td>
+<td>${xxx.yyy}<br>$xxx.yyy</td>
 <td>相同</td>
 <td>输出占位符</td>
 </tr>
 <tr>
 <td>$!{xxx.yyy}</td>
-<td>$!xxx.yyy<br>$!{xxx.yyy}</td>
+<td>$!{xxx.yyy}<br>$!xxx.yyy</td>
 <td>不同</td>
 <td>一个是不过滤，一个是不原样输出</td>
 </tr>
 <tr>
-<td>## ...<br>&lt;!--## ... --&gt;</td>
 <td>## ...<br>#* ... *#</td>
-<td>相似</td>
+<td>## ...<br>#* ... *#</td>
+<td>相同</td>
 <td>不显示注释块</td>
 </tr>
 <tr>
-<td>&lt;![CDATA[## ... ]]&gt;</td>
+<td>#[ ... ]#</td>
 <td>#[[ ... ]]#</td>
-<td>相似</td>
+<td>相同</td>
 <td>不解析文本块</td>
 </tr>
 <tr>
