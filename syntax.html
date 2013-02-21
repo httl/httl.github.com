@@ -157,6 +157,17 @@ comment.right=*/
 <pre class="brush: xml;">&lt;tr httl:foreach="book in books" /&gt;
 </pre>
 
+<p>在没有标签的地方，你可以同时使用上面的注释语法。</p>
+
+<h2>兼容语法</h2>
+
+<p>HTTL提供兼容Velocity语法的支持，只需配置：</p>
+
+<pre class="brush: java;">template.filter=httl.spi.filters.VelocitySyntaxFilter
+</pre>
+
+<p>在兼容模式下，你依然可以使用HTTL的标准语法，便于逐步迁移。</p>
+
 <h1>指令</h1>
 
 <h2>输出指令</h2>
