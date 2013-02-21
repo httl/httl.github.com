@@ -80,7 +80,9 @@
 
 <h2>注释语法</h2>
 
-<p>指令两边可以套上HTML注释，以免干扰原生HTML页面。(缺省已开启)</p>
+<p>指令两边可以套上HTML注释，以免干扰原生HTML页面。</p>
+
+<p>HTTL在解析时，将自动去除指令边上的HTML注释符。(缺省已开启过滤)</p>
 
 <pre class="brush: xml;">
 &lt;html&gt;
@@ -96,6 +98,20 @@
         &lt;!--#end--&gt;
     &lt;/body&gt;
 &lt;/html&gt;
+</pre>
+
+<p>缺省使用HTML注释符：(缺省值，不用配置)</p>
+
+<pre class="brush: xml;">
+comment.left=&lt;!--
+comment.right=--&gt;
+</pre>
+
+<p>如果你用HTTL生成Java代码，你也可以改为：</p>
+
+<pre class="brush: xml;">
+comment.left=/*
+comment.right=*/
 </pre>
 
 <h2>属性语法</h2>
