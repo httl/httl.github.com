@@ -265,27 +265,31 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <h3>1.0.8 (2013-02-23)</h3>
 
-<pre><code>废弃#var指令，统一使用#set指令
-重构Parser
-配置写法支持key=+value key=-value
-从JVM -D选项和系统环境变量时，只提取以Key名以httl开头的
-配置允许用减等于去除缺省配置部分值
+<pre><code>
+功能：
+废弃#var指令，统一使用#set指令，但保持兼容
+支持将Velocity语法Filter成Httl语法
 支持dump运行时上下文数据
-修复内置JSON解析Bean类型转换问题
-修复message.directory拼接错误
+增加use.render.variable.type配置
+增加import.sizers配置
+增加modes=dev模式配置
 增加logger.level配置
 将java.version配置改成compile.version
-重构Codec继承于Formatter
-增加use.render.variable.type配置
-在获取配置和系统属性时将key转为点号分隔名
-方法绑定不确定，应该绑定类型更接近的方法
-Context所有方法检查跨线程调用
+支持从JVM的-D参数和系统的环境变量读取配置
+配置允许用减等于去除缺省配置部分值
+
+重构：
+将Comment和Attribute语法的处理改为Filter实现
 Context的创建过程由Engine完成
-添加环境模式，如生产环境模式、开发模式
-字符串中有}号，表达式解析错误
-javassist的foreach 1..3编译不过
-增加import.sizers配置
-包名httl.util调整成httl.internal.util</code></pre>
+Context所有方法检查跨线程调用
+重构Codec继承于Formatter
+包名httl.util调整成httl.internal.util
+
+问题：
+修复字符串中有}号，表达式解析错误
+修复javassist的foreach 1..3编译不过
+修复内置JSON解析Bean类型转换问题
+修复message.directory拼接错误</code></pre>
 
 <h3>1.0.7 (2013-01-27)</h3>
 
