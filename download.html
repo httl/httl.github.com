@@ -267,29 +267,28 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <pre><code>
 功能：
-废弃#var指令，统一使用#set指令，但保持兼容
-支持将Velocity语法Filter成Httl语法
-支持dump运行时上下文数据
-增加use.render.variable.type配置
-增加import.sizers配置
-增加modes=dev模式配置
-增加logger.level配置
-将java.version配置改成compile.version
-支持从JVM的-D参数和系统的环境变量读取配置
-配置允许用减等于去除缺省配置部分值
+1. 废弃#var指令，统一使用#set指令，但保持兼容
+2. 支持将Velocity语法Filter成Httl语法
+3. 支持dump运行时上下文数据
+4. 增加use.render.variable.type配置
+5. 增加import.sizers配置
+6. 增加modes=dev模式配置
+7. 增加logger.level配置
+8. 将java.version配置改成compile.version
+9. 支持从JVM的-D参数和系统的环境变量读取配置
+10. 配置允许用减等于去除缺省配置部分值
 
 重构：
-将Comment和Attribute语法的处理改为Filter实现
-Context的创建过程由Engine完成
-Context所有方法检查跨线程调用
-重构Codec继承于Formatter
-包名httl.util调整成httl.internal.util
+11. 将Comment和Attribute语法的处理改为Filter实现
+12. Context的创建过程由Engine完成
+13. Context所有方法检查跨线程调用
+14. 重构Codec继承于Formatter
 
 问题：
-修复字符串中有}号，表达式解析错误
-修复javassist的foreach 1..3编译不过
-修复内置JSON解析Bean类型转换问题
-修复message.directory拼接错误</code></pre>
+15. 修复字符串中有}号，表达式解析错误
+16. 修复javassist的foreach 1..3编译不过
+17. 修复内置JSON解析Bean类型转换问题
+18. 修复message.directory拼接错误</code></pre>
 
 <h3>1.0.7 (2013-01-27)</h3>
 
