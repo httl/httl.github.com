@@ -231,47 +231,10 @@ $!{body}
 
 <h2>变量指令</h2>
 
-<h3>类型声明</h3>
-
-<p>声明输入变量的类型，模板内部其它变量类型基于此类型推导。</p>
-
-<pre class="brush: xml;">格式：
-#var(type name, type name)
-
-示例：
-#var(User user, List&lt;Book&gt; books)
-</pre>
-
-<p>如果有全局的变量，可以用配置全局导入变量类型声明，就不需要在每个模板声明：</p>
-
-<pre class="brush: java;">import.variables+=User loginUser
-</pre>
-
-<p>缺省已导入：(可以在模板中直接使用)</p>
-
-<pre class="brush: java;">import.variables=Context parent,Template super,Template this,Engine engine
-</pre>
-
-<p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入一些相关的常用变量，详见<a href="config.html#导入变量类型声明">配置-导入变量类型声明</a>一节。
-
-<p>如果未声明的变量，缺省为Object：(如果是直接输出变量，可不声明类型)</p>
-
-<pre class="brush: java;">default.variable.type=java.lang.Object
-</pre>
-
-<pre class="brush: xml;">${obj} // 直接输出，不取属性，不做运算，不需要声明类型
-</pre>
-
-<p>如果你的系统中，大部分为String类型操作，你也可以改成缺省String类型：</p>
-
-<pre class="brush: java;">default.variable.type=java.lang.String
-</pre>
-
-<h3>变量赋值</h3>
-
 <p>将表达式的计算结果存入变量中。</p>
 
 <pre class="brush: xml;">格式：
+#set(type name)
 #set(name = expression)
 #set(type name = expression)
 #set(name .= expression)
@@ -280,9 +243,12 @@ $!{body}
 #set(type name := expression)
 
 示例：
+#set(User user)
 #set(price = book.price * book.discount)
 #set(int price = book.price * book.discount)
 </pre>
+
+<p>#set(User user)声明变量的类型，模板内部其它变量类型基于此类型推导。</p>
 
 <p>类型的声明，同时可以用作强制转型，比如：</p>
 
@@ -291,9 +257,10 @@ $!{body}
 
 <p>如果bookentry.value的类型丢失，上面的写法可以恢复book的类型。</p>
 
-<p>一个set指令可同时有多个赋值，用分号分隔，如：</p>
+<p>一个set指令可同时有多个类型声明或赋值，用逗号分隔，但类型声明和赋值要分开写，如：</p>
 
-<pre class="brush: xml;">#set(price = book.price; discount = book.discount)
+<pre class="brush: xml;">#set(User user, List&lt;Book&gt; books)
+#set(price = book.price, discount = book.discount)
 </pre>
 <p>赋值会在生成局部变量的同时，写入当前Context中，
 如果有include()子模板，在子模板中也可以读到该变量。</p>
@@ -328,6 +295,31 @@ Context.getContext().put("price", x);
 
 // 先在#set临时集合中查找，再到原生传入的parameters中查找，然后到上一级Context查找。
 Context.getContext().get("price");
+</pre>
+
+<p>如果有全局的变量，可以用配置全局导入变量类型声明，就不需要在每个模板声明：</p>
+
+<pre class="brush: java;">import.variables+=User loginUser
+</pre>
+
+<p>缺省已导入：(可以在模板中直接使用)</p>
+
+<pre class="brush: java;">import.variables=Context parent,Template super,Template this,Engine engine
+</pre>
+
+<p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入一些相关的常用变量，详见<a href="config.html#导入变量类型声明">配置-导入变量类型声明</a>一节。
+
+<p>如果未声明的变量，缺省为Object：(如果是直接输出变量，可不声明类型)</p>
+
+<pre class="brush: java;">default.variable.type=java.lang.Object
+</pre>
+
+<pre class="brush: xml;">${obj} // 直接输出，不取属性，不做运算，不需要声明类型
+</pre>
+
+<p>如果你的系统中，大部分为String类型操作，你也可以改成缺省String类型：</p>
+
+<pre class="brush: java;">default.variable.type=java.lang.String
 </pre>
 
 <h2>条件指令</h2>
@@ -453,10 +445,10 @@ $!{xxx} 执行宏
     ...
 #end
 
-等价于：(将#var参数组合到宏定义中)
+等价于：(将#set参数组合到宏定义中)
 
 #macro(xxx)
-    #var(List&lt;Book&gt; books)
+    #set(List&lt;Book&gt; books)
     ...
 #end
 </pre>
@@ -896,16 +888,10 @@ uuid()
 <td>特殊符转义</td>
 </tr>
 <tr>
-<td>#var(Xxx xxx)</td>
-<td>不支持</td>
-<td>不同</td>
-<td>定义输入参数类型</td>
-</tr>
-<tr>
-<td>#set(xxx = yyy)</td>
+<td>#set(xxx = yyy)<br/>#set(Xxx xxx = yyy)<br/>#set(Xxx xxx)</td>
 <td>#set($xxx = $yyy)</td>
 <td>相同</td>
-<td>给变量赋值</td>
+<td>给变量赋值，HTTL多一个类型</td>
 </tr>
 <tr>
 <td>#if(xxx == yyy)</td>
@@ -932,10 +918,10 @@ uuid()
 <td>结束指令</td>
 </tr>
 <tr>
-<td>#foreach(item in list)</td>
+<td>#foreach(item in list)<br/>#foreach(Type item in list)</td>
 <td>#foreach($item in $list)</td>
 <td>相同</td>
-<td>列表循环</td>
+<td>列表循环，HTTL多一个类型</td>
 </tr>
 <tr>
 <td>#breakif(xxx == yyy)</td>

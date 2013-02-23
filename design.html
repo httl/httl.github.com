@@ -414,7 +414,7 @@ Object name = ReflectUtil.get(user, "name"); // 接下来name也要反射
 
 <p>HTTL强类型字节码生成：</p>
 
-<pre class="brush: java;">User user = (User)context.get("user"); // 通过&lt;!--#var(User user)--&gt;声明类型
+<pre class="brush: java;">User user = (User)context.get("user"); // 通过&lt;!--#set(User user)--&gt;声明类型
 // 在编译期决定使用getName()方法获取属性的值，并通过getUser()的返回类型推演name的类型
 String name = user.getName();
 </pre>

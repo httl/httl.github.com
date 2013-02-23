@@ -259,7 +259,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <h3>1.0.7 (2013-01-27)</h3>
 
-<pre><code>1. 允许用户不用声明#var()类型，而在运行时通过getTemplate()参数指定。
+<pre><code>1. 允许用户不用声明#set()类型，而在运行时通过getTemplate()参数指定。
 2. 将调用writer.write(String)改成调用writer.write(char[])，减少Writer中的char[]拷贝。
 3. 将filter(String)改成filter(char[])和filter(byte[])，优化二进制输出时过滤性能。
 4. 将format()改成toChars()和toBytes()，优化二进制输出时格式化性能。
