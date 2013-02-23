@@ -208,7 +208,7 @@ $ export httl_import_packages=-com.foo.pack3
 <td>false</td>
 </tr>
 <tr>
-<td>remove.directive.blank</td>
+<td>remove.directive.blank.line</td>
 <td>移除指令空白行</td>
 <td>true</td>
 </tr>
@@ -263,7 +263,7 @@ $ export httl_import_packages=-com.foo.pack3
 <td>java.lang.Object</td>
 </tr>
 <tr>
-<td>runtime.variable.type</td>
+<td>use.render.variable.type</td>
 <td>以第一次渲染的变量类型编译</td>
 <td>true</td>
 </tr>
@@ -843,7 +843,7 @@ text.filters+=httl.spi.filters.CompressBlankFilter
 
 <p>HTTL缺省会移除指令所在行空白，如果需要保留，请配置：</p>
 
-<pre class="brush: xml;">remove.directive.blank=false
+<pre class="brush: xml;">remove.directive.blank.line=false
 </pre>
 
 <h2>类型导入</h2>
