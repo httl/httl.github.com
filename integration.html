@@ -80,12 +80,12 @@
 
 <ul>
 <li>Template.render(map,writer) 基于参数渲染模板内容到输出中</li>
-<li>Template.getContextTypes() 获取模板执行后将在上下文中保留的变量类型</li>
+<li>Template.getExportTypes() 获取模板执行后将在上下文中保留的变量类型</li>
 <li>Template.getMacros() 获取模板中的宏</li>
 <li>Template.isMacro() 当前模板是否为宏</li>
 <li>Expression.evaluate(map) 基于参数求值表达式或模板内容</li>
 <li>Expression.getCode() 获取生成的Java代码</li>
-<li>Expression.getParameterTypes() 获取需要的参数类型</li>
+<li>Expression.getVariableTypes() 获取需要的参数类型</li>
 <li>Expression.getReturnType() 获取求值返回值类型</li>
 <li>Expression.getOffset() 获取片断源位置偏移量</li>
 <li>Resource.getInputStream() 获取模板源输入流</li>
@@ -151,10 +151,10 @@ String title = (String) Context.getContext().get("title");
 Template macro = template.getMacros().get("menus");
 
 // 如果你要写测试工具，你可以获取到模板所需的变量和类型，去Mock数据。
-Map&lt;String, Class&lt;?&gt;&gt; parameterTypes = template.getParameterTypes();
+Map&lt;String, Class&lt;?&gt;&gt; parameterTypes = template.getVariableTypes();
 
 // 同理，你也可以获取到模板向上级Context中输出的变量和类型。
-Map&lt;String, Class&lt;?&gt;&gt; contextTypes = template.getContextTypes();
+Map&lt;String, Class&lt;?&gt;&gt; contextTypes = template.getExportTypes();
 </pre>
 
 <h3>ScriptEngine集成</h3>
