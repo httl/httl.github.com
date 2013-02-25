@@ -119,6 +119,16 @@
 
 <p>参见：<a href="http://www.infoq.com/cn/articles/hk-semi-static-language">http://www.infoq.com/cn/articles/hk-semi-static-language</a></p>
 
+<h2>如何实现像JSP自定义标签的功能?</h2>
+
+<p>HTTL为防止模板复杂化，保持最简指令集，所以也不允许用户扩展指令集，而通过扩展函数来实现相同功能。</p>
+
+<p>自定义标签：&lt;hasPrivilege resource="foo"&gt; ... &lt;/hasPrivilege&gt;</p>
+
+<p>可替换为方法扩展：#if(hasPrivilege("foo")) ... #end</p>
+
+<p>只需配置：import.methods+=com.your.YourStaticMethodClass</p>
+
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>
       </div>
