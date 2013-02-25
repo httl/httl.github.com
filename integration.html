@@ -180,7 +180,7 @@ String result = (String) script.eval(bindings);
 
 <p><img src="images/httl-mvc.png" alt="MVC"></p>
 
-<p>Web应用查找httl.properties配置的顺序：</p>
+<h3>配置查找顺序</h3>
 
 <p>(1) 首先查找/WEB-INF/web.xml中的context-param指定的配置：</p>
 
@@ -198,6 +198,40 @@ String result = (String) script.eval(bindings);
 <p>(3) 如果WEB-INF中没有，则查找ClassPath根目录：httl.properties</p>
 
 <p>(4) 如果ClassPath根目录也没有，则使用标准配置。</p>
+
+<h3>变量查找顺序</h3>
+
+<p>以${foo}为例：</p>
+
+<p>(1) 首先查找当前模板内#set赋值的变量。</p>
+
+<p>(2) 再查找业务Controller返回的变量。</p>
+
+<p>(3) 然后查找请求属性：request.getAttribute("foo")</p>
+
+<p>(4) 然后查找请求参数：request.getParameter("foo")</p>
+
+<p>(5) 然后查找请求头：request.getHeader("foo")</p>
+
+<p>(6) 然后查找临时会话属性：session.getAttribute("foo")</p>
+
+<p>(7) 然后查找持外会话属性：cookie.get"foo")</p>
+
+<p>(8) 然后查找应用属性：servletContext.getAttribute("foo")</p>
+
+<p>也可以指定访问的域：</p>
+
+<p>(1) ${request.foo} 返回请求属性：request.getAttribute("foo")</p>
+
+<p>(2) ${parameter.foo} 返回请求参数：request.getParameter("foo")</p>
+
+<p>(3) ${header.foo} 返回请求头：request.getHeader("foo")</p>
+
+<p>(4) ${session.foo} 返回临时会话属性：session.getAttribute("foo")</p>
+
+<p>(5) ${cookie.foo} 返回持久会话属性：cookie.get"foo")</p>
+
+<p>(6) ${application.foo} 返回应用属性：servletContext.getAttribute("foo")</p>
 
 <h3>SpringMVC集成</h3>
 
