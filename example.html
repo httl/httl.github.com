@@ -78,7 +78,7 @@
         &lt;table&gt;
         
             &lt;!--## 循环输出，类型可省，将基于泛型推导 --&gt;
-            &lt;!--#foreach(book in books)--&gt;
+            &lt;!--#foreach(Book book in books)--&gt;
             &lt;tr&gt;
                 &lt;!--## 条件中断循环 --&gt;
                 &lt;!--#breakif(foreach.index >= 10)--&gt;
@@ -90,7 +90,7 @@
                 &lt;td&gt;$!{cover(book)}&lt;/td&gt;
                 
                 &lt;!--## 变量赋值，类型可省，将基于表达式推导 --&gt;
-                &lt;!--#set(price = book.price * book.discount)--&gt;
+                &lt;!--#set(int price = book.price * book.discount)--&gt;
                 &lt;td&gt;${price}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;!--#end--&gt;
