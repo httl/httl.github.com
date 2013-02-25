@@ -129,6 +129,16 @@
 
 <p>只需配置：import.methods+=com.your.YourStaticMethodClass</p>
 
+<h2>出现找不到属性或方法怎么办?</h2>
+
+<p>如果出现以下异常信息：</p>
+
+<p>No such property xxx in class java.lang.Object</p>
+
+<p>No such method xxx() in class java.lang.Object</p>
+
+<p>通常是变量的类型没有定义，请在模板中加入变量类型声明：#set(Xxx xxx)</p>
+
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>
       </div>
