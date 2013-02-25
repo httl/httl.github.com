@@ -215,7 +215,7 @@ String result = (String) script.eval(bindings);
 
 <p>(6) 然后查找临时会话属性：session.getAttribute("foo")</p>
 
-<p>(7) 然后查找持外会话属性：cookie.get"foo")</p>
+<p>(7) 然后查找持外会话属性：cookie.get("foo")</p>
 
 <p>(8) 然后查找应用属性：servletContext.getAttribute("foo")</p>
 
@@ -229,7 +229,7 @@ String result = (String) script.eval(bindings);
 
 <p>(4) ${session.foo} 返回临时会话属性：session.getAttribute("foo")</p>
 
-<p>(5) ${cookie.foo} 返回持久会话属性：cookie.get"foo")</p>
+<p>(5) ${cookie.foo} 返回持久会话属性：cookie.get("foo")</p>
 
 <p>(6) ${application.foo} 返回应用属性：servletContext.getAttribute("foo")</p>
 
