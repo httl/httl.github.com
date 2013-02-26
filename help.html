@@ -139,6 +139,24 @@
 
 <p>通常是变量的类型没有定义，请在模板中加入变量类型声明：#set(Xxx xxx)</p>
 
+<h2>出现乱码怎么办?</h2>
+
+<p>如果出现乱码问题，请检查HTTL的编码配置：</p>
+
+<p>input.encoding=UTF-8</p>
+
+<p>output.encoding=UTF-8</p>
+
+<p>缺省值都为file.encoding，即本地操作系统文件编码。</p>
+
+<p>另外，MVC集成，缺省会将output.encoding的值写入response.setEncodingCharset()中，</p>
+
+<p>当然，你也可以通过配置response.encoding=null关闭对response编码的自动设置，</p>
+
+<p>如果使用OutputStream输出模板，请一定要确保response.encoding和output.encoding一致，否则输出内容会乱码。</p>
+
+<p>请注意，input.encoding指的是从磁盘加载模板的编码，和request.getEncodingCharset并无关联，可以使用不同编码。</p>
+
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>
       </div>
