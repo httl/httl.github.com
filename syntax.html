@@ -172,7 +172,7 @@ comment.right=*/
 
 <h1>指令</h1>
 
-<p>HTTL只有 #var, #if, #elseif, #else, #foreach, #breakif, #macro 七个指令，以及输出占位和注释，保持最小指令集，以后也不会增加指令。</p>
+<p>HTTL只有 #set, #if, #elseif, #else, #foreach, #breakif, #macro 七个指令，以及输出占位和注释，保持最小指令集，以后也不会增加指令。</p>
 
 <h2>输出指令</h2>
 
@@ -238,33 +238,33 @@ $!{body}
 <p>将表达式的计算结果存入变量中。</p>
 
 <pre class="brush: xml;">格式：
-#var(type name)
-#var(name = expression)
-#var(type name = expression)
-#var(name .= expression)
-#var(type name .= expression)
-#var(name := expression)
-#var(type name := expression)
+#set(type name)
+#set(name = expression)
+#set(type name = expression)
+#set(name .= expression)
+#set(type name .= expression)
+#set(name := expression)
+#set(type name := expression)
 
 示例：
-#var(User user)
-#var(price = book.price * book.discount)
-#var(int price = book.price * book.discount)
+#set(User user)
+#set(price = book.price * book.discount)
+#set(int price = book.price * book.discount)
 </pre>
 
-<p>#var(User user)声明变量的类型，模板内部其它变量类型基于此类型推导。</p>
+<p>#set(User user)声明变量的类型，模板内部其它变量类型基于此类型推导。</p>
 
 <p>类型的声明，同时可以用作强制转型，比如：</p>
 
-<pre class="brush: xml;">#var(Book book = bookentry.value)
+<pre class="brush: xml;">#set(Book book = bookentry.value)
 </pre>
 
 <p>如果bookentry.value的类型丢失，上面的写法可以恢复book的类型。</p>
 
 <p>一个set指令可同时有多个类型声明或赋值，用逗号分隔，但类型声明和赋值要分开写，如：</p>
 
-<pre class="brush: xml;">#var(User user, List&lt;Book&gt; books)
-#var(price = book.price, discount = book.discount)
+<pre class="brush: xml;">#set(User user, List&lt;Book&gt; books)
+#set(price = book.price, discount = book.discount)
 </pre>
 <p>赋值会在生成局部变量的同时，写入当前Context中，
 如果有include()子模板，在子模板中也可以读到该变量。</p>
@@ -272,7 +272,7 @@ $!{body}
 <p>如果你想使变量只在当前模板中可见，在include()子模板中看不见，可以用".="赋值，
 这样，生成这字节码时，只会生成局部变量，不会写入Context中，性能也会有所提升，比如：</p>
 
-<pre class="brush: xml;">#var(price .= book.price * book.discount)
+<pre class="brush: xml;">#set(price .= book.price * book.discount)
 </pre>
 
 <p>如果你要在父模板中拿到include子模板中的变量，或者你想在模板渲染之后拿到变量，
@@ -280,7 +280,7 @@ $!{body}
 如果你需要用向上级Context中赋值，可以用“:=”赋值，它将变量写入Context.getParent()中，
 比如：</p>
 
-<pre class="brush: xml;">#var(price := book.price * book.discount)
+<pre class="brush: xml;">#set(price := book.price * book.discount)
 </pre>
 
 <p>你可以在模板渲染后，通过Context.getContext().get("price");拿到上面的变量。</p>
@@ -294,10 +294,10 @@ Map&lt;String, Object&gt; parameters = Collections.unmodifiableMap(parameters);
 // 确保渲染过程无副作用，以及多次渲染的幂等性。
 template.render(parameters, writer);
 
-// 模板中的#var(price = x)变量是put到Context的临时集合中的。
+// 模板中的#set(price = x)变量是put到Context的临时集合中的。
 Context.getContext().put("price", x);
 
-// 先在#var临时集合中查找，再到原生传入的parameters中查找，然后到上一级Context查找。
+// 先在#set临时集合中查找，再到原生传入的parameters中查找，然后到上一级Context查找。
 Context.getContext().get("price");
 </pre>
 
@@ -468,10 +468,10 @@ $!{xxx} 执行宏
     ...
 #end
 
-等价于：(将#var参数组合到宏定义中)
+等价于：(将#set参数组合到宏定义中)
 
 #macro(xxx)
-    #var(List&lt;Book&gt; books)
+    #set(List&lt;Book&gt; books)
     ...
 #end
 </pre>
@@ -497,7 +497,7 @@ $!{xxx}
 #macro(xxx)
     ...
 #end
-#var(aaa := xxx)
+#set(aaa := xxx)
 </pre>
 
 <h2>结束指令</h2>
@@ -674,7 +674,7 @@ list.sort
 #end
 
 list.toCycle
-#var(colors = ["red", "blue", "green"].toCycle)
+#set(colors = ["red", "blue", "green"].toCycle)
 #foreach(item in list)
 ${colors.next}
 #end
@@ -867,7 +867,7 @@ uuid()
 <li><p>HTTL占位符必需加大括号，只支持${aaa}，不支持$aaa，因为$在JavaScript中也是合法变量名符号，而${}不是，减少混淆，也防止多人开发时，有人加大括号，有人不加，干脆没得选，都加，保持一致。 </p></li>
 <li><p>HTTL占位符当变量为null时输出空白串，而不像Velocity那样原样输出指令原文，即${aaa}，等价于Velocity的$!{aaa}，以免开发人员忘写感叹号，泄漏表达式源码，如需原样输出，可使用转义\${aaa}，
 在HTTL中，$!{aaa}表示不对内容进行过滤，用于原样输出HTML片段。</p></li>
-<li><p>HTTL支持在所有使用变量的地方，进行表达式计算，也就是你不需要像Velocity那样，先#var($j = $i + 1)，再${j}，可以直接${i + 1}，其它指令也一样，比如：#if(i + 1 == n)。</p></li>
+<li><p>HTTL支持在所有使用变量的地方，进行表达式计算，也就是你不需要像Velocity那样，先#set($j = $i + 1)，再${j}，可以直接${i + 1}，其它指令也一样，比如：#if(i + 1 == n)。</p></li>
 <li><p>HTTL采用扩展Class原生方法的方式，如：${"a".toChar}，而不像Velocity的Tool工具方法那样：$(StringTool.toChar("a"))，这样的调用方式更直观，更符合代码书写习惯。</p></li>
 </ol>
 
@@ -911,7 +911,7 @@ uuid()
 <td>特殊符转义</td>
 </tr>
 <tr>
-<td>#var(xxx = yyy)<br/>#var(Xxx xxx = yyy)<br/>#var(Xxx xxx)</td>
+<td>#set(xxx = yyy)<br/>#set(Xxx xxx = yyy)<br/>#set(Xxx xxx)</td>
 <td>#set($xxx = $yyy)</td>
 <td>相同</td>
 <td>给变量赋值，HTTL多一个类型</td>
@@ -942,7 +942,7 @@ uuid()
 </tr>
 <tr>
 <td>#foreach(item in list)<br/>#foreach(Type item in list)</td>
-<td>#foreach($item in $list)</td>
+<td>#foreacheach($item in $list)</td>
 <td>相同</td>
 <td>列表循环，HTTL多一个类型</td>
 </tr>

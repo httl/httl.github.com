@@ -60,11 +60,11 @@
 
 <h2>模板示例</h2>
 
-<p>books.httl: </p>
+<p>books.httl: (该示例包含全部指令：#set, #if, #elseif, #else, #foreach, #breakif, #macro)</p>
 
 <pre class="brush: xml;">
 &lt;!--## 定义变量类型，未定义的变量以Object类型处理 --&gt;
-&lt;!--#var(User user, List&lt;Book&gt; books)--&gt;
+&lt;!--#set(User user, List&lt;Book&gt; books)--&gt;
 &lt;html&gt;
     &lt;body&gt;
     
@@ -90,7 +90,7 @@
                 &lt;td&gt;$!{cover(book)}&lt;/td&gt;
                 
                 &lt;!--## 变量赋值，类型可省，将基于表达式推导 --&gt;
-                &lt;!--#var(int price = book.price * book.discount)--&gt;
+                &lt;!--#set(int price = book.price * book.discount)--&gt;
                 &lt;td&gt;${price}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;!--#end--&gt;
@@ -319,7 +319,7 @@ var value = "$!{foo}";
 <p>比如变量未声明异常：</p>
 
 <pre><code>java.text.ParseException: Undefined variable "user". 
-Please add variable type definition &lt;!--#var(Xxx user)--&gt; in your tempalte.
+Please add variable type definition &lt;!--#set(Xxx user)--&gt; in your tempalte.
 Occur to offset: 6, line: 2, column: 3, char: u, in: 
 /WEB-INF/templates/user.httl
 ========================================
@@ -334,7 +334,7 @@ Occur to offset: 6, line: 2, column: 3, char: u, in:
 <ul>
 <li>出错原因：Undefined variable "user"</li>
 <li>出错位置：occur to offset: 6, line: 2, column: 3, char: u</li>
-<li>解决办法：Please add variable type definition &lt;!--#var(Xxx user)--&gt;</li>
+<li>解决办法：Please add variable type definition &lt;!--#set(Xxx user)--&gt;</li>
 <li>上下文信息：/WEB-INF/templates/user.httl</li>
 </ul>
 
