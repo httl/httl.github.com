@@ -667,7 +667,7 @@ template.directory=/WEB-INF/templates
 
 <p>然后编码加入模板内容：</p>
 
-<pre class="brush: xml;">StringLoader.add("foo.httl", "#set(User user)${user.name}");
+<pre class="brush: xml;">StringLoader.add("foo.httl", "#var(User user)${user.name}");
 </pre>
 
 <h3>从多个源加载</h3>
@@ -876,7 +876,7 @@ text.filters+=httl.spi.filters.CompressBlankFilter
 
 <p>这样你就可以在模板内直接使用这些变量，而不用每个模板都声明：</p>
 
-<pre class="brush: xml;">#set(HttpServletRequest request, HttpServletResponse response)</pre>
+<pre class="brush: xml;">#var(HttpServletRequest request, HttpServletResponse response)</pre>
 
 <p>你可以使用"+="保留缺省导入包的同时，导入新的包，多个包用逗号分隔：</p>
 

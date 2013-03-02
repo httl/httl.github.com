@@ -143,7 +143,7 @@ String result = (String) template.evaluate(parameters);
 parameters.put("template", result);  // 错误用法，应直接传入template对象
 
 // 你可以拿到模板中的set赋值：
-// 注意：如果要在模板渲染完之后拿到变量，要用#set(title := "foo")写到上级Context中。
+// 注意：如果要在模板渲染完之后拿到变量，要用#var(title := "foo")写到上级Context中。
 // 因为模板渲染完时会弹出Context栈，模板Context中的变量都会消失，只有写到上级Context中变量保留。
 String title = (String) Context.getContext().get("title");
 
@@ -203,7 +203,7 @@ String result = (String) script.eval(bindings);
 
 <p>以${foo}为例：</p>
 
-<p>(1) 首先查找当前模板内#set赋值的变量。</p>
+<p>(1) 首先查找当前模板内#var赋值的变量。</p>
 
 <p>(2) 再查找业务Controller返回的变量。</p>
 

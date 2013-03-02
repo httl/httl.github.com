@@ -267,7 +267,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <pre><code>
 功能：
-1. 废弃#var指令，统一使用#set指令，但保持兼容
+1. 废弃#set指令，统一使用#var指令，但保持兼容
 2. 支持将Velocity语法Filter成Httl语法
 3. 支持dump运行时上下文数据
 4. 增加use.render.variable.type配置
@@ -292,7 +292,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <h3>1.0.7 (2013-01-27)</h3>
 
-<pre><code>1. 允许用户不用声明#set()类型，而在运行时通过getTemplate()参数指定。
+<pre><code>1. 允许用户不用声明#var()类型，而在运行时通过getTemplate()参数指定。
 2. 将调用writer.write(String)改成调用writer.write(char[])，减少Writer中的char[]拷贝。
 3. 将filter(String)改成filter(char[])和filter(byte[])，优化二进制输出时过滤性能。
 4. 将format()改成toChars()和toBytes()，优化二进制输出时格式化性能。
@@ -319,8 +319,8 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 25. 解决在指令省略括号时，误将(a + b) * (c + d)两边的括号给去掉了，导致表达式解析出错。
 26. 支持和Velocity一样的无注释符语法，比如：#if(a == b) ... #end
 27. 增加JsonMapConverter和StringBuilderOutConverter。
-28. 允许#set(formatter = formatter.add($myFormatter))
-29. #set(filter = $myFilter)
+28. 允许#var(formatter = formatter.add($myFormatter))
+29. #var(filter = $myFilter)
 30. 支持Codec扩展，并内置JSON编解码实现。
 </code></pre>
 
@@ -472,7 +472,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 不兼容优化：
 14. 将define指令名改成var，以免和velocity的define指令理解混淆，影响所有旧模板，用户可全文替换。
-15. 去掉block指令，用#set(xxx = xxxmacro())代替，影响使用block的模板。
+15. 去掉block指令，用#var(xxx = xxxmacro())代替，影响使用block的模板。
 16. 将com.googlecode.httl改成httl，影响API调用，重新Ctrl+Shift+O导入一下包名即可，类名没变。
 17. 将com.googlecode.httl.support改成httl.spi，影响httl.properties中扩展点的配置，使用缺省配置值的，建议不要配到用户配置中。
 18. 将filters配置项改成了value.filters，与text.filters对应用，影响httl.properties中filter扩展点的配置。
@@ -498,7 +498,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 14. 支持集合或运算，选择不为空的集合，如：#foreach(book in books1 | books2) 
 15. 支持Date类型比较，如：#if(date1 &gt; date2) 
 16. 支持new操作，如：${new Date()} 
-17. 支持强制转型，如：#set(user = (User) param) 
+17. 支持强制转型，如：#var(user = (User) param) 
 18. 增加HttlServlet，支持将请求经过MVC框架处理并填充request属性后forward到HttlServlet进行页面渲染 
 19. 兼容JDK1.5，需配置：compiler=com.googlecode.httl.support.compilers.JavassistCompiler 
 </code></pre>
