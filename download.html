@@ -272,28 +272,36 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 <h3>1.0.9 (2013-04-07)</h3>
 
 <pre><code>
-功能：
-
-sequences改成import.sequences
-表达式不暴露为API，删除evaluate方法。
-改为先解析成指令树，再由指令树生成编译代码，并且指令树可直接解释执行。
-template和expression共用visitor，temp前序，expr后序
-parser返回node，template和expression共用接口
-配置+=追加在缺省配置之前。
-foreach支持else。
-#break可以打断模板和宏。
-增加ArrayMapConverter，在以方法形式调用宏时，将方法参数列表转成Map。
-配置位置支持classpath等前缀。
-提示#var变量名不能包含点号。
-
-支持多个template.directory
-遇到模板类型自动不过滤。
-#for支持无变量定义，将可直接访问属性。
-可配置不允许调用的方法名。
-去掉#{}，将编译时内联输出，改为自动计算。
+解决String[]声明的时候报错的问题
+支持is操作符，与instanceof相同
+解决JdkCompiler的ClassPath查找BUG
+for循环支持java写法
+支持字面Boxed数字
+修复参数为基本类型时无法找到对应方法问题 
+配置+=追加在缺省配置之前
+OutputStreamTemplate传入Writer报错，而不是转换
 可解释执行
-OutputStreamTemplate传入Writer报错，而不是转换。
-
+增加ArrayMapConverter
+提示#var变量名不能包含点号
+可配置不允许调用的方法名
+#break可以打断模板和宏
+遇到模板类型自动不过滤
+配置位置支持classpath等前缀
+表达式不暴露为API，删除evaluate方法
+sequences改成import.sequences
+支持配置多个模板目录 
+对于没有返回值及不需要取得返回值的方法调用支持问题
+修复set指令识别上溯造型的问题
+for循环支持else
+增加code.directory存放解析生成的java代码 
+将DefaultParser中的代码改成AST树访问者组装
+不识别的指令忽略 
+Macro中super.fooMethod不能调用有参数的方法  
+异常信息中给出HTTL的版本 
+getVariables返回没有定义类型的变量
+生产模式时，在内存中不保存模板源文件
+宏单独编译后行号与原始模板没有对应 
+支持字面包名的解析
 </code></pre>
 
 <h3>1.0.8 (2013-02-23)</h3>
