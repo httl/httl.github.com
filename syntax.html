@@ -248,11 +248,6 @@ $!{body}
 
 <p>如果bookentry.value的类型丢失，上面的写法可以恢复book的类型。</p>
 
-<p>一个#set指令可同时有多个赋值，用逗号分隔，如：</p>
-
-<pre class="brush: xml;">#set(price = book.price, discount = book.discount)
-</pre>
-
 <p>赋值会在生成局部变量的同时，写入当前Context中，
 如果有include()子模板，在子模板中也可以读到该变量。</p>
 
