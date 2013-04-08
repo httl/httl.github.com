@@ -60,7 +60,7 @@
 
 <h2>模板示例</h2>
 
-<p>books.httl: (该示例包含全部指令：#set, #if, #elseif, #else, #foreach, #breakif, #macro)</p>
+<p>books.httl: (HTTL只有六个指令：#set, #if, #else, #for, #break, #macro，并且不会增加)</p>
 
 <pre class="brush: xml;">
 &lt;!--## 定义变量类型，未定义的变量以Object类型处理 --&gt;
@@ -78,28 +78,33 @@
         &lt;table&gt;
         
             &lt;!--## 循环输出，类型可省，将基于泛型推导 --&gt;
-            &lt;!--#foreach(Book book in books)--&gt;
+            &lt;!--#for(Book book : books)--&gt;
             &lt;tr&gt;
-                &lt;!--## 条件中断循环 --&gt;
-                &lt;!--#breakif(foreach.index >= 10)--&gt;
                 
                 &lt;!--## 变量输出 --&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
                 
-                &lt;!--## 执行宏输出，也可以用$!{cover} --&gt;
+                &lt;!--## 执行宏输出，也可以用${cover} --&gt;
                 &lt;td&gt;$!{cover(book)}&lt;/td&gt;
                 
                 &lt;!--## 变量赋值，类型可省，将基于表达式推导 --&gt;
                 &lt;!--#set(int price = book.price * book.discount)--&gt;
                 &lt;td&gt;${price}&lt;/td&gt;
             &lt;/tr&gt;
+            
+            &lt;!--## 条件中断循环 --&gt;
+            &lt;!--#break(for.index == 10)--&gt;
+            
+            &lt;!--## 当循环数据为空时执行 --&gt;
+            &lt;!--#else--&gt;
+                没有数据。
             &lt;!--#end--&gt;
         
         &lt;/table&gt;
-        &lt;!--#elseif(user)--&gt;
-            Have no privilege.
+        &lt;!--#else(user)--&gt;
+            没有权限。
         &lt;!--#else--&gt;
-            Not Logined.
+            没有登录。
         &lt;!--#end--&gt;
     
     &lt;/body&gt;
@@ -150,6 +155,40 @@ template.render(parameters, response.getOutputStream());
 
 <p>注：缺省必须要用JDK运行，如果只有JRE，请配置为JavassistCompiler。</p>
 
+<h2>扩展示例</h2>
+
+<p>HTTL不允许扩展指令，以保持指令集最小化，防止模板语义复杂，所有扩展功能，以方法扩展实现。</p>
+
+<p>比如JSP的自定义标签：&lt;hasPrivilege resource="foo"&gt; ... &lt;/hasPrivilege&gt;</p>
+
+<p>在HTTL中用方法扩展实现：#if(hasPrivilege("foo")) ... #end</p>
+
+<p>只需定义静态方法：</p>
+
+<pre class="brush: java;">
+package com.xxx;
+
+public class PrivilegeMethod {
+
+    public static boolean hasPrivilege(String resource) {
+        return Context.getContext().get("loginUserId") != null;
+    }
+
+}
+</pre>
+
+<p>并配置：import.methods+=com.xxx.PrivilegeMethod</p>
+
+<p>另外，HTTL支持用普通对象方法的格式，调用静态扩展方法，如：${date.format("yyyy-MM-dd")}</p>
+
+<p>实际调用下面的静态方法：(被调对象作为第一个参数传入，后面的参数原样传入)</p>
+
+<pre class="brush: java;">
+public static String format(Date date, String format) {
+    return new SimpleDateFormat(format).format(date);
+}
+</pre>
+
 <h2>继承示例</h2>
 
 <p>你可以把模板继承的宏覆盖，理解成Java类继承的方法覆盖。</p>
@@ -198,7 +237,7 @@ $!{extends("/layout.httl")}
 
 &lt;!--#macro(main)--&gt;
     &lt;table&gt;
-        &lt;!--#foreach(Book book in books)--&gt;
+        &lt;!--#for(Book book : books)--&gt;
         &lt;tr&gt;
             &lt;td&gt;${book.title}&lt;/td&gt;
         &lt;/tr&gt;
@@ -227,8 +266,8 @@ extends.variable=layout
 # 注意：默认模板是从继承模板目录中查找的，即实际为：template.directory + extends.default
 extends.default=default.httl
 
-# 父模板引用子模板的名称，如在父模板中调用：$!{nested}，将输出子模板的内容。
-# 或者父模板中如果有&lt;!--#macro($!nested)--&gt;宏，将被子模板替换。
+# 父模板引用子模板的名称，如在父模板中调用：${nested}，将输出子模板的内容。
+# 或者父模板中如果有&lt;!--#macro($nested)--&gt;宏，将被子模板替换。
 extends.nested=nested
 </pre>
 
@@ -319,7 +358,7 @@ var value = "$!{foo}";
 <p>比如变量未声明异常：</p>
 
 <pre><code>java.text.ParseException: Undefined variable "user". 
-Please add variable type definition &lt;!--#set(Xxx user)--&gt; in your tempalte.
+Please add variable type definition &lt;!--#set(Xxx user)--&gt; : your tempalte.
 Occur to offset: 6, line: 2, column: 3, char: u, in: 
 /WEB-INF/templates/user.httl
 ========================================

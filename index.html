@@ -54,7 +54,7 @@
       <div class="body-content ">
         <section>
 
-<p class="active-rc-announcement"><a href="download.html">2013-02-23 HTTL 1.0.8 版本已发布，欢迎使用和反馈问题。</a></p>
+<p class="active-rc-announcement"><a href="download.html">2013-04-07 HTTL 1.0.9 版本已发布，欢迎使用和反馈问题。</a></p>
 
 <h1>概述</h1>
 
@@ -63,14 +63,14 @@
 <h2>简洁友好的模板语法</h2>
 
 <p>语法尽可能符合HTML和JAVA开发者的直觉，指令和老牌的Velocity类似，但改进了Velocity中不符合直觉的地方。
-并保持最简洁指令集，只保留最基本的条件迭代控制指令，防止模板复杂化。默认使用HTML注释语法，避免干扰原生HTML页面。</p>
+只保留最基本的条件迭代控制指令，渲染过程不允许修改原始数据，防止模板带过多业务逻辑。默认使用HTML注释语法，避免干扰原生HTML页面。</p>
 
 <pre class="brush: xml;">
 &lt;html&gt;
     &lt;body&gt;
         &lt;!--#if(books)--&gt;
         &lt;table&gt;
-            &lt;!--#foreach(Book book in books)--&gt;
+            &lt;!--#for(book : books)--&gt;
             &lt;tr&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
             &lt;/tr&gt;
@@ -81,7 +81,16 @@
 &lt;/html&gt;
 </pre>
 
-<p>支持多种语法，详细请参见：<a href="syntax.html#语法">语法</a></p>
+<p>改进Velocity不符合直觉的地方：</p>
+
+<ul>
+<li>指令中的变量不用加$符，如：#if(a == b)，而不像Velocity那样：#if($a == $b)，加$有点废话，而且容易忘写。</li>
+<li>${x}当变量为null时，输出空白串，而不像Velocity那样：输出源码${x}，如果用$!{x}，感叹号容易忘记写。</li>
+<li>支持在输出时进行表达式计算，如：${i + 1}，而不像Velocity那样：要先#set($j = $i + 1)到一个临时变量。</li>
+<li>采用更直观的方式，调用静态工具方法，如：${"a".toChar}，而不像Velocity那样：$(StringTool.toChar("a"))。</li>
+</ul>
+
+<p>详细语法，以及Velocity对比，请参见：<a href="syntax.html#语法">语法</a> &amp; <a href="syntax.html#Velocity对比">对比</a></p>
 
 <h2>精益求精的性能优化</h2>
 
@@ -91,12 +100,14 @@
 
 <p><a href="design.html#性能"><img src="images/httl-benchmark.png" alt="模板引擎性能测试"></a></p>
 
-<p>测试环境请参见：<a href="design.html#性能">性能</a></p>
+<p>测试用例和环境，以及优化策略，请参见：<a href="design.html#性能">性能</a> &amp; <a href="design.html#优化策略">优化</a></p>
 
 <h2>高质量的设计与实现</h2>
 
 <p>模板自描述，在模板内声明入参变量类型，并基于入参类型推导模板内所有变量类型，使IDE能方便的实现变量方法补全提示，
-对开发过程友好。出错信息精确定位行列，并显示出错位置前后相关内容。采用微核+插件体系，所有环节均可扩展，方便二次开发。</p>
+对开发过程友好。出错信息精确定位行列，并显示出错位置前后相关内容。采用微核+插件体系，所有环节均可扩展，方便集成和二次开发。</p>
+
+<p><img src="images/httl-coverage.png" alt="测试覆盖率"></p>
 
 <p>严格确保质量，请放心使用，HTTL在发布前已做：</p>
 
@@ -111,7 +122,7 @@
 <li>JDepend分包依赖检测，确保分包依赖的合理性。</li>
 </ul>
 
-<p>并全部通过，详细请参见：<a href="design.html#质量">质量</a></p>
+<p>并全部通过，详细设计与质量分析，请参见：<a href="design.html#设计">设计</a> &amp; <a href="design.html#质量">质量</a></p>
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>

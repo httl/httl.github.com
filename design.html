@@ -526,11 +526,24 @@ writer.write(_TXT1_);
 
 <h1>质量</h1>
 
+<p>严格确保质量，请放心使用，HTTL在发布前已做：</p>
+
+<ul>
+<li>所有语法指令函数模板单元测试，确保所有模板指令的解析和执行正确。</li>
+<li>性能对比基准测试，确保性能接近Java硬编码输出，高出其它引擎一个数量级。</li>
+<li>长时间运行稳定性测试，确保不出现FullGC,内存溢出,死锁,CPU占满,抖动等。</li>
+<li>内存占用和CPU耗时Profiler分析，确保不出现非预期的内存和CPU瓶颈。</li>
+<li>Web应用集成测试，确保在SpringMVC,Struts,Webx等集成中可用。</li>
+<li>环境兼容性测试，确保在Liunx,Windows,OSX,JDK1.5,1.6,1.7等环境可用。</li>
+<li>FindBugs代码问题检测，确保不出现空指针，资源未关闭等明显错误。</li>
+<li>JDepend分包依赖检测，确保分包依赖的合理性。</li>
+</ul>
+
 <h2>单元测试</h2>
 
 <p>单元测试覆盖率: (分析工具EclEmma)</p>
 
-<p><img src="images/httl-coverage.png" alt="测试覆盖率"></p>
+<p><img src="images/httl-coverage-detail.png" alt="测试覆盖率"></p>
 
 <p>HTTL对所有语法，指令，函数，都有相应模板进行测试，参见：</p>
 

@@ -69,7 +69,7 @@
     &lt;body&gt;
         #if(books)
         &lt;table&gt;
-            #foreach(Book book in books)
+            #for(Book book : books)
             &lt;tr&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
             &lt;/tr&gt;
@@ -91,7 +91,7 @@
     &lt;body&gt;
         &lt;!--#if(books)--&gt;
         &lt;table&gt;
-            &lt;!--#foreach(Book book in books)--&gt;
+            &lt;!--#for(Book book : books)--&gt;
             &lt;tr&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
             &lt;/tr&gt;
@@ -124,7 +124,7 @@ comment.right=*/
 &lt;html&gt;
     &lt;body&gt;
         &lt;table if="books"&gt;
-            &lt;tr foreach="Book book in books"&gt;
+            &lt;tr for="Book book : books"&gt;
                 &lt;td&gt;${book.title}&lt;/td&gt;
             &lt;/tr&gt;
         &lt;/table&gt;
@@ -149,14 +149,14 @@ comment.right=*/
 &lt;/dependency&gt;
 </pre>
 
-<p>如果属性和其它框架冲突，可以添加名字空间：</p>
+<p>如果属性和其它框架冲突，可以添加名称空间：</p>
 
 <pre class="brush: java;">attribute.namespace=httl
 </pre>
 
 <p>名称空间写法如：</p>
 
-<pre class="brush: xml;">&lt;tr httl:foreach="book in books" /&gt;
+<pre class="brush: xml;">&lt;tr httl:for="book : books" /&gt;
 </pre>
 
 <p>在没有标签的地方，你可以同时使用上面的注释语法。</p>
@@ -172,11 +172,11 @@ comment.right=*/
 
 <h1>指令</h1>
 
-<p>HTTL只有 #set, #if, #elseif, #else, #foreach, #breakif, #macro 七个指令，以及输出占位和注释，保持最小指令集，以后也不会增加指令。</p>
+<p>HTTL只有 #set, #if, #else, #for, #break, #macro 六个指令，以及输出占位和注释转义，保持最小指令集，以后也不会增加指令。</p>
 
 <h2>输出指令</h2>
 
-<h3>过滤输出</h3>
+<h3>${}过滤输出</h3>
 
 <p>输出表达式的计算结果，并进行过滤，比如：过滤变量中的HTML标签。</p>
 
@@ -189,7 +189,9 @@ ${user.name}
 
 <p>注：HTTL缺省开启了EscapeXmlFilter，以防止HTML注入攻击。如果你需要更强的过滤，请自行实现Filter，并配置到value.filters。此处为运行时热点，请注意性能。</p>
 
-<h3>不过滤输出</h3>
+<p>如果输出变量的类型为Template，则缺省不过滤，比如：${include("foo.httl")}</p>
+
+<h3>$!{}不过滤输出</h3>
 
 <p>原样输出表达式的计算结果，不进行任何过滤，通常用于输出HTML片段。</p>
 
@@ -202,57 +204,42 @@ $!{body}
 
 <p>注意：使用不过滤输出，请确保内容是开发者确定的安全内容，而不是由用户提交的内容，以防止HTML注入攻击。</p>
 
-<h3>编译时过滤输出</h3>
-
-<p>编译时输出表达式的计算结果，并进行过滤，比如：过滤变量中的HTML标签。</p>
-
-<p>编译时表达式不能有变量，否则报错，在编译时将计算结果内联为静态文本，用于提升性能。</p>
-
-<pre class="brush: xml;">格式：
-#{expression}
-
-示例：
-#{24 * 60 * 60}
-#{message("key")}
-</pre>
-
-<p>注：HTTL缺省开启了EscapeXmlFilter，以防止HTML注入攻击。</p>
-
-<h3>编译时不过滤输出</h3>
-
-<p>编译时原样输出表达式的计算结果，不进行任何过滤，通常用于输出HTML片段。</p>
-
-<p>编译时表达式不能有变量，否则报错，在编译时将计算结果内联为静态文本，用于提升性能。</p>
-
-<pre class="brush: xml;">格式：
-#!{expression}
-
-示例：
-#!{read("static.html")}
-</pre>
-
-<p>注意：使用不过滤输出，请确保内容是开发者确定的安全内容，而不是由用户提交的内容，以防止HTML注入攻击。</p>
-
 <h2>变量指令</h2>
+
+<h3>#set变量类型</h3>
+
+<p>声明变量的类型，模板内部其它变量类型基于此类型推导。</p>
+
+<pre class="brush: xml;">格式：
+#set(type name, type name)
+
+示例：
+#set(User user)
+</pre>
+
+<p>一个#set指令可同时有多个类型声明，如：</p>
+
+<pre class="brush: xml;">#set(User user, List&lt;Book&gt; books)
+</pre>
+
+<h3>#set变量赋值</h3>
 
 <p>将表达式的计算结果存入变量中。</p>
 
 <pre class="brush: xml;">格式：
-#set(type name)
 #set(name = expression)
 #set(type name = expression)
+
 #set(name .= expression)
 #set(type name .= expression)
+
 #set(name := expression)
 #set(type name := expression)
 
 示例：
-#set(User user)
 #set(price = book.price * book.discount)
 #set(int price = book.price * book.discount)
 </pre>
-
-<p>#set(User user)声明变量的类型，模板内部其它变量类型基于此类型推导。</p>
 
 <p>类型的声明，同时可以用作强制转型，比如：</p>
 
@@ -261,11 +248,11 @@ $!{body}
 
 <p>如果bookentry.value的类型丢失，上面的写法可以恢复book的类型。</p>
 
-<p>一个set指令可同时有多个类型声明或赋值，用逗号分隔，但类型声明和赋值要分开写，如：</p>
+<p>一个#set指令可同时有多个赋值，用逗号分隔，如：</p>
 
-<pre class="brush: xml;">#set(User user, List&lt;Book&gt; books)
-#set(price = book.price, discount = book.discount)
+<pre class="brush: xml;">#set(price = book.price, discount = book.discount)
 </pre>
+
 <p>赋值会在生成局部变量的同时，写入当前Context中，
 如果有include()子模板，在子模板中也可以读到该变量。</p>
 
@@ -328,7 +315,7 @@ Context.getContext().get("price");
 
 <h2>条件指令</h2>
 
-<h3>IF条件</h3>
+<h3>#if条件</h3>
 
 <p>如果条件表达式计算结果为真或非空，则输出指令所包含的块。</p>
 
@@ -343,59 +330,47 @@ Context.getContext().get("price");
 #end
 </pre>
 
-<h3>ELSEIF条件</h3>
+<h3>#else条件否则</h3>
 
-<p>如果前面的IF条件不为真，并且当前条件表达式计算结果为真或非空，则输出指令所包含的块。</p>
-
-<pre class="brush: xml;">格式：
-#elseif(expression)
-
-示例：
-#if(user.role == "admin")
-    ...
-#elseif(user.role == "member")
-    ...
-#end
-</pre>
-
-<h3>ELSE条件</h3>
-
-<p>如果前面的IF条件不为真，则输出指令所包含的块。</p>
+<p>如果前面的IF条件不为真，则输出ELSE指令所包含的块。</p>
 
 <pre class="brush: xml;">格式：
 #else
+#else(expression)
 
 示例：
 #if(user.role == "admin")
+    ...
+#else(user.role == "member")
     ...
 #else
     ...
 #end
 </pre>
 
-<h2>迭代指令</h2>
+<h2>循环指令</h2>
 
-<h3>集合迭代</h3>
+<h3>#for循环</h3>
 
 <p>迭代表达式产生的集合，以集合中的每项值，重复输出指令所包含的块。</p>
 
 <pre class="brush: xml;">格式：
-#foreach(name in expression)
-#foreach(type name in expression)
+#for(name : expression)
+#for(type name : expression)
 
 示例：
-#foreach(book in books)
+#for(book : books)
     ...
-    ${foreach.index}
-    ${foreach.size}
-    ${foreach.first}
-    ${foreach.last}
+    ${for.index}
+    ${for.size}
+    ${for.first}
+    ${for.last}
 #end
 </pre>
 
 <p>类型的声明，同时可以用作强制转型，比如：</p>
 
-<pre class="brush: xml;">#foreach(Book book in booklist)
+<pre class="brush: xml;">#for(Book book : booklist)
     ${book.title}
 #end
 </pre>
@@ -406,77 +381,99 @@ Context.getContext().get("price");
 
 <pre class="brush: xml;">
 ## 字面序列集合，输出1到9的数字
-#foreach(i in 1..9)
+#for(i : 1..9)
 
 ## 字面离散集合，输出10,20,30三个数字
-#foreach(i in [10, 20, 30])
+#for(i : [10, 20, 30])
 
 ## 取一个非空集合迭代，如果books1不为空，则迭代books1，否则迭代books2
-#foreach(book in books1 || books2)
+#for(book : books1 || books2)
 
 ## 集合相加后，再迭代
-#foreach(book in books1 + books2)
+#for(book : books1 + books2)
 
 ## 集合排序后，再迭代
-#foreach(book in books.sort)
+#for(book : books.sort)
 </pre>
 
-<h3>中断迭代</h3>
+<h3>#break循环中断</h3>
 
 <p>当条件表达式为真或非空时，中断当前迭代过程。</p>
 
 <pre class="brush: xml;">格式：
-#breakif(expression)
+#break
+#break(expression)
 
 示例：
-#foreach(book in books)
+#for(book : books)
     ...
-    #breakif(foreach.index == 10)
+    #break(for.index == 10)
     ...
 #end
 </pre>
 
-<h2>宏指令</h2>
+<h3>#else循环否则</h3>
 
-<p>将指令块封装成可复用的模板片断，它可当作变量传递，可重复执行输出，可被继承覆盖。</p>
+<p>如果前面的FOR集合为空，则输出ELSE指令所包含的块。</p>
+
+<pre class="brush: xml;">格式：
+#else
+#else(expression)
+
+示例：
+#for(book : books)
+    ...
+#else
+    ...
+#end
+</pre>
+
+<h2>模板指令</h2>
+
+<h3>#macro模板片段</h3>
+
+<p>将指令块封装成可复用的模板片段，它可当作变量传递，可重复执行输出，可被继承覆盖。</p>
 
 <pre class="brush: xml;">格式：
 #macro(name)
-#macro($name)
-#macro($!name)
-#macro(var = name)
-#macro(var := name)
+#macro(name(name, name))
 #macro(name(type name, type name))
-#macro($name(type name, type name))
-#macro($!name(type name, type name))
-#macro(var = name(type name, type name))
-#macro(var := name(type name, type name))
 
 示例：
 #macro(xxx)
     ...
 #end
 
-$!{xxx} 执行宏
+${xxx} 以变量执行宏
+${xxx(arg1, arg2)} 以方法执行宏
 </pre>
 
 <p>模板继承宏覆盖，参见：<a href="example.html#继承示例">继承示例</a></p>
 
-<p>组合语法等价关系：</p>
+<p>在宏定义的同时，可以在定义的位置同时输出宏，或将宏赋值给变量，以及定义宏的参数，以简化书写。</p>
 
-<pre class="brush: xml;">#macro(xxx(List&lt;Book&gt; books))
+<pre class="brush: xml;">格式：
+#macro($name)
+#macro($name(name, name))
+#macro($name(type name, type name))
+
+#macro(var = name)
+#macro(var = name(name, name))
+#macro(var = name(type name, type name))
+
+示例：
+#macro($xxx)
     ...
 #end
 
-等价于：(将#set参数组合到宏定义中)
-
-#macro(xxx)
-    #set(List&lt;Book&gt; books)
+#macro(xxx = xxx)
     ...
 #end
 </pre>
 
-<pre class="brush: xml;">#macro($!xxx)
+<p>组合语法等价关系：</p>
+
+<pre class="brush: xml;">#macro($xxx)
     ...
 #end
 
@@ -485,10 +482,10 @@ $!{xxx} 执行宏
 #macro(xxx)
     ...
 #end
-$!{xxx}
+${xxx}
 </pre>
 
-<pre class="brush: xml;">#macro(aaa := xxx)
+<pre class="brush: xml;">#macro(aaa = xxx)
     ...
 #end
 
@@ -497,52 +494,61 @@ $!{xxx}
 #macro(xxx)
     ...
 #end
-#set(aaa := xxx)
+#set(aaa = xxx)
 </pre>
 
-<h2>结束指令</h2>
+<h3>#break模板中断</h3>
 
-<p>所有块指令结束符</p>
+<p>当条件表达式为真或非空时，中断当前模板或宏的执行。</p>
 
 <pre class="brush: xml;">格式：
-#end
-#end(start)
+#break
+#break(expression)
 
 示例：
-#if(books) ... #end
-#if(books) ... #end(if)
+#break(debug)
 </pre>
 
-<h2>字面指令</h2>
+<h2>注释指令</h2>
 
-<h3>注释块</h3>
+<h3>##行注释</h3>
 
-<p>隐藏注释的内容，用于注解过程，或屏蔽指令内容。</p>
+<p>隐藏行注释的内容，以换行符结束，用于注解过程，或屏蔽指令内容。</p>
 
 <pre class="brush: xml;">格式：
 ## line comment
-#* block comment *#
 
 示例：
 ## This is line comment
+</pre>
 
+<h3>#**#块注释</h3>
+
+<p>隐藏块注释内容，可包含换行符，用于注解过程，或屏蔽指令内容。</p>
+
+<pre class="brush: xml;">格式：
+#* block comment *#
+
+示例：
 #* 
    This is block comment
 *#
 </pre>
 
-<h3>不解析块</h3>
+<h2>转义指令</h2>
 
-<p>原样输出模板内容，用于输出纯文本内容。</p>
+<h3>#[]#不解析块</h3>
+
+<p>原样输出模板内容，用于输出纯文本内容，或批量转义块中的特殊符。</p>
 
 <pre class="brush: xml;">格式：
 #[ no parse block ]#
 
 示例：
-#[ This is no parse block ]#
+#[ This is no parse block: #if ${name} ]#
 </pre>
 
-<h3>特殊符转义</h3>
+<h3>\#\$特殊符转义</h3>
 
 <p>原样输出指令特殊符，用于输出纯文本内容。</p>
 
@@ -592,25 +598,25 @@ ${map["a.b.c"]} 等价于：${map.get("a.b.c")}
 
 序列生成: 1..3
 比如：
-#foreach(i in 1..10)
+#for(i : 1..10)
 ${i}
 #end
 
 List生成: [123, "abc", var]
 比如：
-#foreach(color in ["red", "yellow", "blue"])
+#for(color : ["red", "yellow", "blue"])
 ${color}
 #end
 
 Map生成: ["xxx": 123, "yyy": "abc", "zzz": var]
 比如：(此Map保持声明时的顺序)
-#foreach(entry in ["red": "#FF0000", "yellow": "#00FF00"])
+#for(entry : ["red": "#FF0000", "yellow": "#00FF00"])
 ${entry.key} = ${entry.value}
 #end
 
 集合相加：list1 + list2
 比如：
-#foreach(item in list1 + list2)
+#for(item : list1 + list2)
 ${item}
 #end
 </pre>
@@ -629,9 +635,9 @@ ${item}
 等价于：
 #if(list != null &amp;&amp; list1.size() &gt; 0)
 
-#foreach(item in list1 || list2)
+#for(item : list1 || list2)
 等价于：
-#foreach(item in list1 != null &amp;&amp; list1.size() &gt; 0 ? list1 : list2)
+#for(item : list1 != null &amp;&amp; list1.size() &gt; 0 ? list1 : list2)
 </pre>
 
 <h3>日期操作符</h3>
@@ -670,12 +676,12 @@ list.size
 map.size
 
 list.sort
-#foreach(item in list.sort)
+#for(item : list.sort)
 #end
 
 list.toCycle
 #set(colors = ["red", "blue", "green"].toCycle)
-#foreach(item in list)
+#for(item : list)
 ${colors.next}
 #end
 </pre>
@@ -683,24 +689,27 @@ ${colors.next}
 <h3>文件函数</h3>
 
 <pre class="brush: xml;">继承模板，以当前模板中的宏，替换父模板中的同名宏，执行父模板，输出到当前位置。
-$!{extend("/layout.httl")}
-$!{extend("/layout.httl", "UTF-8")}
-$!{extend("../layout.httl")}
-$!{extend("../layout.httl", "UTF-8")}
+${extend("/layout.httl")}
+${extend("/layout.httl", "UTF-8")}
+${extend("../layout.httl")}
+${extend("../layout.httl", "UTF-8")}
 
 包含模板，执行目标模板，输出到当前位置。
-$!{include("/template.httl")}
-$!{include("/template.httl", "UTF-8")}
-$!{include("../template.httl")}
-$!{include("../template.httl", "UTF-8")}
+${include("/template.httl")}
+${include("/template.httl", "UTF-8")}
+${include("/template.httl", ["arg": "value"])}
+${include("../template.httl")}
+${include("../template.httl", "UTF-8")}
 
 包含模板中的宏，执行目标宏，输出到当前位置。
-$!{include("/template.httl#macro")}
-$!{include("/template.httl#macro", "UTF-8")}
+${include("/template.httl#macro")}
+${include("/template.httl#macro", "UTF-8")}
+${include("/template.httl#macro")}
+${include("/template.httl#macro", ["arg": "value"])}
 
 读取目标文件中的内容，输出到当前位置。
-$!{read("/text.txt")}
-$!{read("/text.txt", "UTF-8")}</pre>
+${read("/text.txt")}
+${read("/text.txt", "UTF-8")}</pre>
 
 <h3>国际化函数</h3>
 
@@ -710,7 +719,7 @@ basename_zh_CN.properties
 basename_zh.properties
 basename.properties
 
-$!{include("template.httl")}
+${include("template.httl")}
 在localized=true时，依次查找以下文件是否存在：
 template_zh_CN.httl
 template_zh.httl
@@ -862,12 +871,11 @@ uuid()
 <h2>语法对比</h2>
 
 <ol>
-<li><p>HTTL指令可以加注释外壳，支持&lt;!--#if(x)--&gt;，确保不干扰HTML本身的有效源码。 </p></li>
-<li><p>HTTL指令中的变量不加$符，只支持#foreach(book in books)，不支持#foreach($book in $books)，因为指令中没有加引号的字符串就是变量，和常规语言的语法一样，加$有点废话，而且容易忘写。</p></li>
+<li><p>HTTL指令中的变量不加$符，只支持#if(x == y)，不支持#if($x == $y)，因为指令中没有加引号的字符串就是变量，和常规语言的语法一样，加$有点废话，而且容易忘写。</p></li>
 <li><p>HTTL占位符必需加大括号，只支持${aaa}，不支持$aaa，因为$在JavaScript中也是合法变量名符号，而${}不是，减少混淆，也防止多人开发时，有人加大括号，有人不加，干脆没得选，都加，保持一致。 </p></li>
-<li><p>HTTL占位符当变量为null时输出空白串，而不像Velocity那样原样输出指令原文，即${aaa}，等价于Velocity的$!{aaa}，以免开发人员忘写感叹号，泄漏表达式源码，如需原样输出，可使用转义\${aaa}，
-在HTTL中，$!{aaa}表示不对内容进行过滤，用于原样输出HTML片段。</p></li>
-<li><p>HTTL支持在所有使用变量的地方，进行表达式计算，也就是你不需要像Velocity那样，先#set($j = $i + 1)，再${j}，可以直接${i + 1}，其它指令也一样，比如：#if(i + 1 == n)。</p></li>
+<li><p>HTTL占位符当变量为null时输出空白串，而不像Velocity那样原样输出指令原文，即${aaa}，等价于Velocity的${aaa}，以免开发人员忘写感叹号，泄漏表达式源码，如需原样输出，可使用转义\${aaa}，
+在HTTL中，${aaa}表示不对内容进行过滤，用于原样输出HTML片段。</p></li>
+<li><p>HTTL支持在所有使用变量的地方，进行表达式计算，也就是你不需要像Velocity那样，先#set($j = $i + 1)到一个临时变量，再输出临时变量${j}，HTTL可以直接输出${i + 1}，其它指令也一样，比如：#if(i + 1 == n)。</p></li>
 <li><p>HTTL采用扩展Class原生方法的方式，如：${"a".toChar}，而不像Velocity的Tool工具方法那样：$(StringTool.toChar("a"))，这样的调用方式更直观，更符合代码书写习惯。</p></li>
 </ol>
 
@@ -875,118 +883,137 @@ uuid()
 
 <table>
 <tr>
-<td>HTTL</td>
 <td>Velocity</td>
+<td>HTTL</td>
 <td>异同</td>
 <td>功能</td>
+<td>变化</td>
 </tr>
 <tr>
-<td>${xxx.yyy}</td>
 <td>${xxx.yyy}<br>$xxx.yyy</td>
+<td>${xxx.yyy}</td>
 <td>相同</td>
 <td>输出占位符</td>
+<td>HTTL大括号必需</td>
 </tr>
 <tr>
-<td>$!{xxx.yyy}</td>
 <td>$!{xxx.yyy}<br>$!xxx.yyy</td>
+<td>$!{xxx.yyy}</td>
 <td>不同</td>
-<td>一个是不过滤，一个是不原样输出</td>
+<td>空值不显示源码</td>
+<td>HTTL改为不过滤输出</td>
 </tr>
 <tr>
 <td>## ...<br>#* ... *#</td>
 <td>## ...<br>#* ... *#</td>
 <td>相同</td>
 <td>不显示注释块</td>
+<td></td>
 </tr>
 <tr>
-<td>#[ ... ]#</td>
 <td>#[[ ... ]]#</td>
+<td>#[ ... ]#</td>
 <td>相同</td>
 <td>不解析文本块</td>
+<td>HTTL少一对方括号</td>
 </tr>
 <tr>
 <td>\# \$ \\</td>
 <td>\# \$ \\</td>
 <td>相同</td>
 <td>特殊符转义</td>
+<td></td>
 </tr>
 <tr>
-<td>#set(xxx = yyy)<br/>#set(Xxx xxx = yyy)<br/>#set(Xxx xxx)</td>
 <td>#set($xxx = $yyy)</td>
+<td>#set(xxx = yyy)<br/>#set(Xxx xxx = yyy)<br/>#set(Xxx xxx)</td>
 <td>相同</td>
-<td>给变量赋值，HTTL多一个类型</td>
+<td>给变量赋值</td>
+<td>HTTL可带类型声明</td>
 </tr>
 <tr>
-<td>#if(xxx == yyy)</td>
 <td>#if($xxx == $yyy)</td>
+<td>#if(xxx == yyy)</td>
 <td>相同</td>
 <td>条件判断</td>
+<td></td>
 </tr>
 <tr>
-<td>#elseif(xxx == yyy)</td>
 <td>#elseif($xxx == $yyy)</td>
+<td>#else(xxx == yyy)</td>
 <td>相同</td>
 <td>否则条件判断</td>
+<td>HTTL复用else指令</td>
 </tr>
 <tr>
 <td>#else</td>
 <td>#else</td>
 <td>相同</td>
 <td>否则判断</td>
+<td></td>
 </tr>
 <tr>
 <td>#end</td>
-<td>#end</td>
+<td>#end<br/>#end(if)</td>
 <td>相同</td>
 <td>结束指令</td>
+<td>HTTL可带配对指令名</td>
 </tr>
 <tr>
-<td>#foreach(item in list)<br/>#foreach(Type item in list)</td>
-<td>#foreacheach($item in $list)</td>
+<td>#foreach($item in $list)</td>
+<td>#for(item : list)<br/>#for(Type item : list)</td>
 <td>相同</td>
-<td>列表循环，HTTL多一个类型</td>
+<td>列表循环</td>
+<td>HTTL改为Java格式</td>
 </tr>
 <tr>
-<td>#breakif(xxx == yyy)</td>
-<td>#if($xxx == $yyy) #break #end</td>
-<td>相似</td>
+<td>#break</td>
+<td>#break<br/>#break(xxx == yyy)</td>
+<td>相同</td>
 <td>中断循环</td>
+<td>HTTL可以直接带条件</td>
 </tr>
 <tr>
-<td>#macro(xxx)</td>
-<td>#macro($xxx)</td>
+<td>#stop</td>
+<td>#break<br/>#break(xxx == yyy)</td>
 <td>相似</td>
-<td>宏替换，模板片断</td>
+<td>停止模板解析</td>
+<td>HTTL复用break指令</td>
 </tr>
 <tr>
-<td>#macro(xxx := xxxmacro)</td>
+<td>#macro($xxx)</td>
+<td>#macro(xxx)</td>
+<td>相似</td>
+<td>可复用模板片段宏</td>
+<td>HTTL作为函数执行</td>
+</tr>
+<tr>
 <td>#define($xxx)</td>
+<td>#macro(xxx = xxxmacro)</td>
 <td>相似</td>
 <td>捕获块输出到变量中</td>
+<td>HTTL复用macro指令</td>
 </tr>
 <tr>
-<td>$!{read("xxx.txt")}</td>
 <td>#include("xxx.txt")</td>
+<td>${read("xxx.txt")}</td>
 <td>相似</td>
 <td>读取文本文件内容</td>
+<td>HTTL改为函数扩展</td>
 </tr>
 <tr>
-<td>$!{include("xxx.httl")}</td>
 <td>#parse("xxx.vm")</td>
+<td>${include("xxx.httl")}</td>
 <td>相似</td>
 <td>包含另一模板输出</td>
+<td>HTTL改为函数扩展</td>
 </tr>
 <tr>
-<td>$!{evaluate("1 + 2")}</td>
-<td>#evaluate("1 + 2")</td>
+<td>#evaluate("${1 + 2}")</td>
+<td>${render("${1 + 2}")}</td>
 <td>相似</td>
-<td>表达式求值</td>
-</tr>
-<tr>
-<td>不支持</td>
-<td>#stop</td>
-<td>不同</td>
-<td>停止模板解析</td>
+<td>模板求值</td>
+<td>HTTL改为函数扩展</td>
 </tr>
 </table>
 

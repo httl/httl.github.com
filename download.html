@@ -93,26 +93,26 @@
 </tr>
 <tr>
 <td>HTTL核心包</td>
-<td><a href="http://httl.github.com/maven/httl/httl/1.0.8/httl-1.0.8.jar">httl-1.0.8.jar</a></td>
-<td><a href="https://github.com/httl/httl/archive/1.0.8.zip">httl-1.0.8.zip</a></td>
+<td><a href="http://httl.github.com/maven/httl/httl/1.0.9/httl-1.0.9.jar">httl-1.0.9.jar</a></td>
+<td><a href="https://github.com/httl/httl/archive/1.0.9.zip">httl-1.0.9.zip</a></td>
 <td><a href="https://github.com/httl/httl">httl</a></td>
 </tr>
 <tr>
 <td>SpringMVC示例</td>
-<td><a href="http://httl.github.com/maven/httl/httl-springmvc/1.0.8/httl-springmvc-1.0.8.war">httl-springmvc-1.0.8.war</a></td>
-<td><a href="https://github.com/httl/httl-springmvc/archive/1.0.8.zip">httl-springmvc-1.0.8.zip</a></td>
+<td><a href="http://httl.github.com/maven/httl/httl-springmvc/1.0.9/httl-springmvc-1.0.9.war">httl-springmvc-1.0.9.war</a></td>
+<td><a href="https://github.com/httl/httl-springmvc/archive/1.0.9.zip">httl-springmvc-1.0.9.zip</a></td>
 <td><a href="https://github.com/httl/httl-springmvc">httl-springmvc</a></td>
 </tr>
 <tr>
 <td>Struts示例</td>
-<td><a href="http://httl.github.com/maven/httl/httl-struts/1.0.8/httl-struts-1.0.8.war">httl-struts-1.0.8.war</a></td>
-<td><a href="https://github.com/httl/httl-struts/archive/1.0.8.zip">httl-struts-1.0.8.zip</a></td>
+<td><a href="http://httl.github.com/maven/httl/httl-struts/1.0.9/httl-struts-1.0.9.war">httl-struts-1.0.9.war</a></td>
+<td><a href="https://github.com/httl/httl-struts/archive/1.0.9.zip">httl-struts-1.0.9.zip</a></td>
 <td><a href="https://github.com/httl/httl-struts">httl-struts</a></td>
 </tr>
 <tr>
 <td>Servlet示例</td>
-<td><a href="http://httl.github.com/maven/httl/httl-servlet/1.0.8/httl-servlet-1.0.8.war">httl-servlet-1.0.8.war</a></td>
-<td><a href="https://github.com/httl/httl-servlet/archive/1.0.8.zip">httl-servlet-1.0.8.zip</a></td>
+<td><a href="http://httl.github.com/maven/httl/httl-servlet/1.0.9/httl-servlet-1.0.9.war">httl-servlet-1.0.9.war</a></td>
+<td><a href="https://github.com/httl/httl-servlet/archive/1.0.9.zip">httl-servlet-1.0.9.zip</a></td>
 <td><a href="https://github.com/httl/httl-servlet">httl-servlet</a></td>
 </tr>
 </table>
@@ -125,7 +125,7 @@
         &lt;dependency&gt;
             &lt;groupId&gt;httl&lt;/groupId&gt;
             &lt;artifactId&gt;httl&lt;/artifactId&gt;
-            &lt;version&gt;1.0.8&lt;/version&gt;
+            &lt;version&gt;1.0.9&lt;/version&gt;
             &lt;/dependency&gt;
     &lt;/dependencies&gt;
     &lt;repositories&gt;
@@ -140,8 +140,8 @@
 
 <h2>运行示例</h2>
 
-<p>将war包放到：tomcat/webapps/httl-springmvc-1.0.8.war，并启动tomcat，<br/>
-然后访问：http://localost:8080/httl-springmvc-1.0.8</p>
+<p>将war包放到：tomcat/webapps/httl-springmvc-1.0.9.war，并启动tomcat，<br/>
+然后访问：http://localost:8080/httl-springmvc-1.0.9</p>
 
 <h2>源代仓库</h2>
 
@@ -162,9 +162,9 @@ cd httl
 
 <p>或者，直接下载各版本Tag包，并解压：</p>
 
-<pre class="brush: xml;">wget https://github.com/httl/httl/archive/1.0.8.zip
-unzip httl-1.0.8.zip -d httl-1.0.8
-cd httl-1.0.8
+<pre class="brush: xml;">wget https://github.com/httl/httl/archive/1.0.9.zip
+unzip httl-1.0.9.zip -d httl-1.0.9
+cd httl-1.0.9
 </pre>
 
 <ul>
@@ -211,6 +211,12 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 <h2>历史版本</h2>
 
 <table>
+<tr>
+<td>2013-02-23</td>
+<td>1.0.8</td>
+<td><a href="http://httl.github.com/maven/httl/httl/1.0.8/httl-1.0.8.jar">httl-1.0.8.jar</a></td>
+<td><a href="http://httl.github.com/maven/httl/httl/1.0.8/httl-1.0.8-sources.jar">httl-1.0.8-sources.jar</a></td>
+</tr>
 <tr>
 <td>2013-01-27</td>
 <td>1.0.7</td>
@@ -263,11 +269,38 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <h2>变更记录</h2>
 
+<h3>1.0.9 (2013-04-07)</h3>
+
+<pre><code>
+功能：
+
+sequences改成import.sequences
+表达式不暴露为API，删除evaluate方法。
+改为先解析成指令树，再由指令树生成编译代码，并且指令树可直接解释执行。
+template和expression共用visitor，temp前序，expr后序
+parser返回node，template和expression共用接口
+配置+=追加在缺省配置之前。
+foreach支持else。
+#break可以打断模板和宏。
+增加ArrayMapConverter，在以方法形式调用宏时，将方法参数列表转成Map。
+配置位置支持classpath等前缀。
+提示#var变量名不能包含点号。
+
+支持多个template.directory
+遇到模板类型自动不过滤。
+#for支持无变量定义，将可直接访问属性。
+可配置不允许调用的方法名。
+去掉#{}，将编译时内联输出，改为自动计算。
+可解释执行
+OutputStreamTemplate传入Writer报错，而不是转换。
+
+</code></pre>
+
 <h3>1.0.8 (2013-02-23)</h3>
 
 <pre><code>
 功能：
-1. 废弃#var指令，统一使用#set指令，但保持兼容
+1. 统一使用#set指令，但保持兼容
 2. 支持将Velocity语法Filter成Httl语法
 3. 支持dump运行时上下文数据
 4. 增加use.render.variable.type配置
@@ -286,7 +319,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 问题：
 15. 修复字符串中有}号，表达式解析错误
-16. 修复javassist的foreach 1..3编译不过
+16. 修复javassist的for 1..3编译不过
 17. 修复内置JSON解析Bean类型转换问题
 18. 修复message.directory拼接错误</code></pre>
 
@@ -384,7 +417,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 4. 自动删除指令行空白，并可通过remove.directive.blank配置。
 5. 多Resolver和多Loader反序查找，便于+=配置，用户配置优先。
 6. set支持用分号分隔多个赋值。
-7. foreach状态的stcak集合改成parent链。
+7. for状态的stcak集合改成parent链。
 8. 清理所有Array.get()反射。
 9. ClassUtils增加属性反射缓存。
 10. 允许分开设置template.cache.capacity和expression.cache.capacity。
@@ -411,7 +444,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 4. 增加ByteCache，减少生成字节码逻辑。
 5. 检查锁逃逸，ByteOutput换成UnsafeByteOutput，StringBuffer换成StringBuilder等。
 6. 在$!{foo}进行不过滤输出时，如果变量本身就是byte[]或String类型，直接向stream或writer输出，减少转码。
-7. 增强集合运算后泛型推导，比如：#foreach(book in booklist1 + booklist2)。
+7. 增强集合运算后泛型推导，比如：#for(book : booklist1 + booklist2)。
 8. 改用google的ConcurrentLinkedHashMap做LRU缓存实现。
 9. 支持集合相加，比如：array1 + array2, list1 + list2, map1 + map2。
 10. 缺省导入java.lang.Math中的静态方法。
@@ -452,7 +485,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 <h3>1.0.0 (2012-10-06)</h3>
 
 <pre><code>修复问题：
-1. 解决foreach和if/else联合使用时状态错乱问题。
+1. 解决for和if/else联合使用时状态错乱问题。
 2. 解决getIsXxx属性解析出错问题。
 3. 解决文件加载未使用指定编码问题。
 4. 解决部分文件流打开后未关闭问题。
@@ -491,11 +524,11 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 7. 支持集合泛型参数，如：#define(List&lt;Book&gt; books) 
 8. 自动空指针检测，比如：${user.role}，当user为null时不会空指针 
 9. 自动条件补全，比如：#if(books)等价于#if(books != null &amp;&amp; books.size &gt; 0) 
-10. 支持foreach状态栈，多层foreach时，可通过${foreach.parent.index}获取上层foreach状态 
-11. 允许设置foreach状态变量名 
-12. 支持方括号数组，如：#foreach(c in [a, b, c]) 
-13. 支持双点号序列，如：#foreach(c in a..c)或#foreach(i in 1..2)或#foreach(day in "Monday".."Sunday") 
-14. 支持集合或运算，选择不为空的集合，如：#foreach(book in books1 | books2) 
+10. 支持for状态栈，多层for时，可通过${for.parent.index}获取上层for状态 
+11. 允许设置for状态变量名 
+12. 支持方括号数组，如：#for(c : [a, b, c]) 
+13. 支持双点号序列，如：#for(c : a..c)或#for(i : 1..2)或#for(day : "Monday".."Sunday") 
+14. 支持集合或运算，选择不为空的集合，如：#for(book : books1 | books2) 
 15. 支持Date类型比较，如：#if(date1 &gt; date2) 
 16. 支持new操作，如：${new Date()} 
 17. 支持强制转型，如：#set(user = (User) param) 
@@ -506,6 +539,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 <h3>0.1.0 (2011-09-15)</h3>
 
 <pre><code>第一个版本，基本功能实现，HTML属性语法解析。
+从以前的CommonTemplate中迁移。
 </code></pre>
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
