@@ -233,6 +233,11 @@ $ export httl_import_packages=-com.foo.pack3
 <td>true</td>
 </tr>
 <tr>
+<td>code.directory</td>
+<td>编译前Java代码保存目录</td>
+<td>/log/java</td>
+</tr>
+<tr>
 <td>compile.directory</td>
 <td>字节码编译目录</td>
 <td>/log/classes</td>
@@ -753,7 +758,12 @@ text.in.class=false
 
 <p>如果你想知道编译后的字节码是什么样的，可以设置编译目录，目录必须预先创建，编译器会向该目录输出.class文件。</p>
 
-<p>编译目录缺省关闭：(缺省值不用配)</p>
+<p>编译前java代码保存目录目录缺省关闭：(缺省值不用配)</p>
+
+<pre class="brush: xml;">code.directory=
+</pre>
+
+<p>编译后class保存目录缺省关闭：(缺省值不用配)</p>
 
 <pre class="brush: xml;">compile.directory=
 </pre>
