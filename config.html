@@ -177,6 +177,11 @@ $ export httl_import_packages=-com.foo.pack3
 <td>双点号序列</td>
 <td>Mon Tue Wed Thu Fri Sat Sun Mon</td>
 </tr>
+</tr>
+<td>forbid.methods</td>
+<td>双点号序列</td>
+<td>add,remove,clear</td>
+</tr>
 <tr>
 <td>template.directory</td>
 <td>模板文件目录</td>
@@ -935,6 +940,16 @@ public String include(String templateName) {
 
 <pre class="brush: xml;">${include("foo.httl")}
 </pre>
+
+<h3>禁止方法</h3>
+
+<p>HTTL不允许调用void方法，保持模板的无副作用，以及多次渲染的幂等性。</p>
+
+<p>如果有一些写方法有返回值，可以通过forbid.methods配置禁止，防止开发人员误调用。</p>
+
+<p>缺省禁止了一些常见写方法：(缺省值不用配)</p>
+
+<pre class="brush: xml;">forbid.methods=add,put,save,insert,modify,update,delete,remove,clear</pre>
 
 <h3>导入属性获取器</h3>
 
