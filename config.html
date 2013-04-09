@@ -173,7 +173,7 @@ $ export httl_import_packages=-com.foo.pack3
 <td>大小访问方法</td>
 <td>size</td>
 </tr>
-<td>sequences</td>
+<td>import.sequences</td>
 <td>双点号序列</td>
 <td>Mon Tue Wed Thu Fri Sat Sun Mon</td>
 </tr>
@@ -405,14 +405,19 @@ $ export httl_import_packages=-com.foo.pack3
 <td>httl.spi.engines.DefaultEngine</td>
 </tr>
 <tr>
-<td>parser</td>
-<td>语法解析器</td>
-<td>httl.spi.parsers.CommentParser</td>
+<td>template.parser</td>
+<td>模板语法解析器</td>
+<td>httl.spi.parsers.TemplateParser</td>
+</tr>
+<tr>
+<td>expression.parser</td>
+<td>表达式语法解析器</td>
+<td>httl.spi.parsers.ExpressionParser</td>
 </tr>
 <tr>
 <td>translator</td>
 <td>表达式翻译器</td>
-<td>httl.spi.translators.DfaTranslator</td>
+<td>httl.spi.translators.CompiledTranslator</td>
 </tr>
 <tr>
 <td>compiler</td>
@@ -423,11 +428,6 @@ $ export httl_import_packages=-com.foo.pack3
 <td>loaders</td>
 <td>资源加载器</td>
 <td>httl.spi.loaders.ClasspathLoader</td>
-</tr>
-<tr>
-<td>locators</td>
-<td>资源定位器</td>
-<td>httl.spi.locators.DirectoryLocator</td>
 </tr>
 <tr>
 <td>formatters</td>
@@ -520,11 +520,12 @@ $ export httl_import_packages=-com.foo.pack3
 <p>缺省使用注释语法：(缺省值不用配)</p>
 
 <pre class="brush: xml;">engine=httl.spi.engines.DefaultEngine
-parser=httl.spi.parsers.CommentParser
-translator=httl.spi.translators.DefaultTranslator
+translator=httl.spi.translators.CompiledTranslator
+template.parser=httl.spi.parsers.TemplateParser
+expression.parser=httl.spi.parsers.ExpressionParser
 </pre>
 
-<p>其中，engine负责组装，parser负责解析语法，translator负责将模板表达式翻译成java表达式。
+<p>其中，engine负责组装，parser负责解析语法树，translator负责将语法树转成模板实例。
 除非你想改变语法，或优化解析性能，否则此三项不需要配置。</p>
 
 <p>你可以设置for状态的变量名，缺省为for：(缺省值不用配)</p>
