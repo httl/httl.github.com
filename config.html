@@ -203,11 +203,6 @@ $ export httl_import_packages=-com.foo.pack3
 <td>10000</td>
 </tr>
 <tr>
-<td>expression.cache.capacity</td>
-<td>表达式缓存容量</td>
-<td>10000</td>
-</tr>
-<tr>
 <td>reloadable</td>
 <td>是否热加载</td>
 <td>false</td>
@@ -490,11 +485,6 @@ $ export httl_import_packages=-com.foo.pack3
 <td>java.util.concurrent.ConcurrentHashMap</td>
 </tr>
 <tr>
-<td>expression.cache</td>
-<td>表达式缓存</td>
-<td>java.util.concurrent.ConcurrentHashMap</td>
-</tr>
-<tr>
 <td>resolvers</td>
 <td>环境变量决策器</td>
 <td>httl.spi.resolvers.EngineResolver</td>
@@ -548,9 +538,7 @@ expression.parser=httl.spi.parsers.ExpressionParser
 <p>缺省为强缓存，即所有模板和表达式加载后全部缓存：(缺省值不用配)</p>
 
 <pre class="brush: xml;">template.cache=httl.spi.caches.TemplateAdaptiveCache
-expression.cache=httl.spi.caches.ExpressionAdaptiveCache
 template.cache.capacity=
-expression.cache.capacity=
 </pre>
 
 <p>当配置的capacity大于0，AdaptiveCache将适配到LRU(最近最少使用)实现，否则将适配到全缓存实现。</p>
@@ -558,12 +546,6 @@ expression.cache.capacity=
 <p>如果你的模板非常之多，内存不足以缓存所有模板，可以配置缓存容量：（将自动启用LRU丢弃策略）</p>
 
 <pre class="brush: xml;">template.cache.capacity=10000
-expression.cache.capacity=10000
-</pre>
-
-<p>你也可以用cache.capacity同时设置模板和表达式两者的缓存：(和上面的配置等价)</p>
-
-<pre class="brush: xml;">cache.capacity=10000
 </pre>
 
 <p>开发阶段，可以开启热加载：(将根据文件的最后修改时间自动清理缓存)</p>
