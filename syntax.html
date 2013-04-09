@@ -579,6 +579,8 @@ ${xxx}
 <li>所有实现Comparable的对象都支持比较运算符，比如：#if(date1 &lt; date2)，可以比较日期的先后。</li>
 <li>所有对象都支持逻辑与或，分别返回空值或非空值，比如：${list1 || list2}，如果list1不为空则返回list1，否则返回list2。</li>
 <li>List和Map可以方括号取值，比如：list[0]等价于list.get(0)，map["abc"]等价于map.get("abc")</li>
+<li>大写3L将生成java.lang.Long值，小写3l将生成long值。</li>
+<li>支持is操作符，与instanceof相同，来源C#。</li>
 </ul>
 
 <p>属性查找顺序，以${obj.foo}为例：(编译时决定，不影响性能)</p>
