@@ -174,7 +174,9 @@ comment.right=*/
 
 <p>HTTL只有 #set, #if, #else, #for, #break, #macro 六个指令，以及输出占位和注释转义，保持最小指令集，以后也不会增加指令。</p>
 
-<p>HTTL不识别的指令名，将以文本输出，比如HTML颜色：#FF00EE。</p>
+<p>不识别的指令名，将以文本输出，比如HTML颜色：#FF00EE。</p>
+
+<p>如果指令名和文本相接，如：#elseTEXT，可用无参括号隔开，如：#if(x)AAA#else()BBB#end()CCC</p>
 
 <h2>输出指令</h2>
 
