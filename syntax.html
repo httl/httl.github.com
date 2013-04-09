@@ -337,7 +337,9 @@ Context.getContext().get("price");
 
 <h3>#else条件否则</h3>
 
-<p>如果前面的IF条件不为真，则输出ELSE指令所包含的块。</p>
+<p>如果前面的#if条件不为真，则输出#else指令所包含的块。</p>
+
+<p>注意：#else指令可以直接带条件，以减少#if条件的组合。</p>
 
 <pre class="brush: xml;">格式：
 #else
@@ -405,6 +407,8 @@ Context.getContext().get("price");
 
 <p>当条件表达式为真或非空时，中断当前迭代过程。</p>
 
+<p>注意：#break可以直接带条件参数：#break(i == j)，不用写成：#if(i == j) #break #end</p>
+
 <pre class="brush: xml;">格式：
 #break
 #break(expression)
@@ -419,7 +423,9 @@ Context.getContext().get("price");
 
 <h3>#else循环否则</h3>
 
-<p>如果前面的FOR集合为空，则输出ELSE指令所包含的块。</p>
+<p>如果前面的#for集合为空，则输出#else指令所包含的块。</p>
+
+<p>注意：#for指令可以直接和#else联合使用，可以减少#if不为空判断条件的书写。</p>
 
 <pre class="brush: xml;">格式：
 #else
@@ -505,6 +511,8 @@ ${xxx}
 <h3>#break模板中断</h3>
 
 <p>当条件表达式为真或非空时，中断当前模板或宏的执行。</p>
+
+<p>注意：不在#for指令中的#break，表示中断模板或宏的执行。</p>
 
 <pre class="brush: xml;">格式：
 #break
