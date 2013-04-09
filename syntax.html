@@ -214,15 +214,53 @@ $!{body}
 #set(type name, type name)
 
 示例：
-#set(User user)
-</pre>
-
-<p>一个#set指令可同时有多个类型声明，如：</p>
-
-<pre class="brush: xml;">#set(User user, List&lt;Book&gt; books)
+#set(User user, List&lt;Book&gt; books)
 </pre>
 
 <p>注：暂时只支持List和Map的一级泛型，多级泛型能解析，但不能推导。</p>
+
+<p>如果有全局的变量，可以用配置全局导入变量类型声明，就不需要在每个模板声明：</p>
+
+<pre class="brush: java;">import.variables+=User loginUser
+</pre>
+
+<p>缺省已导入：(可以在模板中直接使用)</p>
+
+<pre class="brush: java;">import.variables=Context parent,Template super,Template this,Engine engine
+</pre>
+
+<p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入一些相关的常用变量，详见<a href="config.html#导入变量类型声明">配置-导入变量类型声明</a>一节。
+
+<p>如果未声明的变量，缺省为Object：(如果是直接输出变量，可不声明类型)</p>
+
+<pre class="brush: java;">default.variable.type=java.lang.Object
+</pre>
+
+<pre class="brush: xml;">${obj} // 直接输出，不取属性，不做运算，不需要声明类型
+</pre>
+
+<p>如果你的系统中，大部分为String类型操作，你也可以改成缺省String类型：</p>
+
+<pre class="brush: java;">default.variable.type=java.lang.String
+</pre>
+
+<p>多次设置变量的类型，如果类型为父子关系，以子类型优先：</p>
+
+<pre class="brush: xml;">#set(ParentClass var1)
+#set(ChildClass var1)
+</pre>
+
+<p>不管先后顺序，都以子类型优先：</p>
+
+<pre class="brush: xml;">#set(ChildClass var1)
+#set(ParentClass var1)
+</pre>
+
+<p>如果是两个完全不同的类型，将报错：</p>
+
+<pre class="brush: xml;">#set(OriginClass var1)
+#set(DiffrentClass var1)
+</pre>
 
 <h3>#set变量赋值</h3>
 
@@ -231,9 +269,6 @@ $!{body}
 <pre class="brush: xml;">格式：
 #set(name = expression)
 #set(type name = expression)
-
-#set(name .= expression)
-#set(type name .= expression)
 
 #set(name := expression)
 #set(type name := expression)
@@ -252,12 +287,6 @@ $!{body}
 
 <p>赋值会在生成局部变量的同时，写入当前Context中，
 如果有include()子模板，在子模板中也可以读到该变量。</p>
-
-<p>如果你想使变量只在当前模板中可见，在include()子模板中看不见，可以用".="赋值，
-这样，生成这字节码时，只会生成局部变量，不会写入Context中，性能也会有所提升，比如：</p>
-
-<pre class="brush: xml;">#set(price .= book.price * book.discount)
-</pre>
 
 <p>如果你要在父模板中拿到include子模板中的变量，或者你想在模板渲染之后拿到变量，
 因模板渲染完，它的Context已pop()，所以需在模板中将变量写到上级Conetxt才能在外面读到。
@@ -283,31 +312,6 @@ Context.getContext().put("price", x);
 
 // 先在#set临时集合中查找，再到原生传入的parameters中查找，然后到上一级Context查找。
 Context.getContext().get("price");
-</pre>
-
-<p>如果有全局的变量，可以用配置全局导入变量类型声明，就不需要在每个模板声明：</p>
-
-<pre class="brush: java;">import.variables+=User loginUser
-</pre>
-
-<p>缺省已导入：(可以在模板中直接使用)</p>
-
-<pre class="brush: java;">import.variables=Context parent,Template super,Template this,Engine engine
-</pre>
-
-<p>如果使用的是HTTL内置的MVC集成，在集成中已缺省导入一些相关的常用变量，详见<a href="config.html#导入变量类型声明">配置-导入变量类型声明</a>一节。
-
-<p>如果未声明的变量，缺省为Object：(如果是直接输出变量，可不声明类型)</p>
-
-<pre class="brush: java;">default.variable.type=java.lang.Object
-</pre>
-
-<pre class="brush: xml;">${obj} // 直接输出，不取属性，不做运算，不需要声明类型
-</pre>
-
-<p>如果你的系统中，大部分为String类型操作，你也可以改成缺省String类型：</p>
-
-<pre class="brush: java;">default.variable.type=java.lang.String
 </pre>
 
 <h2>条件指令</h2>
