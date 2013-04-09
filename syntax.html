@@ -704,10 +704,10 @@ ${colors.next}
 <h3>文件函数</h3>
 
 <pre class="brush: xml;">继承模板，以当前模板中的宏，替换父模板中的同名宏，执行父模板，输出到当前位置。
-${extend("/layout.httl")}
-${extend("/layout.httl", "UTF-8")}
-${extend("../layout.httl")}
-${extend("../layout.httl", "UTF-8")}
+${extends("/layout.httl")}
+${extends("/layout.httl", "UTF-8")}
+${extends("../layout.httl")}
+${extends("../layout.httl", "UTF-8")}
 
 包含模板，执行目标模板，输出到当前位置。
 ${include("/template.httl")}
