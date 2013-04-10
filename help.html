@@ -109,6 +109,24 @@ Xwinie
 
 <p>如果你使用的是JavassistCompiler，请换成JdkCompiler试试，以排查是否为Javassist不支持引起的问题。</p>
 
+<h2>出现类或包找不到异常怎么办？</h2>
+
+<p>请检查httl，以及你所使用的类，是否在classpath下。</p>
+
+<p>请检查import.packages的包名是否正确。</p>
+
+<p>如果是JdkCompiler出现问题，可以尝试换成JavassistCompiler试试，确认是否为JdkCompiler的classpath加载问题。</p>
+
+<h2>出现找不到属性或方法怎么办?</h2>
+
+<p>如果出现以下异常信息：</p>
+
+<p>No such property xxx in class java.lang.Object</p>
+
+<p>No such method xxx() in class java.lang.Object</p>
+
+<p>通常是变量的类型没有定义，请在模板中加入变量类型声明：#set(Xxx xxx)</p>
+
 <h2>出现改模板后不能生效怎么办？</h2>
 
 <p>HTTL在启动时会打印INFO日志显示配置的加载路径，如：</p>
@@ -126,6 +144,24 @@ Xwinie
 <pre><code>INFO: Load httl template from RELOADABLE directory /home/foo/templates by ClasspathLoader.</code></pre>
 
 <p>你可以看下你的模板是否在日志打印的模板目录下，避免修改的模板不在加载目录下，其中RELOADABLE表示开启了热加载，在没有开启热加载时修改模板需要重启。</p>
+
+<h2>出现乱码怎么办?</h2>
+
+<p>如果出现乱码问题，请检查HTTL的编码配置：</p>
+
+<p>input.encoding=UTF-8</p>
+
+<p>output.encoding=UTF-8</p>
+
+<p>缺省值都为file.encoding，即本地操作系统文件编码。</p>
+
+<p>另外，MVC集成，缺省会将output.encoding的值写入response.setEncodingCharset()中，</p>
+
+<p>当然，你也可以通过配置response.encoding=null关闭对response编码的自动设置，</p>
+
+<p>如果使用OutputStream输出模板，请一定要确保response.encoding和output.encoding一致，否则输出内容会乱码。</p>
+
+<p>请注意，input.encoding指的是从磁盘加载模板的编码，和request.getEncodingCharset并无关联，可以使用不同编码。</p>
 
 <h2>为什么要用#set声明变量类型?</h2>
 
@@ -150,34 +186,6 @@ Xwinie
 <p>可替换为方法扩展：#if(hasPrivilege("foo")) ... #end</p>
 
 <p>只需配置：import.methods+=com.your.YourPrivilegeStaticMethodClass</p>
-
-<h2>出现找不到属性或方法怎么办?</h2>
-
-<p>如果出现以下异常信息：</p>
-
-<p>No such property xxx in class java.lang.Object</p>
-
-<p>No such method xxx() in class java.lang.Object</p>
-
-<p>通常是变量的类型没有定义，请在模板中加入变量类型声明：#set(Xxx xxx)</p>
-
-<h2>出现乱码怎么办?</h2>
-
-<p>如果出现乱码问题，请检查HTTL的编码配置：</p>
-
-<p>input.encoding=UTF-8</p>
-
-<p>output.encoding=UTF-8</p>
-
-<p>缺省值都为file.encoding，即本地操作系统文件编码。</p>
-
-<p>另外，MVC集成，缺省会将output.encoding的值写入response.setEncodingCharset()中，</p>
-
-<p>当然，你也可以通过配置response.encoding=null关闭对response编码的自动设置，</p>
-
-<p>如果使用OutputStream输出模板，请一定要确保response.encoding和output.encoding一致，否则输出内容会乱码。</p>
-
-<p>请注意，input.encoding指的是从磁盘加载模板的编码，和request.getEncodingCharset并无关联，可以使用不同编码。</p>
 
 <h2>指令名和文本相接怎么办?</h2>
 
