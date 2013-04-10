@@ -941,7 +941,7 @@ uuid()
 </tr>
 <tr>
 <td>#set($xxx = $yyy)</td>
-<td>#set(xxx = yyy)<br/>#set(Xxx xxx = yyy)<br/>#set(Xxx xxx)</td>
+<td>#set(xxx = yyy)<br/>#set(Type xxx = yyy)<br/>#set(Type xxx)</td>
 <td>相同</td>
 <td>给变量赋值</td>
 <td>HTTL可带类型声明</td>
@@ -956,9 +956,9 @@ uuid()
 <tr>
 <td>#elseif($xxx == $yyy)</td>
 <td>#else(xxx == yyy)</td>
-<td>相同</td>
+<td>相似</td>
 <td>否则条件判断</td>
-<td>HTTL复用else指令</td>
+<td>HTTL复用#else指令</td>
 </tr>
 <tr>
 <td>#else</td>
@@ -993,7 +993,7 @@ uuid()
 <td>#break<br/>#break(xxx == yyy)</td>
 <td>相似</td>
 <td>停止模板解析</td>
-<td>HTTL复用break指令</td>
+<td>HTTL复用#break指令</td>
 </tr>
 <tr>
 <td>#macro($xxx)</td>
@@ -1007,7 +1007,7 @@ uuid()
 <td>#macro(xxx = xxxmacro)</td>
 <td>相似</td>
 <td>捕获块输出到变量中</td>
-<td>HTTL复用macro指令</td>
+<td>HTTL复用#macro指令</td>
 </tr>
 <tr>
 <td>#include("xxx.txt")</td>
@@ -1034,15 +1034,16 @@ uuid()
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>
-      </div>
-              <aside>
-                      <div class="standard-right-nav">
+</div>
+
+<aside>
+<div class="standard-right-nav">
   <p>文档目录</p>
-  <div id="docIndex" class="nav-inner">
-  </div>
-  </div>
-</div>                  </aside>    
-          </div>
+  <div id="docIndex" class="nav-inner"></div>
+</div>
+</aside>   
+ 
+</div>
 
     <footer>
       <nav class="footer-secondary-nav">
