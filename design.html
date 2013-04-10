@@ -76,7 +76,7 @@
 
 <p>不管你是否使用HTTL，都欢迎看一下此设计文档，可能对你设计上有帮助，因为设计理念是相通的。</p>
 
-<h2>类关系</h2>
+<h2>静态视图</h2>
 
 <p><a href="images/httl-class-package.png"><img src="images/httl-class-package-preview.png" alt="类图"></a></p>
 
@@ -171,7 +171,7 @@
 
 <p>这些插件的接口，也就是HTTL的SPI(Service Provider Interface)，它是HTTL暴露给扩展者的最小粒度的替换单元，也就是上面类图中的第二列。</p>
 
-<h3>分包原则</h3>
+<h3>整体分包原则</h3>
 
 <p>按复用度，抽象度，稳定度分包。</p>
 
@@ -274,9 +274,11 @@
 
 <p>注：图中黑色的点为util相关包，它们不抽象，却被很多包依赖，只是内部复用代码，不影响整体设计，用户请不要依赖HTTL的util类。</p>
 
-<h2>调用过程</h2>
+<h2>动态视图</h2>
 
 <p>如果你要看代码，可以从入口类Engine和DefaultEngine开始，按此调用过程跟踪。</p>
+
+<h3>获取模板过程</h3>
 
 <p><a href="images/httl-get-template.png"><img src="images/httl-get-template-preview.png" alt="获取模板时序图"></a></p>
 
@@ -301,6 +303,8 @@
 <p>1.3.4 实例化模板实现类， </p>
 
 <p>1.4 将模板实例写入缓存，并返回给用户。 </p>
+
+<h3>渲染模板过程</h3>
 
 <p><a href="images/httl-render-template.png"><img src="images/httl-render-template-preview.png" alt="渲染模板时序图"></a></p>
 
