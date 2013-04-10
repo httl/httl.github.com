@@ -78,9 +78,9 @@
 
 <h2>类关系</h2>
 
-<p><a href="images/httl-class-diagram.png"><img src="images/httl-class-diagram-preview.png" alt="类图"></a></p>
+<p><a href="images/httl-class-package.png"><img src="images/httl-class-package-preview.png" alt="类图"></a></p>
 
-<p><a href="images/httl-class-diagram.png">查看大图</a></p>
+<p><a href="images/httl-class-package.png">查看大图</a></p>
 
 <h3>模型划分原则</h3>
 
@@ -95,6 +95,8 @@
 <p><img src="images/core-domain.png" alt="领域模型划分"></p>
 
 <p>相应的，在HTTL中：</p>
+
+<p><img src="images/httl-domain.png" alt="HTTL领域模型"></p>
 
 <ul>
 <li>Engine 为服务域
@@ -274,41 +276,63 @@
 
 <h2>调用过程</h2>
 
-<p><a href="images/httl-sequence-diagram.png"><img src="images/httl-sequence-diagram-preview.png" alt="时序图"></a></p>
-
-<p><a href="images/httl-sequence-diagram.png">查看大图</a></p>
-
 <p>如果你要看代码，可以从入口类Engine和DefaultEngine开始，按此调用过程跟踪。</p>
 
-<p>执行过程说明：(与上图中的序号对应) </p>
+<p><a href="images/httl-get-template.png"><img src="images/httl-get-template-preview.png" alt="获取模板时序图"></a></p>
+
+<p><a href="images/httl-get-template.png">查看大图</a></p>
+
+<p>获取模板过程说明：(与上图中的序号对应) </p>
 
 <p>1 当从引擎中获取模板时，</p>
 
-<p>2.1 首先会在缓存查找是否已缓存，如果有缓存就直接返回， </p>
+<p>1.1 首先会在缓存查找是否已缓存，如果有缓存就直接返回， </p>
 
-<p>2.2 如果没有，则加载模板， </p>
+<p>1.2 如果没有，则加载模板， </p>
 
-<p>2.3 接着进行模板语法解析， </p>
+<p>1.3 接着进行模板语法解析， </p>
 
-<p>2.3.1 在解析到表达式时，将其转译为Java表达式， </p>
+<p>1.3.1 在解析到表达式时，将其转译为Java表达式， </p>
 
-<p>2.3.2 并对静态文本进行编译前过滤，比如删除空白等， </p>
+<p>1.3.2 并对静态文本进行编译前过滤，比如删除空白等， </p>
 
-<p>2.3.3 对解析后的Java代码进行编译，得到具体模板实现类， </p>
+<p>1.3.3 对解析后的Java代码进行编译，得到具体模板实现类， </p>
 
-<p>2.3.4 实例化模板实现类， </p>
+<p>1.3.4 实例化模板实现类， </p>
 
-<p>2.4 将模板实例写入缓存，并返回给用户， </p>
+<p>1.4 将模板实例写入缓存，并返回给用户。 </p>
 
-<p>2 当用户调用模板的渲染方法时， </p>
+<p><a href="images/httl-render-template.png"><img src="images/httl-render-template-preview.png" alt="渲染模板时序图"></a></p>
 
-<p>2.1 如果是静态文本直接输出，</p>
+<p><a href="images/httl-render-template.png">查看大图</a></p>
 
-<p>2.2 如果是动态变量内容，先将其格式化成字符串， </p>
+<p>渲染模板过程说明：(与上图中的序号对应) </p>
 
-<p>2.3 再进行过滤，比如转义动态内容的HTML特殊符，</p>
+<p>1 当用户调用模板的渲染方法时， </p>
 
-<p>2.4 然后输出过滤后的内容。</p>
+<p>1.1 将非Map变量对象转换成Map，将非Writer或OutputStream输出对象转成Writer或OutputStream，</p>
+
+<p>1.2 将变量Map压入Context栈， </p>
+
+<p>1.3 如果有拦截器，将实际渲染过程封装成Listener，传给拦截器执行，</p>
+
+<p>1.3.1 拦截器执行完拦截逻辑后，调用拦截时传入的Listener，</p>
+
+<p>1.3.1.1 该Listener回调模板的doRender方法，执行实际渲染过程，</p>
+
+<p>1.4 模板中的变量，均从Context中读取，</p>
+
+<p>1.4.1 如果当前Context不存在，则向上一级Context中读取，</p>
+
+<p>1.4.1.1 如果已经是根级别Context，则向Resolver读取，</p>
+
+<p>1.5 模板输出变量时，先通过Formatter，将值对象转成String，</p>
+
+<p>1.6 再通过Filter，过虑输出String的XML特殊符等，</p>
+
+<p>1.7 最终，将过滤后的String输出，</p>
+
+<p>1.8 模板渲染结束后，将当前Conetext弹出。</p>
 
 <h1>性能</h1>
 
