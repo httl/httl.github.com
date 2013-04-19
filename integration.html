@@ -136,6 +136,11 @@ template.render(parameters, response.getOutputStream());
 // 注意：HTTL在发现Template对象时，会直接把output往下传，而不是拷贝结果。
 parameters.put("template", template);
 
+// 基于参数渲染到输出：
+// parameters可以是Map，或者Pojo对象，或者Object[]，或者JSON串。
+// out可以是OutputStream或Writer。
+template.render(parameters, out);
+
 // 你也可以执行模板拿到渲染结果：
 String result = (String) template.evaluate(parameters); 
 // 注意：如果你只是为了把A模板的结果传给B模板，请不要用这种先求值，再传变量的方式。
@@ -151,10 +156,7 @@ String title = (String) Context.getContext().get("title");
 Template macro = template.getMacros().get("menus");
 
 // 如果你要写测试工具，你可以获取到模板所需的变量和类型，去Mock数据。
-Map&lt;String, Class&lt;?&gt;&gt; parameterTypes = template.getVariableTypes();
-
-// 同理，你也可以获取到模板向上级Context中输出的变量和类型。
-Map&lt;String, Class&lt;?&gt;&gt; contextTypes = template.getExportTypes();
+Map&lt;String, Class&lt;?&gt;&gt; variables = template.getVariables();
 </pre>
 
 <h3>ScriptEngine集成</h3>
