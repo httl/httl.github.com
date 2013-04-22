@@ -99,6 +99,11 @@ Xwinie
 <li>贡献：nutz和httl整合：<a href="https://github.com/httl/httl/issues/59">#59</a></li>
 </ul>
 
+Subchen
+<ul>
+<li>贡献：移除指令空白行：<a href="https://github.com/httl/httl/issues/89">#89</a></li>
+</ul>
+
 <h1>参与</h1>
 
 <h2>参与方式</h2>
@@ -107,17 +112,56 @@ Xwinie
 
 <h2>参与内容</h2>
 
+<h3>文档补充</h3>
+
+<p>如果你发现有缺少的文档，或解答过的FAQ，使用心得，以及你对细节的理解，都可以发邮件给我们，我们将贴在此网站上，供其他人交流学习。</p>
+
+<h3>模板测试</h3>
+
+<p>你也可以帮忙测试更多场景的模板，只需提供测试模板和预期的结果文件即可，如：</p>
+
+<p>已有测试模板：<a href="https://github.com/httl/httl/tree/master/src/test/resources/comment/templates">src/test/resources/comment/templates</a>
+
+<p>已有测试结果：<a href="https://github.com/httl/httl/tree/master/src/test/resources/comment/results">src/test/resources/comment/results</a>
+
+<p>可运行httl.test.TemplateTest测试类，它会自动扫描和执行templates下的所有模板，并用results下的同名加.txt后缀的文件内容断言输出。</p>
+
 <h3>问题修复</h3>
 
 <p>你可以帮忙修复<a href="https://github.com/httl/httl/issues">github issues</a>上的问题。</p>
 
+<h3>核心改进</h3>
+
+<p>如果你有兴趣花较多时间参与HTTL，并且有一定开发实力，可以加入核心的改进：</p>
+
+<ul>
+<li>解释执行与编译执才的自动切换，类似于JVM的JIT。</li>
+<li>完整的泛型推导，和Java的泛型推导相同。</li>
+<li>生成字节码细节上的优化，比如减少instanceof，减少反射，减少装箱。</li>
+<li>异常信息友好性提示，比如运行时业务报错，提示在模板中的位置。</li>
+<li>在热加载时，支持卸载之前编译的模板类。</li>
+<li>支持磁盘缓存字节码，减少重启时编译。</li>
+<li>重构AST树，使之可扩展。</li>
+</ul>
+
 <h3>扩展实现</h3>
 
-<p>你也可以实现<a href="integration.html#扩展集成">HTTL的扩展点</a>，包括静态方法，Loader，Compiler，Resolver，Filter，Formatter，Converter，Interceptor等等。</p>
+<p>你也可以实现<a href="integration.html#扩展集成">HTTL的扩展点</a>，包括：</p>
 
-<h3>模板测试</h3>
+<ul>
+<li>Static，静态方法</li>
+<li>Loader，模板加载</li>
+<li>Resolver，变量决策</li>
+<li>Formatter，输出格式化</li>
+<li>Filter，输出过滤</li>
+<li>Converter，渲染参数转换</li>
+<li>Interceptor，渲染过程拦截</li>
+<li>Listener，渲染过程监听</li>
+</ul>
 
-<p>你也可以帮忙测试更多场景的模板，只需提供测试模板和预期的结果文件即可。</p>
+<h3>辅助工具</h3>
+
+<p>你也可以帮忙实现Eclipse, IDEA等模板开发插件，以及Debug调试器，测试查看器等等。</p>
 
 <h1>解答</h1>
 
