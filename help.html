@@ -217,7 +217,7 @@ Subchen
 
 <p>你可以看下你的模板是否在日志打印的模板目录下，避免修改的模板不在加载目录下，其中RELOADABLE表示开启了热加载，在没有开启热加载时修改模板需要重启。</p>
 
-<h2>出现乱码怎么办?</h2>
+<h2>模板渲染出现乱码怎么办?</h2>
 
 <p>如果出现乱码问题，请检查HTTL的编码配置：</p>
 
@@ -234,6 +234,10 @@ Subchen
 <p>如果使用OutputStream输出模板，请一定要确保response.encoding和output.encoding一致，否则输出内容会乱码。</p>
 
 <p>请注意，input.encoding指的是从磁盘加载模板的编码，和request.getEncodingCharset并无关联，可以使用不同编码。</p>
+
+<h2>指令名和文本相接怎么办?</h2>
+
+<p>如：#elseTEXT，可用无参括号隔开，如：#if(x)AAA#else()BBB#end()CCC</p>
 
 <h2>为什么要用#set声明变量类型?</h2>
 
@@ -258,10 +262,6 @@ Subchen
 <p>可替换为方法扩展：#if(hasPrivilege("foo")) ... #end</p>
 
 <p>只需配置：import.methods+=com.your.YourPrivilegeStaticMethodClass</p>
-
-<h2>指令名和文本相接怎么办?</h2>
-
-<p>如：#elseTEXT，可用无参括号隔开，如：#if(x)AAA#else()BBB#end()CCC</p>
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>

@@ -66,8 +66,8 @@
 
 <h2>简洁友好的模板语法</h2>
 
-<p>语法尽可能符合HTML和JAVA开发者的直觉，指令和老牌的Velocity类似，但改进了Velocity中不符合直觉的地方。
-只保留最基本的条件迭代控制指令，渲染过程不允许修改原始数据，防止模板带过多业务逻辑。默认使用HTML注释语法，避免干扰原生HTML页面。</p>
+<p>HTTL语法尽可能符合HTML和JAVA开发者的直觉，指令和老牌的Velocity类似，但改进了Velocity中不符合直觉的地方。
+只保留最基本的条件迭代控制指令，渲染过程不允许修改原始数据，防止模板引入过多业务逻辑。默认使用HTML注释语法，避免干扰原生HTML页面。</p>
 
 <pre class="brush: xml;">
 &lt;html&gt;
@@ -91,14 +91,14 @@
 <li>指令中的变量不用加$符，如：#if(a == b)，而不像Velocity那样：#if($a == $b)，加$有点废话，而且容易忘写。</li>
 <li>${x}当变量为null时，输出空白串，而不像Velocity那样：输出源码${x}，如果用$!{x}，感叹号容易忘记写。</li>
 <li>支持在输出时进行表达式计算，如：${i + 1}，而不像Velocity那样：要先#set($j = $i + 1)到一个临时变量。</li>
-<li>采用更直观的方式，调用静态工具方法，如：${"a".toChar}，而不像Velocity那样：$(StringTool.toChar("a"))。</li>
+<li>采用更直观的方式，调用静态工具方法，如：${"a".toChar}，而不像Velocity那样：${StringTool.toChar("a")}。</li>
 </ul>
 
 <p>详细语法，以及Velocity对比，请参见：<a href="syntax.html#语法">语法</a> &amp; <a href="syntax.html#Velocity对比">对比</a></p>
 
 <h2>精益求精的性能优化</h2>
 
-<p>将模板编译成JAVA字节码运行，并使用强类型推导，减少运行期反射和转型，
+<p>HTTL将模板编译成JAVA字节码运行，并使用强类型推导，减少运行期反射和转型，
 渲染速度接近Java硬编码输出，比Velocity等其它模板引擎快一个数量级。
 比JSP也快，因为JSP只有Scriptlet是编译的，Tag和EL是解释执行的，而HTTL是全编译的。</p>
 
@@ -108,25 +108,26 @@
 
 <h2>高质量的设计与实现</h2>
 
-<p>模板自描述，在模板内声明入参变量类型，并基于入参类型推导模板内所有变量类型，使IDE能方便的实现变量方法补全提示，
-对开发过程友好。出错信息精确定位行列，并显示出错位置前后相关内容。采用微核+插件体系，所有环节均可扩展，方便集成和二次开发。</p>
+<p>HTTL采用微核+插件体系，所有环节均可扩展或替换，方便集成和二次开发。
+允许在模板内声明入参变量类型，使模板类型自描述，方便IDE实现属性和方法补全提示，对开发过程友好。
+所有出错信息精确定位行列，并显示出错位置前后相关内容，方便排错。</p>
 
 <p><img src="images/httl-coverage.png" alt="测试覆盖率"></p>
 
-<p>严格确保质量，请放心使用，HTTL在发布前已做：</p>
+<p>严格确保质量，请放心使用，HTTL在发布前，已通过全面测试：</p>
 
 <ul>
 <li>所有语法指令函数模板单元测试，确保所有模板指令的解析和执行正确。</li>
 <li>性能对比基准测试，确保性能接近Java硬编码输出，高出其它引擎一个数量级。</li>
 <li>长时间运行稳定性测试，确保不出现FullGC,内存溢出,死锁,CPU占满,抖动等。</li>
 <li>内存占用和CPU耗时Profiler分析，确保不出现非预期的内存和CPU瓶颈。</li>
-<li>Web应用集成测试，确保在SpringMVC,Struts,Webx等集成中可用。</li>
-<li>环境兼容性测试，确保在Liunx,Windows,OSX,JDK1.5,1.6,1.7等环境可用。</li>
 <li>FindBugs代码问题检测，确保不出现空指针，资源未关闭等明显错误。</li>
 <li>JDepend分包依赖检测，确保分包依赖的合理性。</li>
+<li>Web应用集成测试，确保在SpringMVC,Struts,Webx等集成中可用。</li>
+<li>环境兼容性测试，确保在Liunx,Windows,OSX,JDK1.5,1.6,1.7等环境可用。</li>
 </ul>
 
-<p>并全部通过，详细设计与质量分析，请参见：<a href="design.html#设计">设计</a> &amp; <a href="design.html#质量">质量</a></p>
+<p>详细设计与质量分析，请参见：<a href="design.html#设计">设计</a> &amp; <a href="design.html#质量">质量</a></p>
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>

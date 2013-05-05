@@ -914,9 +914,9 @@ uuid()
 <tr>
 <td>$!{xxx.yyy}<br>$!xxx.yyy</td>
 <td>$!{xxx.yyy}</td>
-<td>不同</td>
+<td><font color="red">不同</font></td>
 <td>空值不显示源码</td>
-<td>HTTL改为不过滤输出</td>
+<td>VM为空值不显示源码<br>HTTL改为不过滤输出</td>
 </tr>
 <tr>
 <td>## ...<br>#* ... *#</td>
@@ -998,9 +998,9 @@ uuid()
 <tr>
 <td>#macro($xxx)</td>
 <td>#macro(xxx)</td>
-<td>相似</td>
+<td><font color="red">不同</font></td>
 <td>可复用模板片段宏</td>
-<td>HTTL作为函数执行</td>
+<td>VM将宏作为指令执行<br>HTTL作为函数执行</td>
 </tr>
 <tr>
 <td>#define($xxx)</td>
