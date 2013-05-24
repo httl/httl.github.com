@@ -1034,17 +1034,32 @@ January February March May June July August September October November December 
 <pre class="brush: xml;">resolvers+=httl.spi.resolvers.ServletResolver
 </pre>
 
-<p>如果你想在模板中直接都读取到httl.properties中的值，可以配置：</p>
+<p>比如：用户的locale区域国际化信息，换上面的配置先从请求中获取，这样就可以根据用户区域设置显示不同语言。</p>
+
+<p>如果你想在模板中直接都读取到httl.properties配置项即Engine.getProperty()中的值，可以配置：</p>
 
 <pre class="brush: xml;">resolvers+=httl.spi.resolvers.EngineResolver
 </pre>
 
-<p>如果你想在模板中直接都读取到System.getProperty()中的值，可以配置：</p>
+<p>如果你想在模板中直接都读取到JVM启动参数java -Dkey=value即System.getProperty()中的值，可以配置：</p>
 
 <pre class="brush: xml;">resolvers+=httl.spi.resolvers.SystemResolver
 </pre>
 
-<p>比如：用户的locale区域国际化信息，换上面的配置先从请求中获取，这样就可以根据用户区域设置显示不同语言。</p>
+<p>如果你想在模板中直接都读取到环境变量export key=value即System.getenv()中的值，可以配置：</p>
+
+<pre class="brush: xml;">resolvers+=httl.spi.resolvers.EnvironmentResolver
+</pre>
+
+<p>如果你想全局设置变量值，可以配置：</p>
+
+<pre class="brush: xml;">resolvers+=httl.spi.resolvers.GlobalResovler
+</pre>
+
+<p>然后，通过静态方法全局设置变量值：</p>
+
+<pre class="brush: java;">GlobalResovler.put(key, value); // static
+</pre>
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>
