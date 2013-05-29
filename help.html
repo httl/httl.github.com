@@ -109,6 +109,30 @@ Subchen
 
 <h1>解答</h1>
 
+<h2>为什么要用#set声明变量类型?</h2>
+
+<p>强制要求声明变量#set定义，是为了明确模板的输入，这样可以强类型编译，提升性能。</p>
+
+<p>也方便模板的维护，弱类型对长期维护运营的互联网应用极为不利，上千个工程师对模板修修补补。</p>
+
+<p>谁还记得a对象有哪些属性，翻代码翻文档，有人改了a对象的某个属性，不会关联，也不提示。</p>
+
+<p>就算开发IDE编辑器，也不能自动提示，也不能报错，等运行时检测，是很影响开发效率的。</p>
+
+<p>阿里内部在给Velocity开发IDE编辑器就遇到了很大阻力，不得不通过注释给模板增加了类型定义。</p>
+
+<p>参见：<a href="http://www.infoq.com/cn/articles/hk-semi-static-language">http://www.infoq.com/cn/articles/hk-semi-static-language</a></p>
+
+<h2>如何实现像JSP自定义标签的功能?</h2>
+
+<p>HTTL为防止模板复杂化，保持最简指令集，所以不允许用户扩展指令集，而通过扩展函数来实现相同功能。</p>
+
+<p>自定义标签：&lt;hasPrivilege resource="foo"&gt; ... &lt;/hasPrivilege&gt;</p>
+
+<p>可替换为方法扩展：#if(hasPrivilege("foo")) ... #end</p>
+
+<p>只需配置：import.methods+=com.your.YourPrivilegeStaticMethodClass</p>
+
 <h2>出现编译失败异常怎么办？</h2>
 
 <p>HTTL在编译失败后，会自动开启-Xlint:unchecked参数重新编译，
@@ -178,30 +202,6 @@ Subchen
 <h2>${}占位符能否嵌套?</h2>
 
 <p>HTTL不支持占位符嵌套，如：${include("${dir}/file")}，占位符内请用加号拼接字符串，如：${include(dir + "/file")}</p>
-
-<h2>为什么要用#set声明变量类型?</h2>
-
-<p>强制要求声明变量#set定义，是为了明确模板的输入，这样可以强类型编译，提升性能。</p>
-
-<p>也方便模板的维护，弱类型对长期维护运营的互联网应用极为不利，上千个工程师对模板修修补补。</p>
-
-<p>谁还记得a对象有哪些属性，翻代码翻文档，有人改了a对象的某个属性，不会关联，也不提示。</p>
-
-<p>就算开发IDE编辑器，也不能自动提示，也不能报错，等运行时检测，是很影响开发效率的。</p>
-
-<p>阿里内部在给Velocity开发IDE编辑器就遇到了很大阻力，不得不通过注释给模板增加了类型定义。</p>
-
-<p>参见：<a href="http://www.infoq.com/cn/articles/hk-semi-static-language">http://www.infoq.com/cn/articles/hk-semi-static-language</a></p>
-
-<h2>如何实现像JSP自定义标签的功能?</h2>
-
-<p>HTTL为防止模板复杂化，保持最简指令集，所以不允许用户扩展指令集，而通过扩展函数来实现相同功能。</p>
-
-<p>自定义标签：&lt;hasPrivilege resource="foo"&gt; ... &lt;/hasPrivilege&gt;</p>
-
-<p>可替换为方法扩展：#if(hasPrivilege("foo")) ... #end</p>
-
-<p>只需配置：import.methods+=com.your.YourPrivilegeStaticMethodClass</p>
 
 <h1>参与</h1>
 
