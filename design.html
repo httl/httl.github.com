@@ -541,7 +541,7 @@ writer.write(_TXT1_);
 比如：因为int[]不继承于Object[]，为了通用处理，改为Array.get(array, index)来获取数组的项，
 导致在Profiler分析时，发现80%的CPU时间都耗在Array.get()上。</p>
 
-<p>因为模板输出的大量是基本类型和字符串，Httl遇到任何类似需要boxed和unboxed的地方，
+<p>因为模板输出的大量是基本类型和字符串，HTTL遇到任何类似需要boxed和unboxed的地方，
 都会重载所有基本类型方法，以减少boxed和unboxed的处理。
 比如：当输出基本类型时，需要转成String，如果使用format(Object)接口，就会将基本类型装箱。</p>
 
