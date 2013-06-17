@@ -401,6 +401,9 @@ Context.getContext().get("price");
 
 ## 集合排序后，再迭代
 #for(book : books.sort)
+
+## 递归迭代，比如Menu有一个getChildren()方法返回子列表：
+#for(Menu menu : menus.recursive("getChildren"))
 </pre>
 
 <h3>#break循环中断</h3>
