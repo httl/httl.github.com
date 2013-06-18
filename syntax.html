@@ -387,6 +387,9 @@ Context.getContext().get("price");
 <p>在迭代前，可以对集合做操作，如：</p>
 
 <pre class="brush: xml;">
+## 执行9次
+#for(9)
+
 ## 字面序列集合，输出1到9的数字
 #for(i : 1..9)
 
@@ -475,6 +478,14 @@ ${xxx(arg1, arg2)} 以方法执行宏
 #macro(var = name(name, name))
 #macro(var = name(type name, type name))
 
+#macro($name => cache)
+#macro($name(name, name) => cache)
+#macro($name(type name, type name) => cache)
+
+#macro(var = name => cache)
+#macro(var = name(name, name) => cache)
+#macro(var = name(type name, type name) => cache)
+
 示例：
 #macro($xxx)
     ...
@@ -509,6 +520,30 @@ ${xxx}
     ...
 #end
 #set(aaa = xxx)
+</pre>
+
+<pre class="brush: xml;">#macro($xxx => cache)
+    ...
+#end
+
+等价于：(在宏定义的位置同时输出)
+
+#macro(xxx)
+    ...
+#end
+${cache(xxx)}
+</pre>
+
+<pre class="brush: xml;">#macro(aaa = xxx => cache)
+    ...
+#end
+
+等价于：(在宏定义的同时执行，并将结果赋值给指定变量)
+
+#macro(xxx)
+    ...
+#end
+#set(aaa = cache(xxx))
 </pre>
 
 <h3>#break模板中断</h3>
