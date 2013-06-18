@@ -84,6 +84,8 @@
 
 <p>最新版本1.0.10，发布于2013-06-18，欢迎使用。</p>
 
+<p>该版本主要修复用户发现的问题，参见：<a href="#1.0.10 (2013-06-18)">发布记录</a></p>
+
 <table>
 <tr>
 <td></td>
@@ -321,29 +323,30 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 
 <h3>1.0.10 (2013-06-18)</h3>
 
-<pre><code>
+<pre><code>功能：
+#92 支持#for(9)单数字循环次数
+#110 增加#for(menu : menus.recursive)树递归方法
+#113 增加属性语法ifattr和setattr支持
+#114 增加#macro($list=>cache)宏输出过滤支持
 
-#110 增加treelist.recursive()方法
-#109 注释两边可带空格 enhancement
-#108 将Resource的getReader改成openReader
-#106 modes=debug时会报空指针异常
-#104 宏定义有多个参数时，若不指定参数类型，调用时参数顺序会乱掉。
-#103 ExpressionParser中反单引号escape没有生效
-#102 escapeXml(byte[])遇到中文出错
-#99 1.0.9版本#set不支持逗号分隔多个赋值语句
-#97 带://协议头的目录前面不加/根目录符
-#95 if(B+C==A)出错
-#94 修复message.directory问题
+修复：
+#88 TemplateParser.clean有问题，导致丢失合并后的第一个指令
 #89 移除空白行问题
-#88 TemplateParser.clean有问题，导致丢失合并后的第一个指令 
-
+#94 修复message.directory问题
+#95 if(B+C==A)出错
+#97 带://协议头的目录前面不加/根目录符
+#99 1.0.9版本#set不支持逗号分隔多个赋值语句
+#102 escapeXml(byte[])遇到中文出错
+#103 ExpressionParser中反单引号escape没有生效
+#104 宏定义有多个参数时，若不指定参数类型，调用时参数顺序会乱掉。
+#106 modes=debug时会报空指针异常
+#108 将Resource的getReader改成openReader
+#109 注释两边可带空格
 </code></pre>
 
 <h3>1.0.9 (2013-04-07)</h3>
 
-<pre><code>
-
-功能：
+<pre><code>功能：
 1. 增加Visitor，可以遍历模板语法树。
 2. 增加解释执行，以及解释编译混合执行。
 3. for循环支持java写法
@@ -380,13 +383,11 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 30. Macro中super.fooMethod不能调用有参数的方法 
 31. 宏单独编译后行号与原始模板没有对应 
 32. 解决字面包名的解析问题
-
 </code></pre>
 
 <h3>1.0.8 (2013-02-23)</h3>
 
-<pre><code>
-功能：
+<pre><code>功能：
 1. 统一使用#set指令，但保持兼容
 2. 支持将Velocity语法Filter成Httl语法
 3. 支持dump运行时上下文数据
