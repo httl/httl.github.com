@@ -176,6 +176,27 @@ CompiledScript script = engine.compile("${hello}");
 String result = (String) script.eval(bindings);
 </pre>
 
+<p>配置pom.xml依赖:</p>
+
+<pre class="brush: xml;">
+&lt;project&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;httl&lt;/groupId&gt;
+            &lt;artifactId&gt;httl-script&lt;/artifactId&gt;
+            &lt;version&gt;1.0.10&lt;/version&gt;
+            &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;httl-repository&lt;/id&gt;
+            &lt;name&gt;Httl Repository&lt;/name&gt;
+            &lt;url&gt;http://httl.github.io/maven&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;project&gt;
+</pre>
+
 <h2>扩展集成</h2>
 
 <h3>配置注入</h3>
