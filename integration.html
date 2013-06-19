@@ -341,173 +341,6 @@ style.text.filters=httl.spi.Filter
 
 <p>(6) ${application.foo} 返回应用属性：servletContext.getAttribute("foo")</p>
 
-<h3>SpringMVC集成</h3>
-
-<p>配置/WEB-INF/web.xml:</p>
-
-<pre class="brush: xml;">
-&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		version="2.5"&gt;
-
-	&lt;listener&gt;
-		&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
-	&lt;/listener&gt;
-
-	&lt;servlet&gt;
-		&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-		&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-		&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
-	&lt;/servlet&gt;
-
-	&lt;servlet-mapping&gt;
-		&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-	&lt;/servlet-mapping&gt;
-
-&lt;/web-app&gt;
-</pre>
-
-<p>配置/WEB-INF/springmvc-servlet.xml:</p>
-
-<pre class="brush: xml;">
-&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
-    "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
-&lt;beans&gt;
-    &lt;bean id="viewResolver" class="httl.web.springmvc.HttlViewResolver"&gt;
-        &lt;property name="contentType" value="text/html; charset=UTF-8" /&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;
-</pre>
-
-<p>示例源码仓库：<a href="https://github.com/httl/httl-springmvc">https://github.com/httl/httl-springmvc</a></p>
-
-<p>示例包下载参见：<a href="download.html">下载</a></p>
-
-<h3>Struts集成</h3>
-
-<p>配置/WEB-INF/web.xml:</p>
-
-<pre class="brush: xml;">
-&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		version="2.5"&gt;
-
-	&lt;filter&gt;
-		&lt;filter-name&gt;struts&lt;/filter-name&gt;
-		&lt;filter-class&gt;org.apache.struts2.dispatcher.FilterDispatcher&lt;/filter-class&gt;
-	&lt;/filter&gt;
-	
-	&lt;filter-mapping&gt;
-		&lt;filter-name&gt;struts&lt;/filter-name&gt;
-		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-	&lt;/filter-mapping&gt;
-
-&lt;/web-app&gt;
-</pre>
-
-<p>配置classpath:struts.xml:</p>
-
-<pre class="brush: xml;">
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
-&lt;!DOCTYPE struts PUBLIC  
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
-    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
-&lt;struts&gt;
-    &lt;package name="hello" extends="httl-default"&gt;
-        &lt;action name="helloWorld" class="com.hello.HelloWorld"&gt;
-            &lt;result type="httl"&gt;/hello_world.httl&lt;/result&gt;
-		&lt;/action&gt;
-    &lt;/package&gt;
-&lt;/struts&gt;
-</pre>
-
-<p>配置/WEB-INF/httl.properties：</p>
-
-<pre class="brush: java;">import.packages+=com.your.domain
-template.directory=/WEB-INF/templates
-message.basename=/WEB-INF/messages
-input.encoding=UTF-8
-output.encoding=UTF-8
-reloadable=false
-precompiled=false
-localized=false
-</pre>
-
-<p>示例源码仓库：<a href="https://github.com/httl/httl-struts">https://github.com/httl/httl-struts</a></p>
-
-<p>示例包下载参见：<a href="download.html">下载</a></p>
-
-<h3>Webx集成</h3>
-
-<p>配置/WEB-INF/web.xml:</p>
-
-<pre class="brush: xml;">
-&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		version="2.5"&gt;
-
-	&lt;filter&gt;
-		&lt;filter-name&gt;webx&lt;/filter-name&gt;
-		&lt;filter-class&gt;com.alibaba.citrus.webx.servlet.WebxFrameworkFilter&lt;/filter-class&gt;
-		&lt;init-param&gt;
-			&lt;param-name&gt;excludes&lt;/param-name&gt;
-			&lt;param-value&gt;*.css, *.js, *.jpg, *.gif, *.png&lt;/param-value&gt;
-		&lt;/init-param&gt;
-	&lt;/filter&gt;
-
-	&lt;filter-mapping&gt;
-		&lt;filter-name&gt;webx&lt;/filter-name&gt;
-		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-	&lt;/filter-mapping&gt;
-
-&lt;/web-app&gt;
-</pre>
-
-<p>配置/WEB-INF/webx.xml:</p>
-
-<pre class="brush: xml;">
-&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
- Webx Root Context Configuration.  
-&lt;beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:beans="http://www.springframework.org/schema/beans"
-    xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:services="http://www.alibaba.com/schema/services"
-    xmlns:engines="http://www.alibaba.com/schema/services/template/engines"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-    		http://www.alibaba.com/schema/services http://localhost:8080/schema/services.xsd
-        	http://www.alibaba.com/schema/services/template/engines http://localhost:8080/schema/services/template/engines.xsd"&gt;
-
-	&lt;services:template&gt;
-        &lt;engines:httl-engine /&gt;
-	&lt;/services:template&gt;
-
-&lt;/beans:beans&gt;
-</pre>
-
-<p>配置/WEB-INF/httl.properties：</p>
-
-<pre class="brush: java;">import.packages+=com.your.domain
-template.directory=/WEB-INF/templates
-message.basename=/WEB-INF/messages
-input.encoding=UTF-8
-output.encoding=UTF-8
-reloadable=false
-precompiled=false
-localized=false
-</pre>
-
-<p>示例源码仓库：<a href="https://github.com/httl/httl-webx">https://github.com/httl/httl-webx</a></p>
-
-<p>示例包下载参见：<a href="download.html">下载</a></p>
-
 <h3>Servlet集成</h3>
 
 <p>你需要在你的业务Servlet中，处理完业务后，将业务参数都写到request.setAttribute()中。</p>
@@ -573,9 +406,256 @@ precompiled=false
 localized=false
 </pre>
 
-<p>示例源码仓库：<a href="https://github.com/httl/httl-servlet">https://github.com/httl/httl-servlet</a></p>
+<p>配置pom.xml依赖:</p>
+
+<pre class="brush: xml;">
+&lt;project&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;httl&lt;/groupId&gt;
+            &lt;artifactId&gt;httl-servlet&lt;/artifactId&gt;
+            &lt;version&gt;1.0.10&lt;/version&gt;
+            &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;httl-repository&lt;/id&gt;
+            &lt;name&gt;Httl Repository&lt;/name&gt;
+            &lt;url&gt;http://httl.github.io/maven&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;project&gt;
+</pre>
+
+<p>示例源码仓库：<a href="https://github.com/httl/httl-demo/tree/master/httl-servlet-demo">httl-servlet-demo</a></p>
 
 <p>示例包下载参见：<a href="download.html">下载</a></p>
+
+<h3>SpringMVC集成</h3>
+
+<p>配置/WEB-INF/web.xml:</p>
+
+<pre class="brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		version="2.5"&gt;
+
+	&lt;listener&gt;
+		&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+	&lt;/listener&gt;
+
+	&lt;servlet&gt;
+		&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+		&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+		&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+	&lt;/servlet&gt;
+
+	&lt;servlet-mapping&gt;
+		&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	&lt;/servlet-mapping&gt;
+
+&lt;/web-app&gt;
+</pre>
+
+<p>配置/WEB-INF/springmvc-servlet.xml:</p>
+
+<pre class="brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+    "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+&lt;beans&gt;
+    &lt;bean id="viewResolver" class="httl.web.springmvc.HttlViewResolver"&gt;
+        &lt;property name="contentType" value="text/html; charset=UTF-8" /&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</pre>
+
+<p>配置pom.xml依赖:</p>
+
+<pre class="brush: xml;">
+&lt;project&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;httl&lt;/groupId&gt;
+            &lt;artifactId&gt;httl-springmvc&lt;/artifactId&gt;
+            &lt;version&gt;1.0.10&lt;/version&gt;
+            &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;httl-repository&lt;/id&gt;
+            &lt;name&gt;Httl Repository&lt;/name&gt;
+            &lt;url&gt;http://httl.github.io/maven&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;project&gt;
+</pre>
+
+<p>示例源码仓库：<a href="https://github.com/httl/httl-demo/tree/master/httl-springmvc-demo">httl-springmvc-demo</a></p>
+
+<p>示例包下载参见：<a href="download.html">下载</a></p>
+
+<h3>Struts集成</h3>
+
+<p>配置/WEB-INF/web.xml:</p>
+
+<pre class="brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		version="2.5"&gt;
+
+	&lt;filter&gt;
+		&lt;filter-name&gt;struts&lt;/filter-name&gt;
+		&lt;filter-class&gt;org.apache.struts2.dispatcher.FilterDispatcher&lt;/filter-class&gt;
+	&lt;/filter&gt;
+	
+	&lt;filter-mapping&gt;
+		&lt;filter-name&gt;struts&lt;/filter-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	&lt;/filter-mapping&gt;
+
+&lt;/web-app&gt;
+</pre>
+
+<p>配置classpath:struts.xml:</p>
+
+<pre class="brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
+&lt;!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+&lt;struts&gt;
+    &lt;package name="hello" extends="httl-default"&gt;
+        &lt;action name="helloWorld" class="com.hello.HelloWorld"&gt;
+            &lt;result type="httl"&gt;/hello_world.httl&lt;/result&gt;
+		&lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</pre>
+
+<p>配置/WEB-INF/httl.properties：</p>
+
+<pre class="brush: java;">import.packages+=com.your.domain
+template.directory=/WEB-INF/templates
+message.basename=/WEB-INF/messages
+input.encoding=UTF-8
+output.encoding=UTF-8
+reloadable=false
+precompiled=false
+localized=false
+</pre>
+
+<p>配置pom.xml依赖:</p>
+
+<pre class="brush: xml;">
+&lt;project&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;httl&lt;/groupId&gt;
+            &lt;artifactId&gt;httl-struts&lt;/artifactId&gt;
+            &lt;version&gt;1.0.10&lt;/version&gt;
+            &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;httl-repository&lt;/id&gt;
+            &lt;name&gt;Httl Repository&lt;/name&gt;
+            &lt;url&gt;http://httl.github.io/maven&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;project&gt;
+</pre>
+
+<p>示例源码仓库：<a href="https://github.com/httl/httl-demo/tree/master/httl-struts-demo">httl-struts-demo</a></p>
+
+<p>示例包下载参见：<a href="download.html">下载</a></p>
+
+<h3>Webx集成</h3>
+
+<p>配置/WEB-INF/web.xml:</p>
+
+<pre class="brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		version="2.5"&gt;
+
+	&lt;filter&gt;
+		&lt;filter-name&gt;webx&lt;/filter-name&gt;
+		&lt;filter-class&gt;com.alibaba.citrus.webx.servlet.WebxFrameworkFilter&lt;/filter-class&gt;
+		&lt;init-param&gt;
+			&lt;param-name&gt;excludes&lt;/param-name&gt;
+			&lt;param-value&gt;*.css, *.js, *.jpg, *.gif, *.png&lt;/param-value&gt;
+		&lt;/init-param&gt;
+	&lt;/filter&gt;
+
+	&lt;filter-mapping&gt;
+		&lt;filter-name&gt;webx&lt;/filter-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	&lt;/filter-mapping&gt;
+
+&lt;/web-app&gt;
+</pre>
+
+<p>配置/WEB-INF/webx.xml:</p>
+
+<pre class="brush: xml;">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+ Webx Root Context Configuration.  
+&lt;beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:services="http://www.alibaba.com/schema/services"
+    xmlns:engines="http://www.alibaba.com/schema/services/template/engines"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    		http://www.alibaba.com/schema/services http://localhost:8080/schema/services.xsd
+        	http://www.alibaba.com/schema/services/template/engines http://localhost:8080/schema/services/template/engines.xsd"&gt;
+
+	&lt;services:template&gt;
+        &lt;engines:httl-engine /&gt;
+	&lt;/services:template&gt;
+
+&lt;/beans:beans&gt;
+</pre>
+
+<p>配置/WEB-INF/httl.properties：</p>
+
+<pre class="brush: java;">import.packages+=com.your.domain
+template.directory=/WEB-INF/templates
+message.basename=/WEB-INF/messages
+input.encoding=UTF-8
+output.encoding=UTF-8
+reloadable=false
+precompiled=false
+localized=false
+</pre>
+
+<p>配置pom.xml依赖:</p>
+
+<pre class="brush: xml;">
+&lt;project&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;httl&lt;/groupId&gt;
+            &lt;artifactId&gt;httl-webx&lt;/artifactId&gt;
+            &lt;version&gt;1.0.10&lt;/version&gt;
+            &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;httl-repository&lt;/id&gt;
+            &lt;name&gt;Httl Repository&lt;/name&gt;
+            &lt;url&gt;http://httl.github.io/maven&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;project&gt;
+</pre>
 
 <div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;"><img src="img/up.png" /><br/>回顶部</a></div>
 </section>
