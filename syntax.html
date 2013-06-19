@@ -191,7 +191,7 @@ ${expression}
 ${user.name}
 </pre>
 
-<p>注：HTTL缺省开启了EscapeXmlFilter，以防止HTML注入攻击。如果你需要更强的过滤，请自行实现Filter，并配置到value.filters。此处为运行时热点，请注意性能。</p>
+<p>注：HTTL缺省开启了EscapeXmlFilter，以防止HTML注入攻击，参见：<a href="example.html#安全示例">安全示例</a>。如果你需要更强的过滤，请自行实现Filter，并配置到value.filters。此处为运行时热点，请注意性能。</p>
 
 <p>如果输出变量的类型为Template，则缺省不过滤，比如：${include("foo.httl")}</p>
 
@@ -206,7 +206,7 @@ $!{expression}
 $!{body}
 </pre>
 
-<p>注意：使用不过滤输出，请确保内容是开发者确定的安全内容，而不是由用户提交的内容，以防止HTML注入攻击。</p>
+<p>注意：使用不过滤输出，请确保内容是开发者确定的安全内容，而不是由用户提交的内容，以防止HTML注入攻击，参见：<a href="example.html#安全示例">安全示例</a>。</p>
 
 <h2>变量指令</h2>
 
@@ -280,6 +280,25 @@ $!{body}
 示例：
 #set(price = book.price * book.discount)
 #set(int price = book.price * book.discount)
+</pre>
+
+<p>注意，为了简化模板的书写，#set的变量全模板有效，不限制在块指令内：</p>
+
+<pre class="brush: xml;">
+#if(xxx)
+	#set(var = "value") // 变量全模板有效，而不是if块内有效
+#end
+${var} // 可以访问到if块内var的值
+</pre>
+
+<p>不需要像Java那样：</p>
+
+<pre class="brush: xml;">
+#set(var = null)
+#if(xxx)
+	#set(var = "value")
+#end
+${var}
 </pre>
 
 <p>类型的声明，同时可以用作强制转型，比如：</p>

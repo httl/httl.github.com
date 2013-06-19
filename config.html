@@ -112,7 +112,7 @@
 <p>Bash中使用环境变量配置HTTL的示例：</p>
 
 <pre class="brush: java;">$ export httl_reloadable=true
-$ export httl_template_cache_capacity=1024
+$ export httl_cache_capacity=1024
 $ export httl_import_packages=+com.foo.pack1,com.foo.pack1
 $ export httl_import_packages=-com.foo.pack3
 </pre>
@@ -198,7 +198,7 @@ $ export httl_import_packages=-com.foo.pack3
 <td>httl</td>
 </tr>
 <tr>
-<td>template.cache.capacity</td>
+<td>cache.capacity</td>
 <td>模板缓存容量</td>
 <td>10000</td>
 </tr>
@@ -480,7 +480,7 @@ $ export httl_import_packages=-com.foo.pack3
 <td>httl.spi.filters.ClearBlankLineFilter</td>
 </tr>
 <tr>
-<td>template.cache</td>
+<td>cache</td>
 <td>模板缓存</td>
 <td>java.util.concurrent.ConcurrentHashMap</td>
 </tr>
@@ -537,15 +537,15 @@ expression.parser=httl.spi.parsers.ExpressionParser
 
 <p>缺省为强缓存，即所有模板和表达式加载后全部缓存：(缺省值不用配)</p>
 
-<pre class="brush: xml;">template.cache=httl.spi.caches.TemplateAdaptiveCache
-template.cache.capacity=
+<pre class="brush: xml;">cache=httl.spi.caches.TemplateAdaptiveCache
+cache.capacity=
 </pre>
 
 <p>当配置的capacity大于0，AdaptiveCache将适配到LRU(最近最少使用)实现，否则将适配到全缓存实现。</p>
 
 <p>如果你的模板非常之多，内存不足以缓存所有模板，可以配置缓存容量：（将自动启用LRU丢弃策略）</p>
 
-<pre class="brush: xml;">template.cache.capacity=10000
+<pre class="brush: xml;">cache.capacity=10000
 </pre>
 
 <p>开发阶段，可以开启热加载：(将根据文件的最后修改时间自动清理缓存)</p>
