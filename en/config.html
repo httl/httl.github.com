@@ -1,0 +1,1084 @@
+<! Doctype html>
+<! - [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif] ->
+<! - [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif] ->
+<! - [If IE 8]> <html class="no-js ie8 oldie" lang="en"> <! [Endif] ->
+<! - [If gt IE 8]> <html class="no-js ieg8" lang="en"> <! [Endif] ->
+<html>
+<head>
+<meta charset="utf-8">
+<title> HTTL - open source Java template engine </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/style-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/httl.css" />
+<link rel="stylesheet" type="text/css" href="css/httl-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/shCoreDefault.css" />
+<script type="text/javascript" src="js/modernizr-2.0.6.min.js"> </script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"> </script>
+<script type="text/javascript" src="js/httl.js"> </script>
+<script type="text/javascript" src="js/shCore.js"> </script>
+<script type="text/javascript" src="js/shBrushXml.js"> </script>
+<script type="text/javascript" src="js/shBrushJava.js"> </script>
+<script type="text/javascript"> SyntaxHighlighter.all (); </script>
+</head>
+<body class="home ">
+    <a href="http://github.com/httl/httl"> <img style = "position: absolute; top: 0; right: 0; border: 0;" src = "https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png "alt =" Fork me on GitHub "class =" fork-me-on-github "> </a>
+    <div class="container">
+        <header>
+            <div class="logo">
+<a href="/"> HTTL </a>
+            </div>
+            <div id="headline" class="headline">
+                <h1> template engine </h1>
+                <ul>
+                  <li> simple and friendly template syntax </li>
+                  <li> excellence in performance optimization </li>
+                  <li> quality design and implementation </li>
+                </ul>
+            </div>
+        </header>
+        <nav class="primary-nav">
+            <a href="/"> <img src="img/icon-overview.png"> Overview </a>
+            <a href="download.html"> <img src="img/icon-download.png"> download </a>
+            <a href="example.html"> <img src="img/icon-example.png"> sample </a>
+            <a href="syntax.html"> <img src="img/icon-syntax.png"> syntax </a>
+            <a href="config.html"> <img src="img/icon-config.png"> configuration </a>
+            <a href="integration.html"> <img src="img/icon-integration.png"> integration </a>
+            <a href="design.html"> <img src="img/icon-design.png"> design </a>
+            <a href="help.html"> <img src="img/icon-help.png"> help </a>
+        </nav>
+    <div class="content">
+      <div class="body-content ">
+        <section>
+
+<h1> Configuration </h1>
+
+<p> HTTL All configurations have reasonable default values, you can not do any configuration, you can have a good performance in common scenarios. Of course, because the ever-changing business scenario, you can configure the HTTL better close your business, and keep the internal usage. </p>
+
+<p> HTTL following configuration will be loaded in order contents: </p>
+
+<ol>
+<li> httl-default.properties (HTTL default)
+<li> httl-<mode>. properties (mode configuration file, you can have more than one)
+<li> httl.properties (applications configuration file)
+<li> JVM-D option (only reads to <code> httl. </code> at the beginning of the key, the key will read key names <code> httl. </code> to remove)
+<li> system environment variables (only reads to <code> httl_ </code> at the beginning of the key, the key will read key names <code> httl_ </code> to remove)
+</ol>
+<p> # This 5 configuration, the latter take precedence effect. After loading the contents of the configuration values ​​will update configuration items loaded before, perhaps, said the former loaded as a default. </p>
+
+<p> If you use the default values, you can not configure the default values, refer to:
+<a href="https://github.com/httl/httl/blob/master/httl/src/main/resources/httl-default.properties"> httl-default.properties </a> </p>
+
+<p> <a href="#模式配置"> mode configuration </a> and <a href="integration.html#MVC集成"> MVC integration </a> will load the new configuration file, see the corresponding section instructions.
+
+<h2> Mode Configuration </h2>
+
+<p> mode HTTL role for selective loading of the configuration file. You can set multiple values ​​(or said to be open more than one mode). </p>
+
+<p> mode is set <code> develop </code> (turn develop mode), HTTL corresponds load <code> httl-develop.properties </code>. Mode names according to their needs taken into meaningful. </p>
+
+<p> mode can be easily configured with a set of configuration values, and can be flexibly switched.
+
+<p> To adjust the mode in the application configuration file httl.properties to add: </p>
+
+<pre class="brush: xml;"> modes + = develop </pre>
+
+<p> and add httl-develop.properties can.
+
+<h2> configuration format convention </h2>
+
+<p> configurations, configuration items named in the plural, which means that you can fill <b> multiple values ​​</b>, separated by commas. </p>
+<p> <ol>
+<li> <b> <code> = </code> </b> means that override the default configuration.
+<li> <b> <code> + = </code> </b> means that the previous value of a configuration value added (can have multiple values ​​for the configuration items)
+<li> <b> <code> - = </code> </b> indicates a configuration value to delete the previous value (can have multiple values ​​for the configuration items)
+</ol> </p>
+
+<p> Linux Bash next use environment variables when configuring HTTL <b> Note </b>: </p>
+
+<p> <ol>
+<li> environment variable name does not support the point of use, use underscores.
+<li> <b> <code> + = </code> </b> Set environment will not HTTL requirements, instead <b> <code> = + </code> </b>.
+<li> <b> <code> - = </code> </b> to set the environment to be wrong, instead <b> <code> = - </code> </b>.
+<li> To export environment changes, otherwise the child process can not read, will not take effect.
+<li> key name to add <code> httl_ </code> prefix.
+</ol> </p>
+
+<p> Bash HTTL use environment variable configuration examples: </p>
+
+<pre class="brush: java;"> $ export httl_reloadable = true
+$ Export httl_cache_capacity = 1024
+$ Export httl_import_packages = + com.foo.pack1, com.foo.pack1
+$ Export httl_import_packages =-com.foo.pack3
+</pre>
+
+<p> using JVM-D option when configuring HTTL <b> Note </b>: </p>
+
+<p> <ol>
+<li> keys plus <code> httl. </code> prefix.
+</ol> </p>
+
+<p> using JVM-D option to configure HTTL example: </p>
+<pre class="brush: java;"> $ java-Dhttl.reloadable = true \
+-Dhttl.import.packages + = com.foo.pack1, com.foo.pack1 com.foo.Main
+</pre>
+
+<h2> Configuration List </h2>
+
+<table>
+<tr> <td colspan="3"> property values ​​Configuration </td> </tr>
+<tr>
+<td> configuration item </td>
+<td> configuration instructions </td>
+<td> example values ​​</td>
+</tr>
+<tr>
+<td> modes </td>
+<td> configuration mode </td>
+<td> debug </td>
+</tr>
+</tr>
+<tr>
+<td> import.packages </td>
+<td> domain model package import </td>
+<td> com.foo.domain </td>
+</tr>
+<tr>
+<td> import.variables </td>
+<td> public variable import </td>
+<td> HttpServletRequest request </td>
+</tr>
+<tr>
+<td> import.macros </td>
+<td> public macro import </td>
+<td> commons_macros.httl </td>
+</tr>
+<tr>
+<td> import.methods </td>
+<td> static method import </td>
+<td> java.lang.Math </td>
+</tr>
+<tr>
+<td> import.getters </td>
+<td> property access methods </td>
+<td> get </td>
+</tr>
+<tr>
+<td> import.sizers </td>
+<td> size Access Method </td>
+<td> size </td>
+</tr>
+<td> import.sequences </td>
+<td> double-dot sequence </td>
+<td> Mon Tue Wed Thu Fri Sat Sun Mon </td>
+</tr>
+</tr>
+<td> forbid.methods </td>
+<td> double-dot sequence </td>
+<td> add, remove, clear </td>
+</tr>
+<tr>
+<td> template.directory </td>
+<td> template file directory </td>
+<td> / WEB-INF/templates </td>
+</tr>
+<tr>
+<td> template.suffix </td>
+<td> template file suffix </td>
+<td>. httl </td>
+</tr>
+<tr>
+<td> attribute.namespace </td>
+<td> attribute syntax namespace </td>
+<td> httl </td>
+</tr>
+<tr>
+<td> cache.capacity </td>
+<td> template cache size </td>
+<td> 10000 </td>
+</tr>
+<tr>
+<td> reloadable </td>
+<td> whether heat load </td>
+<td> false </td>
+</tr>
+<tr>
+<td> precompiled </td>
+<td> whether precompiled </td>
+<td> false </td>
+</tr>
+<tr>
+<td> source.in.class </td>
+<td> source code into byte code </td>
+<td> false </td>
+</tr>
+<tr>
+<td> text.in.class </td>
+<td> template text embedded byte code </td>
+<td> false </td>
+</tr>
+<tr>
+<td> remove.directive.blank.line </td>
+Remove blank lines <td> directive </td>
+<td> true </td>
+</tr>
+<tr>
+<td> code.directory </td>
+<td> save directory before compiling Java code </td>
+<td> / log / java </td>
+</tr>
+<tr>
+<td> compile.directory </td>
+<td> bytecode compiler directory </td>
+<td> / log / classes </td>
+</tr>
+<tr>
+<td> compile.version </td>
+<td> generated bytecode version </td>
+<td> 1.7 </td>
+</tr>
+<tr>
+<td> lint.unchecked </td>
+<td> generate a compile error details </td>
+<td> false </td>
+</tr>
+<tr>
+<td> dump.directory </td>
+<td> dump context data directory </td>
+<td> / tmp / dumps </td>
+</tr>
+<tr>
+<td> dump.codec </td>
+<td> dump data format </td>
+<td> $ json.codec </td>
+</tr>
+<tr>
+<td> dump.once </td>
+<td> it only dump once </td>
+<td> false </td>
+</tr>
+<tr>
+<td> dump.override </td>
+<td> dump file is overwritten </td>
+<td> false </td>
+</tr>
+<tr>
+<td> for.variable </td>
+<td> iteration state variable name </td>
+<td> for </td>
+</tr>
+<tr>
+<td> filter.variable </td>
+<td> filter variable name </td>
+<td> filter </td>
+</tr>
+<tr>
+<td> default.variable.type </td>
+<td> default variable type </td>
+<td> java.lang.Object </td>
+</tr>
+<tr>
+<td> use.render.variable.type </td>
+<td> to render first variable type compilation </td>
+<td> true </td>
+</tr>
+<tr>
+<td> extends.directory </td>
+<td> be inherited template directory </td>
+<td> layouts </td>
+</tr>
+<tr>
+<td> extends.variable </td>
+<td> referred template automatically inherit variables </td>
+<td> layout </td>
+</tr>
+<tr>
+<td> extends.default </td>
+<td> automatically inherit the default template </td>
+<td> default.httl </td>
+</tr>
+<tr>
+<td> extends.nested </td>
+<td> automatically inherit the embedded sub-template name </td>
+<td> nested </td>
+</tr>
+<tr>
+<td> input.encoding </td>
+<td> resource loading code </td>
+<td> UTF-8 </td>
+</tr>
+<tr>
+<td> output.encoding </td>
+<td> template output encoding </td>
+<td> UTF-8 </td>
+</tr>
+<tr>
+<td> output.stream </td>
+<td> whether to use binary output </td>
+<td> true </td>
+</tr>
+<tr>
+<td> output.writer </td>
+<td> whether to use text output </td>
+<td> true </td>
+</tr>
+<tr>
+<td> message.directory </td>
+<td> international directory </td>
+<td> / WEB-INF </td>
+</tr>
+<tr>
+<td> message.basename </td>
+<td> international filename prefix </td>
+<td> messages </td>
+</tr>
+<tr>
+<td> message.suffix </td>
+<td> internationalization file suffix </td>
+<td>. properties </td>
+</tr>
+<tr>
+<td> message.format </td>
+<td> international information format </td>
+<td> message </td>
+</tr>
+<tr>
+<td> message.encoding </td>
+<td> international information is loaded encoding </td>
+<td> UTF-8 </td>
+</tr>
+<tr>
+<td> localized </td>
+<td> whether incoming Area information </td>
+<td> false </td>
+</tr>
+<tr>
+<td> locale </td>
+<td> default locale information </td>
+<td> zh_CN </td>
+</tr>
+<tr>
+<td> time.zone </td>
+<td> default time zone </td>
+<td> +8 </td>
+</tr>
+<tr>
+<td> date.format </td>
+<td> date format </td>
+<td> yyyy-MM-dd HH: mm: ss </td>
+</tr>
+<tr>
+<td> number.format </td>
+<td> digital format </td>
+<td> # # #, # # 0. # # # </td>
+</tr>
+<tr>
+<td> null.value </td>
+<td> null output </td>
+<td> null </td>
+</tr>
+<tr>
+<td> true.value </td>
+<td> True value output content </td>
+<td> true </td>
+</tr>
+<tr>
+<td> false.value </td>
+<td> False value output content </td>
+<td> false </td>
+</tr>
+<tr>
+<td> logger.level </td>
+<td> log output level </td>
+<td> DEBUG </td>
+</tr>
+<tr>
+<tr> <td colspan="3"> extension point configuration </td> </tr>
+<tr>
+<td> configuration item </td>
+<td> configuration instructions </td>
+<td> example values ​​</td>
+</tr>
+<tr>
+<td> engine </td>
+<td> engine implements </td>
+<td> httl.spi.engines.DefaultEngine </td>
+</tr>
+<tr>
+<td> template.parser </td>
+<td> template parser </td>
+<td> httl.spi.parsers.TemplateParser </td>
+</tr>
+<tr>
+<td> expression.parser </td>
+<td> expression parser </td>
+<td> httl.spi.parsers.ExpressionParser </td>
+</tr>
+<tr>
+<td> translator </td>
+<td> expression translator </td>
+<td> httl.spi.translators.CompiledTranslator </td>
+</tr>
+<tr>
+<td> compiler </td>
+<td> bytecode compiler </td>
+<td> httl.spi.compilers.JdkCompiler </td>
+</tr>
+<tr>
+<td> loaders </td>
+<td> resource loader </td>
+<td> httl.spi.loaders.ClasspathLoader </td>
+</tr>
+<tr>
+<td> formatters </td>
+<td> dynamic value formatter </td>
+<td> httl.spi.formatters.DateFormatter </td>
+</tr>
+<tr>
+<td> value.switchers </td>
+<td> dynamic value position switch </td>
+<td> httl.spi.switchers.ScriptValueSwitcher </td>
+</tr>
+<tr>
+<td> value.filters </td>
+<td> html dynamic value filter </td>
+<td> httl.spi.filters.EscapeXmlFilter </td>
+</tr>
+<tr>
+<td> script.value.filters </td>
+<td> js dynamic value filter </td>
+<td> httl.spi.filters.EscapeStringFilter </td>
+</tr>
+<tr>
+<td> style.value.filters </td>
+<td> css dynamic value filter </td>
+<td> httl.spi.filters.EscapeStringFilter </td>
+</tr>
+<tr>
+<td> text.switchers </td>
+<td> static text position switch </td>
+<td> httl.spi.switchers.ScriptTextSwitcher </td>
+</tr>
+<tr>
+<td> text.filters </td>
+<td> html static text filter </td>
+<td> httl.spi.filters.ClearBlankLineFilter </td>
+</tr>
+<tr>
+<td> script.text.filters </td>
+<td> js static text filter </td>
+<td> httl.spi.filters.ClearBlankLineFilter </td>
+</tr>
+<tr>
+<td> style.text.filters </td>
+<td> css static text filter </td>
+<td> httl.spi.filters.ClearBlankLineFilter </td>
+</tr>
+<tr>
+<td> cache </td>
+<td> template cache </td>
+<td> java.util.concurrent.ConcurrentHashMap </td>
+</tr>
+<tr>
+<td> resolvers </td>
+<td> environment variable Decider </td>
+<td> httl.spi.resolvers.EngineResolver </td>
+</tr>
+<tr>
+<td> map.converter </td>
+<td> rendering parameters converter </td>
+<td> httl.spi.converters.BeanMapConverter </td>
+</tr>
+<tr>
+<td> out.converter </td>
+<td> Render Output Converter </td>
+<td> httl.spi.converters.ResponseOutConverter </td>
+</tr>
+<tr>
+<td> codecs </td>
+<td> object transcoder list </td>
+<td> httl.spi.codecs.FastjsonCodec </td>
+</tr>
+<td> default.codec </td>
+<td> default object transcoder </td>
+<td> httl.spi.codecs.FastjsonCodec </td>
+</tr>
+<tr>
+<td> loggers </td>
+<td> log output </td>
+<td> httl.spi.loggers.Log4jLogger </td>
+</tr>
+</table>
+
+<h2> template engine configuration </h2>
+
+<p> comment syntax used by default: (default value not allocated) </p>
+
+<pre class="brush: xml;"> engine = httl.spi.engines.DefaultEngine
+translator = httl.spi.translators.CompiledTranslator
+template.parser = httl.spi.parsers.TemplateParser
+expression.parser = httl.spi.parsers.ExpressionParser
+</pre>
+
+<p> which, engine responsible for assembly, parser responsible for parsing the syntax tree, translator is responsible for the syntax tree into a template instance.
+Unless you want to change the syntax, or optimize analytical performance, otherwise the three not require configuration. </p>
+
+<p> you can set for the state variable names, default is for: (default value not allocated) </p>
+
+<pre class="brush: xml;"> for.variable = for
+</pre>
+
+<h2> template cache configuration </h2>
+
+<p> default is strong cache, ie all templates and expressions after loading all cache: (default value not allocated) </p>
+
+<pre class="brush: xml;"> cache = httl.spi.caches.TemplateAdaptiveCache
+cache.capacity =
+</pre>
+
+<p> When configured capacity is greater than 0, AdaptiveCache the adapter to the LRU (least recently used) to achieve, otherwise it will fit into the whole cache implementation. </p>
+
+<p> If your template very much, not enough memory to cache all the templates, you can configure the cache capacity: (LRU discard policy is automatically enabled) </p>
+
+<pre class="brush: xml;"> cache.capacity = 10000
+</pre>
+
+<p> development stage, you can open the heat load: (according to the file's last modification time automatically clear the cache) </p>
+
+<pre class="brush: xml;"> reloadable = true
+</pre>
+
+<h2> template loading configuration </h2>
+
+<p> (1) can be configured to the root directory of the template: </p>
+
+<p> If you configure: </p>
+
+<pre class="brush: xml;"> template.directory = / META-INF/templates
+template.suffix =. httl
+</pre>
+
+<p> following wording will find that / META-INF/templates/foo.httl template: </p>
+
+<pre class="brush: xml;"> engine.getTemplate ("/ foo.httl");
+</pre>
+
+<p> Note: This directory and template.suffix association, if find other suffix will not bring this directory. </p>
+
+<p> example, the following wording will find that / foo.txt file: (will not bring the template directory) </p>
+
+<pre class="brush: xml;"> engine.getResource ("/ foo.txt");
+</pre>
+
+<p> (2) can be configured to load the template default encoding, default is UTF-8: (default value not allocated) </p>
+
+<pre class="brush: xml;"> input.encoding = UTF-8
+</pre>
+
+<p> (3) you can configure whether to allow the heat load, default is false: (default values ​​do not match) </p>
+
+<pre class="brush: xml;"> reloadable = false
+</pre>
+
+<p> turn heat loads, the template engine getTemplate () will check the file lastModified time, and if the new loading time than the last, it is reloaded. </p>
+
+<p> Please note: the old template will not be unloaded, it keeps on changing file causes memory perm area is growing, only in the development phase. </p>
+
+<p> (4) can be configured to start all precompiled template calls loader.list () scan template file. </p>
+
+<p> In template.directory directory search, and through template.suffix suffix filter template file. </p>
+
+<p> precompiled default off: (default value not allocated) </p>
+
+<pre class="brush: xml;"> precompiled = false
+template.suffix =. httl
+</pre>
+
+<h3> from Classpath to load </h3>
+
+<p> default Classpath to load from that template on any jar package: (default value not allocated) </p>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.ClasspathLoader
+template.directory =
+</pre>
+
+<h3> loaded from a file </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.FileLoader
+template.directory = / home / admin / templates
+</pre>
+
+<h3> loaded from the jar package </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.JarLoader
+template.directory = / home / admin / tempaltes.jar
+</pre>
+
+<h3> loaded from the zip package </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.ZipLoader
+template.directory = / home / admin / tempaltes.zip
+</pre>
+
+<h3> loaded from the specified url </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.UrlLoader
+template.directory = http://myhost/tempaltes
+</pre>
+
+<h3> from war package loaded </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.ServletLoader
+template.directory = / WEB-INF/templates
+</pre>
+
+<p> need to be configured in web.xml ServletLoader the listener: </p>
+
+<pre class="brush: xml;"> <listener>
+    <listener-class> httl.spi.loaders.ServletLoader </listener-class>
+</listener>
+</pre>
+
+<h3> string loaded from memory </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.StringLoader
+</pre>
+
+<p> then encoded added template content: </p>
+
+<pre class="brush: xml;"> StringLoader.add ("foo.httl", "# set (User user) $ {user.name}");
+</pre>
+
+<h3> loads from multiple sources </h3>
+
+<pre class="brush: xml;"> loaders = httl.spi.loaders.ClasspathLoader, httl.spi.loaders.FileLoader
+</pre>
+
+<p> or use the "+ =" Keep the default classpath loaded at the same time, adding new loader, multiple values ​​separated by commas: </p>
+
+<pre class="brush: xml;"> loaders + = httl.spi.loaders.FileLoader
+</pre>
+
+<h2> template compiler </h2>
+
+<p> for template classes compiled into byte code, the default JDK version using adaptive compiler based on: (default values ​​do not match) </p>
+
+<pre class="brush: xml;"> compiler = httl.spi.compilers.AdaptiveCompiler
+</pre>
+
+<p> current operating environment for the JDK1.6 previous version, AdaptiveCompiler will fit into JavassistCompiler, otherwise it will fit into JdkCompiler. </p>
+
+<p> you can enforce the use jdk own compiler: (must use JDK run, JRE does not work) </p>
+
+<pre class="brush: xml;"> compiler = httl.spi.compilers.JdkCompiler
+</pre>
+
+You can also replace javassist <p> compile: (if JRE running, use javassist compilation) </p>
+
+<pre class="brush: xml;"> compiler = httl.spi.compilers.JavassistCompiler
+</pre>
+
+<p> of course, also need to increase the javassist jar package dependency: </p>
+
+<p> <a href="http://central.maven.org/maven2/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar"> javassist-3.15.0-GA . jar </a> </p>
+
+<pre class="brush: xml;"> <dependency>
+    <groupId> org.javassist </groupId>
+    <artifactId> javassist </artifactId>
+    <version> 3.15.0-GA </version>
+</dependency>
+</pre>
+
+<p> (1) output options: </p>
+
+<p> If you set output.stream = true, at compile template file will be converted into a byte [] data,
+On output, output directly to OutputStream byte [] stream, in order to avoid run-time output should turn again. </p>
+
+<p> default fully open: (default value not allocated) </p>
+
+<pre class="brush: xml;"> output.stream = true
+output.writer = true
+</pre>
+
+<p> If output.stream and output.writer open simultaneously, each template will be compiled into two class, and return to the Adaptive Template proxy class.
+When the user invokes template.render (Map, OutputStream), the actual implementation of the output byte [] the Template class,
+When the user invokes template.render (Map, Writer), the actual implementation of the Template output String class. </p>
+
+<p> If output.stream and output.writer off simultaneously generates only writer templates, representing only open output.writer. </p>
+
+<p> Note:
+If only open output.stream = true, must template.render (Map, OutputStream), otherwise the data conversion will lead to lower performance.
+If only open output.writer = true, must template.render (Map, Writer), otherwise the data conversion will lead to lower performance. </p>
+
+<p> if you never pass OutputStream or Writer, please close the corresponding configuration switches, reducing the compilation overhead. </p>
+
+<p> (2) Memory Options: </p>
+
+<p> default template source code and template text will not be compiled into byte code: (default value not allocated) </p>
+
+<pre class="brush: xml;"> source.in.class = false
+text.in.class = false
+</pre>
+
+<p> do it through a Map caching intermediary, the template source code and template text are placed in runtime attribute to save memory perm size. </p>
+
+<p> compiled into bytecode, in a small template, may be slightly faster, but there will be a qualitative leap in the template is greater than 8K, it will lead to failure of the JVM JIT optimization, will be slower, does not recommend changing this option. </p>
+
+<p> (3) version option: </p>
+
+<p> java version of the configuration will affect the bytecode generation version. (The default is the current version of the JDK) </p>
+
+<pre class="brush: xml;"> compile.version = 1.6
+</pre>
+
+<p> (4) debugging options: </p>
+
+<p> If you want to know the compiled bytecode is what kind of, you can set the build directory, the directory must be created in advance, the compiler will output to the directory. class files. </p>
+
+<p> before compiling java code is disabled by default save directory directory: (default value not allocated) </p>
+
+<pre class="brush: xml;"> code.directory =
+</pre>
+
+<p> compiled class is disabled by default save directory: (default value not allocated) </p>
+
+<pre class="brush: xml;"> compile.directory =
+</pre>
+
+<p> (5) Error Options: </p>
+
+<p> If the template compilation fails, you can open lint.unchecked option to obtain more detailed compilation error message. </p>
+
+<p> more memory loss but this option is only for use during development, is disabled by default. (Default not allocated) </p>
+
+<pre class="brush: xml;"> lint.unchecked = false
+</pre>
+
+<h2> output formatter </h2>
+
+<p> default date format is loaded: (default values ​​do not match) </p>
+
+<pre class="brush: xml;"> formatters = httl.spi.formatters.DateFormatter
+date.format = yyyy-MM-dd HH: mm: ss
+time.zone =
+</pre>
+
+<p> You can also set the time zone settings, the results will take time to format the value zone: (defaults to the current system time zone) </p>
+
+<pre class="brush: xml;"> time.zone = +8
+</pre>
+
+<p> you can use the "+ =" Keep the default date format, while adding new formatter, multiple separated by commas: </p>
+
+<pre class="brush: xml;"> formatters + = httl.spi.formatters.NumberFormatter
+number.format = # # #, # # 0. # # #
+</pre>
+
+<p> You can also set null, true, false values ​​of the output, </p>
+
+<p> null value defaults will output blank, true, false as output: (default values ​​do not match) </p>
+
+<pre class="brush: xml;"> null.value =
+true.value = true
+false.value = false
+</pre>
+
+<p> example, can be equipped as: </p>
+
+<pre class="brush: xml;"> null.value = N / A
+true.value = yes
+false.value = no
+</pre>
+
+<h2> output filter </h2>
+
+<p> filter is divided into two categories, one is for the template text, one is for dynamic interpolation. </p>
+
+<p> template text filtering will be performed at compile time, compile-time template text that is replaced, does not affect the output performance. </p>
+
+<p> dynamic interpolation filter in the output when executed, cause performance problems need to be careful filtering, multiple separated by commas. </p>
+
+<p> default load dynamic HTML interpolation filter, to prevent HTML injection XSS attacks: (default value not allocated) </p>
+
+<pre class="brush: xml;"> value.filters = httl.spi.filters.EscapeXmlFilter
+text.filters =
+</pre>
+
+<p> at compile time, you can configure the static text blank lines removed: (compile time, does not affect rendering speed) </p>
+
+<pre class="brush: xml;"> text.filters = httl.spi.filters.ClearBlankLineFilter
+</pre>
+
+<p> You can also configure static text at compile time in successive whitespace compressed into a single space: (compile time, does not affect rendering speed) </p>
+
+<pre class="brush: xml;"> text.filters = httl.spi.filters.CompressBlankFilter
+</pre>
+
+<p> You can also use filters simultaneously set value.filters and text.filters: </p>
+
+<pre class="brush: xml;"> filters = httl.spi.filters.CompressBlankFilter
+</pre>
+
+<p> equivalent to: </p>
+
+<pre class="brush: xml;"> value.filters + = httl.spi.filters.CompressBlankFilter
+text.filters + = httl.spi.filters.CompressBlankFilter
+</pre>
+
+<p> HTTL default command removes the line blank if you want to keep, configure: </p>
+
+<pre class="brush: xml;"> remove.directive.blank.line = false
+</pre>
+
+<h2> type import </h2>
+
+<h3> import package name </h3>
+
+<p> default imported java.util package: (default value not allocated) </p>
+
+<pre class="brush: xml;"> import.packages = java.util
+</pre>
+
+<p> so you can use the short name of the class within a template, rather than bring the whole package. </p>
+
+<p> you can use the "+ =" keep the default import packages at the same time, import the new package, multiple packages separated by commas: </p>
+
+<pre class="brush: xml;"> import.packages + = com.foo, com.bar
+</pre>
+
+<h3> import variable type declaration </h3>
+
+<p> default imported parent, context, template, engine four variables: (default values ​​do not match) </p>
+
+<pre class="brush: xml;"> import.variables = Context parent, Template super, Template this, Engine engine
+</pre>
+
+HTTL <p> If you are using the built-in MVC integration, integration has been in default import request, response, session, application four variables: (default values ​​do not match) </p>
+
+<pre class="brush: xml;"> import.variables + = HttpServletRequest request, HttpServletResponse response, HttpSession session, ServletContext application
+</pre>
+
+<p> so you can use them directly within the template variable instead of each template declaration: </p>
+
+<pre class="brush: xml;"> # set (HttpServletRequest request, HttpServletResponse response) </pre>
+
+<p> you can use the "+ =" keep the default import packages at the same time, import the new package, multiple packages separated by commas: </p>
+
+<pre class="brush: xml;"> import.variables + = Foo foo, Bar bar
+</pre>
+
+<h3> import method </h3>
+
+<p> default import DefaultMethod class method: (default value not allocated) </p>
+
+<pre class="brush: xml;"> import.methods = httl.spi.methods.DefaultMethod
+</pre>
+
+<p> you can use the "+ =" default method retained the same time, introduce new methods, multiple classes separated by commas: </p>
+
+<pre class="brush: xml;"> import.methods + = com.foo.MyMethod
+</pre>
+
+<p> DefaultMethod have static methods such as: (can also be a non-static method) </p>
+
+<pre class="brush: xml;"> public static String format (Date self, String format) {
+    return ...;
+}
+public static char toChar (String self) {
+    return ...;
+}
+public static Date now () {
+    return ...;
+}
+</pre>
+
+<p> you can call in the template: </p>
+
+<pre class="brush: xml;"> $ {date.format ("yyyy-MM-dd")}
+$ {Str.toChar ()}
+$ {Now ()}
+</pre>
+
+<p> principle: static methods first argument is a reference to the operator itself, followed by the parameters of the incoming call. </p>
+
+<p> If you need setEngine () injected engine instance, or setXxx (String) injection configuration items that can be imported non-static methods, but static methods compiled faster. </p>
+
+<p> example: </p>
+
+<pre class="brush: xml;"> / / will be injected into the engine itself
+private Engine engine;
+public setEngine (Engine engine) {
+    this.engine = engine;
+}
+
+/ / Will be injected httl.properties in input.encoding = UTF-8 configuration values
+private String inputEncoding;
+public setInputEncoding (String inputEncoding) {
+    this.inputEncoding = inputEncoding;
+}
+
+/ / Non-static method to import
+public String include (String templateName) {
+    return engine.getTemplate (templateName, inputEncoding). toString ();
+}
+</pre>
+
+<p> Use the same way: </p>
+
+<pre class="brush: xml;"> $ {include ("foo.httl")}
+</pre>
+
+<h3> prohibited methods </h3>
+
+<p> HTTL void method invocation is not allowed to keep the template no side effects, as well as multiple rendering idempotent. </p>
+
+<p> If there is some writing method returns a value, you can configure forbid.methods prohibit, prevent developers mistakenly calls. </p>
+
+<p> default ban some common writing method: (default value not allocated) </p>
+
+<pre class="brush: xml;"> forbid.methods = add, put, save, insert, modify, update, delete, remove, clear </pre>
+
+<h3> import property getter </h3>
+
+<p> default imported get, getProperty, getAttribute four attribute value method: (default value not allocated) </p>
+
+<pre class="brush: xml;"> import.getters = get, getProperty, getAttribute
+</pre>
+
+<p> will look String and Object parameter value of the property methods, such as: get (String) or get (Object) </p>
+
+<h3> import size getter </h3>
+
+<p> default imported size, length, getSize, getLength four sizes ranging methods: (default value not allocated) </p>
+
+<pre class="brush: xml;"> import.sizers = size, length, getSize, getLength
+</pre>
+
+<p> will find the size of the parameter value empty methods, such as: size () </p>
+
+<p> size getter will be used # if () judgment, $ {a? b: c} ternary operator judgment where judgment null values. </p>
+
+<h3> import macro </h3>
+
+<p> guide specifies all the macros in the template, multiple templates separated by commas, these macros can be used in any other templates, such as: </p>
+
+<pre class="brush: xml;"> import.macros = common_macros.httl
+</pre>
+
+<h3> Import Sequence </h3>
+
+<p> usage such as: </p>
+
+<pre class="brush: xml;"> # for (weekday: "Monday" .. "Sunday")
+$ {Weekday}
+# End
+</pre>
+
+<p> week and month that contains the default sequence: (default value not allocated) </p>
+
+<pre class="brush: xml;"> import.sequences = Mon Tue Wed Thu Fri Sat Sun Mon, \
+Monday Tuesday Wednesday Thursday Friday Saturday Sunday Monday, \
+Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Jan, \
+January February March May June July August September October November December January
+</pre>
+
+<p> If the same value as before and the last one, which means that can be recycled. </p>
+
+<p> you can use the "+ =" keep the default sequence, while adding new sequence, the values ​​separated by spaces, multiple sequences, separated by commas: </p>
+
+<pre class="brush: xml;"> import.sequences + = Five Elements Gold
+</pre>
+
+<h2> log output configuration </h2>
+
+<p> default using log4j output log: (default value not allocated) </p>
+
+<pre class="brush: xml;"> loggers = httl.spi.loggers.Log4jLogger
+</pre>
+
+<p> If you need to use other tools to output log log can configure your own adapter. </p>
+
+<p> such as using the JDK logging output: </p>
+
+<pre class="brush: xml;"> loggers = httl.spi.loggers.JdkLogger
+</pre>
+
+<p> you can simultaneously output to multiple logging tools: </p>
+
+<pre class="brush: xml;"> loggers = httl.spi.loggers.Log4jLogger, httl.spi.loggers.JdkLogger
+</pre>
+
+<p> or use the "+ =" Keep the default log4j output, while increasing new output, multiple separated by commas: </p>
+
+<pre class="brush: xml;"> loggers + = httl.spi.loggers.JdkLogger
+</pre>
+
+<p> Note: When the log level to DEBUG, HTTL log output will be compiled template source code for easy troubleshooting. </p>
+
+<h2> variable decision </h2>
+
+<p> variable that is, from where to get the decision variables, the default is only get attributes from the context: (default value not allocated) </p>
+
+<pre class="brush: xml;"> resolvers = httl.spi.resolvers.ContextResolver
+</pre>
+
+<p> If you are using the built-in MVC HTTL integration has been automatically imported ServletResolver, </p>
+
+<p> it reads <code> request </code>, <code> session </code>, <code> servletContext </code>, etc. Get variables: </p>
+
+<pre class="brush: xml;"> resolvers + = httl.spi.resolvers.ServletResolver
+</pre>
+
+<p> example: the user's locale international information area, starting with a request for the above configuration to get, so you can set the display area according to the user in different languages. </p>
+
+<p> If you want to be directly in the template configuration items are read into httl.properties that Engine.getProperty () values, you can configure: </p>
+
+<pre class="brush: xml;"> resolvers + = httl.spi.resolvers.EngineResolver
+</pre>
+
+<p> If you want to read in the template directly to the JVM startup parameters are java-Dkey = value ie System.getProperty () values, you can configure: </p>
+
+<pre class="brush: xml;"> resolvers + = httl.spi.resolvers.SystemResolver
+</pre>
+
+<p> If you want to have read in the template directly into the environment variable export key = value that System.getenv () values, you can configure: </p>
+
+<pre class="brush: xml;"> resolvers + = httl.spi.resolvers.EnvironmentResolver
+</pre>
+
+<p> If you want to set the value of the variable global, you can configure: </p>
+
+<pre class="brush: xml;"> resolvers + = httl.spi.resolvers.GlobalResovler
+</pre>
+
+<p> Then, through the static methods global setting variable values: </p>
+
+<pre class="brush: java;"> GlobalResovler.put (key, value); / / static
+</pre>
+
+<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="img/up.png" /> <br/> Top </a> </div>
+</section>
+</div>
+
+<aside>
+<div class="standard-right-nav">
+  <p> documentation directory </p>
+  <div id="docIndex" class="nav-inner"> </div>
+</div>
+</aside>
+ 
+</div>
+
+    <footer>
+      <nav class="footer-secondary-nav">
+        <div class="companies">
+          <p> Copyright 2011 - <script type="text/javascript"> document.write (new Date (). getYear () + 1900); </script> HTTL development team. <br/> <br/> this station can be adaptive: mobile phone, tablet, computer, etc.. <br/> </p>
+        </div>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

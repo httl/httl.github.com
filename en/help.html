@@ -1,0 +1,320 @@
+<! Doctype html>
+<!-- [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif]-->
+<!-- [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif]-->
+<!-- [If IE 8]> <html class="no-js ie8 oldie" lang="en"> <! [Endif]-->
+<!-- [If gt IE 8]> <html class="no-js ieg8" lang="en"> <! [Endif]-->
+<html>
+<head>
+<meta charset="utf-8">
+<title> HTTL - open source Java template engine </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/style-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/httl.css" />
+<link rel="stylesheet" type="text/css" href="css/httl-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/shCoreDefault.css" />
+<script type="text/javascript" src="js/modernizr-2.0.6.min.js"> </script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"> </script>
+<script type="text/javascript" src="js/httl.js"> </script>
+<script type="text/javascript" src="js/shCore.js"> </script>
+<script type="text/javascript" src="js/shBrushXml.js"> </script>
+<script type="text/javascript" src="js/shBrushJava.js"> </script>
+<script type="text/javascript"> SyntaxHighlighter.all (); </script>
+</head>
+<body class="home ">
+    <a href="http://github.com/httl/httl"> <img style = "position: absolute; top: 0; right: 0; border: 0;" src = "https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png "alt =" Fork me on GitHub "class =" fork-me-on-github "> </a>
+    <div class="container">
+        <header>
+            <div class="logo">
+<a href="/"> HTTL </a>
+            </div>
+            <div id="headline" class="headline">
+                <h1> template engine </h1>
+                <ul>
+                  <li> simple and friendly template syntax </li>
+                  <li> excellence in performance optimization </li>
+                  <li> quality design and implementation </li>
+                </ul>
+            </div>
+        </header>
+        <nav class="primary-nav">
+            <a href="/"> <img src="img/icon-overview.png"> Overview </a>
+            <a href="download.html"> <img src="img/icon-download.png"> download </a>
+            <a href="example.html"> <img src="img/icon-example.png"> sample </a>
+            <a href="syntax.html"> <img src="img/icon-syntax.png"> syntax </a>
+            <a href="config.html"> <img src="img/icon-config.png"> configuration </a>
+            <a href="integration.html"> <img src="img/icon-integration.png"> integration </a>
+            <a href="design.html"> <img src="img/icon-design.png"> design </a>
+            <a href="help.html"> <img src="img/icon-help.png"> help </a>
+        </nav>
+    <div class="content">
+      <div class="body-content ">
+        <section>
+
+<h1> Help </h1>
+
+<p> If you experience a problem, you can
+<ol>
+<li> submit questions to: <a href="https://github.com/httl/httl/issues"> HTTL problem management </a>
+<li> participate QQ group: 184 287 288
+</ol>
+</p>
+
+<h2> member </h2>
+
+<h3> creator (Founder) </h3>
+
+<a href="http://weibo.com/liangfei0201"> <img alt="liangfei" src="images/liangfei.png" /> </a>
+<ul>
+<li> Liang Fei (Lynx - Platform Architecture Senior Technical Specialist) Hangzhou </li>
+<li> mail: liangfei0201 (At) gmail (Dot) com </li>
+<li> blog: <a href="http://javatar.iteye.com"> http://javatar.iteye.com </a> </li>
+<li> microblogging: <a href="http://weibo.com/liangfei0201"> http://weibo.com/liangfei0201 </a> </li>
+<li> contribution: frame design, engine implements, SPI implementation. </li>
+</ul>
+
+<h3> submitter (Committer) </h3>
+
+<a href="http://weibo.com/oldratlee"> <img alt="liding" src="images/liding.png" /> </a>
+<ul>
+<li> Li Ding (Paypal-ACE Senior Development Engineer) Hangzhou </li>
+<li> mail: oldratlee (At) gmail (Dot) com </li>
+<li> blog: <a href="http://oldratlee.com"> http://oldratlee.com </a> </li>
+<li> microblogging: <a href="http://weibo.com/oldratlee"> http://weibo.com/oldratlee </a> </li>
+<li> contribution: Configure load, abnormal improvements, bug fixes. </li>
+</ul>
+
+<h3> contributors (Contributor) </h3>
+
+<a href="http://my.oschina.net/myaniu"> <img alt="liding" src="images/lifei.jpg" /> </a>
+<ul>
+<li> Li Fei (Long Hua - technical director) Xi'an </li>
+<li> mail: myaniu (At) gmail (Dot) com </li>
+<li> blog: <a href="http://my.oschina.net/myaniu/blog"> http://my.oschina.net/myaniu/blog </a> </li>
+<li> contribution: JFinal and HTTL integration: <a href="https://github.com/httl/httl/issues/59"> # 115 </a> </li>
+<li> </li>
+</ul>
+
+Xwinie
+<ul>
+<li> Doudou Bear (Freeborders - Database Administrator) Chengdu </li>
+<li> mail: xwinie (At) gmail (Dot) com </li>
+<li> blog: <a href="http://my.oschina.net/xwinie/blog"> http://my.oschina.net/xwinie/blog </a> </li>
+<li> contribution: Nutz and HTTL integration: <a href="https://github.com/httl/httl/issues/59"> # 59 </a> </li>
+</ul>
+
+ZQQ9
+<ul>
+<li> mail: zqq_90 (At) 163 (Dot) com </li>
+<li> contribution: Type Bug Fixes: <a href="https://github.com/httl/httl/pull/64"> # 64 </a> </li>
+</ul>
+
+Subchen
+<ul>
+<li> contribution: Remove blank line command to achieve: <a href="https://github.com/httl/httl/issues/89"> # 89 </a> </li>
+</ul>
+
+<h2> user </h2>
+
+<p> <a href="http://www.taobao.com"> <img src="images/taobao.png" alt="淘宝网" /> </a> </p>
+
+<p> <a href="http://www.jd.com"> <img src="images/jingdong.png" alt="京东商城" /> </a> </p>
+
+<p> <a href="http://www.damai.cn"> <img src="images/damai.png" alt="大麦网" /> </a> </p>
+
+<p> <a href="http://www.tuanbowang.com"> <img src="images/tuanbowang.png" alt="团博网" /> </a> </p>
+
+<p> <a href="http://www.2858.cn/gywm.html"> <img src="images/bjhlxw.png" alt="北京互联新网" /> </a> </p>
+
+<p> collection, if you are using HTTL, welcome to provide company name ... </p>
+
+<script type="text/javascript" src="js/jquery.githubRepoWidget.js"> </script>
+<div class="github-widget" data-repo="httl/httl"> </div>
+
+<h1> answers </h1>
+
+Why use # set <h2> declare variable types? </h2>
+
+<p> mandatory declaration of variables # set definition, in order to clear the input template, which can strongly typed compiled improve performance. </p>
+
+<p> also convenient template maintenance, weak type operators for long-term maintenance of Internet applications is extremely unfavorable, thousands of engineers tinkering with the template. </p>
+
+<p> Who remembers what a object attributes, turn turn code documentation, someone changed an attribute of a object is not associated with, nor prompt. </p>
+
+<p> even development IDE editor, can not automatically prompt nor error, such as run-time detection, it is affecting the efficiency of development. </p>
+
+<p> Ali developed internally at a Velocity IDE editor encountered much resistance, have increased through the notes to the template type definition. </p>
+
+<p> See: <a href="http://www.infoq.com/cn/articles/hk-semi-static-language"> http://www.infoq.com/cn/articles/hk-semi -static-language </a> </p>
+
+How <h2> like JSP custom tag functionality? </h2>
+
+<p> HTTL template to prevent complications and maintain the most simple instruction set, so do not allow users to extend the instruction set, and through the extension functions to achieve the same functionality. </p>
+
+<p> custom tag: <hasPrivilege resource="foo"> ... </hasPrivilege> </p>
+
+<p> extend it can be replaced with: # if (hasPrivilege ("foo")) ... # end </p>
+
+<p> simply configure: import.methods + = com.your.YourPrivilegeStaticMethodClass </p>
+
+Compilation failed <h2> appear abnormal how do? </h2>
+
+<p> HTTL the compilation fails, it will automatically open-Xlint: unchecked parameter recompiled
+So users get the exception message, already contains detailed information JDK compiler failed. </p>
+
+If you analyze the reasons <p> no exception, HTTL simultaneously generated Java code will be printed in the log,
+You can copy the code out into the IDE, see the IDE error. </p>
+
+<h2> appear abnormal class or package not found how to do? </h2>
+
+<p> Please check httl, and you are using classes, whether in the classpath. </p>
+
+Please check import.packages <p> package name is correct. </p>
+
+<p> If JdkCompiler problems, you can try to change JavassistCompiler try to confirm whether the classpath for the JdkCompiler loading problems. </p>
+
+<h2> properties or methods can not find how to do? </h2>
+
+<p> If the following exception: </p>
+
+<p> No such property xxx in class java.lang.Object </p>
+
+<p> No such method xxx () in class java.lang.Object </p>
+
+<p> is usually the type of the variable is not defined in the template, adding the variable type declaration: # set (Xxx xxx) </p>
+
+<h2> occur after the template change does not take effect how to do? </h2>
+
+<p> HTTL when it starts printing INFO log shows the loading configuration path, such as: </p>
+
+<pre> <code> INFO: Load httl config from / home / foo / httl.properties in classpath. </code> </pre>
+
+<p> you can look at your configuration is the log of the share on the print position to avoid multiple copies httl.properties configuration, loaded the wrong configuration file. </p>
+
+<p> If you have multiple copies of configuration, HTTL WARN log will be printed to alert the user, such as: </p>
+
+<pre> <code> WARN: Multi httl config in classpath, conflict configs: [/ home / foo / httl.properties, / home / foo / conf / httl.properties]. Please keep only one config. </code> </pre>
+
+<p> And, HTTL first template is loaded, it will print the template INFO log shows where the absolute path, such as: </p>
+
+<pre> <code> INFO: Load httl template from RELOADABLE directory / home / foo / templates by ClasspathLoader. </code> </pre>
+
+<p> you can look at your template is printed in the log template directory, avoid modifying templates does not load the directory, where the thermal load on RELOADABLE represents, in the absence of open heat loads to modify the template requires rebooting. </p>
+
+<h2> template rendering garbled how to do? </h2>
+
+<p> If garbled, check HTTL encoding configuration: </p>
+
+<p> input.encoding = UTF-8 </p>
+
+<p> output.encoding = UTF-8 </p>
+
+<p> default values ​​are file.encoding, namely the local operating system file encoding. </p>
+
+<p> addition, MVC integration, the default value will output.encoding write response.setEncodingCharset () in, </p>
+
+<p> Of course, you can also configure response.encoding = null turn off the automatic response encoding settings, </p>
+
+<p> If OutputStream output template, please make sure response.encoding and output.encoding consistent, otherwise the output will be garbled. </p>
+
+<p> Please note, input.encoding refers loaded from disk template coding, and request.getEncodingCharset not related, you can use a different encoding. </p>
+
+<h2> command name and text phase how to do? </h2>
+
+<p> such as: # elseTEXT, separated by brackets available with no parameters, such as: # if (x) AAA # else () BBB # end () CCC </p>
+
+<h2> $ {} placeholders can nest? </h2>
+
+<p> HTTL does not support nested placeholders, such as: $ {include ("$ {dir} / file")}, placeholder stitching with a plus sign inside your string, such as: $ {include (dir + " / file ")} </p>
+
+<h1> involved </h1>
+
+<h2> participation </h2>
+
+<p> you can <a href="https://github.com/httl/httl/pulls"> github pull </a> your changes to us. </p>
+
+You can also directly <p> code, send us an email: liangfei0201 (At) gmail (Dot) com </p>
+
+<h2> participate Content </h2>
+
+<h3> Documentation Additions </h3>
+
+<p> If you find a missing document, or the answer had FAQ, use the experience, as well as your understanding of the details, you can send e-mail to us, we will be posted on this site for others to share their knowledge. </p>
+
+<h3> Template Test </h3>
+
+<p> you can help test more scenarios template, simply provide test documentation templates and expected results can, such as: </p>
+
+<p> existing test template: <a href="https://github.com/httl/httl/tree/master/httl/src/test/resources/comment/templates"> src / test / resources / comment / templates </a>
+
+<p> existing test results: <a href="https://github.com/httl/httl/tree/master/httl/src/test/resources/comment/results"> src / test / resources / comment / results </a>
+
+<p> can run httl.test.TemplateTest test class, it will automatically scan and implementation templates of all templates, and use results under the same name plus. txt suffix to the output file contents assertions. </p>
+
+<h3> fixes </h3>
+
+<p> You can help fix <a href="https://github.com/httl/httl/issues"> github issues </a> on the issue. </p>
+
+<h3> core improvements </h3>
+
+<p> If you are interested to spend more time to participate HTTL, and have some development capabilities can be added to the core of the improvements: </p>
+
+<ul>
+<li> interpreted and compiled execution before the automatic switch, similar to the JVM JIT. </li>
+<li> complete generic derivation, and Java generics derive the same. </li>
+<li> generate bytecode optimization details, such as reducing instanceof, reduce reflection and reduce packing. </li>
+<li> exception friendly tips, such as run-time operations error, suggesting that the position in the template. </li>
+<li> in the thermal loading, unloading support compiled before template class. </li>
+<li> bytecode support disk cache, reducing the restart compilation. </li>
+<li> reconstruction AST tree, so that can be extended. </li>
+</ul>
+
+<h3> extension implementation </h3>
+
+You can also implement <p> <a href="integration.html#扩展集成"> HTTL extension point </a>, including: </p>
+
+<ul>
+<li> Static, static methods </li>
+<li> Loader, load the template </li>
+<li> Resolver, variable decision </li>
+<li> Formatter, output format </li>
+<li> Filter, output filters </li>
+<li> Converter, rendering parameters Conversion </li>
+<li> Interceptor, the rendering process to intercept </li>
+<li> Listener, the rendering process monitoring </li>
+</ul>
+
+<h3> framework integration </h3>
+
+<p> You can also help integrate various MVC framework, as well as other scenes need to use a template. </p>
+
+<h3> aids </h3>
+
+<p> You can also help achieve Eclipse, IDEA and other template development plug-ins, and Debug debugging, test viewer and so on. </p>
+
+<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="img/up.png" /> <br/> Top </a> </div>
+</section>
+</div>
+
+<aside>
+<div class="standard-right-nav">
+  <p> documentation directory </p>
+  <div id="docIndex" class="nav-inner"> </div>
+</div>
+</aside>
+ 
+</div>
+
+    <footer>
+      <nav class="footer-secondary-nav">
+        <div class="companies">
+          <p> Copyright 2011 - <script type="text/javascript"> document.write (new Date (). getYear () + 1900); </script> HTTL development team. <br/> <br/> this station can be adaptive: mobile phone, tablet, computer, etc.. <br/> </p>
+        </div>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

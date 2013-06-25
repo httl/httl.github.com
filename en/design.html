@@ -1,0 +1,834 @@
+<! Doctype html>
+<! - [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif] ->
+<! - [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif] ->
+<! - [If IE 8]> <html class="no-js ie8 oldie" lang="en"> <! [Endif] ->
+<! - [If gt IE 8]> <html class="no-js ieg8" lang="en"> <! [Endif] ->
+<html>
+<head>
+<meta charset="utf-8">
+<title> HTTL - open source Java template engine </title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="shortcut icon" href="favicon.ico" />
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style-mobile.css" media="only screen and (max-width: 480px)">
+<link rel="stylesheet" href="css/httl.css">
+<link rel="stylesheet" href="css/httl-mobile.css" media="only screen and (max-width: 480px)">
+<! Doctype html>
+<! - [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif] ->
+<! - [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif] ->
+<! - [If IE 8]> <html class="no-js ie8 oldie" lang="en"> <! [Endif] ->
+<! - [If gt IE 8]> <html class="no-js ieg8" lang="en"> <! [Endif] ->
+<html>
+<head>
+<meta charset="utf-8">
+<title> HTTL - Hyper-Text Template Language </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/style-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/httl.css" />
+<link rel="stylesheet" type="text/css" href="css/httl-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/shCoreDefault.css" />
+<script type="text/javascript" src="js/modernizr-2.0.6.min.js"> </script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"> </script>
+<script type="text/javascript" src="js/httl.js"> </script>
+<script type="text/javascript" src="js/shCore.js"> </script>
+<script type="text/javascript" src="js/shBrushXml.js"> </script>
+<script type="text/javascript" src="js/shBrushJava.js"> </script>
+<script type="text/javascript"> SyntaxHighlighter.all (); </script>
+</head>
+<body class="home ">
+    <a href="http://github.com/httl/httl"> <img style = "position: absolute; top: 0; right: 0; border: 0;" src = "https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png "alt =" Fork me on GitHub "class =" fork-me-on-github "> </a>
+    <div class="container">
+        <header>
+            <div class="logo">
+<a href="/"> HTTL </a>
+            </div>
+            <div id="headline" class="headline">
+                <h1> template engine </h1>
+                <ul>
+                  <li> simple and friendly template syntax </li>
+                  <li> excellence in performance optimization </li>
+                  <li> quality design and implementation </li>
+                </ul>
+            </div>
+        </header>
+        <nav class="primary-nav">
+            <a href="/"> <img src="img/icon-overview.png"> Overview </a>
+            <a href="download.html"> <img src="img/icon-download.png"> download </a>
+            <a href="example.html"> <img src="img/icon-example.png"> sample </a>
+            <a href="syntax.html"> <img src="img/icon-syntax.png"> syntax </a>
+            <a href="config.html"> <img src="img/icon-config.png"> configuration </a>
+            <a href="integration.html"> <img src="img/icon-integration.png"> integration </a>
+            <a href="design.html"> <img src="img/icon-design.png"> design </a>
+            <a href="help.html"> <img src="img/icon-help.png"> help </a>
+        </nav>
+    <div class="content">
+      <div class="body-content ">
+        <section>
+
+<h1> design </h1>
+
+<p> regardless of whether you use HTTL, are welcome to look at this design documents, you may find that there are some help, because the design concept is the same. </p>
+
+<h2> static view </h2>
+
+<p> <a href="images/httl-class-package.png"> <img src="images/httl-class-package-preview.png" alt="类图"> </a> </p>
+
+<p> <a href="images/httl-class-package.png"> View larger map </a> </p>
+
+<h3> model partitioning principle </h3>
+
+<p> by entity domains, service domain, session domain is divided. </p>
+
+No matter what you do a <p> product, must be operated with a body, such as: service framework management Service, task management framework Task, Spring Management Bean, etc., which is the entity domain. </p>
+
+<p> the likelihood that there is an operator, there must be an operator, which manages the life cycle by the operator to initiate actions, such as: The service framework ServiceInvoker,, task framework TaskScheduler, Spring of BeanFactory, etc., which is the service domain . </p>
+
+<p> service domain initiate actions in the implementation process, there will be some temporary state exchange needs to be stored, for example: Invacation, Execution, Request, etc., which is session scoped. </p>
+
+<p> <img src="images/core-domain.png" alt="领域模型划分"> </p>
+
+<p> Accordingly, in HTTL in: </p>
+
+<p> <img src="images/httl-domain.png" alt="HTTL领域模型"> </p>
+
+<ul>
+<li> Engine as a service domain
+
+<ul>
+It is the entrance <li> API and is responsible for the entity domain Template lifecycle management, which is a single instance of Singleton, loaded immutable, it is thread-safe, its initialization process heavier, please reuse a single case. </li>
+</ul>
+</li>
+<li> Template for the entity domain
+
+<ul>
+<li> represented by the operator, it is the Prototype prototype instance, which generates an instance of each template, loaded immutable, it is also thread-safe, template changes, will produce different instances without changing the original instance . </li>
+</ul>
+</li>
+<li> Context domain for the session
+
+<ul>
+<li> held during operation all mutable state, it is the thread ThreadLocal instance, that does not compete with other threads to use, it is also thread-safe, please do not cross-thread passes, its initialization process is very lightweight, Each template is created before execution instance, executing the destruction. </li>
+</ul>
+</li>
+</ul>
+
+<p> advantage of this division, responsibilities clear, mutable state concentration, each field is non-locking thread-safe, guaranteed under the big concurrency, does not reduce the activity of the system. </p>
+
+<p> these core domain model that is HTTL the API (Application Programming Interface), which is exposed to the user at least HTTL concept, which is above the first column in the class diagram. </p>
+
+<h3> extension point assembly principles </h3>
+
+<p> Press "micronucleus + plug-in" system assembly. </p>
+
+<p> whenever there is a viable product, are designed for scalability quite good, because no product can cover all needs, especially for open-source software. </p>
+
+<p> Therefore, only products with good scalability, allowing users or third parties involved, the second development, in order to maintain vitality. </p>
+
+<p> how kind of extensibility is the best? Generally, any function that is not hard-coded, all functions can be replaced by the user. </p>
+
+<p> So how can we do this? An important principle: equal treatment of third parties. </p>
+
+<p> original author who is to achieve the function, but also a third party can not change the source code under the premise. </p>
+
+<p> In other words, the original author should extend themselves as who add their own functions, but also with third-party extensions are the same way, rather than have a privilege. </p>
+
+<p> To do this, you need a good framework for support, "micronucleus + plug-in" is a good choice, Eclipse, Maven, and other famous software using this system. </p>
+
+<p> <img src="images/microkernel-plugin.png" alt="微核插件"> </p>
+
+<p> What is "micronucleus + plug-in"? Micronucleus, ie minimizing the core, the kernel is responsible only for plug-in assembly, without any functional logic, all functions can be replaced by the plug-in implementation, </p>
+
+<p> and the assembly process should be based on uniform rules, for example based on setter injection, but not hard-coded assembly of different plug-ins, so you can ensure that no hard-coded in the kernel function. </p>
+
+<p> example: Spring, OSGI, JMX, ServiceLoader micronuclei are all common containers, they are responsible for the assembly of uniform rules-based, but not with functional logic. </p>
+
+<p> Of course, if you do not want with such a heavy frame, can also be self-fulfilling, HTTL on the use of self-realization httl.util.BeanFactory as assembling micronucleus. </p>
+
+<p> in Engine.getEngine () calls the BeanFatory.createBean (Engine.class, properties), </p>
+
+<p> which, properties is httl.properties configuration, BeanFatory setter-based recursive inject all of the object's properties. </p>
+
+<p> example: httl.properties configured parser = httl.spi.parsers.CommentParser, </p>
+
+<p> while DefaultEngine there setParser (Parser parser) method, it will be injected, and the property also Parser itself recursively injection. </p>
+
+<p> If you need to extend or replace HTTL implementation, see: <a href="integration.html#扩展集成"> Extended integration </a> </p>
+
+<p> Since the non-functional plug-in assembly process can be accomplished by the micronucleus framework that functional assembly of how to do it? <p>
+
+<p> we should put functional assembly process is also packaged as plug-ins, plug-ins that make big small plug assembly, the assembly forming cascade. <p>
+
+<p> <img src="images/cascading-assembly.png" alt="级联组装"> </p>
+
+<p> example, HTTL entrance is an instance of class Engine plug-in, which is responsible for the template cache, load, parse the total scheduling, ie you can replace DefaultEngine implementation. <p>
+
+<p> simply httl.properties configure: engine = com.your.YourEngine, such as SPI can be injected into the existing Parser your Engine. </p>
+
+<p> these plug-ins interface, which is HTTL the SPI (Service Provider Interface), which is exposed to expand HTTL's smallest granularity replacement unit, which is above the class diagram in the second column. </p>
+
+<h3> overall subcontracting principles </h3>
+
+<p> by multiplexing degree, abstraction, stability subcontracting. </p>
+
+<ul>
+<li> multiplexing degree:
+
+<ul>
+<li> each user needs to use the class, that reuse the same particle size, for example: the user and the extender, which can reduce the code interference and maximize reuse. </li>
+</ul>
+</li>
+<li> stability:
+
+<ul>
+<li> packages and dependent packages are dependent on the proportion, if a package depends on a lot of packages, that it will lead to changes in other packages follow the changes, so it is unstable, whereas that is stable,
+Always be relied upon to maintain than those who rely on high stability, the formation of pyramid relationship instability which can prevent infection, such as a packet depends only three packets, and b package dependencies 10 pack, do not allow a package to rely on b package. </li>
+</ul>
+</li>
+<li> abstraction:
+
+<ul>
+<li> proportion of the number of abstract classes package, such as package has 10 categories, including three as an abstract class (including the interface), then the abstraction of 3/10
+Maintaining stability and abstract package is proportional, that is an abstract class (including the interface) into a stable package, the concrete implementation class into unstable package, so they can keep each layer has sufficient scalability. </li>
+</ul>
+</li>
+</ul> <p> stability diagram with abstraction relationship is as follows: </p>
+
+<p> <img src="images/abstract-stable.png" alt="稳定度与抽象度关系"> </p>
+
+<p> that is subcontracting should be as follows: </p>
+
+<p> <img src="images/abstract-stable-package.png" alt="稳定度与抽象度包结构"> </p>
+
+<p> above that which the package does not depend on other packages. So it is very stable, you should try to abstract class or interface in this layer, </p>
+
+<p> while the following three packages that package depends, three pack changes will cause it to follow change, so it is unstable, should be placed on the concrete implementation class of this layer. </p>
+
+<p> due to stability and abstraction is proportional, so the degree of instability and the abstract is inversely proportional to the inverse easy to use drawing, calculated as follows: </p>
+
+<ul>
+<li> (1) I = Ce / (Ca + Ce)
+
+<ul>
+<li> I: Instability (instability) </li>
+<li> Ca: Afferent Coupling (incoming dependence, that is, the number being dependent on other packages) </li>
+<li> Ce: Efferent Coupling (output dependent, which is dependent on the number of other packages) </li>
+</ul>
+</li>
+<li> (2) A = Na / Nc
+
+<ul>
+<li> A: Abstractness (abstraction) </li>
+<li> Na: Number of abstract classes (abstract number) </li>
+<li> Nc: Number of classes (the number of categories, including abstract classes) </li>
+</ul>
+</li>
+<li> (3) D = abs (1 - I - A) * sin (45)
+
+<ul>
+<li> D: Distance (deviation) </li>
+<li> I: Instability (instability) </li>
+<li> A: Abstractness (abstraction) </li>
+</ul>
+</li>
+</ul> <p> deviation should be kept as small as possible, that is shown below the inverse intersection fall green line around: </p>
+
+<p> <img src="images/iad-metrics.gif" alt="不稳定度与抽象度比"> </p>
+
+<p> Based on the above principles, HTTL package structure as a whole is divided into three layers: (corresponding to the above class diagram in three) </p>
+
+<ul>
+<li> API (Application Programming Interface)
+
+<ul>
+<li> template engine user interface class dependent, but also where the core domain model, maintaining a minimum concept and hide implementation details, including the Engine class is equivalent to micro-kernel, only to manage the expansion of non-functional point of loading, not hard coded template parsing render any part of the load. </li>
+</ul>
+</li>
+<li> SPI (Service Provider Interface)
+
+<ul>
+<li> template engine extensions are dependent interface class, it relies on the API domain model, it is the function of orthogonal decomposition template engine abstraction layer to ensure that users can replace the need to rewrite the minimum granularity place to facilitate the secondary development. </li>
+</ul>
+</li>
+<li> BUILT-IN (Built-in Implementation)
+
+<ul>
+<li> built-in extension implementation, it is the SPI standard implementation, but also can be replaced by the user of the class, which contains all the engine to do, including the expansion of the assembly process between the points (replaceable DefaultEngine), to ensure that no functional change can not afford to that equal treatment Extender. </li>
+</ul>
+</li>
+</ul> <p> using sub packages depend parent package style, so the API in the root directory, SPI interface, independent sub-packages, the various implementations of SPI placed under a sub-package. </p>
+
+<ul>
+<li> user API to import: import httl. *; <br>
+</li>
+<li> extended by SPI import: import httl.spi. *; </li>
+</ul> <p> Below is HTTL instability of all packets with the ratio of abstraction matrix: (Below JDepend draw) </p>
+
+<p> <img src="images/httl-metrics.png" alt="HTTL不稳定度与抽象度比"> </p>
+
+<p> HTTL all core packages are close to the inverse line that identifies the image above a green dot, which means that subcontracting is reasonable. </p>
+
+<p> Note: Figure in the black point of util-related packages that do not abstract, but was a lot of package dependencies, but internal reuse code, do not affect the overall design, users do not rely HTTL the util classes. </p>
+
+<h2> dynamic view </h2>
+
+<p> If you look at the code, you can from the entrance class Engine and DefaultEngine start, press the calling procedure tracking. </p>
+
+<h3> Get Template Process </h3>
+
+<p> <a href="images/httl-get-template.png"> <img src="images/httl-get-template-preview.png" alt="获取模板时序图"> </a> < / p>
+
+<p> <a href="images/httl-get-template.png"> View larger map </a> </p>
+
+<p> Get Template Process Description: (The number corresponds to the figure above) </p>
+
+<p> 1 when viewed from the engine to get the template, </p>
+
+<p> 1.1 will first find out whether cached in the cache, the cache if there is a direct return, </p>
+
+<p> 1.2 If not, then load the template source files for the Resource object, </p>
+
+<p> 1.3 followed by the converter (compiled and interpreted into two kinds), the Resource converted into Template, </p>
+
+<p> 1.3.1 The first step is to convert the template parsed into an abstract syntax tree AST, </p>
+
+<p> 1.3.2 and filtered before compiling static text, such as deleting blank, etc., </p>
+
+<p> 1.3.3 the parsed Java code is compiled to give specific template implementation class, </p>
+
+<p> 1.3.4 instantiate a template implementation class, </p>
+
+<p> 1.4 writes template instances into the cache, and returned to the user. </p>
+
+<h3> template rendering process </h3>
+
+<p> <a href="images/httl-render-template.png"> <img src="images/httl-render-template-preview.png" alt="渲染模板时序图"> </a> < / p>
+
+<p> <a href="images/httl-render-template.png"> View larger map </a> </p>
+
+<p> rendering process template Description: (The number corresponds to the figure above) </p>
+
+<p> 1 when the user invokes the template rendering method, </p>
+
+<p> 1.1 will be converted into a non-variable object Map Map, non Writer or OutputStream output object into a Writer or OutputStream, </p>
+
+<p> 1.2 Context of the variable Map pressed into the stack, </p>
+
+<p> 1.3 If there are interceptors, the actual rendering process packaged into Listener, pass interceptor perform, </p>
+
+<p> 1.3.1 interceptor interceptor logic executed after the call to intercept incoming Listener, </p>
+
+<p> 1.3.1.1 The Listener template doRender callback method performs the actual rendering process, </p>
+
+<p> 1.4 template variables are read from the Context, </p>
+
+<p> 1.4.1 If the current Context does not exist, then up a Context reads, </p>
+
+<p> 1.4.1.1 If you have a root-level Context, then the Resolver reads, </p>
+
+<p> 1.5 template output variable, the first through the Formatter, the value of the object into a String, </p>
+
+<p> 1.6 through Filter, misplaced output XML special characters such as a String, </p>
+
+<p> 1.7 Finally, the filtered String output, </p>
+
+<p> 1.8 template rendered after the end of the current Conetext pop up. </p>
+
+<h1> performance </h1>
+
+<h2> performance comparison </h2>
+
+<p> <img src="images/httl-benchmark.png" alt="模板引擎性能测试"> </p>
+
+<p> performance test class: <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/BenchmarkTest.java"> BenchmarkTest.java </a> </p>
+
+<table>
+<tr>
+<td> engine </td>
+<td> template </td>
+<td> thousands of times consuming </td>
+<td> times per second </td>
+</tr>
+<tr> </tr>
+<tr>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/engines/Java.java"> java </a> </td>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/templates/Books.java"> books.java </a> </td>
+<td> 8,739 ms </td>
+<td> 11,442 / s </td>
+</tr>
+<tr>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/engines/Httl.java"> httl </a> </td>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/resources/httl/test/templates/books.httl"> books.httl </a> </td>
+<td> 9,608 ms </td>
+<td> 10,407 / s </td>
+</tr>
+<tr>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/engines/Velocity.java"> velocity </a> </td>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/resources/httl/test/templates/books.vm"> books.vm </a> </td>
+<td> 41,969 ms </td>
+<td> 2,382 / s </td>
+</tr>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/engines/Freemarker.java"> freemarker </a> </td>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/resources/httl/test/templates/books.ftl"> books.ftl </a> </td>
+<td> 56,192 ms </td>
+<td> 1,779 / s </td>
+<tr>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/engines/Smarty4j.java"> smarty4j </a> </td>
+<td> <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/resources/httl/test/templates/books.st"> books.st </a> </td>
+<td> 65,855 ms </td>
+<td> 1,518 / s </td>
+</tr>
+</table>
+
+<p> Environment: os: Mac OS X 10.8.2, cpu: 2 x 1.70GHz, mem: 4G, jvm: 1.7.0_09 -> mem: 80M </p>
+
+<p> HTTL speed close to the direct use of hard-coded Java output, other than the template engine an order of magnitude. </p>
+
+<p> HTTL used the JDK Compiler, compile a class usually requires hundreds of milliseconds, compared to other template compilation is slower, but each template is only compiled once at load time. </p>
+
+<p> above test, does not contain HTTL at compile static text into byte [], to reduce duplication transcoded output optimization.
+Ignore the output used in all the way to test, test template engine is pure rendering time, otherwise HTTL will be faster.
+If you want to test the optimal entry can not be ignored when the output encoding overhead, otherwise it will be unfair. </p>
+
+<p> addition, HTTL default opened EscapeXmlFilter, while the other template engines do not, to be fair, the performance test configurations closed Filter: </p>
+
+<pre class="brush: java;"> value.filter = null
+</pre>
+
+<p> Note: Different environments may differ from the results of running the above test data for reference only, you can perform a test on your own machine: </p>
+
+<pre class="brush: xml;"> git clone https://github.com/httl/httl-benchmark.git
+cd httl-benchmark
+mvn test-Dtest = httl.test.BenchmarkTest-Dcount = 10000
+</pre>
+
+<p> execution results as: </p>
+
+<pre> <code> Running httl.test.BenchmarkTest
+==================== Test environment =====================
+os: Mac OS X 10.8.2 x86_64, cpu: 4 cores, jvm: 1.6.0_37,
+mem: max: 505M, total: 125M, free: 110M, use: 15M
+==================== Test parameters ======================
+count: 10000, warm: 100, list: 100, stream: false,
+engines: java, httl, velocity, freemarker, smarty4j, beetl
+==================== Test result ==========================
+    engine, time, tps, rate,
+      java, 690ms, 14492 / s, 100%,
+      httl, 785ms, 12738 / s, 87%,
+  velocity, 3828ms, 2612 / s, 18%,
+freemarker, 6489ms, 1541 / s, 10%,
+  smarty4j, 6181ms, 1617 / s, 11%,
+     beetl, 9642ms, 1037 / s, 7%,
+================================================== ======= </code> </pre>
+
+<h2> optimization strategy </h2>
+
+<h3> strongly typed compile </h3>
+
+<p> strongly typed compiled and derived association type </p>
+
+<p> expression $ {user.name} for compilation: </p>
+
+<p> weakly typed bytecode generation: </p>
+
+<pre class="brush: java;"> Object user = context.get ("user"); / / user is unable to determine Map or POJO
+/ / Reflection to obtain property value, but also to run judge user.getName (), or user.name field
+Object name = ReflectUtil.get (user, "name"); / / Then the name should reflect
+</pre>
+
+<p> HTTL strongly typed bytecode generation: </p>
+
+<pre class="brush: java;"> User user = (User) context.get ("user"); / / By <! - # set (User user) -> declared type
+/ / Determined at compile time using the getName () method to get the value of the property, and through getUser () return type deduction type of name
+String name = user.getName ();
+</pre>
+
+<h3> precompiled byte stream </h3>
+
+<p> compiled compiled into byte text will accelerate output </p>
+
+<p> text translation: </p>
+
+<pre class="brush: java;"> writer.write ("<table> <tr> <td>");
+writer.write (user.getName ());
+</pre>
+
+<p> compiled binary: </p>
+
+<pre class="brush: java;"> private static final byte [] _B1_ = new byte [] {60, 116, 97, 98, 108, 101, 62, 60, 116, 114, 62, 60, 116, 100, 62};
+output.write (_B1_);
+output.write (user.getName (). getBytes ());
+</pre>
+
+<p> This can greatly reduce the IO output through the character set encoding of the text into a binary stream velocity, or a million times the page is rendered, the above static text will be encoded one hundred million times. </p>
+
+<p> HTTL simultaneously generates two default templates for each class, in the user when an incoming OutputStream and Writer, perform different class: </p>
+
+<pre class="brush: java;"> template.render (paramaters, outputStream); / / internal version will perform binary output Template class
+template.render (paramaters, writer); / / text output will be performed within the Template class version
+</pre>
+
+<h3> local local variables </h3>
+
+<p> assignment generated for local variables, do not put back parameter map </p>
+
+<p> example will: </p>
+
+<pre class="brush: java;"> <! - # set (price = price * discount / 100) ->
+$ {Price}
+</pre>
+
+<p> compiled: </p>
+
+<pre class="brush: java;"> int price = price * discount / 100;
+write (price);
+</pre>
+
+<p> instead: </p>
+
+<pre class="brush: java;"> context.put ("price", price * discount / 100);
+write (context.get ("price"));
+</pre>
+
+<p> this parameter map can significantly reduce the put and get calls, reducing hash lookup time. </p>
+
+<h3> bytecode does not contain the string </h3>
+
+<p> the text is not compiled into bytecode, reducing memory perm area occupied, and to prevent JIT failure </p>
+
+<p> When the contents of the template is large, will lead to the generated bytecode is relatively large, the runtime bytecode in memory perm area, leading to perm area is too large.
+Template for a long time, the user may need to continue to transfer large perm area: java-XX: PermSize = 256MB-XX: MaxPermSize = 256MB </p>
+
+<p> addition, SunJDK larger than 8K byte code default method without JIT optimization, our regular open JVM is mixed mode,
+That a large quantity of calls will be JIT compiled to native code running and other interpretive execution within the JVM, interpreted and compiled execution speed difference of 10 times.
+See the JVM: <a href="http://hg.openjdk.java.net/jdk6/jdk6/hotspot/file/2ecd0d1194d2/src/share/vm/runtime/globals.hpp"> globals.hpp </a> </p>
+
+<pre class="brush: java;"> product (bool, DontCompileHugeMethods, true,
+        "Don't compile methods> HugeMethodLimit")
+develop (intx, HugeMethodLimit, 8000,
+        "Don't compile methods larger than this if + DontCompileHugeMethods")
+</pre>
+
+<p> through the text is not compiled into bytecode, reducing memory perm area occupied JIT failure can be prevented. </p>
+
+<p> will: </p>
+
+<pre class="brush: java;"> / / If the string has more than 8K, it will lead to the generation of more than 8K byte code
+writer.write ("... A Large String ...");
+</pre>
+
+<p> changed: </p>
+
+<pre class="brush: java;"> / / in the generated byte code before the contents of the text saved to a Map cache,
+/ / In the generated class is loaded, the class static field values ​​are read from the cache and delete the cache,
+/ / This text content from the bytecode stored Perm region, go to the constant object storage Old District,
+/ / Because it is a static field, so it will not affect the template execution performance.
+private static final String _TXT1_ = StringCache.getAndRemove ("1");
+writer.write (_TXT1_);
+</pre>
+
+<h3> fast text processing </h3>
+
+<p> reduce reflection calls, unwanted locks, basic types of packing, and text processing. </p>
+
+<p> reflex is often performance bottlenecks, HTTL reflection of all local calls are very careful
+For example: Since int [] is not inherited from Object [], for general purpose processing, instead Array.get (array, index) to get an array of items,
+Resulting in the Profiler analysis, found that 80% of the CPU time is spent in Array.get () on. </p>
+
+<p> because the template is basically a large number of output types and strings, HTTL encounter any similar needs boxed and unboxed place
+All basic types are overloaded methods in order to reduce the processing boxed and unboxed.
+For example: When the output of basic types, you need to turn into a String, if you use format (Object) interfaces, they will be basic types of packing. </p>
+
+<p> JDK6 added Biased Locking optimization is a cost and instability,
+So the program is useless locks that may affect performance, HTTL JDK will take the initiative to avoid the useless lock,
+For example: override method to remove Writer, ByteArrayOutputStream other locks. </p>
+
+<p> text processing performance bottleneck is often the place, HTTL culmination of careful handling text.
+For example: regex greedy, StringBuilder expansion led to an array of copying, no replacement filter string not append operation. </p>
+
+<p> so. All the details that affect performance, sustained attention and optimization. </p>
+
+<h1> Quality </h1>
+
+<p> strictly to ensure quality, ease of use, HTTL done before the release: </p>
+
+<ul>
+<li> all grammar instruction function template unit tests to ensure that all the templates correctly parse and execute commands. </li>
+<li> performance comparison benchmarks to ensure that hard-coded output performance close to Java, an order of magnitude higher than the other engines. </li>
+<li> long-running stability tests to ensure there are no FullGC, memory leaks, deadlocks, CPU fills, and jitter. </li>
+<li> memory usage and CPU time consuming Profiler analysis to ensure that no unexpected memory and CPU bottlenecks. </li>
+<li> Web application integration testing to ensure the SpringMVC, Struts, Webx such integration is available. </li>
+<li> environmental compatibility testing to ensure the Liunx, Windows, OSX, JDK1.5, 1.6,1.7 and other environments available. </li>
+<li> FindBugs code problem detection, ensure that there is a null pointer, resources are not closed, and so obviously wrong. </li>
+<li> JDepend subcontracting dependence testing to ensure that sub-reliance is reasonable. </li>
+</ul>
+
+<h2> unit test </h2>
+
+<p> unit test coverage: (Analysis Tool EclEmma) </p>
+
+<p> <img src="images/httl-coverage-detail.png" alt="测试覆盖率"> </p>
+
+<p> HTTL for all syntax, commands, functions, has a corresponding template tested, see: </p>
+
+<p> <a href="https://github.com/httl/httl/tree/master/httl/src/test/resources/comment/templates"> https://github.com/httl/httl/tree / master / httl / src / test / resources / comment / templates </a> </p>
+
+<h2> FindBugs detector </h2>
+
+<p> FindBugs has passed the latest version (2.0.2) detection, zero discovery. See also: <a href="http://findbugs.sourceforge.net/bugDescriptions.html"> FindBugs can find problems </a> </p>
+
+<h2> JDepend detection </h2>
+
+<p> JDepend detection test has passed, acyclic dependence, stability and level of abstraction than normal. </p>
+
+<p> <img src="images/httl-depend.png" alt="HTTL依赖"> </p>
+
+<p> <img src="images/httl-metrics.png" alt="HTTL不稳定度与抽象度比"> </p>
+
+<h2> stability test </h2>
+
+<p> repeat in the long run all unit tests, CPU remained stable: (Analysis Tool JVisualVM) </p>
+
+<p> <img src="images/httl-stability-cpu.jpg" alt="CPU情况"> </p>
+
+<p> memory is also stable to YoungGC based: </p>
+
+<p> <img src="images/httl-stability-mem.jpg" alt="内存情况"> </p>
+
+<p> Although HTTL heavy use bytecode generation to improve performance, but because there are whole amount of cache, Perm region is stable: </p>
+
+<p> <img src="images/httl-stability-perm.jpg" alt="类情况"> </p>
+
+<p> set of memory because only 500M, while the conventional accounted for more than 400 M, in OLD area almost to full case, it occurs only three times FullGC: (Analysis Tool jstat) </p>
+
+<p> <img src="images/httl-stability-gc.jpg" alt="GC情况"> </p>
+
+<p> <img src="images/httl-stability-env.jpg" alt="JVM参数"> </p>
+
+<p> Dump after the data from the following can be seen, JDK compiler takes up 171M of memory. If you turn-Xlint: unchecked compiler arguments will be greater.
+If you think JdkCompiler take up too much memory, you can also configure the switch to Javassist compilation. (Analysis tools jmap + MAT) </p>
+
+<p> <img src="images/httl-stability-big-radio.jpg" alt="大对象比率"> </p>
+
+<p> <img src="images/httl-stability-big-object.jpg" alt="大对象"> </p>
+
+<h2> Profile Analysis </h2>
+
+<h3> CPU analysis </h3>
+
+<p> test case template rendering process for the long run, because after parsing the cache, the CPU almost entirely spent in the rendering process,
+Resolution process accounted for relatively small, in line with expectations: (analysis tools JProfiler) </p>
+
+<p> <img src="images/httl-profile-short.png" alt="短时运行"> </p>
+
+<p> due to the Writer and OutputStream simultaneously test two scenarios, so the figure above the sub-half. </p>
+
+Expand one of the rendering process <p> each template is relatively uniform, accounting is not large, there was no absolute hotspot, in line with expectations: </p>
+
+<p> <img src="images/httl-profile-templates.png" alt="模板"> </p>
+
+<p> can be spotted from the figure, relatively speaking, xml.httl and include_withfilter.httl slowly unfold as follows: </p>
+
+<p> <img src="images/httl-profile-top.png" alt="最耗时"> </p>
+
+<p> can be seen, mainly consumed in the parseXml xstream parsing and filter on the escapseXml escape. </p>
+
+<p> XML parsing and processing itself is very time consuming, within an acceptable range, and is not a core component. </p>
+
+<p> after a long run, due to the small sample size, xstream parsing data is cached, so the time to focus on the escapseXml the charAt. </p>
+
+<p> <img src="images/httl-profile-long.png" alt="长时运行"> </p>
+
+<p> Note that the above figure, light red indicates that the current method of consumption, consumption of dark red represents the sum of Functions. </p>
+
+<p> now that such a large proportion, we look at the code: </p>
+
+<p> First String.charAt just a char [] subscript values ​​have been simple enough, there is no performance problems: </p>
+
+<pre class="brush: java;"> public char charAt (int index) {
+    if ((index <0) | | (index> = count))
+        throw new StringIndexOutOfBoundsException (index);
+    return value [index + offset];
+}
+</pre>
+
+<p> HTTL that look at the escapseXml: </p>
+
+<pre class="brush: java;"> public static String escapeXml (String value) {
+    if (value == null | | value.length () == 0) {
+        return value;
+    }
+    int len ​​= value.length ();
+    StringBuilder buf = null;
+    for (int i = 0; i <len; i + +) {
+        char ch = value.charAt (i);
+        switch (ch) {
+            case '&':
+                if (buf == null) {
+                    buf = new StringBuilder (len * 2);
+                    if (i> 0) {
+                        buf.append (value.substring (0, i));
+                    }
+                }
+                buf.append ("&amp;");
+                break;
+            case '<':
+                if (buf == null) {
+                    buf = new StringBuilder (len * 2);
+                    if (i> 0) {
+                        buf.append (value.substring (0, i));
+                    }
+                }
+                buf.append ("&lt;");
+                break;
+            case '>':
+                if (buf == null) {
+                    buf = new StringBuilder (len * 2);
+                    if (i> 0) {
+                        buf.append (value.substring (0, i));
+                    }
+                }
+                buf.append ("&gt;");
+                break;
+            case '\ "':
+                if (buf == null) {
+                    buf = new StringBuilder (len * 2);
+                    if (i> 0) {
+                        buf.append (value.substring (0, i));
+                    }
+                }
+                buf.append ("&quot;");
+                break;
+            case '\'':
+                if (buf == null) {
+                    buf = new StringBuilder (len * 2);
+                    if (i> 0) {
+                        buf.append (value.substring (0, i));
+                    }
+                }
+                buf.append ("&apos;");
+                break;
+            default:
+                if (buf! = null) {
+                    buf.append (ch);
+                }
+                break;
+        }
+    }
+    if (buf! = null) {
+        return buf.toString ();
+    }
+    return value;
+}
+</pre>
+
+As can be seen from the code <p> escapseXml've done some optimization: </p>
+
+<ul>
+<li> special characters not found in the front, does not create a StringBuilder object. </li>
+<li> first special character is found, it will be before the contents of a one-time copying the StringBuilder. </li>
+<li> StringBuilder object at twice the length of the creation, expansion brings prevent data migration. </li>
+<li> per character through the switch, in order to distribute the shortest path processing logic. </li>
+</ul>
+
+<p> because escapseXml special characters not found in time, just by charAt traversal strings will not do other actions,
+So after a long run, will appear charAt is hot, you want to filter at least to traverse it again, this is the lowest complexity, it is not a problem. </p>
+
+<p> pressure measured in the open-source Apache commons-lang in StringEscapeUtils in escapeXml and found even better performance HTTL implementation. </p>
+
+<p> that also look commons-lang's StringEscapeUtils source code: (comments are that it causes slow) </p>
+
+<pre class="brush: java;"> public static String escapeXml (String str) {
+    if (str == null) {
+        return null;
+    }
+    return Entities.XML.escape (str);
+}
+
+public String escape (String str) {
+    / / This always creates StringWriter, if str no special characters, such waste is first created Writer object costs.
+    / / Second will be a waste of characters written in the writer, and then come back a lot toString performance, but no special character is a high probability event.
+    / / HTTL no special characters when you are in a direct return to the original string, and does not create any objects back and forth without any copy.
+    / / In addition, StringWriter inside the package StringBuffer, with all of its methods are synchronized lock, while HTTL with no lock StringBuilder.
+    StringWriter stringWriter = createStringWriter (str);
+    try {
+        this.escape (stringWriter, str);
+    } Catch (IOException e) {
+        throw new UnhandledException (e);
+    }
+    return stringWriter.toString ();
+}
+
+public void escape (Writer writer, String str) throws IOException {
+    int len ​​= str.length ();
+    for (int i = 0; i <len; i + +) {
+        char c = str.charAt (i);
+        / / Here use map of the hash lookup name of the entity, the switch slowly than HTTL.
+        String entityName = this.entityName (c);
+        if (entityName == null) {
+            if (c> 0x7F) {
+                writer.write ("& #");
+                writer.write (Integer.toString (c, 10));
+                writer.write (';');
+            } Else {
+                writer.write (c);
+            }
+        } Else {
+            writer.write ('&');
+            writer.write (entityName);
+            writer.write (';');
+        }
+    }
+}
+</pre>
+
+<p> Of course, if you have a better implementation, welcome, thank you very much. </p>
+
+<p> You can configure the switch to achieve: </p>
+
+<pre class="brush: java;"> value.filters = com.your.YourEscapeXmlFilter
+</pre>
+
+<h3> memory analysis </h3>
+
+<p> memory to char [] and String up, because the template itself is a lot of text processing, in line with expectations: (analysis tools JProfiler) </p>
+
+<p> <img src="images/httl-profile-mem.png" alt="内存占用"> </p>
+
+<p> filter HTTL own class, because Context domain model for the session, each execution will create a Context, Context class so most, it is relatively lightweight, in line with expectations: </p>
+
+<p> <img src="images/httl-profile-mem-self.png" alt="HTTL类占用"> </p>
+
+<p> after a long run, Context other instances remained stable and did not explode, which means that can be effectively recycled, in line with expectations: </p>
+
+<p> <img src="images/httl-profile-mem-long.png" alt="长时间运行对比"> </p>
+
+<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="img/up.png" /> <br/> Top </a> </div>
+</section>
+</div>
+
+<aside>
+<div class="standard-right-nav">
+  <p> documentation directory </p>
+  <div id="docIndex" class="nav-inner"> </div>
+</div>
+</aside>
+ 
+</div>
+
+    <footer>
+      <nav class="footer-secondary-nav">
+        <div class="companies">
+          <p> Copyright 2011 - <script type="text/javascript"> document.write (new Date (). getYear () + 1900); </script> HTTL development team. <br/> <br/> this station can be adaptive: mobile phone, tablet, computer, etc.. <br/> </p>
+        </div>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

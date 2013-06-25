@@ -1,0 +1,402 @@
+<! Doctype html>
+<!-- [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif]-->
+<!-- [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif]-->
+<!-- [If IE 8]> <html class="no-js ie8 oldie" lang="en"> <! [Endif]-->
+<!-- [If gt IE 8]> <html class="no-js ieg8" lang="en"> <! [Endif]-->
+<html>
+<head>
+<meta charset="utf-8">
+<title> HTTL - open source Java template engine </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/style-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/httl.css" />
+<link rel="stylesheet" type="text/css" href="css/httl-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/shCoreDefault.css" />
+<script type="text/javascript" src="js/modernizr-2.0.6.min.js"> </script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"> </script>
+<script type="text/javascript" src="js/httl.js"> </script>
+<script type="text/javascript" src="js/shCore.js"> </script>
+<script type="text/javascript" src="js/shBrushXml.js"> </script>
+<script type="text/javascript" src="js/shBrushJava.js"> </script>
+<script type="text/javascript"> SyntaxHighlighter.all (); </script>
+</head>
+<body class="home ">
+    <a href="http://github.com/httl/httl"> <img style = "position: absolute; top: 0; right: 0; border: 0;" src = "https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png "alt =" Fork me on GitHub "class =" fork-me-on-github "> </a>
+    <div class="container">
+        <header>
+            <div class="logo">
+<a href="/"> HTTL </a>
+            </div>
+            <div id="headline" class="headline">
+                <h1> template engine </h1>
+                <ul>
+                  <li> simple and friendly template syntax </li>
+                  <li> excellence in performance optimization </li>
+                  <li> quality design and implementation </li>
+                </ul>
+            </div>
+        </header>
+        <nav class="primary-nav">
+            <a href="/"> <img src="img/icon-overview.png"> Overview </a>
+            <a href="download.html"> <img src="img/icon-download.png"> download </a>
+            <a href="example.html"> <img src="img/icon-example.png"> sample </a>
+            <a href="syntax.html"> <img src="img/icon-syntax.png"> syntax </a>
+            <a href="config.html"> <img src="img/icon-config.png"> configuration </a>
+            <a href="integration.html"> <img src="img/icon-integration.png"> integration </a>
+            <a href="design.html"> <img src="img/icon-design.png"> design </a>
+            <a href="help.html"> <img src="img/icon-help.png"> help </a>
+        </nav>
+    <div class="content">
+      <div class="body-content ">
+        <section>
+
+<h1> Example </h1>
+
+This document is the main demonstration HTTL <p> more important aspects, can be used as entry reference. </p>
+
+<h2> Template Example </h2>
+
+<p> books.httl: (HTTL only six commands: # set, # if, # else, # for, # break, # macro, and does not increase) </p>
+
+<pre class="brush: xml;">
+<!-- # # Define variable type, undefined variables of type Object Processing-->
+<!-- # Set (User user, List <Book> books)-->
+<html>
+    <body>
+    
+    <!-- # # Define macros can be executed when the variable or method-->
+    <!-- # Macro (cover (Book book))-->
+            <img alt="${book.title}" src="${book.cover}" />
+        <!-- # End-->
+        
+        <!-- # # Conditional-->
+        <!-- # If (user.role == "admin")-->
+        <table>
+        
+            <!-- # # Loop output, the type can be saved, will be based on generic derivation-->
+            <!-- # For (Book book: books)-->
+            <tr>
+                
+                <!-- # # Variable output-->
+                <td> $ {book.title} </td>
+                
+                <!-- # # Execute the macro output, you can also use $ {cover}-->
+                <td> $! {cover (book)} </td>
+                
+                <!-- # # Variable assignment, the type can be saved, will be based on the expression derived-->
+                <!-- # Set (int price = book.price * book.discount)-->
+                <td> $ {price} </td>
+            </tr>
+            
+            <!-- # # Condition interrupt cycle-->
+            <!-- # Break (for.index == 10)-->
+            
+            <!-- # # When the loop is executed when data is empty-->
+            <!-- # Else-->
+                No data available.
+            <!-- # End-->
+        
+        </table>
+        <!-- # Else (user)-->
+            Without permission.
+        <!-- # Else-->
+            Not logged on.
+        <!-- # End-->
+    
+    </body>
+</html>
+</pre>
+
+<p> If you are using the Eclipse development, through the following settings, so that Eclipse using the HTML editor to open httl file: <p>
+
+<p> Menus> Window> Preferences> General> ContentTypes> Text> HTML> Add> *. httl </p>
+
+<h2> Configuration Example </h2>
+
+<p> httl.properties: </p>
+
+<pre class="brush: java;">
+import.packages + = com.xxx
+template.directory =
+message.basename = messages
+input.encoding = UTF-8
+output.encoding = UTF-8
+reloadable = false
+precompiled = false
+</pre>
+
+<p> The + = indicates additional configuration in the default configuration, multiple values ​​separated by commas. </p>
+
+<p> Note that if you use the default values, you can unworthiness, default values, refer to:
+<a href="https://github.com/httl/httl/blob/master/httl/src/main/resources/httl-default.properties"> httl-default.properties </a> </p>
+
+<h2> API Example </h2>
+
+<p> BooksServlet.java: </p>
+
+<pre class="brush: java;">
+import httl. *;
+import java.util. *;
+
+Map <String, Object> parameters = new HashMap <String, Object> ();
+parameters.put ("user", user);
+parameters.put ("books", books);
+
+Engine engine = Engine.getEngine ();
+Template template = engine.getTemplate ("/ books.httl");
+template.render (parameters, response.getOutputStream ());
+</pre>
+
+<p> Note: the default configuration, HTTL not rely on any party libraries, just JDK1.5 + can. </p>
+
+<p> Note: The default JDK must be used to run, if only the JRE, configured as JavassistCompiler. </p>
+
+<h2> extended example </h2>
+
+<p> HTTL extended instruction is not allowed to keep the instruction set is minimized, preventing template semantic complexity, all extensions to extend it to achieve. </p>
+
+<p> such as JSP custom tag: <hasPrivilege resource="foo"> ... </hasPrivilege> </p>
+
+<p> method used in HTTL extension implementation: # if (hasPrivilege ("foo")) ... # end </p>
+
+<p> simply define static methods: </p>
+
+<pre class="brush: java;">
+package com.xxx;
+
+public class PrivilegeMethod {
+
+    public static boolean hasPrivilege (String resource) {
+        return Context.getContext (). get ("loginUserId")! = null;
+    }
+
+}
+</pre>
+
+<p> and configure: import.methods + = com.xxx.PrivilegeMethod </p>
+
+<p> addition, HTTL supported formats with common object methods, call the static extension methods, such as: $ {date.format ("yyyy-MM-dd")} </p>
+
+<p> actually call the following static method: (to be transferred object as the first argument, the following parameters as incoming) </p>
+
+<pre class="brush: java;">
+public static String format (Date date, String format) {
+    return new SimpleDateFormat (format). format (date);
+}
+</pre>
+
+<h2> inheritance example </h2>
+
+<p> you can put a macro overlay template inheritance, understood as Java classes inherit methods overridden. </p>
+
+<p> layout.httl: </p>
+
+<pre class="brush: xml;">
+<html>
+    <body>
+         <table>
+            <tr>
+                <td>
+                    <!-- # Macro ($! Crumbs)-->
+                        <a href="/"> Home </a>
+                    <!-- # End-->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- # Macro ($! Menus)-->
+                        <a href="/users"> Users </a> <br/>
+                        <a href="/books"> Books </a> <br/>
+                    <!-- # End-->
+                </td>
+                <td>
+                    <!-- # Macro ($! Main)-->
+                        Building ...
+                    <!-- # End-->
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+</pre>
+
+<p> which, # macro ($! crumbs) indicates the position in the macro definition output simultaneously, the equivalent of # macro (crumbs) plus $! {crumbs}. </p>
+
+<p> books.httl: </p>
+
+<pre class="brush: xml;">
+$! {Extends ("/ layout.httl")}
+
+<!-- # Macro (crumbs)-->
+    $! {Super.crumbs} &gt; <a href="/books"> Books </a>
+<!-- # End-->
+
+<!-- # Macro (main)-->
+    <table>
+        <!-- # For (Book book: books)-->
+        <tr>
+            <td> $ {book.title} </td>
+        </tr>
+        <!-- # End-->
+    </table>
+<!-- # End-->
+</pre>
+
+<p> which the macro with the same name override the parent template macro, the macro parameters can be different from the parent template macros. </p>
+
+<p> not covered macro that will use the parent template macro output directly. </p>
+
+<p> Note that the macro name before not to take $! character, otherwise it will output twice. </p>
+
+<p> you inherit multiple templates, sub-commands in succession after the template itself can bring content. </p>
+
+<p> crumbs macro inside the $! {super.crumbs} represents the output parent template crumbs macro. </p>
+
+<p> You may also be based CoC (Convention over Configuration) rules, automatically inherit the template: </p>
+
+<pre class="brush: xml;"> # automatically inherit the template name variables, if context.get (extends.variable) variable exists, then inherit the template.
+# Note: This template is inherited from the template directory lookup, that is actually: template.directory + context.get (extends.variable)
+extends.variable = layout
+
+# If the default template exists, then inherit the default template.
+# Note: The default template is inherited from the template directory lookup, that is actually: template.directory + extends.default
+extends.default = default.httl
+
+# Parent template reference sub-template name, such as in the parent template called: $ {nested}, the output sub-template content.
+# Or parent template if there is <!-- # Macro ($ nested)--> Macros, the quilt template substitution.
+extends.nested = nested
+</pre>
+
+<h2> Security Samples </h2>
+
+<p> HTTL can be noted in the variable location, intelligent use different security filters, for example: </p>
+
+<pre class="brush: xml;"> <htmL>
+
+<!-- Here html variable quotes will turn into &quot; -->
+<input value="${html}" />
+
+<script type="text/javascript">
+// Here js variable quotes will turn into \ "instead of &quot;
+var value = "$ {js}";
+</script>
+
+<style type="text/css">
+. Div {
+    // Here, too, quotes will css variables into \ "instead of &quot;
+    font-family: "$ {css}"
+}
+</style>
+
+</htmL>
+</pre>
+
+<p> You can configure different httl.properties Filter achieved, and can be httl.spi.Switcher extension points,
+Increase the variable position and Filter Switch Mode: (The following is the default, no configuration) </p>
+
+<pre class="brush: xml;"> value.switchers = httl.spi.switchers.ScriptValueFilterSwitcher, httl.spi.switchers.StyleValueFilterSwitcher
+value.filters = httl.spi.filters.EscapeXmlFilter
+script.value.filters = httl.spi.filters.EscapeStringFilter
+style.value.filters = httl.spi.filters.EscapeStringFilter
+</pre>
+
+<p> HTTL default opens the HTML, JS, CSS filtering to prevent users forget to configure, which led to HTML injection attacks. </p>
+
+<p> HTML injection attacks Example: </p>
+
+<p> (1) property injection: </p>
+
+<pre class="brush: xml;"> <input value="$!{foo}" />
+
+If the value of the variable foo:
+"Onload =" alert ('HACK');
+The first quotation mark in front of the value attribute will end in the middle of the onload attribute will become a legitimate, thereby executing the injected alert statements.
+</pre>
+
+<p> (2) Script Injection: </p>
+
+<pre class="brush: xml;"> <script type="text/javascript">
+var value = "$! {foo}";
+</script>
+
+If the value of the variable foo:
+"; Alert ('HACK') ;/ /
+Quotes and semicolon in front of the end of the assignment will value, followed by a double slash after commenting counterparts statement to perform intermediate injection alert statements.
+
+</pre>
+
+<p> (3) Style Injection: </p>
+
+<pre class="brush: xml;"> <style type="text/css">
+. Div {
+    font-family: "$! {foo}"
+}
+</style>
+
+If the value of the variable foo:
+"; Star: expression_r (onload = function () {alert ('HACK');});
+Quotes and semicolon in front of font-family property will end, and thus perform injected through expression_r alert statements.
+</pre>
+
+<p> (4) Tags inject: </p>
+
+<pre class="brush: xml;"> <td> $! {foo} </td>
+
+If the value of the variable foo:
+<script> alert ('HACK'); </script>
+Variable contents directly as html operation, thereby execute the injected alert statements.
+</pre>
+
+<h2> abnormal sample </h2>
+
+<p> HTTL exception information usually includes: the cause of error, error location, the solution, context information. </p>
+
+<p> instance variable is not unusual statement: </p>
+
+<pre> <code> java.text.ParseException: Undefined variable "user".
+Please add variable type definition <!-- # Set (Xxx user)-->: your tempalte.
+Occur to offset: 6, line: 2, column: 3, char: u, in:
+/ WEB-INF/templates/user.httl
+========================================
+... $ {User.name} ...
+     ^-Here
+========================================
+, Stack: java.text.ParseException:
+at httl.spi.translators.DfaParser.parse (DfaParser.java: 401)
+at httl.spi.translators.DefaultTranslator.translate (DefaultTranslator.java: 109)
+</code> </pre>
+
+<ul>
+<li> wrong reasons: Undefined variable "user" </li>
+<li> error location: occur to offset: 6, line: 2, column: 3, char: u </li>
+<li> Solution: Please add variable type definition <!-- # set (Xxx user)--> </li>
+<li> context :/ WEB-INF/templates/user.httl </li>
+</ul>
+
+<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="img/up.png" /> <br/> Top </a> </div>
+</section>
+</div>
+
+<aside>
+<div class="standard-right-nav">
+  <p> documentation directory </p>
+  <div id="docIndex" class="nav-inner"> </div>
+</div>
+</aside>
+ 
+</div>
+
+    <footer>
+      <nav class="footer-secondary-nav">
+        <div class="companies">
+          <p> Copyright 2011 - <script type="text/javascript"> document.write (new Date (). getYear () + 1900); </script> HTTL development team. <br/> <br/> this station can be adaptive: mobile phone, tablet, computer, etc.. <br/> </p>
+        </div>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
