@@ -309,7 +309,7 @@ style.value.filters = httl.spi.filters.EscapeStringFilter
 
 <p> (1) property injection: </p>
 
-<pre class="brush: xml;"> <input value="$!{foo}" />
+<pre class="brush: xml;"> &lt;input value="$!{foo}" /&gt;
 
 If the value of the variable foo:
 "Onload =" alert ('HACK');
@@ -318,9 +318,9 @@ The first quotation mark in front of the value attribute will end in the middle 
 
 <p> (2) Script Injection: </p>
 
-<pre class="brush: xml;"> <script type="text/javascript">
+<pre class="brush: xml;"> &lt;script type="text/javascript"&gt;
 var value = "$! {foo}";
-</script>
+&lt;/script&gt;
 
 If the value of the variable foo:
 "; Alert ('HACK') ;/ /
@@ -330,11 +330,11 @@ Quotes and semicolon in front of the end of the assignment will value, followed 
 
 <p> (3) Style Injection: </p>
 
-<pre class="brush: xml;"> <style type="text/css">
+<pre class="brush: xml;"> &lt;style type="text/css"&gt;
 . Div {
     font-family: "$! {foo}"
 }
-</style>
+&lt;/style&gt;
 
 If the value of the variable foo:
 "; Star: expression_r (onload = function () {alert ('HACK');});
@@ -346,7 +346,7 @@ Quotes and semicolon in front of font-family property will end, and thus perform
 <pre class="brush: xml;"> <td> $! {foo} </td>
 
 If the value of the variable foo:
-<script> alert ('HACK'); </script>
+&lt;script&gt; alert ('HACK'); &lt;/script&gt;
 Variable contents directly as html operation, thereby execute the injected alert statements.
 </pre>
 
@@ -357,7 +357,7 @@ Variable contents directly as html operation, thereby execute the injected alert
 <p> instance variable is not unusual statement: </p>
 
 <pre> <code> java.text.ParseException: Undefined variable "user".
-Please add variable type definition <!-- # Set (Xxx user)-->: your tempalte.
+Please add variable type definition <!--#set(Xxx user)-->: your tempalte.
 Occur to offset: 6, line: 2, column: 3, char: u, in:
 / WEB-INF/templates/user.httl
 ========================================
