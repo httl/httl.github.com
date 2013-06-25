@@ -69,19 +69,19 @@ Instructions and <a href="http://velocity.apache.org"> Velocity </a> similar. </
 Retaining only the most basic conditions iterative control instructions, the rendering process is not allowed to modify the original data, to prevent the introduction of too much business logic in the template. HTML comment syntax used by default, to avoid interference with native HTML page. </p>
 
 <pre class="brush: xml;">
-<html>
-    <body>
-        <! - # If (books) ->
-        <table>
-            <! - # For (Book book: books) ->
-            <tr>
-                <td> $ {book.title} </td>
-            </tr>
-            <! - # End ->
-        </table>
-        <! - # End ->
-    </body>
-</html>
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;!--#if(books)--&gt;
+        &lt;table&gt;
+            &lt;!--#for(Book book : books)--&gt;
+            &lt;tr&gt;
+                &lt;td&gt;${book.title}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;!--#end--&gt;
+        &lt;/table&gt;
+        &lt;!--#end--&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </pre>
 
 <p> improve Velocity does not comply with intuitive place: </p>
