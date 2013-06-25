@@ -9,13 +9,13 @@
 <title> HTTL - open source Java template engine </title>
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
 <link rel="shortcut icon" href="favicon.ico" />
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style-mobile.css" media="only screen and (max-width: 480px)">
-<link rel="stylesheet" href="css/httl.css">
-<link rel="stylesheet" href="css/httl-mobile.css" media="only screen and (max-width: 480px)">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style-mobile.css" media="only screen and (max-width: 480px)">
+<link rel="stylesheet" href="../css/httl.css">
+<link rel="stylesheet" href="../css/httl-mobile.css" media="only screen and (max-width: 480px)">
 <! Doctype html>
 <! - [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif] ->
 <! - [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif] ->
@@ -26,20 +26,20 @@
 <meta charset="utf-8">
 <title> HTTL - Hyper-Text Template Language </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/style-mobile.css" media="only screen and (max-width: 480px)" />
-<link rel="stylesheet" type="text/css" href="css/httl.css" />
-<link rel="stylesheet" type="text/css" href="css/httl-mobile.css" media="only screen and (max-width: 480px)" />
-<link rel="stylesheet" type="text/css" href="css/shCoreDefault.css" />
-<script type="text/javascript" src="js/modernizr-2.0.6.min.js"> </script>
-<script type="text/javascript" src="js/jquery-1.6.2.min.js"> </script>
-<script type="text/javascript" src="js/httl.js"> </script>
-<script type="text/javascript" src="js/shCore.js"> </script>
-<script type="text/javascript" src="js/shBrushXml.js"> </script>
-<script type="text/javascript" src="js/shBrushJava.js"> </script>
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<link rel="stylesheet" type="text/css" href="../css/style-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="../css/httl.css" />
+<link rel="stylesheet" type="text/css" href="../css/httl-mobile.css" media="only screen and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="../css/shCoreDefault.css" />
+<script type="text/javascript" src="../js/modernizr-2.0.6.min.js"> </script>
+<script type="text/javascript" src="../js/jquery-1.6.2.min.js"> </script>
+<script type="text/javascript" src="../js/httl.js"> </script>
+<script type="text/javascript" src="../js/shCore.js"> </script>
+<script type="text/javascript" src="../js/shBrushXml.js"> </script>
+<script type="text/javascript" src="../js/shBrushJava.js"> </script>
 <script type="text/javascript"> SyntaxHighlighter.all (); </script>
 </head>
 <body class="home ">
@@ -59,14 +59,14 @@
             </div>
         </header>
         <nav class="primary-nav">
-            <a href="/"> <img src="img/icon-overview.png"> Overview </a>
-            <a href="download.html"> <img src="img/icon-download.png"> download </a>
-            <a href="example.html"> <img src="img/icon-example.png"> sample </a>
-            <a href="syntax.html"> <img src="img/icon-syntax.png"> syntax </a>
-            <a href="config.html"> <img src="img/icon-config.png"> configuration </a>
-            <a href="integration.html"> <img src="img/icon-integration.png"> integration </a>
-            <a href="design.html"> <img src="img/icon-design.png"> design </a>
-            <a href="help.html"> <img src="img/icon-help.png"> help </a>
+            <a href="./"> <img src="../img/icon-overview.png"> Overview </a>
+            <a href="download.html"> <img src="../img/icon-download.png"> download </a>
+            <a href="example.html"> <img src="../img/icon-example.png"> sample </a>
+            <a href="syntax.html"> <img src="../img/icon-syntax.png"> syntax </a>
+            <a href="config.html"> <img src="../img/icon-config.png"> configuration </a>
+            <a href="integration.html"> <img src="../img/icon-integration.png"> integration </a>
+            <a href="design.html"> <img src="../img/icon-design.png"> design </a>
+            <a href="help.html"> <img src="../img/icon-help.png"> help </a>
         </nav>
     <div class="content">
       <div class="body-content ">
@@ -78,9 +78,9 @@
 
 <h2> static view </h2>
 
-<p> <a href="images/httl-class-package.png"> <img src="images/httl-class-package-preview.png" alt="类图"> </a> </p>
+<p> <a href="../images/httl-class-package.png"> <img src="../images/httl-class-package-preview.png" alt="类图"> </a> </p>
 
-<p> <a href="images/httl-class-package.png"> View larger map </a> </p>
+<p> <a href="../images/httl-class-package.png"> View larger map </a> </p>
 
 <h3> model partitioning principle </h3>
 
@@ -92,11 +92,11 @@ No matter what you do a <p> product, must be operated with a body, such as: serv
 
 <p> service domain initiate actions in the implementation process, there will be some temporary state exchange needs to be stored, for example: Invacation, Execution, Request, etc., which is session scoped. </p>
 
-<p> <img src="images/core-domain.png" alt="领域模型划分"> </p>
+<p> <img src="../images/core-domain.png" alt="领域模型划分"> </p>
 
 <p> Accordingly, in HTTL in: </p>
 
-<p> <img src="images/httl-domain.png" alt="HTTL领域模型"> </p>
+<p> <img src="../images/httl-domain.png" alt="HTTL领域模型"> </p>
 
 <ul>
 <li> Engine as a service domain
@@ -141,7 +141,7 @@ It is the entrance <li> API and is responsible for the entity domain Template li
 
 <p> To do this, you need a good framework for support, "micronucleus + plug-in" is a good choice, Eclipse, Maven, and other famous software using this system. </p>
 
-<p> <img src="images/microkernel-plugin.png" alt="微核插件"> </p>
+<p> <img src="../images/microkernel-plugin.png" alt="微核插件"> </p>
 
 <p> What is "micronucleus + plug-in"? Micronucleus, ie minimizing the core, the kernel is responsible only for plug-in assembly, without any functional logic, all functions can be replaced by the plug-in implementation, </p>
 
@@ -165,7 +165,7 @@ It is the entrance <li> API and is responsible for the entity domain Template li
 
 <p> we should put functional assembly process is also packaged as plug-ins, plug-ins that make big small plug assembly, the assembly forming cascade. <p>
 
-<p> <img src="images/cascading-assembly.png" alt="级联组装"> </p>
+<p> <img src="../images/cascading-assembly.png" alt="级联组装"> </p>
 
 <p> example, HTTL entrance is an instance of class Engine plug-in, which is responsible for the template cache, load, parse the total scheduling, ie you can replace DefaultEngine implementation. <p>
 
@@ -200,11 +200,11 @@ Maintaining stability and abstract package is proportional, that is an abstract 
 </li>
 </ul> <p> stability diagram with abstraction relationship is as follows: </p>
 
-<p> <img src="images/abstract-stable.png" alt="稳定度与抽象度关系"> </p>
+<p> <img src="../images/abstract-stable.png" alt="稳定度与抽象度关系"> </p>
 
 <p> that is subcontracting should be as follows: </p>
 
-<p> <img src="images/abstract-stable-package.png" alt="稳定度与抽象度包结构"> </p>
+<p> <img src="../images/abstract-stable-package.png" alt="稳定度与抽象度包结构"> </p>
 
 <p> above that which the package does not depend on other packages. So it is very stable, you should try to abstract class or interface in this layer, </p>
 
@@ -239,7 +239,7 @@ Maintaining stability and abstract package is proportional, that is an abstract 
 </li>
 </ul> <p> deviation should be kept as small as possible, that is shown below the inverse intersection fall green line around: </p>
 
-<p> <img src="images/iad-metrics.gif" alt="不稳定度与抽象度比"> </p>
+<p> <img src="../images/iad-metrics.gif" alt="不稳定度与抽象度比"> </p>
 
 <p> Based on the above principles, HTTL package structure as a whole is divided into three layers: (corresponding to the above class diagram in three) </p>
 
@@ -270,7 +270,7 @@ Maintaining stability and abstract package is proportional, that is an abstract 
 <li> extended by SPI import: import httl.spi. *; </li>
 </ul> <p> Below is HTTL instability of all packets with the ratio of abstraction matrix: (Below JDepend draw) </p>
 
-<p> <img src="images/httl-metrics.png" alt="HTTL不稳定度与抽象度比"> </p>
+<p> <img src="../images/httl-metrics.png" alt="HTTL不稳定度与抽象度比"> </p>
 
 <p> HTTL all core packages are close to the inverse line that identifies the image above a green dot, which means that subcontracting is reasonable. </p>
 
@@ -282,9 +282,9 @@ Maintaining stability and abstract package is proportional, that is an abstract 
 
 <h3> Get Template Process </h3>
 
-<p> <a href="images/httl-get-template.png"> <img src="images/httl-get-template-preview.png" alt="获取模板时序图"> </a> < / p>
+<p> <a href="../images/httl-get-template.png"> <img src="../images/httl-get-template-preview.png" alt="获取模板时序图"> </a> < / p>
 
-<p> <a href="images/httl-get-template.png"> View larger map </a> </p>
+<p> <a href="../images/httl-get-template.png"> View larger map </a> </p>
 
 <p> Get Template Process Description: (The number corresponds to the figure above) </p>
 
@@ -308,9 +308,9 @@ Maintaining stability and abstract package is proportional, that is an abstract 
 
 <h3> template rendering process </h3>
 
-<p> <a href="images/httl-render-template.png"> <img src="images/httl-render-template-preview.png" alt="渲染模板时序图"> </a> < / p>
+<p> <a href="../images/httl-render-template.png"> <img src="../images/httl-render-template-preview.png" alt="渲染模板时序图"> </a> < / p>
 
-<p> <a href="images/httl-render-template.png"> View larger map </a> </p>
+<p> <a href="../images/httl-render-template.png"> View larger map </a> </p>
 
 <p> rendering process template Description: (The number corresponds to the figure above) </p>
 
@@ -344,7 +344,7 @@ Maintaining stability and abstract package is proportional, that is an abstract 
 
 <h2> performance comparison </h2>
 
-<p> <img src="images/httl-benchmark.png" alt="模板引擎性能测试"> </p>
+<p> <img src="../images/httl-benchmark.png" alt="模板引擎性能测试"> </p>
 
 <p> performance test class: <a href="https://github.com/httl/httl-benchmark/blob/master/src/test/java/httl/test/BenchmarkTest.java"> BenchmarkTest.java </a> </p>
 
@@ -573,7 +573,7 @@ For example: regex greedy, StringBuilder expansion led to an array of copying, n
 
 <p> unit test coverage: (Analysis Tool EclEmma) </p>
 
-<p> <img src="images/httl-coverage-detail.png" alt="测试覆盖率"> </p>
+<p> <img src="../images/httl-coverage-detail.png" alt="测试覆盖率"> </p>
 
 <p> HTTL for all syntax, commands, functions, has a corresponding template tested, see: </p>
 
@@ -587,36 +587,36 @@ For example: regex greedy, StringBuilder expansion led to an array of copying, n
 
 <p> JDepend detection test has passed, acyclic dependence, stability and level of abstraction than normal. </p>
 
-<p> <img src="images/httl-depend.png" alt="HTTL依赖"> </p>
+<p> <img src="../images/httl-depend.png" alt="HTTL依赖"> </p>
 
-<p> <img src="images/httl-metrics.png" alt="HTTL不稳定度与抽象度比"> </p>
+<p> <img src="../images/httl-metrics.png" alt="HTTL不稳定度与抽象度比"> </p>
 
 <h2> stability test </h2>
 
 <p> repeat in the long run all unit tests, CPU remained stable: (Analysis Tool JVisualVM) </p>
 
-<p> <img src="images/httl-stability-cpu.jpg" alt="CPU情况"> </p>
+<p> <img src="../images/httl-stability-cpu.jpg" alt="CPU情况"> </p>
 
 <p> memory is also stable to YoungGC based: </p>
 
-<p> <img src="images/httl-stability-mem.jpg" alt="内存情况"> </p>
+<p> <img src="../images/httl-stability-mem.jpg" alt="内存情况"> </p>
 
 <p> Although HTTL heavy use bytecode generation to improve performance, but because there are whole amount of cache, Perm region is stable: </p>
 
-<p> <img src="images/httl-stability-perm.jpg" alt="类情况"> </p>
+<p> <img src="../images/httl-stability-perm.jpg" alt="类情况"> </p>
 
 <p> set of memory because only 500M, while the conventional accounted for more than 400 M, in OLD area almost to full case, it occurs only three times FullGC: (Analysis Tool jstat) </p>
 
-<p> <img src="images/httl-stability-gc.jpg" alt="GC情况"> </p>
+<p> <img src="../images/httl-stability-gc.jpg" alt="GC情况"> </p>
 
-<p> <img src="images/httl-stability-env.jpg" alt="JVM参数"> </p>
+<p> <img src="../images/httl-stability-env.jpg" alt="JVM参数"> </p>
 
 <p> Dump after the data from the following can be seen, JDK compiler takes up 171M of memory. If you turn-Xlint: unchecked compiler arguments will be greater.
 If you think JdkCompiler take up too much memory, you can also configure the switch to Javassist compilation. (Analysis tools jmap + MAT) </p>
 
-<p> <img src="images/httl-stability-big-radio.jpg" alt="大对象比率"> </p>
+<p> <img src="../images/httl-stability-big-radio.jpg" alt="大对象比率"> </p>
 
-<p> <img src="images/httl-stability-big-object.jpg" alt="大对象"> </p>
+<p> <img src="../images/httl-stability-big-object.jpg" alt="大对象"> </p>
 
 <h2> Profile Analysis </h2>
 
@@ -625,17 +625,17 @@ If you think JdkCompiler take up too much memory, you can also configure the swi
 <p> test case template rendering process for the long run, because after parsing the cache, the CPU almost entirely spent in the rendering process,
 Resolution process accounted for relatively small, in line with expectations: (analysis tools JProfiler) </p>
 
-<p> <img src="images/httl-profile-short.png" alt="短时运行"> </p>
+<p> <img src="../images/httl-profile-short.png" alt="短时运行"> </p>
 
 <p> due to the Writer and OutputStream simultaneously test two scenarios, so the figure above the sub-half. </p>
 
 Expand one of the rendering process <p> each template is relatively uniform, accounting is not large, there was no absolute hotspot, in line with expectations: </p>
 
-<p> <img src="images/httl-profile-templates.png" alt="模板"> </p>
+<p> <img src="../images/httl-profile-templates.png" alt="模板"> </p>
 
 <p> can be spotted from the figure, relatively speaking, xml.httl and include_withfilter.httl slowly unfold as follows: </p>
 
-<p> <img src="images/httl-profile-top.png" alt="最耗时"> </p>
+<p> <img src="../images/httl-profile-top.png" alt="最耗时"> </p>
 
 <p> can be seen, mainly consumed in the parseXml xstream parsing and filter on the escapseXml escape. </p>
 
@@ -643,7 +643,7 @@ Expand one of the rendering process <p> each template is relatively uniform, acc
 
 <p> after a long run, due to the small sample size, xstream parsing data is cached, so the time to focus on the escapseXml the charAt. </p>
 
-<p> <img src="images/httl-profile-long.png" alt="长时运行"> </p>
+<p> <img src="../images/httl-profile-long.png" alt="长时运行"> </p>
 
 <p> Note that the above figure, light red indicates that the current method of consumption, consumption of dark red represents the sum of Functions. </p>
 
@@ -799,17 +799,17 @@ public void escape (Writer writer, String str) throws IOException {
 
 <p> memory to char [] and String up, because the template itself is a lot of text processing, in line with expectations: (analysis tools JProfiler) </p>
 
-<p> <img src="images/httl-profile-mem.png" alt="内存占用"> </p>
+<p> <img src="../images/httl-profile-mem.png" alt="内存占用"> </p>
 
 <p> filter HTTL own class, because Context domain model for the session, each execution will create a Context, Context class so most, it is relatively lightweight, in line with expectations: </p>
 
-<p> <img src="images/httl-profile-mem-self.png" alt="HTTL类占用"> </p>
+<p> <img src="../images/httl-profile-mem-self.png" alt="HTTL类占用"> </p>
 
 <p> after a long run, Context other instances remained stable and did not explode, which means that can be effectively recycled, in line with expectations: </p>
 
-<p> <img src="images/httl-profile-mem-long.png" alt="长时间运行对比"> </p>
+<p> <img src="../images/httl-profile-mem-long.png" alt="长时间运行对比"> </p>
 
-<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="img/up.png" /> <br/> Top </a> </div>
+<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="../img/up.png" /> <br/> Top </a> </div>
 </section>
 </div>
 
