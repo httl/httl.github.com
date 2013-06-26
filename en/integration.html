@@ -132,30 +132,30 @@ template.render (parameters, response.getOutputStream());
 <p>following call is a demonstration that you can get to the integration of information:</p>
 
 <pre class="brush: java;">
-/ / You can pass Template object, called directly in the template: $! {Template}
-/ / Note: HTTL Template object is found, it will pass down directly to the output, instead of copying the results.
+// You can pass Template object, called directly in the template: $! {Template}
+// Note: HTTL Template object is found, it will pass down directly to the output, instead of copying the results.
 parameters.put ("template", template);
 
-/ / Render to the output based on the parameter:
-/ / Parameters can be Map, or Pojo object, or Object [], or JSON string.
-/ / Out can be OutputStream or Writer.
+// Render to the output based on the parameter:
+// Parameters can be Map, or Pojo object, or Object [], or JSON string.
+// Out can be OutputStream or Writer.
 template.render (parameters, out);
 
-/ / You can also execute the template to get the rendering results:
+// You can also execute the template to get the rendering results:
 String result = (String) template.evaluate (parameters);
-/ / NOTE: If you just to pass the results of the A template template B, please do not use this first evaluation, re-transmission variable approach.
-/ / Because this will waste time memory copy, please direct incoming template, you can reduce the memory footprint of intermediate variables result.
-parameters.put ("template", result); / / wrong usage, should be directly passed template object
+// NOTE: If you just to pass the results of the A template template B, please do not use this first evaluation, re-transmission variable approach.
+// Because this will waste time memory copy, please direct incoming template, you can reduce the memory footprint of intermediate variables result.
+parameters.put ("template", result); // wrong usage, should be directly passed template object
 
-/ / You can get the template set assignment:
-/ / Note: If you want to get in after completing the template rendering variables, use # set (title:="foo") wrote the Context superiors.
-/ / Because the template when finished will pop Context rendering stack template Context variables will be gone, and only wrote superiors Context variables retained.
+// You can get the template set assignment:
+// Note: If you want to get in after completing the template rendering variables, use # set (title:="foo") wrote the Context superiors.
+// Because the template when finished will pop Context rendering stack template Context variables will be gone, and only wrote superiors Context variables retained.
 String title = (String) Context.getContext(). Get ("title");
 
-/ / You can also get a template macro: (you can be understood as the macro fragment template)
+// You can also get a template macro: (you can be understood as the macro fragment template)
 Template macro = template.getMacros(). Get ("menus");
 
-/ / If you want to write test tools, you can get the necessary variables to the template and type of data to Mock.
+// If you want to write test tools, you can get the necessary variables to the template and type of data to Mock.
 Map<String, Class<? >>Variables = template.getVariables();
 </pre>
 
@@ -182,18 +182,11 @@ String result = (String) script.eval (bindings);
 <project>
 	<dependencies>
 		<dependency>
-			<groupId>httl</groupId>
+			<groupId>com.github.httl</groupId>
 			<artifactId>httl-script</artifactId>
 			<version>1.0.10</version>
 			</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>httl-repository</id>
-			<name>Httl Repository</name>
-			<url>http://httl.github.io/maven</url>
-		</repository>
-	</repositories>
 <project>
 </pre>
 
@@ -206,32 +199,32 @@ public MyFilter implements Filter {
 
 private String outputEncoding;
 
-/ / Will be injected httl.properties in output.encoding = UTF-8 configuration items
+// Will be injected httl.properties in output.encoding = UTF-8 configuration items
 public void setOutputEncoding (String outputEncoding) {
 this.outputEncoding = outputEncoding;
 }
 
 private Compiler compiler;
 
-/ / The compiler will inject httl.properties configuration items
-/ / And will instantiate and initialize the properties of a good compiler
+// The compiler will inject httl.properties configuration items
+// And will instantiate and initialize the properties of a good compiler
 public void setCompiler (Compiler compiler) {
 this.compiler = compiler;
 }
 
 private Engine engine;
 
-/ / Will be injected Engine itself
+// Will be injected Engine itself
 public void setEngine (Engine engine) {
 this.engine = engine;
 }
 
-/ / When the property injection after execution
+// When the property injection after execution
 public void init() {
 }
 
 public String filter (String value) {
-/ / ...
+// ...
 }
 
 }
@@ -433,18 +426,11 @@ localized = false
 <project>
 	<dependencies>
 		<dependency>
-			<groupId>httl</groupId>
+			<groupId>com.github.httl</groupId>
 			<artifactId>httl-servlet</artifactId>
 			<version>1.0.10</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>httl-repository</id>
-			<name>Httl Repository</name>
-			<url>http://httl.github.io/maven</url>
-		</repository>
-	</repositories>
 <project>
 </pre>
 
@@ -485,7 +471,7 @@ version="2.5">
 
 <pre class="brush: xml;">
 <? Xml version="1.0" encoding="UTF-8"?>
-<! DOCTYPE beans PUBLIC"- / / SPRING / / DTD BEAN 2.0 / / EN"
+<! DOCTYPE beans PUBLIC"- // SPRING // DTD BEAN 2.0 // EN"
 	"Http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans>
 	<bean id="viewResolver" class="httl.web.springmvc.HttlViewResolver">
@@ -500,18 +486,11 @@ version="2.5">
 <project>
 	<dependencies>
 		<dependency>
-			<groupId>httl</groupId>
+			<groupId>com.github.httl</groupId>
 			<artifactId>httl-springmvc</artifactId>
 			<version>1.0.10</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>httl-repository</id>
-			<name>Httl Repository</name>
-			<url>http://httl.github.io/maven</url>
-		</repository>
-	</repositories>
 <project>
 </pre>
 
@@ -548,7 +527,7 @@ version="2.5">
 <pre class="brush: xml;">
 <? Xml version="1.0" encoding="UTF-8"?>
 <! DOCTYPE struts PUBLIC
-	"- / / Apache Software Foundation / / DTD Struts Configuration 2.0 / / EN"
+	"- // Apache Software Foundation // DTD Struts Configuration 2.0 // EN"
 	"Http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="hello" extends="httl-default">
@@ -577,18 +556,11 @@ localized = false
 <project>
 	<dependencies>
 		<dependency>
-			<groupId>httl</groupId>
+			<groupId>com.github.httl</groupId>
 			<artifactId>httl-struts</artifactId>
 			<version>1.0.10</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>httl-repository</id>
-			<name>Httl Repository</name>
-			<url>http://httl.github.io/maven</url>
-		</repository>
-	</repositories>
 <project>
 </pre>
 
@@ -663,18 +635,11 @@ localized = false
 <project>
 	<dependencies>
 		<dependency>
-			<groupId>httl</groupId>
+			<groupId>com.github.httl</groupId>
 			<artifactId>httl-webx</artifactId>
 			<version>1.0.10</version>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>httl-repository</id>
-			<name>Httl Repository</name>
-			<url>http://httl.github.io/maven</url>
-		</repository>
-	</repositories>
 <project>
 </pre>
 
