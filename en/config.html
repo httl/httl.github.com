@@ -22,36 +22,37 @@
 <script type="text/javascript" src="../js/shCore.js"></script>
 <script type="text/javascript" src="../js/shBrushXml.js"></script>
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
-<script type="text/javascript">SyntaxHighlighter.all ();</script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
 <body class="home">
-    <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
-    <div class="container">
-        <header>
-            <div class="logo">
+	<a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
+	<div class="container">
+		<header>
+			<div class="logo">
 				<a href="./">HTTL</a>
-            </div>
-            <div id="headline" class="headline">
-                <ul>
-                  <li>simple&friendly</li>
-                  <li>high-performance</li>
-                  <li>high-quality</li>
-                </ul>
-            </div>
-        </header>
-        <nav class="primary-nav">
-            <a href="./"><img src="../img/icon-overview.png">Overview</a>
-            <a href="download.html"><img src="../img/icon-download.png">download</a>
-            <a href="example.html"><img src="../img/icon-example.png">sample</a>
-            <a href="syntax.html"><img src="../img/icon-syntax.png">syntax</a>
-            <a href="config.html"><img src="../img/icon-config.png">configuration</a>
-            <a href="integration.html"><img src="../img/icon-integration.png">integration</a>
-            <a href="design.html"><img src="../img/icon-design.png">design</a>
-            <a href="help.html"><img src="../img/icon-help.png">help</a>
-        </nav>
-    <div class="content">
-      <div class="body-content">
-        <section>
+			</div>
+			<div id="headline" class="headline">
+				<h1>Template</h1>
+				<ul>
+					<li>Simple & Friendly</li>
+					<li>High-Performance</li>
+					<li>High-Quality</li>
+				</ul>
+			</div>
+		</header>
+		<nav class="primary-nav">
+			<a href="./"><img src="../img/icon-overview.png">Overview</a>
+			<a href="download.html"><img src="../img/icon-download.png">Download</a>
+			<a href="example.html"><img src="../img/icon-example.png">Example</a>
+			<a href="syntax.html"><img src="../img/icon-syntax.png">Syntax</a>
+			<a href="config.html"><img src="../img/icon-config.png">Config</a>
+			<a href="integration.html"><img src="../img/icon-integration.png">Tool</a>
+			<a href="design.html"><img src="../img/icon-design.png">Design</a>
+			<a href="help.html"><img src="../img/icon-help.png">Help</a>
+		</nav>
+	<div class="content">
+		<div class="body-content">
+		<section>
 
 <h1>Configuration</h1>
 
@@ -582,11 +583,11 @@ template.suffix =. httl
 <pre class="brush: xml;">reloadable = false
 </pre>
 
-<p>turn heat loads, the template engine getTemplate () will check the file lastModified time, and if the new loading time than the last, it is reloaded.</p>
+<p>turn heat loads, the template engine getTemplate() will check the file lastModified time, and if the new loading time than the last, it is reloaded.</p>
 
 <p>Please note: the old template will not be unloaded, it keeps on changing file causes memory perm area is growing, only in the development phase.</p>
 
-<p>(4) can be configured to start all precompiled template calls loader.list () scan template file.</p>
+<p>(4) can be configured to start all precompiled template calls loader.list() scan template file.</p>
 
 <p>In template.directory directory search, and through template.suffix suffix filter template file.</p>
 
@@ -637,7 +638,7 @@ template.directory = / WEB-INF/templates
 <p>need to be configured in web.xml ServletLoader the listener:</p>
 
 <pre class="brush: xml;"><listener>
-    <listener-class>httl.spi.loaders.ServletLoader</listener-class>
+	<listener-class>httl.spi.loaders.ServletLoader</listener-class>
 </listener>
 </pre>
 
@@ -682,12 +683,12 @@ You can also replace javassist<p>compile: (if JRE running, use javassist compila
 
 <p>of course, also need to increase the javassist jar package dependency:</p>
 
-<p><a href="http://central.maven.org/maven2/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar">javassist-3.15.0-GA . jar</a></p>
+<p><a href="http://central.maven.org/maven2/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar">javassist-3.15.0-GA. jar</a></p>
 
 <pre class="brush: xml;"><dependency>
-    <groupId>org.javassist</groupId>
-    <artifactId>javassist</artifactId>
-    <version>3.15.0-GA</version>
+	<groupId>org.javassist</groupId>
+	<artifactId>javassist</artifactId>
+	<version>3.15.0-GA</version>
 </dependency>
 </pre>
 
@@ -884,44 +885,44 @@ HTTL<p>If you are using the built-in MVC integration, integration has been in de
 <p>DefaultMethod have static methods such as: (can also be a non-static method)</p>
 
 <pre class="brush: xml;">public static String format (Date self, String format) {
-    return ...;
+	return...;
 }
 public static char toChar (String self) {
-    return ...;
+	return...;
 }
-public static Date now () {
-    return ...;
+public static Date now() {
+	return...;
 }
 </pre>
 
 <p>you can call in the template:</p>
 
 <pre class="brush: xml;">$ {date.format ("yyyy-MM-dd")}
-$ {Str.toChar ()}
-$ {Now ()}
+$ {Str.toChar()}
+$ {Now()}
 </pre>
 
 <p>principle: static methods first argument is a reference to the operator itself, followed by the parameters of the incoming call.</p>
 
-<p>If you need setEngine () injected engine instance, or setXxx (String) injection configuration items that can be imported non-static methods, but static methods compiled faster.</p>
+<p>If you need setEngine() injected engine instance, or setXxx (String) injection configuration items that can be imported non-static methods, but static methods compiled faster.</p>
 
 <p>example:</p>
 
 <pre class="brush: xml;">/ / will be injected into the engine itself
 private Engine engine;
 public setEngine (Engine engine) {
-    this.engine = engine;
+	this.engine = engine;
 }
 
 / / Will be injected httl.properties in input.encoding = UTF-8 configuration values
 private String inputEncoding;
 public setInputEncoding (String inputEncoding) {
-    this.inputEncoding = inputEncoding;
+	this.inputEncoding = inputEncoding;
 }
 
 / / Non-static method to import
 public String include (String templateName) {
-    return engine.getTemplate (templateName, inputEncoding). toString ();
+	return engine.getTemplate (templateName, inputEncoding). toString();
 }
 </pre>
 
@@ -956,9 +957,9 @@ public String include (String templateName) {
 <pre class="brush: xml;">import.sizers = size, length, getSize, getLength
 </pre>
 
-<p>will find the size of the parameter value empty methods, such as: size ()</p>
+<p>will find the size of the parameter value empty methods, such as: size()</p>
 
-<p>size getter will be used # if () judgment, $ {a? b: c} ternary operator judgment where judgment null values.</p>
+<p>size getter will be used # if() judgment, $ {a? b: c} ternary operator judgment where judgment null values.</p>
 
 <h3>import macro</h3>
 
@@ -971,7 +972,7 @@ public String include (String templateName) {
 
 <p>usage such as:</p>
 
-<pre class="brush: xml;"># for (weekday:"Monday" .."Sunday")
+<pre class="brush: xml;"># for (weekday:"Monday".."Sunday")
 $ {Weekday}
 # End
 </pre>
@@ -1033,17 +1034,17 @@ January February March May June July August September October November December 
 
 <p>example: the user's locale international information area, starting with a request for the above configuration to get, so you can set the display area according to the user in different languages.</p>
 
-<p>If you want to be directly in the template configuration items are read into httl.properties that Engine.getProperty () values, you can configure:</p>
+<p>If you want to be directly in the template configuration items are read into httl.properties that Engine.getProperty() values, you can configure:</p>
 
 <pre class="brush: xml;">resolvers + = httl.spi.resolvers.EngineResolver
 </pre>
 
-<p>If you want to read in the template directly to the JVM startup parameters are java-Dkey = value ie System.getProperty () values, you can configure:</p>
+<p>If you want to read in the template directly to the JVM startup parameters are java-Dkey = value ie System.getProperty() values, you can configure:</p>
 
 <pre class="brush: xml;">resolvers + = httl.spi.resolvers.SystemResolver
 </pre>
 
-<p>If you want to have read in the template directly into the environment variable export key = value that System.getenv () values, you can configure:</p>
+<p>If you want to have read in the template directly into the environment variable export key = value that System.getenv() values, you can configure:</p>
 
 <pre class="brush: xml;">resolvers + = httl.spi.resolvers.EnvironmentResolver
 </pre>
@@ -1065,20 +1066,20 @@ January February March May June July August September October November December 
 <aside>
 <div style="text-align: right; padding-right: 10px;">English |<a href="../zh/config.html">&#20013;&#25991;</a></div>
 <div class="standard-right-nav">
-  <p>documentation directory</p>
-  <div id="docIndex" class="nav-inner"></div>
+	<p>documentation directory</p>
+	<div id="docIndex" class="nav-inner"></div>
 </div>
 </aside>
  
 </div>
 
-    <footer>
-      <nav class="footer-secondary-nav">
-        <div class="companies">
-          <p>Copyright 2011 -<script type="text/javascript">document.write (new Date (). getYear () + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
-        </div>
-      </nav>
-    </footer>
-  </div>
+	<footer>
+		<nav class="footer-secondary-nav">
+		<div class="companies">
+			<p>Copyright 2011 -<script type="text/javascript">document.write (new Date(). getYear() + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
+		</div>
+		</nav>
+	</footer>
+	</div>
 </body>
 </html>

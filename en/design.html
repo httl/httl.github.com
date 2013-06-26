@@ -40,36 +40,37 @@
 <script type="text/javascript" src="../js/shCore.js"></script>
 <script type="text/javascript" src="../js/shBrushXml.js"></script>
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
-<script type="text/javascript">SyntaxHighlighter.all ();</script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
 <body class="home">
-    <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
-    <div class="container">
-        <header>
-            <div class="logo">
+	<a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
+	<div class="container">
+		<header>
+			<div class="logo">
 				<a href="./">HTTL</a>
-            </div>
-            <div id="headline" class="headline">
-                <ul>
-                  <li>simple&friendly</li>
-                  <li>high-performance</li>
-                  <li>high-quality</li>
-                </ul>
-            </div>
-        </header>
-        <nav class="primary-nav">
-            <a href="./"><img src="../img/icon-overview.png">Overview</a>
-            <a href="download.html"><img src="../img/icon-download.png">download</a>
-            <a href="example.html"><img src="../img/icon-example.png">sample</a>
-            <a href="syntax.html"><img src="../img/icon-syntax.png">syntax</a>
-            <a href="config.html"><img src="../img/icon-config.png">configuration</a>
-            <a href="integration.html"><img src="../img/icon-integration.png">integration</a>
-            <a href="design.html"><img src="../img/icon-design.png">design</a>
-            <a href="help.html"><img src="../img/icon-help.png">help</a>
-        </nav>
-    <div class="content">
-      <div class="body-content">
-        <section>
+			</div>
+			<div id="headline" class="headline">
+				<h1>Template</h1>
+				<ul>
+					<li>Simple & Friendly</li>
+					<li>High-Performance</li>
+					<li>High-Quality</li>
+				</ul>
+			</div>
+		</header>
+		<nav class="primary-nav">
+			<a href="./"><img src="../img/icon-overview.png">Overview</a>
+			<a href="download.html"><img src="../img/icon-download.png">Download</a>
+			<a href="example.html"><img src="../img/icon-example.png">Example</a>
+			<a href="syntax.html"><img src="../img/icon-syntax.png">Syntax</a>
+			<a href="config.html"><img src="../img/icon-config.png">Config</a>
+			<a href="integration.html"><img src="../img/icon-integration.png">Tool</a>
+			<a href="design.html"><img src="../img/icon-design.png">Design</a>
+			<a href="help.html"><img src="../img/icon-help.png">Help</a>
+		</nav>
+	<div class="content">
+		<div class="body-content">
+		<section>
 
 <h1>design</h1>
 
@@ -87,7 +88,7 @@
 
 No matter what you do a<p>product, must be operated with a body, such as: service framework management Service, task management framework Task, Spring Management Bean, etc., which is the entity domain.</p>
 
-<p>the likelihood that there is an operator, there must be an operator, which manages the life cycle by the operator to initiate actions, such as: The service framework ServiceInvoker,, task framework TaskScheduler, Spring of BeanFactory, etc., which is the service domain .</p>
+<p>the likelihood that there is an operator, there must be an operator, which manages the life cycle by the operator to initiate actions, such as: The service framework ServiceInvoker,, task framework TaskScheduler, Spring of BeanFactory, etc., which is the service domain.</p>
 
 <p>service domain initiate actions in the implementation process, there will be some temporary state exchange needs to be stored, for example: Invacation, Execution, Request, etc., which is session scoped.</p>
 
@@ -107,7 +108,7 @@ It is the entrance<li>API and is responsible for the entity domain Template life
 <li>Template for the entity domain
 
 <ul>
-<li>represented by the operator, it is the Prototype prototype instance, which generates an instance of each template, loaded immutable, it is also thread-safe, template changes, will produce different instances without changing the original instance .</li>
+<li>represented by the operator, it is the Prototype prototype instance, which generates an instance of each template, loaded immutable, it is also thread-safe, template changes, will produce different instances without changing the original instance.</li>
 </ul>
 </li>
 <li>Context domain for the session
@@ -150,7 +151,7 @@ It is the entrance<li>API and is responsible for the entity domain Template life
 
 <p>Of course, if you do not want with such a heavy frame, can also be self-fulfilling, HTTL on the use of self-realization httl.util.BeanFactory as assembling micronucleus.</p>
 
-<p>in Engine.getEngine () calls the BeanFatory.createBean (Engine.class, properties),</p>
+<p>in Engine.getEngine() calls the BeanFatory.createBean (Engine.class, properties),</p>
 
 <p>which, properties is httl.properties configuration, BeanFatory setter-based recursive inject all of the object's properties.</p>
 
@@ -417,13 +418,13 @@ mem: max: 505M, total: 125M, free: 110M, use: 15M
 count: 10000, warm: 100, list: 100, stream: false,
 engines: java, httl, velocity, freemarker, smarty4j, beetl
 ==================== Test result ==========================
-    engine, time, tps, rate,
-      java, 690ms, 14492 / s, 100%,
-      httl, 785ms, 12738 / s, 87%,
-  velocity, 3828ms, 2612 / s, 18%,
+	engine, time, tps, rate,
+		java, 690ms, 14492 / s, 100%,
+		httl, 785ms, 12738 / s, 87%,
+	velocity, 3828ms, 2612 / s, 18%,
 freemarker, 6489ms, 1541 / s, 10%,
-  smarty4j, 6181ms, 1617 / s, 11%,
-     beetl, 9642ms, 1037 / s, 7%,
+	smarty4j, 6181ms, 1617 / s, 11%,
+	 beetl, 9642ms, 1037 / s, 7%,
 ================================================== =======</code></pre>
 
 <h2>optimization strategy</h2>
@@ -437,15 +438,15 @@ freemarker, 6489ms, 1541 / s, 10%,
 <p>weakly typed bytecode generation:</p>
 
 <pre class="brush: java;">Object user = context.get ("user"); / / user is unable to determine Map or POJO
-/ / Reflection to obtain property value, but also to run judge user.getName (), or user.name field
+/ / Reflection to obtain property value, but also to run judge user.getName(), or user.name field
 Object name = ReflectUtil.get (user,"name"); / / Then the name should reflect
 </pre>
 
 <p>HTTL strongly typed bytecode generation:</p>
 
 <pre class="brush: java;">User user = (User) context.get ("user"); / / By<! - # set (User user) ->declared type
-/ / Determined at compile time using the getName () method to get the value of the property, and through getUser () return type deduction type of name
-String name = user.getName ();
+/ / Determined at compile time using the getName() method to get the value of the property, and through getUser() return type deduction type of name
+String name = user.getName();
 </pre>
 
 <h3>precompiled byte stream</h3>
@@ -455,14 +456,14 @@ String name = user.getName ();
 <p>text translation:</p>
 
 <pre class="brush: java;">writer.write ("<table><tr><td>");
-writer.write (user.getName ());
+writer.write (user.getName());
 </pre>
 
 <p>compiled binary:</p>
 
 <pre class="brush: java;">private static final byte [] _B1_ = new byte [] {60, 116, 97, 98, 108, 101, 62, 60, 116, 114, 62, 60, 116, 100, 62};
 output.write (_B1_);
-output.write (user.getName (). getBytes ());
+output.write (user.getName(). getBytes());
 </pre>
 
 <p>This can greatly reduce the IO output through the character set encoding of the text into a binary stream velocity, or a million times the page is rendered, the above static text will be encoded one hundred million times.</p>
@@ -509,9 +510,9 @@ That a large quantity of calls will be JIT compiled to native code running and o
 See the JVM:<a href="http://hg.openjdk.java.net/jdk6/jdk6/hotspot/file/2ecd0d1194d2/src/share/vm/runtime/globals.hpp">globals.hpp</a></p>
 
 <pre class="brush: java;">product (bool, DontCompileHugeMethods, true,
-        "Don't compile methods>HugeMethodLimit")
+		"Don't compile methods>HugeMethodLimit")
 develop (intx, HugeMethodLimit, 8000,
-        "Don't compile methods larger than this if + DontCompileHugeMethods")
+		"Don't compile methods larger than this if + DontCompileHugeMethods")
 </pre>
 
 <p>through the text is not compiled into bytecode, reducing memory perm area occupied JIT failure can be prevented.</p>
@@ -519,7 +520,7 @@ develop (intx, HugeMethodLimit, 8000,
 <p>will:</p>
 
 <pre class="brush: java;">/ / If the string has more than 8K, it will lead to the generation of more than 8K byte code
-writer.write ("... A Large String ...");
+writer.write ("... A Large String...");
 </pre>
 
 <p>changed:</p>
@@ -538,7 +539,7 @@ writer.write (_TXT1_);
 
 <p>reflex is often performance bottlenecks, HTTL reflection of all local calls are very careful
 For example: Since int [] is not inherited from Object [], for general purpose processing, instead Array.get (array, index) to get an array of items,
-Resulting in the Profiler analysis, found that 80% of the CPU time is spent in Array.get () on.</p>
+Resulting in the Profiler analysis, found that 80% of the CPU time is spent in Array.get() on.</p>
 
 <p>because the template is basically a large number of output types and strings, HTTL encounter any similar needs boxed and unboxed place
 All basic types are overloaded methods in order to reduce the processing boxed and unboxed.
@@ -651,79 +652,79 @@ Expand one of the rendering process<p>each template is relatively uniform, accou
 <p>First String.charAt just a char [] subscript values ​​have been simple enough, there is no performance problems:</p>
 
 <pre class="brush: java;">public char charAt (int index) {
-    if ((index<0) | | (index>= count))
-        throw new StringIndexOutOfBoundsException (index);
-    return value [index + offset];
+	if ((index<0) | | (index>= count))
+		throw new StringIndexOutOfBoundsException (index);
+	return value [index + offset];
 }
 </pre>
 
 <p>HTTL that look at the escapseXml:</p>
 
 <pre class="brush: java;">public static String escapeXml (String value) {
-    if (value == null | | value.length () == 0) {
-        return value;
-    }
-    int len ​​= value.length ();
-    StringBuilder buf = null;
-    for (int i = 0; i<len; i + +) {
-        char ch = value.charAt (i);
-        switch (ch) {
-            case '&':
-                if (buf == null) {
-                    buf = new StringBuilder (len * 2);
-                    if (i>0) {
-                        buf.append (value.substring (0, i));
-                    }
-                }
-                buf.append ("&amp;");
-                break;
-            case '<':
-                if (buf == null) {
-                    buf = new StringBuilder (len * 2);
-                    if (i>0) {
-                        buf.append (value.substring (0, i));
-                    }
-                }
-                buf.append ("&lt;");
-                break;
-            case '>':
-                if (buf == null) {
-                    buf = new StringBuilder (len * 2);
-                    if (i>0) {
-                        buf.append (value.substring (0, i));
-                    }
-                }
-                buf.append ("&gt;");
-                break;
-            case '\"':
-                if (buf == null) {
-                    buf = new StringBuilder (len * 2);
-                    if (i>0) {
-                        buf.append (value.substring (0, i));
-                    }
-                }
-                buf.append ("&quot;");
-                break;
-            case '\'':
-                if (buf == null) {
-                    buf = new StringBuilder (len * 2);
-                    if (i>0) {
-                        buf.append (value.substring (0, i));
-                    }
-                }
-                buf.append ("&apos;");
-                break;
-            default:
-                if (buf! = null) {
-                    buf.append (ch);
-                }
-                break;
-        }
-    }
-    if (buf! = null) {
-        return buf.toString ();
-    }
-    return value;
+	if (value == null | | value.length() == 0) {
+		return value;
+	}
+	int len ​​= value.length();
+	StringBuilder buf = null;
+	for (int i = 0; i<len; i + +) {
+		char ch = value.charAt (i);
+		switch (ch) {
+			case '&':
+				if (buf == null) {
+					buf = new StringBuilder (len * 2);
+					if (i>0) {
+						buf.append (value.substring (0, i));
+					}
+				}
+				buf.append ("&amp;");
+				break;
+			case '<':
+				if (buf == null) {
+					buf = new StringBuilder (len * 2);
+					if (i>0) {
+						buf.append (value.substring (0, i));
+					}
+				}
+				buf.append ("&lt;");
+				break;
+			case '>':
+				if (buf == null) {
+					buf = new StringBuilder (len * 2);
+					if (i>0) {
+						buf.append (value.substring (0, i));
+					}
+				}
+				buf.append ("&gt;");
+				break;
+			case '\"':
+				if (buf == null) {
+					buf = new StringBuilder (len * 2);
+					if (i>0) {
+						buf.append (value.substring (0, i));
+					}
+				}
+				buf.append ("&quot;");
+				break;
+			case '\'':
+				if (buf == null) {
+					buf = new StringBuilder (len * 2);
+					if (i>0) {
+						buf.append (value.substring (0, i));
+					}
+				}
+				buf.append ("&apos;");
+				break;
+			default:
+				if (buf! = null) {
+					buf.append (ch);
+				}
+				break;
+		}
+	}
+	if (buf! = null) {
+		return buf.toString();
+	}
+	return value;
 }
 </pre>
 
@@ -744,46 +745,46 @@ So after a long run, will appear charAt is hot, you want to filter at least to t
 <p>that also look commons-lang's StringEscapeUtils source code: (comments are that it causes slow)</p>
 
 <pre class="brush: java;">public static String escapeXml (String str) {
-    if (str == null) {
-        return null;
-    }
-    return Entities.XML.escape (str);
+	if (str == null) {
+		return null;
+	}
+	return Entities.XML.escape (str);
 }
 
 public String escape (String str) {
-    / / This always creates StringWriter, if str no special characters, such waste is first created Writer object costs.
-    / / Second will be a waste of characters written in the writer, and then come back a lot toString performance, but no special character is a high probability event.
-    / / HTTL no special characters when you are in a direct return to the original string, and does not create any objects back and forth without any copy.
-    / / In addition, StringWriter inside the package StringBuffer, with all of its methods are synchronized lock, while HTTL with no lock StringBuilder.
-    StringWriter stringWriter = createStringWriter (str);
-    try {
-        this.escape (stringWriter, str);
-    } Catch (IOException e) {
-        throw new UnhandledException (e);
-    }
-    return stringWriter.toString ();
+	/ / This always creates StringWriter, if str no special characters, such waste is first created Writer object costs.
+	/ / Second will be a waste of characters written in the writer, and then come back a lot toString performance, but no special character is a high probability event.
+	/ / HTTL no special characters when you are in a direct return to the original string, and does not create any objects back and forth without any copy.
+	/ / In addition, StringWriter inside the package StringBuffer, with all of its methods are synchronized lock, while HTTL with no lock StringBuilder.
+	StringWriter stringWriter = createStringWriter (str);
+	try {
+		this.escape (stringWriter, str);
+	} Catch (IOException e) {
+		throw new UnhandledException (e);
+	}
+	return stringWriter.toString();
 }
 
 public void escape (Writer writer, String str) throws IOException {
-    int len ​​= str.length ();
-    for (int i = 0; i<len; i + +) {
-        char c = str.charAt (i);
-        / / Here use map of the hash lookup name of the entity, the switch slowly than HTTL.
-        String entityName = this.entityName (c);
-        if (entityName == null) {
-            if (c>0x7F) {
-                writer.write ("& #");
-                writer.write (Integer.toString (c, 10));
-                writer.write (';');
-            } Else {
-                writer.write (c);
-            }
-        } Else {
-            writer.write ('&');
-            writer.write (entityName);
-            writer.write (';');
-        }
-    }
+	int len ​​= str.length();
+	for (int i = 0; i<len; i + +) {
+		char c = str.charAt (i);
+		/ / Here use map of the hash lookup name of the entity, the switch slowly than HTTL.
+		String entityName = this.entityName (c);
+		if (entityName == null) {
+			if (c>0x7F) {
+				writer.write ("& #");
+				writer.write (Integer.toString (c, 10));
+				writer.write (';');
+			} Else {
+				writer.write (c);
+			}
+		} Else {
+			writer.write ('&');
+			writer.write (entityName);
+			writer.write (';');
+		}
+	}
 }
 </pre>
 
@@ -815,20 +816,20 @@ public void escape (Writer writer, String str) throws IOException {
 <aside>
 <div style="text-align: right; padding-right: 10px;">English |<a href="../zh/design.html">&#20013;&#25991;</a></div>
 <div class="standard-right-nav">
-  <p>documentation directory</p>
-  <div id="docIndex" class="nav-inner"></div>
+	<p>documentation directory</p>
+	<div id="docIndex" class="nav-inner"></div>
 </div>
 </aside>
  
 </div>
 
-    <footer>
-      <nav class="footer-secondary-nav">
-        <div class="companies">
-          <p>Copyright 2011 -<script type="text/javascript">document.write (new Date (). getYear () + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
-        </div>
-      </nav>
-    </footer>
-  </div>
+	<footer>
+		<nav class="footer-secondary-nav">
+		<div class="companies">
+			<p>Copyright 2011 -<script type="text/javascript">document.write (new Date(). getYear() + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
+		</div>
+		</nav>
+	</footer>
+	</div>
 </body>
 </html>

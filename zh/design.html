@@ -42,7 +42,7 @@
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
-<body class="home ">
+<body class="home">
     <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="fork-me-on-github"></a>
     <div class="container">
         <header>
@@ -69,7 +69,7 @@
             <a href="help.html"><img src="../img/icon-help.png"> 帮助</a>
         </nav>
     <div class="content">
-      <div class="body-content ">
+      <div class="body-content">
         <section>
 
 <h1>设计</h1>
@@ -439,7 +439,7 @@ freemarker,  6489ms,  1541/s,  10%,
 
 <pre class="brush: java;">Object user = context.get("user"); // 无法确定user是Map还是POJO
 // 反射获取属性的值，而且要运行期判断是user.getName()，还是user.name字段
-Object name = ReflectUtil.get(user, "name"); // 接下来name也要反射
+Object name = ReflectUtil.get(user,"name"); // 接下来name也要反射
 </pre>
 
 <p>HTTL强类型字节码生成：</p>
@@ -510,9 +510,9 @@ write(context.get("price"));
 参见JVM的：<a href="http://hg.openjdk.java.net/jdk6/jdk6/hotspot/file/2ecd0d1194d2/src/share/vm/runtime/globals.hpp">globals.hpp</a></p>
 
 <pre class="brush: java;">product(bool, DontCompileHugeMethods, true,
-        "don't compile methods &gt; HugeMethodLimit")
+       "don't compile methods &gt; HugeMethodLimit")
 develop(intx, HugeMethodLimit,  8000,
-        "don't compile methods larger than this if +DontCompileHugeMethods")
+       "don't compile methods larger than this if +DontCompileHugeMethods")
 </pre>
 
 <p>通过将文本不编译到字节码中，减少内存perm区占用，也能防止JIT失效。</p>

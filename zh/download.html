@@ -24,7 +24,7 @@
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
-<body class="home ">
+<body class="home">
     <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="fork-me-on-github"></a>
     <div class="container">
         <header>
@@ -51,7 +51,7 @@
             <a href="help.html"><img src="../img/icon-help.png"> 帮助</a>
         </nav>
     <div class="content">
-      <div class="body-content ">
+      <div class="body-content">
         <section>
 
 <h1>下载</h1>
@@ -605,7 +605,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 4. 增加slf4j日志输出，并设为缺省。
 5. 增加jcl日志输出。
 6. 增加set(a := b)，用于将参数写回Context的参数Map中。
-7. 允许include传参，如：$!{include("aaa.httl", ["user": user, "age": 28])}
+7. 允许include传参，如：$!{include("aaa.httl", ["user": user,"age": 28])}
 8. 优化unescapeString和unescapeHtml的性能。
 </code></pre>
 
@@ -654,7 +654,7 @@ export PATH=$PATH:apache-maven-2.2.1/bin
 10. 支持for状态栈，多层for时，可通过${for.parent.index}获取上层for状态 
 11. 允许设置for状态变量名 
 12. 支持方括号数组，如：#for(c : [a, b, c]) 
-13. 支持双点号序列，如：#for(c : a..c)或#for(i : 1..2)或#for(day : "Monday".."Sunday") 
+13. 支持双点号序列，如：#for(c : a..c)或#for(i : 1..2)或#for(day :"Monday".."Sunday") 
 14. 支持集合或运算，选择不为空的集合，如：#for(book : books1 | books2) 
 15. 支持Date类型比较，如：#if(date1 &gt; date2) 
 16. 支持new操作，如：${new Date()} 

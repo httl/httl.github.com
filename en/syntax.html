@@ -22,36 +22,37 @@
 <script type="text/javascript" src="../js/shCore.js"></script>
 <script type="text/javascript" src="../js/shBrushXml.js"></script>
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
-<script type="text/javascript">SyntaxHighlighter.all ();</script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
 <body class="home">
-    <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
-    <div class="container">
-        <header>
-            <div class="logo">
+	<a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
+	<div class="container">
+		<header>
+			<div class="logo">
 				<a href="./">HTTL</a>
-            </div>
-            <div id="headline" class="headline">
-                <ul>
-                  <li>simple&friendly</li>
-                  <li>high-performance</li>
-                  <li>high-quality</li>
-                </ul>
-            </div>
-        </header>
-        <nav class="primary-nav">
-            <a href="./"><img src="../img/icon-overview.png">Overview</a>
-            <a href="download.html"><img src="../img/icon-download.png">download</a>
-            <a href="example.html"><img src="../img/icon-example.png">sample</a>
-            <a href="syntax.html"><img src="../img/icon-syntax.png">syntax</a>
-            <a href="config.html"><img src="../img/icon-config.png">configuration</a>
-            <a href="integration.html"><img src="../img/icon-integration.png">integration</a>
-            <a href="design.html"><img src="../img/icon-design.png">design</a>
-            <a href="help.html"><img src="../img/icon-help.png">help</a>
-        </nav>
-    <div class="content">
-      <div class="body-content">
-        <section>
+			</div>
+			<div id="headline" class="headline">
+				<h1>Template</h1>
+				<ul>
+					<li>Simple & Friendly</li>
+					<li>High-Performance</li>
+					<li>High-Quality</li>
+				</ul>
+			</div>
+		</header>
+		<nav class="primary-nav">
+			<a href="./"><img src="../img/icon-overview.png">Overview</a>
+			<a href="download.html"><img src="../img/icon-download.png">Download</a>
+			<a href="example.html"><img src="../img/icon-example.png">Example</a>
+			<a href="syntax.html"><img src="../img/icon-syntax.png">Syntax</a>
+			<a href="config.html"><img src="../img/icon-config.png">Config</a>
+			<a href="integration.html"><img src="../img/icon-integration.png">Tool</a>
+			<a href="design.html"><img src="../img/icon-design.png">Design</a>
+			<a href="help.html"><img src="../img/icon-help.png">Help</a>
+		</nav>
+	<div class="content">
+		<div class="body-content">
+		<section>
 
 <h1>syntax</h1>
 
@@ -65,17 +66,17 @@
 
 <pre class="brush: xml;">
 <html>
-    <body>
-        # If (books)
-        <table>
-            # For (Book book: books)
-            <tr>
-                <td>$ {book.title}</td>
-            </tr>
-            # End
-        </table>
-        # End
-    </body>
+	<body>
+		# If (books)
+		<table>
+			# For (Book book: books)
+			<tr>
+				<td>$ {book.title}</td>
+			</tr>
+			# End
+		</table>
+		# End
+	</body>
 </html>
 </pre>
 
@@ -87,17 +88,17 @@
 
 <pre class="brush: xml;">
 <html>
-    <body>
-        <! - # If (books) ->
-        <table>
-            <! - # For (Book book: books) ->
-            <tr>
-                <td>$ {book.title}</td>
-            </tr>
-            <! - # End ->
-        </table>
-        <! - # End ->
-    </body>
+	<body>
+		<! - # If (books) ->
+		<table>
+			<! - # For (Book book: books) ->
+			<tr>
+				<td>$ {book.title}</td>
+			</tr>
+			<! - # End ->
+		</table>
+		<! - # End ->
+	</body>
 </html>
 </pre>
 
@@ -121,13 +122,13 @@ comment.right = * /
 
 <pre class="brush: xml;">
 <html>
-    <body>
-        <table if="books">
-            <tr for="Book book: books">
-                <td>$ {book.title}</td>
-            </tr>
-        </table>
-    </body>
+	<body>
+		<table if="books">
+			<tr for="Book book: books">
+				<td>$ {book.title}</td>
+			</tr>
+		</table>
+	</body>
 </html>
 </pre>
 
@@ -175,7 +176,7 @@ comment.right = * /
 
 <p>does not recognize the command name will be text output, such as HTML color: # FF00EE.</p>
 
-If the command name and text<p>phase, such as: # elseTEXT, available without parameters separated by parentheses, eg: # if (x) AAA # else () BBB # end () CCC</p>
+If the command name and text<p>phase, such as: # elseTEXT, available without parameters separated by parentheses, eg: # if (x) AAA # else() BBB # end() CCC</p>
 
 <h2>output instructions</h2>
 
@@ -308,17 +309,17 @@ $ {Var}
 <p>If bookentry.value type of loss, the above wording can recover book type.</p>
 
 <p>assignment will generate a local variable, it writes the current Context in
-If there include () sub-template, the template can also be in the child read the variable.</p>
+If there include() sub-template, the template can also be in the child read the variable.</p>
 
 <p>If you want to get in the parent template, template variables include the child, or you want to get after rendering the template variables
-Due to template rendering finished, it Context has pop (), so the need to write variables in the template will be higher Conetxt to read on the outside.
-If you need to use the Context assigned to the higher, you can use":="assignment, it will be variable write Context.getParent () in
+Due to template rendering finished, it Context has pop(), so the need to write variables in the template will be higher Conetxt to read on the outside.
+If you need to use the Context assigned to the higher, you can use":="assignment, it will be variable write Context.getParent() in
 For example:</p>
 
 <pre class="brush: xml;"># set (price: = book.price * book.discount)
 </pre>
 
-<p>you can render the template, through Context.getContext (). get ("price"); got the above variables.</p>
+<p>you can render the template, through Context.getContext(). get ("price"); got the above variables.</p>
 
 <p>Note:</p>
 
@@ -330,10 +331,10 @@ Map<String, Object>parameters = Collections.unmodifiableMap (parameters);
 template.render (parameters, writer);
 
 / / Template # set (price = x) variables are put into the Context of the temporary collection.
-Context.getContext (). Put ("price", x);
+Context.getContext(). Put ("price", x);
 
 / / First # set temporary collection lookup, then the native incoming parameters, locate and then to search on a Context.
-Context.getContext (). Get ("price");
+Context.getContext(). Get ("price");
 </pre>
 
 <h2>conditional instructions</h2>
@@ -349,7 +350,7 @@ Context.getContext (). Get ("price");
 
 Example:
 # If (user.role =="admin")
-    ...
+	...
 # End
 </pre>
 
@@ -365,11 +366,11 @@ Example:
 
 Example:
 # If (user.role =="admin")
-    ...
+	...
 # Else (user.role =="member")
-    ...
+	...
 # Else
-    ...
+	...
 # End
 </pre>
 
@@ -385,18 +386,18 @@ Example:
 
 Example:
 # For (book: books)
-    ...
-    $ {For.index}
-    $ {For.size}
-    $ {For.first}
-    $ {For.last}
+	...
+	$ {For.index}
+	$ {For.size}
+	$ {For.first}
+	$ {For.last}
 # End
 </pre>
 
 <p>type declarations, and can be used as casts, for example:</p>
 
 <pre class="brush: xml;"># for (Book book: booklist)
-    $ {Book.title}
+	$ {Book.title}
 # End
 </pre>
 
@@ -423,7 +424,7 @@ Example:
 # # Set sort, then iterative
 # For (book: books.sort)
 
-# # Recursive iterations, such as Menu has a getChildren () method returns the child list:
+# # Recursive iterations, such as Menu has a getChildren() method returns the child list:
 # For (Menu menu: menus.recursive ("getChildren"))
 </pre>
 
@@ -439,9 +440,9 @@ Example:
 
 Example:
 # For (book: books)
-    ...
-    # Break (for.index == 10)
-    ...
+	...
+	# Break (for.index == 10)
+	...
 # End
 </pre>
 
@@ -457,9 +458,9 @@ Example:
 
 Example:
 # For (book: books)
-    ...
+	...
 # Else
-    ...
+	...
 # End
 </pre>
 
@@ -476,7 +477,7 @@ Example:
 
 Example:
 # Macro (xxx)
-    ...
+	...
 # End
 
 $ {Xxx} to execute the macro variables
@@ -506,60 +507,60 @@ $ {Xxx (arg1, arg2)} method to execute the macro
 
 Example:
 # Macro ($ xxx)
-    ...
+	...
 # End
 
 # Macro (xxx = xxx)
-    ...
+	...
 # End
 </pre>
 
 <p>portfolio syntax equivalence relation:</p>
 
 <pre class="brush: xml;"># macro ($ xxx)
-    ...
+	...
 # End
 
 Is equivalent to: (a position in the macro definition output simultaneously)
 
 # Macro (xxx)
-    ...
+	...
 # End
 $ {Xxx}
 </pre>
 
 <pre class="brush: xml;"># macro (aaa = xxx)
-    ...
+	...
 # End
 
 Is equivalent to: (performed while the macro definition, and assigns the result to the specified variable)
 
 # Macro (xxx)
-    ...
+	...
 # End
 # Set (aaa = xxx)
 </pre>
 
 <pre class="brush: xml;"># macro ($ xxx =>cache)
-    ...
+	...
 # End
 
 Is equivalent to: (a position in the macro definition output simultaneously)
 
 # Macro (xxx)
-    ...
+	...
 # End
 $ {Cache (xxx)}
 </pre>
 
 <pre class="brush: xml;"># macro (aaa = xxx =>cache)
-    ...
+	...
 # End
 
 Is equivalent to: (performed while the macro definition, and assigns the result to the specified variable)
 
 # Macro (xxx)
-    ...
+	...
 # End
 # Set (aaa = cache (xxx))
 </pre>
@@ -600,7 +601,7 @@ Example:
 
 Example:
 # *
-   This is block comment
+	 This is block comment
 * #
 </pre>
 
@@ -638,10 +639,10 @@ Example:
 
 <ul>
 <li>operations are all null values ​​returns null, for example: $ {foo.bar.blabla}, if foo is null, all subsequent operations ultimately is null, and not a null pointer.</li>
-<li>double equal sign"=="will be parsed equals () methods, rather than than the memory address.</li>
+<li>double equal sign"=="will be parsed equals() methods, rather than than the memory address.</li>
 <li>single and double quotation marks will produce the string: 'a' or"a" is of type String, if you want to declare literal char, please use backticks: `a` as char type.</li>
 <li>plus sign"+" digital first, $ {1 +"2"} output 3, instead of 12, string concatenation try to use $ {s1} $ {s2}, rather than $ {s1 + s2}</li>
-<li>Bean property getter method will resolve to call, $ {user.name} is equivalent to $ {user.getName ()}</li>
+<li>Bean property getter method will resolve to call, $ {user.name} is equivalent to $ {user.getName()}</li>
 <li>all implement Comparable objects support comparison operators, such as: # if (date1<date2), you can compare the date of order.</li>
 <li>logic and supported by all objects or, respectively, returns null or non-null value, for example: $ {list1 | | list2}, if list1 is not empty then return list1, otherwise return list2.</li>
 <li>List and Map can be bracketed values, such as: list [0] is equivalent to list.get (0), map ["abc"] is equivalent to map.get ("abc")</li>
@@ -652,10 +653,10 @@ Example:
 <p>attribute lookup order to $ {obj.foo} as an example: (compile-time decisions, does not affect performance)</p>
 
 <ul>
-<li>first checks for any type of imported obj foo () static method</li>
-<li>then find obj.getFoo () function</li>
-<li>then find obj.isFoo () function</li>
-<li>then find obj.foo () function</li>
+<li>first checks for any type of imported obj foo() static method</li>
+<li>then find obj.getFoo() function</li>
+<li>then find obj.isFoo() function</li>
+<li>then find obj.foo() function</li>
 <li>then find obj.foo properties</li>
 </ul><h2>operator expression</h2>
 
@@ -700,15 +701,15 @@ Is equivalent to:
 
 # If (string)
 Is equivalent to:
-# If (string! = null && string.length ()>0)
+# If (string! = null && string.length()>0)
 
 # If (list)
 Is equivalent to:
-# If (list! = Null && list1.size ()>0)
+# If (list! = Null && list1.size()>0)
 
 # For (item: list1 | | list2)
 Is equivalent to:
-# For (item: list1! = Null && list1.size ()>0? List1: list2)
+# For (item: list1! = Null && list1.size()>0? List1: list2)
 </pre>
 
 <h3>Date Operator</h3>
@@ -803,7 +804,7 @@ template.httl
 message.basename = / WEB-INF/messages
 
 # Internationalized message formats, support for message and string
-# Correspond MessageFormat.format () and String.format ()
+# Correspond MessageFormat.format() and String.format()
 message.format = message
 
 # Users can save files in UTF-8 international information, without the need ascii2native
@@ -862,9 +863,9 @@ To use fastjson<p>transcoding, configure:</p>
 <p><a href="http://central.maven.org/maven2/com/alibaba/fastjson/1.1.25/fastjson-1.1.25.jar">fastjson-1.1.25.jar</a></p>
 
 <pre class="brush: xml;"><dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>fastjson</artifactId>
-    <version>1.1.25</version>
+	<groupId>com.alibaba</groupId>
+	<artifactId>fastjson</artifactId>
+	<version>1.1.25</version>
 </dependency>
 </pre>
 
@@ -891,9 +892,9 @@ To use xstream<p>transcoding, configure:</p>
 <p><a href="http://central.maven.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.jar">xstream-1.4.3.jar</a></p>
 
 <pre class="brush: xml;"><dependency>
-    <groupId>com.thoughtworks.xstream</groupId>
-    <artifactId>xstream</artifactId>
-    <version>1.4.3</version>
+	<groupId>com.thoughtworks.xstream</groupId>
+	<artifactId>xstream</artifactId>
+	<version>1.4.3</version>
 </dependency>
 </pre>
 
@@ -926,13 +927,13 @@ str.toCapitalName
 <h3>system function</h3>
 
 <pre class="brush: xml;"># current time
-$ {Now ()}
+$ {Now()}
 
 # Random number
-$ {Random ()}
+$ {Random()}
 
 # Unique code
-uuid ()
+uuid()
 </pre>
 
 <h1>Velocity comparison</h1>
@@ -1095,20 +1096,20 @@ In HTTL in, $ {aaa} represents not content filtering for output as HTML fragment
 <aside>
 <div style="text-align: right; padding-right: 10px;">English |<a href="../zh/syntax.html">&#20013;&#25991;</a></div>
 <div class="standard-right-nav">
-  <p>documentation directory</p>
-  <div id="docIndex" class="nav-inner"></div>
+	<p>documentation directory</p>
+	<div id="docIndex" class="nav-inner"></div>
 </div>
 </aside>
  
 </div>
 
-    <footer>
-      <nav class="footer-secondary-nav">
-        <div class="companies">
-          <p>Copyright 2011 -<script type="text/javascript">document.write (new Date (). getYear () + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
-        </div>
-      </nav>
-    </footer>
-  </div>
+	<footer>
+		<nav class="footer-secondary-nav">
+		<div class="companies">
+			<p>Copyright 2011 -<script type="text/javascript">document.write (new Date(). getYear() + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
+		</div>
+		</nav>
+	</footer>
+	</div>
 </body>
 </html>

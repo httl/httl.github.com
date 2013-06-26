@@ -24,7 +24,7 @@
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
-<body class="home ">
+<body class="home">
     <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="fork-me-on-github"></a>
     <div class="container">
         <header>
@@ -51,7 +51,7 @@
             <a href="help.html"><img src="../img/icon-help.png"> 帮助</a>
         </nav>
     <div class="content">
-      <div class="body-content ">
+      <div class="body-content">
         <section>
 
 <h1>配置</h1>
@@ -649,7 +649,7 @@ template.directory=/WEB-INF/templates
 
 <p>然后编码加入模板内容：</p>
 
-<pre class="brush: xml;">StringLoader.add("foo.httl", "#set(User user)${user.name}");
+<pre class="brush: xml;">StringLoader.add("foo.httl","#set(User user)${user.name}");
 </pre>
 
 <h3>从多个源加载</h3>
@@ -972,7 +972,7 @@ public String include(String templateName) {
 
 <p>用法如：</p>
 
-<pre class="brush: xml;">#for(weekday : "Monday" .. "Sunday")
+<pre class="brush: xml;">#for(weekday :"Monday" .."Sunday")
 ${weekday}
 #end
 </pre>

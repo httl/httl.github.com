@@ -24,7 +24,7 @@
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
-<body class="home ">
+<body class="home">
     <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" class="fork-me-on-github"></a>
     <div class="container">
         <header>
@@ -51,7 +51,7 @@
             <a href="help.html"><img src="../img/icon-help.png"> 帮助</a>
         </nav>
     <div class="content">
-      <div class="body-content ">
+      <div class="body-content">
         <section>
 
 <h1>集成</h1>
@@ -148,7 +148,7 @@ String result = (String) template.evaluate(parameters);
 parameters.put("template", result);  // 错误用法，应直接传入template对象
 
 // 你可以拿到模板中的set赋值：
-// 注意：如果要在模板渲染完之后拿到变量，要用#set(title := "foo")写到上级Context中。
+// 注意：如果要在模板渲染完之后拿到变量，要用#set(title :="foo")写到上级Context中。
 // 因为模板渲染完时会弹出Context栈，模板Context中的变量都会消失，只有写到上级Context中变量保留。
 String title = (String) Context.getContext().get("title");
 
@@ -170,7 +170,7 @@ ScriptEngineManager manager = new ScriptEngineManager();
 ScriptEngine engine = manager.getEngineByName("httl");
 
 Bindings bindings = engine.createBindings();
-bindings.put("hello", "world");
+bindings.put("hello","world");
 
 CompiledScript script = engine.compile("${hello}");
 String result = (String) script.eval(bindings);
@@ -485,8 +485,8 @@ localized=false
 
 <pre class="brush: xml;">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
-    "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
+&lt;!DOCTYPE beans PUBLIC"-//SPRING//DTD BEAN 2.0//EN" 
+   "http://www.springframework.org/dtd/spring-beans-2.0.dtd"&gt;
 &lt;beans&gt;
     &lt;bean id="viewResolver" class="httl.web.springmvc.HttlViewResolver"&gt;
         &lt;property name="contentType" value="text/html; charset=UTF-8" /&gt;
@@ -548,8 +548,8 @@ localized=false
 <pre class="brush: xml;">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;  
 &lt;!DOCTYPE struts PUBLIC  
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
-    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+   "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
 &lt;struts&gt;
     &lt;package name="hello" extends="httl-default"&gt;
         &lt;action name="helloWorld" class="com.hello.HelloWorld"&gt;

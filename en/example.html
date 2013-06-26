@@ -22,36 +22,37 @@
 <script type="text/javascript" src="../js/shCore.js"></script>
 <script type="text/javascript" src="../js/shBrushXml.js"></script>
 <script type="text/javascript" src="../js/shBrushJava.js"></script>
-<script type="text/javascript">SyntaxHighlighter.all ();</script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
 </head>
 <body class="home">
-    <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
-    <div class="container">
-        <header>
-            <div class="logo">
+	<a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
+	<div class="container">
+		<header>
+			<div class="logo">
 				<a href="./">HTTL</a>
-            </div>
-            <div id="headline" class="headline">
-                <ul>
-                  <li>simple&friendly</li>
-                  <li>high-performance</li>
-                  <li>high-quality</li>
-                </ul>
-            </div>
-        </header>
-        <nav class="primary-nav">
-            <a href="./"><img src="../img/icon-overview.png">Overview</a>
-            <a href="download.html"><img src="../img/icon-download.png">download</a>
-            <a href="example.html"><img src="../img/icon-example.png">sample</a>
-            <a href="syntax.html"><img src="../img/icon-syntax.png">syntax</a>
-            <a href="config.html"><img src="../img/icon-config.png">configuration</a>
-            <a href="integration.html"><img src="../img/icon-integration.png">integration</a>
-            <a href="design.html"><img src="../img/icon-design.png">design</a>
-            <a href="help.html"><img src="../img/icon-help.png">help</a>
-        </nav>
-    <div class="content">
-      <div class="body-content">
-        <section>
+			</div>
+			<div id="headline" class="headline">
+				<h1>Template</h1>
+				<ul>
+					<li>Simple & Friendly</li>
+					<li>High-Performance</li>
+					<li>High-Quality</li>
+				</ul>
+			</div>
+		</header>
+		<nav class="primary-nav">
+			<a href="./"><img src="../img/icon-overview.png">Overview</a>
+			<a href="download.html"><img src="../img/icon-download.png">Download</a>
+			<a href="example.html"><img src="../img/icon-example.png">Example</a>
+			<a href="syntax.html"><img src="../img/icon-syntax.png">Syntax</a>
+			<a href="config.html"><img src="../img/icon-config.png">Config</a>
+			<a href="integration.html"><img src="../img/icon-integration.png">Tool</a>
+			<a href="design.html"><img src="../img/icon-design.png">Design</a>
+			<a href="help.html"><img src="../img/icon-help.png">Help</a>
+		</nav>
+	<div class="content">
+		<div class="body-content">
+		<section>
 
 <h1>Example</h1>
 
@@ -65,48 +66,48 @@ This document is the main demonstration HTTL<p>more important aspects, can be us
 <!-- # # Define variable type, undefined variables of type Object Processing-->
 <!-- # Set (User user, List<Book>books)-->
 <html>
-    <body>
-    
-    <!-- # # Define macros can be executed when the variable or method-->
-    <!-- # Macro (cover (Book book))-->
-            <img alt="${book.title}" src="${book.cover}" />
-        <!-- # End-->
-        
-        <!-- # # Conditional-->
-        <!-- # If (user.role =="admin")-->
-        <table>
-        
-            <!-- # # Loop output, the type can be saved, will be based on generic derivation-->
-            <!-- # For (Book book: books)-->
-            <tr>
-                
-                <!-- # # Variable output-->
-                <td>$ {book.title}</td>
-                
-                <!-- # # Execute the macro output, you can also use $ {cover}-->
-                <td>$! {cover (book)}</td>
-                
-                <!-- # # Variable assignment, the type can be saved, will be based on the expression derived-->
-                <!-- # Set (int price = book.price * book.discount)-->
-                <td>$ {price}</td>
-            </tr>
-            
-            <!-- # # Condition interrupt cycle-->
-            <!-- # Break (for.index == 10)-->
-            
-            <!-- # # When the loop is executed when data is empty-->
-            <!-- # Else-->
-                No data available.
-            <!-- # End-->
-        
-        </table>
-        <!-- # Else (user)-->
-            Without permission.
-        <!-- # Else-->
-            Not logged on.
-        <!-- # End-->
-    
-    </body>
+	<body>
+	
+	<!-- # # Define macros can be executed when the variable or method-->
+	<!-- # Macro (cover (Book book))-->
+			<img alt="${book.title}" src="${book.cover}" />
+		<!-- # End-->
+		
+		<!-- # # Conditional-->
+		<!-- # If (user.role =="admin")-->
+		<table>
+		
+			<!-- # # Loop output, the type can be saved, will be based on generic derivation-->
+			<!-- # For (Book book: books)-->
+			<tr>
+				
+				<!-- # # Variable output-->
+				<td>$ {book.title}</td>
+				
+				<!-- # # Execute the macro output, you can also use $ {cover}-->
+				<td>$! {cover (book)}</td>
+				
+				<!-- # # Variable assignment, the type can be saved, will be based on the expression derived-->
+				<!-- # Set (int price = book.price * book.discount)-->
+				<td>$ {price}</td>
+			</tr>
+			
+			<!-- # # Condition interrupt cycle-->
+			<!-- # Break (for.index == 10)-->
+			
+			<!-- # # When the loop is executed when data is empty-->
+			<!-- # Else-->
+				No data available.
+			<!-- # End-->
+		
+		</table>
+		<!-- # Else (user)-->
+			Without permission.
+		<!-- # Else-->
+			Not logged on.
+		<!-- # End-->
+	
+	</body>
 </html>
 </pre>
 
@@ -145,9 +146,9 @@ Map<String, Object>parameters = new HashMap<String, Object>();
 parameters.put ("user", user);
 parameters.put ("books", books);
 
-Engine engine = Engine.getEngine ();
+Engine engine = Engine.getEngine();
 Template template = engine.getTemplate ("/ books.httl");
-template.render (parameters, response.getOutputStream ());
+template.render (parameters, response.getOutputStream());
 </pre>
 
 <p>Note: the default configuration, HTTL not rely on any party libraries, just JDK1.5 + can.</p>
@@ -169,9 +170,9 @@ package com.xxx;
 
 public class PrivilegeMethod {
 
-    public static boolean hasPrivilege (String resource) {
-        return Context.getContext (). get ("loginUserId")! = null;
-    }
+	public static boolean hasPrivilege (String resource) {
+		return Context.getContext(). get ("loginUserId")! = null;
+	}
 
 }
 </pre>
@@ -184,7 +185,7 @@ public class PrivilegeMethod {
 
 <pre class="brush: java;">
 public static String format (Date date, String format) {
-    return new SimpleDateFormat (format). format (date);
+	return new SimpleDateFormat (format). format (date);
 }
 </pre>
 
@@ -196,30 +197,30 @@ public static String format (Date date, String format) {
 
 <pre class="brush: xml;">
 <html>
-    <body>
-         <table>
-            <tr>
-                <td>
-                    <!-- # Macro ($! Crumbs)-->
-                        <a href="/">Home</a>
-                    <!-- # End-->
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <!-- # Macro ($! Menus)-->
-                        <a href="/users">Users</a><br/>
-                        <a href="/books">Books</a><br/>
-                    <!-- # End-->
-                </td>
-                <td>
-                    <!-- # Macro ($! Main)-->
-                        Building ...
-                    <!-- # End-->
-                </td>
-            </tr>
-        </table>
-    </body>
+	<body>
+		 <table>
+			<tr>
+				<td>
+					<!-- # Macro ($! Crumbs)-->
+						<a href="/">Home</a>
+					<!-- # End-->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- # Macro ($! Menus)-->
+						<a href="/users">Users</a><br/>
+						<a href="/books">Books</a><br/>
+					<!-- # End-->
+				</td>
+				<td>
+					<!-- # Macro ($! Main)-->
+						Building ...
+					<!-- # End-->
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>
 </pre>
 
@@ -231,17 +232,17 @@ public static String format (Date date, String format) {
 $! {Extends ("/ layout.httl")}
 
 <!-- # Macro (crumbs)-->
-    $! {Super.crumbs} &gt;<a href="/books">Books</a>
+	$! {Super.crumbs} &gt;<a href="/books">Books</a>
 <!-- # End-->
 
 <!-- # Macro (main)-->
-    <table>
-        <!-- # For (Book book: books)-->
-        <tr>
-            <td>$ {book.title}</td>
-        </tr>
-        <!-- # End-->
-    </table>
+	<table>
+		<!-- # For (Book book: books)-->
+		<tr>
+			<td>$ {book.title}</td>
+		</tr>
+		<!-- # End-->
+	</table>
 <!-- # End-->
 </pre>
 
@@ -286,8 +287,8 @@ var value="$ {js}";
 
 <style type="text/css">
 . Div {
-    // Here, too, quotes will css variables into \"instead of &quot;
-    font-family:"$ {css}"
+	// Here, too, quotes will css variables into \"instead of &quot;
+	font-family:"$ {css}"
 }
 </style>
 
@@ -332,12 +333,12 @@ Quotes and semicolon in front of the end of the assignment will value, followed 
 
 <pre class="brush: xml;">&lt;style type="text/css"&gt;
 . Div {
-    font-family:"$! {foo}"
+	font-family:"$! {foo}"
 }
 &lt;/style&gt;
 
 If the value of the variable foo:
-"; Star: expression_r (onload = function () {alert ('HACK');});
+"; Star: expression_r (onload = function() {alert ('HACK');});
 Quotes and semicolon in front of font-family property will end, and thus perform injected through expression_r alert statements.
 </pre>
 
@@ -362,7 +363,7 @@ Occur to offset: 6, line: 2, column: 3, char: u, in:
 / WEB-INF/templates/user.httl
 ========================================
 ... $ {User.name} ...
-     ^-Here
+	 ^-Here
 ========================================
 , Stack: java.text.ParseException:
 at httl.spi.translators.DfaParser.parse (DfaParser.java: 401)
@@ -383,20 +384,20 @@ at httl.spi.translators.DefaultTranslator.translate (DefaultTranslator.java: 109
 <aside>
 <div style="text-align: right; padding-right: 10px;">English |<a href="../zh/example.html">&#20013;&#25991;</a></div>
 <div class="standard-right-nav">
-  <p>documentation directory</p>
-  <div id="docIndex" class="nav-inner"></div>
+	<p>documentation directory</p>
+	<div id="docIndex" class="nav-inner"></div>
 </div>
 </aside>
  
 </div>
 
-    <footer>
-      <nav class="footer-secondary-nav">
-        <div class="companies">
-          <p>Copyright 2011 -<script type="text/javascript">document.write (new Date (). getYear () + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
-        </div>
-      </nav>
-    </footer>
-  </div>
+	<footer>
+		<nav class="footer-secondary-nav">
+		<div class="companies">
+			<p>Copyright 2011 -<script type="text/javascript">document.write (new Date(). getYear() + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
+		</div>
+		</nav>
+	</footer>
+	</div>
 </body>
 </html>
