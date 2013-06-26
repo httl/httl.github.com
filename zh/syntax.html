@@ -308,6 +308,12 @@ ${var}
 
 <p>如果bookentry.value的类型丢失，上面的写法可以恢复book的类型。</p>
 
+<p>一个set指令可同时有多个类型声明或赋值，用逗号分隔，但类型声明和赋值要分开写，如：</p>
+
+<pre class="brush: xml;">#set(User user, List&lt;Book&gt; books)
+#set(price = book.price, discount = book.discount)
+</pre>
+
 <p>赋值会在生成局部变量的同时，写入当前Context中，
 如果有include()子模板，在子模板中也可以读到该变量。</p>
 

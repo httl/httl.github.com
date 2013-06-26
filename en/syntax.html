@@ -67,15 +67,15 @@
 <pre class="brush: xml;">
 <html>
 	<body>
-		# If (books)
+		#if (books)
 		<table>
-			# For (Book book: books)
+			#for (Book book: books)
 			<tr>
 				<td>$ {book.title}</td>
 			</tr>
-			# End
+			#end
 		</table>
-		# End
+		#end
 	</body>
 </html>
 </pre>
@@ -89,15 +89,15 @@
 <pre class="brush: xml;">
 <html>
 	<body>
-		<! - # If (books) ->
+		<! - #if (books) ->
 		<table>
-			<! - # For (Book book: books) ->
+			<! - #for (Book book: books) ->
 			<tr>
 				<td>$ {book.title}</td>
 			</tr>
-			<! - # End ->
+			<! - #end ->
 		</table>
-		<! - # End ->
+		<! - #end ->
 	</body>
 </html>
 </pre>
@@ -105,15 +105,15 @@
 Using HTML<p>default comment character: (default, no configuration)</p>
 
 <pre class="brush: xml;">
-comment.left =<! -
-comment.right = ->
+comment.left=&lt;!--
+comment.right=--&gt;
 </pre>
 
 <p>If you use HTTL generate Java code, you can also read:</p>
 
 <pre class="brush: xml;">
-comment.left = / *
-comment.right = * /
+comment.left=/*
+comment.right=*/
 </pre>
 
 <h2>attribute syntax</h2>
@@ -172,11 +172,11 @@ comment.right = * /
 
 <h1>directive</h1>
 
-<p>HTTL only # set, # if, # else, # for, # break, # macro six directives, as well as output placeholders and notes escape, keeping the minimum instruction set, and they will not increase the instruction.</p>
+<p>HTTL only #set, #if, #else, #for, #break, #macro six directives, as well as output placeholders and notes escape, keeping the minimum instruction set, and they will not increase the instruction.</p>
 
 <p>does not recognize the command name will be text output, such as HTML color: # FF00EE.</p>
 
-If the command name and text<p>phase, such as: # elseTEXT, available without parameters separated by parentheses, eg: # if (x) AAA # else() BBB # end() CCC</p>
+If the command name and text<p>phase, such as: #elseTEXT, available without parameters separated by parentheses, eg: #if (x) AAA #else() BBB #end() CCC</p>
 
 <h2>output instructions</h2>
 
@@ -210,15 +210,15 @@ $! {Body}
 
 <h2>variable command</h2>
 
-<h3># set variable type</h3>
+<h3>#set variable type</h3>
 
 <p>declare a variable of type, other types of variables within the template based on this type of derivation.</p>
 
 <pre class="brush: xml;">Format:
-# Set (type name, type name)
+#set (type name, type name)
 
 Example:
-# Set (User user, List<Book>books)
+#set (User user, List<Book>books)
 </pre>
 
 <p>Note: only supports List and Map of a generic, multi-level generic able to resolve, but not derived.</p>
@@ -240,7 +240,7 @@ HTTL<p>If you are using the built-in MVC integration, integration has been in de
 <pre class="brush: java;">default.variable.type = java.lang.Object
 </pre>
 
-<pre class="brush: xml;">$ {obj} / / direct output, do not take the property, do not do arithmetic, no declared type
+<pre class="brush: xml;">$ {obj} // direct output, do not take the property, do not do arithmetic, no declared type
 </pre>
 
 <p>If your system, most of the String type operation, you can also change the default type String:</p>
@@ -250,63 +250,69 @@ HTTL<p>If you are using the built-in MVC integration, integration has been in de
 
 <p>repeatedly to set the variable's type, if the type of parent-child relationship to subtype Priority:</p>
 
-<pre class="brush: xml;"># set (ParentClass var1)
-# Set (ChildClass var1)
+<pre class="brush: xml;">#set (ParentClass var1)
+#set (ChildClass var1)
 </pre>
 
 <p>regardless of the order, all with subtype Priority:</p>
 
-<pre class="brush: xml;"># set (ChildClass var1)
-# Set (ParentClass var1)
+<pre class="brush: xml;">#set (ChildClass var1)
+#set (ParentClass var1)
 </pre>
 
 <p>if it is two completely different types, error:</p>
 
-<pre class="brush: xml;"># set (OriginClass var1)
-# Set (DiffrentClass var1)
+<pre class="brush: xml;">#set (OriginClass var1)
+#set (DiffrentClass var1)
 </pre>
 
-<h3># set variable assignment</h3>
+<h3>#set variable assignment</h3>
 
 <p>the expression evaluates into variable.</p>
 
 <pre class="brush: xml;">Format:
-# Set (name = expression)
-# Set (type name = expression)
+#set (name = expression)
+#set (type name = expression)
 
-# Set (name: = expression)
-# Set (type name: = expression)
+#set (name: = expression)
+#set (type name: = expression)
 
 Example:
-# Set (price = book.price * book.discount)
-# Set (int price = book.price * book.discount)
+#set (price = book.price * book.discount)
+#set (int price = book.price * book.discount)
 </pre>
 
-<p>Note that in order to simplify the writing template, # set template variables are all valid, no restrictions within the instruction in the block:</p>
+<p>Note that in order to simplify the writing template, #set template variables are all valid, no restrictions within the instruction in the block:</p>
 
 <pre class="brush: xml;">
-# If (xxx)
-# Set (var="value") / / Variable full template effectively, rather than if the block is valid
-# End
-$ {Var} / / can be accessed within the block if the value of var
+#if (xxx)
+#set (var="value") // Variable full template effectively, rather than if the block is valid
+#end
+$ {Var} // can be accessed within the block if the value of var
 </pre>
 
 <p>not like Java:</p>
 
 <pre class="brush: xml;">
-# Set (var = null)
-# If (xxx)
-# Set (var="value")
-# End
+#set (var = null)
+#if (xxx)
+#set (var="value")
+#end
 $ {Var}
 </pre>
 
 <p>type declarations, and can be used as casts, for example:</p>
 
-<pre class="brush: xml;"># set (Book book = bookentry.value)
+<pre class="brush: xml;">#set (Book book = bookentry.value)
 </pre>
 
 <p>If bookentry.value type of loss, the above wording can recover book type.</p>
+
+<p> a set command may also have more than one type declarations or assignments, separated by commas, but the type declaration and assignment to write separately, such as: </p>
+
+<pre class="brush: xml;"> #set (User user, List <Book> books)
+#set (price = book.price, discount = book.discount)
+</pre>
 
 <p>assignment will generate a local variable, it writes the current Context in
 If there include() sub-template, the template can also be in the child read the variable.</p>
@@ -316,89 +322,89 @@ Due to template rendering finished, it Context has pop(), so the need to write v
 If you need to use the Context assigned to the higher, you can use":="assignment, it will be variable write Context.getParent() in
 For example:</p>
 
-<pre class="brush: xml;"># set (price: = book.price * book.discount)
+<pre class="brush: xml;">#set (price: = book.price * book.discount)
 </pre>
 
 <p>you can render the template, through Context.getContext(). get ("price"); got the above variables.</p>
 
 <p>Note:</p>
 
-<pre class="brush: xml;">/ / you can put into the reference set unmodifiable Map, will not affect the operation.
+<pre class="brush: xml;">// you can put into the reference set unmodifiable Map, will not affect the operation.
 Map<String, Object>parameters = Collections.unmodifiableMap (parameters);
 
-/ / Incoming parameters in the rendering process will not always be modified,
-/ / Make sure the rendering process without side effects, as well as multiple rendering idempotent.
+// Incoming parameters in the rendering process will not always be modified,
+// Make sure the rendering process without side effects, as well as multiple rendering idempotent.
 template.render (parameters, writer);
 
-/ / Template # set (price = x) variables are put into the Context of the temporary collection.
+// Template #set (price = x) variables are put into the Context of the temporary collection.
 Context.getContext(). Put ("price", x);
 
-/ / First # set temporary collection lookup, then the native incoming parameters, locate and then to search on a Context.
+// First #set temporary collection lookup, then the native incoming parameters, locate and then to search on a Context.
 Context.getContext(). Get ("price");
 </pre>
 
 <h2>conditional instructions</h2>
 
-<h3># if condition</h3>
+<h3>#if condition</h3>
 
 <p>If the conditional expression evaluates to true or a non-empty, then the output contained in the instruction blocks.</p>
 
 <p>Note: For non-Boolean value: non-zero number, non-empty string, non-empty, non-null object, is true.</p>
 
 <pre class="brush: xml;">Format:
-# If (expression)
+#if (expression)
 
 Example:
-# If (user.role =="admin")
+#if (user.role =="admin")
 	...
-# End
+#end
 </pre>
 
-<h3># else condition otherwise</h3>
+<h3>#else condition otherwise</h3>
 
-<p>If the preceding # if condition is not true, then the output # else directive contains blocks.</p>
+<p>If the preceding #if condition is not true, then the output #else directive contains blocks.</p>
 
-<p>Note: # else directives can be directly without conditions, to reduce the # if condition combinations.</p>
+<p>Note: #else directives can be directly without conditions, to reduce the #if condition combinations.</p>
 
 <pre class="brush: xml;">Format:
-# Else
-# Else (expression)
+#else
+#else (expression)
 
 Example:
-# If (user.role =="admin")
+#if (user.role =="admin")
 	...
-# Else (user.role =="member")
+#else (user.role =="member")
 	...
-# Else
+#else
 	...
-# End
+#end
 </pre>
 
 <h2>loop instructions</h2>
 
-<h3># for loop</h3>
+<h3>#for loop</h3>
 
 <p>resulting collection iteration expression, for each value in the set, repeatedly outputs the block contained in the instruction.</p>
 
 <pre class="brush: xml;">Format:
-# For (name: expression)
-# For (type name: expression)
+#for (name: expression)
+#for (type name: expression)
 
 Example:
-# For (book: books)
+#for (book: books)
 	...
 	$ {For.index}
 	$ {For.size}
 	$ {For.first}
 	$ {For.last}
-# End
+#end
 </pre>
 
 <p>type declarations, and can be used as casts, for example:</p>
 
-<pre class="brush: xml;"># for (Book book: booklist)
+<pre class="brush: xml;">#for (Book book: booklist)
 	$ {Book.title}
-# End
+#end
 </pre>
 
 <p>If booklist generic lost, the above wording can recover book type.</p>
@@ -407,78 +413,78 @@ Example:
 
 <pre class="brush: xml;">
 # # Perform nine times
-# For (9)
+#for (9)
 
 # # Literal sequence set, a digital output 1-9
-# For (i: 1 .. 9)
+#for (i: 1 .. 9)
 
 # # Literal discrete set, 10,20,30 three digital outputs
-# For (i: [10, 20, 30])
+#for (i: [10, 20, 30])
 
 # # Take a non-empty iteration, if books1 is not empty, then iterative books1, otherwise iteration books2
-# For (book: books1 | | books2)
+#for (book: books1 | | books2)
 
-# # Set summed, then iterative
-# For (book: books1 + books2)
+# #set summed, then iterative
+#for (book: books1 + books2)
 
-# # Set sort, then iterative
-# For (book: books.sort)
+# #set sort, then iterative
+#for (book: books.sort)
 
 # # Recursive iterations, such as Menu has a getChildren() method returns the child list:
-# For (Menu menu: menus.recursive ("getChildren"))
+#for (Menu menu: menus.recursive ("getChildren"))
 </pre>
 
-<h3># break cycle interrupts</h3>
+<h3>#break cycle interrupts</h3>
 
 <p>When the conditional expression is true or non-empty interrupt the current iteration.</p>
 
-<p>Note: # break conditional parameters directly: # break (i ​​== j), need not be written: # if (i == j) # break # end</p>
+<p>Note: #break conditional parameters directly: #break (i ​​== j), need not be written: #if (i == j) #break #end</p>
 
 <pre class="brush: xml;">Format:
-# Break
-# Break (expression)
+#break
+#break (expression)
 
 Example:
-# For (book: books)
+#for (book: books)
 	...
-	# Break (for.index == 10)
+	#break (for.index == 10)
 	...
-# End
+#end
 </pre>
 
-<h3># else loop or</h3>
+<h3>#else loop or</h3>
 
-<p>If the previous # for collection is empty, then the output # else directive contains blocks.</p>
+<p>If the previous #for collection is empty, then the output #else directive contains blocks.</p>
 
-<p>Note: # for # else directives can be directly used in combination, can reduce the # if not empty determine the conditions of writing.</p>
+<p>Note: #for #else directives can be directly used in combination, can reduce the #if not empty determine the conditions of writing.</p>
 
 <pre class="brush: xml;">Format:
-# Else
-# Else (expression)
+#else
+#else (expression)
 
 Example:
-# For (book: books)
+#for (book: books)
 	...
-# Else
+#else
 	...
-# End
+#end
 </pre>
 
 <h2>template directives</h2>
 
-<h3># macro template fragment</h3>
+<h3>#macro template fragment</h3>
 
 <p>the instruction block encapsulated into reusable template fragments, which can be passed as a variable, you can repeat the output can be inherited overwritten.</p>
 
 <pre class="brush: xml;">Format:
-# Macro (name)
-# Macro (name (name, name))
-# Macro (name (type name, type name))
+#macro (name)
+#macro (name (name, name))
+#macro (name (type name, type name))
 
 Example:
-# Macro (xxx)
+#macro (xxx)
 	...
-# End
+#end
 
 $ {Xxx} to execute the macro variables
 $ {Xxx (arg1, arg2)} method to execute the macro
@@ -489,94 +495,94 @@ $ {Xxx (arg1, arg2)} method to execute the macro
 <p>while the macro definition, you can define the position while the output macro or the macro assigned to the variable, and define parameters for the macro to simplify the writing.</p>
 
 <pre class="brush: xml;">Format:
-# Macro ($ name)
-# Macro ($ name (name, name))
-# Macro ($ name (type name, type name))
+#macro ($ name)
+#macro ($ name (name, name))
+#macro ($ name (type name, type name))
 
-# Macro (var = name)
-# Macro (var = name (name, name))
-# Macro (var = name (type name, type name))
+#macro (var = name)
+#macro (var = name (name, name))
+#macro (var = name (type name, type name))
 
-# Macro ($ name =>cache)
-# Macro ($ name (name, name) =>cache)
-# Macro ($ name (type name, type name) =>cache)
+#macro ($ name =>cache)
+#macro ($ name (name, name) =>cache)
+#macro ($ name (type name, type name) =>cache)
 
-# Macro (var = name =>cache)
-# Macro (var = name (name, name) =>cache)
-# Macro (var = name (type name, type name) =>cache)
+#macro (var = name =>cache)
+#macro (var = name (name, name) =>cache)
+#macro (var = name (type name, type name) =>cache)
 
 Example:
-# Macro ($ xxx)
+#macro ($ xxx)
 	...
-# End
+#end
 
-# Macro (xxx = xxx)
+#macro (xxx = xxx)
 	...
-# End
+#end
 </pre>
 
 <p>portfolio syntax equivalence relation:</p>
 
-<pre class="brush: xml;"># macro ($ xxx)
+<pre class="brush: xml;">#macro ($ xxx)
 	...
-# End
+#end
 
 Is equivalent to: (a position in the macro definition output simultaneously)
 
-# Macro (xxx)
+#macro (xxx)
 	...
-# End
+#end
 $ {Xxx}
 </pre>
 
-<pre class="brush: xml;"># macro (aaa = xxx)
+<pre class="brush: xml;">#macro (aaa = xxx)
 	...
-# End
+#end
 
 Is equivalent to: (performed while the macro definition, and assigns the result to the specified variable)
 
-# Macro (xxx)
+#macro (xxx)
 	...
-# End
-# Set (aaa = xxx)
+#end
+#set (aaa = xxx)
 </pre>
 
-<pre class="brush: xml;"># macro ($ xxx =>cache)
+<pre class="brush: xml;">#macro ($ xxx =>cache)
 	...
-# End
+#end
 
 Is equivalent to: (a position in the macro definition output simultaneously)
 
-# Macro (xxx)
+#macro (xxx)
 	...
-# End
+#end
 $ {Cache (xxx)}
 </pre>
 
-<pre class="brush: xml;"># macro (aaa = xxx =>cache)
+<pre class="brush: xml;">#macro (aaa = xxx =>cache)
 	...
-# End
+#end
 
 Is equivalent to: (performed while the macro definition, and assigns the result to the specified variable)
 
-# Macro (xxx)
+#macro (xxx)
 	...
-# End
-# Set (aaa = cache (xxx))
+#end
+#set (aaa = cache (xxx))
 </pre>
 
-<h3># break interrupt template</h3>
+<h3>#break interrupt template</h3>
 
 <p>When the conditional expression is true or empty, interrupting the current template or macro execution.</p>
 
-<p>Note: Do not # for Directives # break, indicates that an interrupt template or macro execution.</p>
+<p>Note: Do not #for Directives #break, indicates that an interrupt template or macro execution.</p>
 
 <pre class="brush: xml;">Format:
-# Break
-# Break (expression)
+#break
+#break (expression)
 
 Example:
-# Break (debug)
+#break (debug)
 </pre>
 
 <h2>comment directive</h2>
@@ -615,7 +621,7 @@ Example:
 # [No parse block] #
 
 Example:
-# [This is no parse block: # if $ {name}] #
+# [This is no parse block: #if $ {name}] #
 </pre>
 
 <h3>\ # \ $ special character escape</h3>
@@ -643,7 +649,7 @@ Example:
 <li>single and double quotation marks will produce the string: 'a' or"a" is of type String, if you want to declare literal char, please use backticks: `a` as char type.</li>
 <li>plus sign"+" digital first, $ {1 +"2"} output 3, instead of 12, string concatenation try to use $ {s1} $ {s2}, rather than $ {s1 + s2}</li>
 <li>Bean property getter method will resolve to call, $ {user.name} is equivalent to $ {user.getName()}</li>
-<li>all implement Comparable objects support comparison operators, such as: # if (date1<date2), you can compare the date of order.</li>
+<li>all implement Comparable objects support comparison operators, such as: #if (date1<date2), you can compare the date of order.</li>
 <li>logic and supported by all objects or, respectively, returns null or non-null value, for example: $ {list1 | | list2}, if list1 is not empty then return list1, otherwise return list2.</li>
 <li>List and Map can be bracketed values, such as: list [0] is equivalent to list.get (0), map ["abc"] is equivalent to map.get ("abc")</li>
 <li>uppercase 3L will generate java.lang.Long value, lowercase 3l will generate long values.</li>
@@ -670,46 +676,46 @@ $ {Map ["a.b.c"]} is equivalent to: $ {map.get ("a.b.c")}
 
 Sequence generation: an .. 3
 For example:
-# For (i: 1 .. 10)
+#for (i: 1 .. 10)
 $ {I}
-# End
+#end
 
 List generated: [123,"abc", var]
 For example:
-# For (color: ["red","yellow","blue"])
+#for (color: ["red","yellow","blue"])
 $ {Color}
-# End
+#end
 
 Map generator: ["xxx": 123,"yyy":"abc","zzz": var]
 For example: (this Map maintaining declaration order)
-# For (entry: ["red":"# FF0000","yellow":"# 00FF00"])
+#for (entry: ["red":"# FF0000","yellow":"# 00FF00"])
 $ {Entry.key} = $ {entry.value}
-# End
+#end
 
 Collection added: list1 + list2
 For example:
-# For (item: list1 + list2)
+#for (item: list1 + list2)
 $ {Item}
-# End
+#end
 </pre>
 
 <h3>logical operators</h3>
 
-<pre class="brush: xml;"># if (object)
+<pre class="brush: xml;">#if (object)
 Is equivalent to:
-# If (object! = Null)
+#if (object! = Null)
 
-# If (string)
+#if (string)
 Is equivalent to:
-# If (string! = null && string.length()>0)
+#if (string! = null && string.length()>0)
 
-# If (list)
+#if (list)
 Is equivalent to:
-# If (list! = Null && list1.size()>0)
+#if (list! = Null && list1.size()>0)
 
-# For (item: list1 | | list2)
+#for (item: list1 | | list2)
 Is equivalent to:
-# For (item: list1! = Null && list1.size()>0? List1: list2)
+#for (item: list1! = Null && list1.size()>0? List1: list2)
 </pre>
 
 <h3>Date Operator</h3>
@@ -748,14 +754,14 @@ list.size
 map.size
 
 list.sort
-# For (item: list.sort)
-# End
+#for (item: list.sort)
+#end
 
 list.toCycle
-# Set (colors = ["red","blue","green"]. ToCycle)
-# For (item: list)
+#set (colors = ["red","blue","green"]. ToCycle)
+#for (item: list)
 $ {Colors.next}
-# End
+#end
 </pre>
 
 <h3>file functions</h3>
@@ -774,10 +780,10 @@ $ {Include (".. / Template.httl")}
 $ {Include (".. / Template.httl","UTF-8")}
 
 Template contains macros, perform target macro output to the current position.
-$ {Include ("/ template.httl # macro")}
-$ {Include ("/ template.httl # macro","UTF-8")}
-$ {Include ("/ template.httl # macro")}
-$ {Include ("/ template.httl # macro", ["arg":"value"])}
+$ {Include ("/ template.httl #macro")}
+$ {Include ("/ template.httl #macro","UTF-8")}
+$ {Include ("/ template.httl #macro")}
+$ {Include ("/ template.httl #macro", ["arg":"value"])}
 
 Read the contents of the target file, output to the current position.
 $ {Read ("/ text.txt")}
@@ -943,11 +949,11 @@ uuid()
 <h2>syntax contrast</h2>
 
 <ol>
-<li><p>HTTL command variable without $ symbol, which only supports # if (x == y), does not support the # if ($ x == $ y), because the command string is not quoted variables, and conventional language syntax, like add $ bit rubbish, but also easy to forget to write.</p></li>
+<li><p>HTTL command variable without $ symbol, which only supports #if (x == y), does not support the #if ($ x == $ y), because the command string is not quoted variables, and conventional language syntax, like add $ bit rubbish, but also easy to forget to write.</p></li>
 <li><p>HTTL placeholder necessary to increase the brackets, only support $ {aaa}, does not support the $ aaa, because $ is legal in JavaScript variable name symbols, and $ {} is not to reduce the confusion, but also to prevent more human development, it was to increase the brackets, some without, simply did not have a choice, are added, consistent.</p></li>
 <li><p>HTTL placeholder when the variable is null output blank string, unlike Velocity command is output as the original, ie $ {aaa}, is equivalent to the Velocity $ {aaa}, so as not to forget to write Developers exclamation, expression leak source, for as output, use the escape \ $ {aaa},
 In HTTL in, $ {aaa} represents not content filtering for output as HTML fragments.</p></li>
-<li><p>HTTL support all local variables used for expression evaluation, that is, you do not like the Velocity as the first # set ($ j = $ i + 1) to a temporary variable, and then output the temporary variable $ {j}, HTTL can be directly output $ {i + 1}, other commands, too, such as: # if (i + 1 == n).</p></li>
+<li><p>HTTL support all local variables used for expression evaluation, that is, you do not like the Velocity as the first #set ($ j = $ i + 1) to a temporary variable, and then output the temporary variable $ {j}, HTTL can be directly output $ {i + 1}, other commands, too, such as: #if (i + 1 == n).</p></li>
 <li><p>HTTL method using extended Class native ways, such as: $ {"a". toChar}, rather than the Velocity Tool utility methods like: $ (StringTool.toChar ("a")), such call method is more intuitive, more in line with the code writing habits.</p></li>
 </ol>
 
@@ -997,74 +1003,74 @@ In HTTL in, $ {aaa} represents not content filtering for output as HTML fragment
 <td></td>
 </tr>
 <tr>
-<td># set ($ xxx = $ yyy)</td>
-<td># set (xxx = yyy)<br/># set (Type xxx = yyy)<br/># set (Type xxx)</td>
+<td>#set ($ xxx = $ yyy)</td>
+<td>#set (xxx = yyy)<br/>#set (Type xxx = yyy)<br/>#set (Type xxx)</td>
 <td>same</td>
 <td>assign variables</td>
 <td>HTTL available with type declarations</td>
 </tr>
 <tr>
-<td># if ($ xxx == $ yyy)</td>
-<td># if (xxx == yyy)</td>
+<td>#if ($ xxx == $ yyy)</td>
+<td>#if (xxx == yyy)</td>
 <td>same</td>
 <td>conditional</td>
 <td></td>
 </tr>
 <tr>
-<td># elseif ($ xxx == $ yyy)</td>
-<td># else (xxx == yyy)</td>
+<td>#elseif ($ xxx == $ yyy)</td>
+<td>#else (xxx == yyy)</td>
 <td>similar</td>
 <td>or conditional</td>
-<td>HTTL multiplexing # else directive</td>
+<td>HTTL multiplexing #else directive</td>
 </tr>
 <tr>
-<td># else</td>
-<td># else</td>
+<td>#else</td>
+<td>#else</td>
 <td>same</td>
 <td>otherwise determine</td>
 <td></td>
 </tr>
 <tr>
-<td># end</td>
-<td># end<br/># endif<br/># end (if)</td>
+<td>#end</td>
+<td>#end<br/>#endif<br/>#end (if)</td>
 <td>same</td>
 <td>end instruction</td>
 <td>HTTL available with matching command names</td>
 </tr>
 <tr>
-<td># foreach ($ item in $ list)</td>
-<td># for (item: list)<br/># for (Type item: list)</td>
+<td>#foreach ($ item in $ list)</td>
+<td>#for (item: list)<br/>#for (Type item: list)</td>
 <td>similar</td>
 <td>List cycle</td>
 <td>HTTL to Java format</td>
 </tr>
 <tr>
-<td># break</td>
-<td># break<br/># break (xxx == yyy)</td>
+<td>#break</td>
+<td>#break<br/>#break (xxx == yyy)</td>
 <td>same</td>
 <td>interrupt cycle</td>
 <td>HTTL directly with conditions</td>
 </tr>
 <tr>
 <td># stop</td>
-<td># break<br/># break (xxx == yyy)</td>
+<td>#break<br/>#break (xxx == yyy)</td>
 <td>similar</td>
 <td>stop template parsing</td>
-<td>HTTL multiplexing # break directive</td>
+<td>HTTL multiplexing #break directive</td>
 </tr>
 <tr>
-<td># macro ($ xxx)</td>
-<td># macro (xxx)</td>
+<td>#macro ($ xxx)</td>
+<td>#macro (xxx)</td>
 <td><font color="red">different</font></td>
 <td>reusable template fragments macro</td>
 <td>VM as the macro instruction execution<br>HTTL performed as a function</td>
 </tr>
 <tr>
 <td># define ($ xxx)</td>
-<td># macro (xxx = xxxmacro)</td>
+<td>#macro (xxx = xxxmacro)</td>
 <td>similar</td>
 <td>catch block output to a variable</td>
-<td>HTTL multiplexing # macro directive</td>
+<td>HTTL multiplexing #macro directive</td>
 </tr>
 <tr>
 <td># include ("xxx.txt")</td>
