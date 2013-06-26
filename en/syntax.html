@@ -1,12 +1,12 @@
 <! Doctype html>
-<! - [If lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <! [Endif] ->
-<! - [If IE 7]> <html class="no-js ie7 oldie" lang="en"> <! [Endif] ->
-<! - [If IE 8]> <html class="no-js ie8 oldie" lang="en"> <! [Endif] ->
-<! - [If gt IE 8]> <html class="no-js ieg8" lang="en"> <! [Endif] ->
+<! - [If lt IE 7]><html class="no-js ie6 oldie" lang="en"><! [Endif] ->
+<! - [If IE 7]><html class="no-js ie7 oldie" lang="en"><! [Endif] ->
+<! - [If IE 8]><html class="no-js ie8 oldie" lang="en"><! [Endif] ->
+<! - [If gt IE 8]><html class="no-js ieg8" lang="en"><! [Endif] ->
 <html>
 <head>
 <meta charset="utf-8">
-<title> HTTL - open source Java template engine </title>
+<title>HTTL - open source Java template engine</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
 <link rel="shortcut icon" href="favicon.ico" />
@@ -16,20 +16,20 @@
 <link rel="stylesheet" type="text/css" href="../css/httl.css" />
 <link rel="stylesheet" type="text/css" href="../css/httl-mobile.css" media="only screen and (max-width: 480px)" />
 <link rel="stylesheet" type="text/css" href="../css/shCoreDefault.css" />
-<script type="text/javascript" src="../js/modernizr-2.0.6.min.js"> </script>
-<script type="text/javascript" src="../js/jquery-1.6.2.min.js"> </script>
-<script type="text/javascript" src="../js/httl.js"> </script>
-<script type="text/javascript" src="../js/shCore.js"> </script>
-<script type="text/javascript" src="../js/shBrushXml.js"> </script>
-<script type="text/javascript" src="../js/shBrushJava.js"> </script>
-<script type="text/javascript"> SyntaxHighlighter.all (); </script>
+<script type="text/javascript" src="../js/modernizr-2.0.6.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="../js/httl.js"></script>
+<script type="text/javascript" src="../js/shCore.js"></script>
+<script type="text/javascript" src="../js/shBrushXml.js"></script>
+<script type="text/javascript" src="../js/shBrushJava.js"></script>
+<script type="text/javascript">SyntaxHighlighter.all ();</script>
 </head>
-<body class="home ">
-    <a href="http://github.com/httl/httl"><img style = "position: absolute; top: 0; right: 0; border: 0;" src = "https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png "alt =" Fork me on GitHub "class =" fork-me-on-github "></a>
+<body class="home">
+    <a href="http://github.com/httl/httl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws .com/github/ribbons/forkme_right_green_007200.png"alt="Fork me on GitHub"class="fork-me-on-github"></a>
     <div class="container">
         <header>
             <div class="logo">
-				<a href="./"> HTTL </a>
+				<a href="./">HTTL</a>
             </div>
             <div id="headline" class="headline">
                 <ul>
@@ -40,28 +40,28 @@
             </div>
         </header>
         <nav class="primary-nav">
-            <a href="./"> <img src="../img/icon-overview.png"> Overview </a>
-            <a href="download.html"> <img src="../img/icon-download.png"> download </a>
-            <a href="example.html"> <img src="../img/icon-example.png"> sample </a>
-            <a href="syntax.html"> <img src="../img/icon-syntax.png"> syntax </a>
-            <a href="config.html"> <img src="../img/icon-config.png"> configuration </a>
-            <a href="integration.html"> <img src="../img/icon-integration.png"> integration </a>
-            <a href="design.html"> <img src="../img/icon-design.png"> design </a>
-            <a href="help.html"> <img src="../img/icon-help.png"> help </a>
+            <a href="./"><img src="../img/icon-overview.png">Overview</a>
+            <a href="download.html"><img src="../img/icon-download.png">download</a>
+            <a href="example.html"><img src="../img/icon-example.png">sample</a>
+            <a href="syntax.html"><img src="../img/icon-syntax.png">syntax</a>
+            <a href="config.html"><img src="../img/icon-config.png">configuration</a>
+            <a href="integration.html"><img src="../img/icon-integration.png">integration</a>
+            <a href="design.html"><img src="../img/icon-design.png">design</a>
+            <a href="help.html"><img src="../img/icon-help.png">help</a>
         </nav>
     <div class="content">
-      <div class="body-content ">
+      <div class="body-content">
         <section>
 
-<h1> syntax </h1>
+<h1>syntax</h1>
 
-<p> HTTL This document details the core functionality, if you intend to use HTTL development, please read. </p>
+<p>HTTL This document details the core functionality, if you intend to use HTTL development, please read.</p>
 
-<p> test sample template syntax: <a href="https://github.com/httl/httl/tree/master/httl/src/test/resources/comment/templates"> src / test / resources / comment / templates </a> </p>
+<p>test sample template syntax:<a href="https://github.com/httl/httl/tree/master/httl/src/test/resources/comment/templates">src / test / resources / comment / templates</a></p>
 
-<h2> basic syntax </h2>
+<h2>basic syntax</h2>
 
-<p> and Velocity similar and different points see: <a href="#Velocity对比"> Velocity comparison </a> </p>
+<p>and Velocity similar and different points see:<a href="#Velocity对比">Velocity comparison</a></p>
 
 <pre class="brush: xml;">
 <html>
@@ -70,7 +70,7 @@
         <table>
             # For (Book book: books)
             <tr>
-                <td> $ {book.title} </td>
+                <td>$ {book.title}</td>
             </tr>
             # End
         </table>
@@ -79,11 +79,11 @@
 </html>
 </pre>
 
-<h2> comment syntax </h2>
+<h2>comment syntax</h2>
 
-<p> instruction on both sides can put HTML comments, to avoid interference with native HTML page. </p>
+<p>instruction on both sides can put HTML comments, to avoid interference with native HTML page.</p>
 
-<p> HTTL at parse time, it will automatically remove the comment symbol Directive edge of HTML. (The default is on filter) </p>
+<p>HTTL at parse time, it will automatically remove the comment symbol Directive edge of HTML. (The default is on filter)</p>
 
 <pre class="brush: xml;">
 <html>
@@ -92,7 +92,7 @@
         <table>
             <! - # For (Book book: books) ->
             <tr>
-                <td> $ {book.title} </td>
+                <td>$ {book.title}</td>
             </tr>
             <! - # End ->
         </table>
@@ -101,175 +101,175 @@
 </html>
 </pre>
 
-Using HTML <p> default comment character: (default, no configuration) </p>
+Using HTML<p>default comment character: (default, no configuration)</p>
 
 <pre class="brush: xml;">
-comment.left = <! -
+comment.left =<! -
 comment.right = ->
 </pre>
 
-<p> If you use HTTL generate Java code, you can also read: </p>
+<p>If you use HTTL generate Java code, you can also read:</p>
 
 <pre class="brush: xml;">
 comment.left = / *
 comment.right = * /
 </pre>
 
-<h2> attribute syntax </h2>
+<h2>attribute syntax</h2>
 
-<p> based Html tag attributes: (instruction and expressions with the same comment syntax) </p>
+<p>based Html tag attributes: (instruction and expressions with the same comment syntax)</p>
 
 <pre class="brush: xml;">
 <html>
     <body>
         <table if="books">
             <tr for="Book book: books">
-                <td> $ {book.title} </td>
+                <td>$ {book.title}</td>
             </tr>
         </table>
     </body>
 </html>
 </pre>
 
-<p> need to configure: </p>
+<p>need to configure:</p>
 
-<pre class="brush: java;"> template.filters + = httl.spi.filters.AttributeSyntaxFilter
+<pre class="brush: java;">template.filters + = httl.spi.filters.AttributeSyntaxFilter
 </pre>
 
-<p> attribute syntax need to use jericho packet parsing HTML tags: </p>
+<p>attribute syntax need to use jericho packet parsing HTML tags:</p>
 
-<p> <a href="http://central.maven.org/maven2/net/htmlparser/jericho/jericho-html/3.1/jericho-html-3.1.jar"> jericho-html-3.1.jar </a> </p>
+<p><a href="http://central.maven.org/maven2/net/htmlparser/jericho/jericho-html/3.1/jericho-html-3.1.jar">jericho-html-3.1.jar</a></p>
 
 <pre class="brush: xml;">
 <dependency>
-<groupId> net.htmlparser.jericho </groupId>
-<artifactId> jericho-html </artifactId>
-<version> 3.1 </version>
+<groupId>net.htmlparser.jericho</groupId>
+<artifactId>jericho-html</artifactId>
+<version>3.1</version>
 </dependency>
 </pre>
 
-<p> conflict if the property and other frameworks, you can add the namespace: </p>
+<p>conflict if the property and other frameworks, you can add the namespace:</p>
 
-<pre class="brush: java;"> attribute.namespace = httl
+<pre class="brush: java;">attribute.namespace = httl
 </pre>
 
-<p> namespace wording such as: </p>
+<p>namespace wording such as:</p>
 
-<pre class="brush: xml;"> <tr httl:for="book: books" />
+<pre class="brush: xml;"><tr httl:for="book: books" />
 </pre>
 
-<p> place without the label, you can use the above comment syntax. </p>
+<p>place without the label, you can use the above comment syntax.</p>
 
-<h2> Compatible Syntax </h2>
+<h2>Compatible Syntax</h2>
 
-<p> HTTL offer compatible Velocity syntax support, just configuration: (from version 1.0.8 supports) </p>
+<p>HTTL offer compatible Velocity syntax support, just configuration: (from version 1.0.8 supports)</p>
 
-<pre class="brush: java;"> template.filters + = httl.spi.filters.VelocitySyntaxFilter
+<pre class="brush: java;">template.filters + = httl.spi.filters.VelocitySyntaxFilter
 </pre>
 
-<p> in compatibility mode, you can still use the standard syntax HTTL facilitate the gradual migration. </p>
+<p>in compatibility mode, you can still use the standard syntax HTTL facilitate the gradual migration.</p>
 
-<h1> directive </h1>
+<h1>directive</h1>
 
-<p> HTTL only # set, # if, # else, # for, # break, # macro six directives, as well as output placeholders and notes escape, keeping the minimum instruction set, and they will not increase the instruction. </p>
+<p>HTTL only # set, # if, # else, # for, # break, # macro six directives, as well as output placeholders and notes escape, keeping the minimum instruction set, and they will not increase the instruction.</p>
 
-<p> does not recognize the command name will be text output, such as HTML color: # FF00EE. </p>
+<p>does not recognize the command name will be text output, such as HTML color: # FF00EE.</p>
 
-If the command name and text <p> phase, such as: # elseTEXT, available without parameters separated by parentheses, eg: # if (x) AAA # else () BBB # end () CCC </p>
+If the command name and text<p>phase, such as: # elseTEXT, available without parameters separated by parentheses, eg: # if (x) AAA # else () BBB # end () CCC</p>
 
-<h2> output instructions </h2>
+<h2>output instructions</h2>
 
-<h3> $ {} filter output </h3>
+<h3>$ {} filter output</h3>
 
-<p> output expression evaluates, and filtered, such as: filter variable HTML tags. </p>
+<p>output expression evaluates, and filtered, such as: filter variable HTML tags.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 $ {Expression}
 
 Example:
 $ {User.name}
 </pre>
 
-<p> Note: HTTL default opened EscapeXmlFilter, to prevent HTML injection attacks, see: <a href="example.html#安全示例"> Security Samples </a>. If you need stronger filtering, please self-fulfilling Filter, and configured to value.filters. Here the runtime hotspot note performance. </p>
+<p>Note: HTTL default opened EscapeXmlFilter, to prevent HTML injection attacks, see:<a href="example.html#安全示例">Security Samples</a>. If you need stronger filtering, please self-fulfilling Filter, and configured to value.filters. Here the runtime hotspot note performance.</p>
 
-<p> If the output variable of type Template, then the default is not filtered, for example: $ {include ("foo.httl")} </p>
+<p>If the output variable of type Template, then the default is not filtered, for example: $ {include ("foo.httl")}</p>
 
-<h3> $! {} does not filter output </h3>
+<h3>$! {} does not filter output</h3>
 
-<p> expression evaluates as output, without any filtering, usually used to output HTML fragment. </p>
+<p>expression evaluates as output, without any filtering, usually used to output HTML fragment.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 $! {Expression}
 
 Example:
 $! {Body}
 </pre>
 
-<p> Note: Do not filter output, make sure that the content is the developer of secure content determined, not by the user-submitted content, in order to prevent HTML injection attacks, see: <a href="example.html#安全示例"> Security Samples </a>. </p>
+<p>Note: Do not filter output, make sure that the content is the developer of secure content determined, not by the user-submitted content, in order to prevent HTML injection attacks, see:<a href="example.html#安全示例">Security Samples</a>.</p>
 
-<h2> variable command </h2>
+<h2>variable command</h2>
 
-<h3> # set variable type </h3>
+<h3># set variable type</h3>
 
-<p> declare a variable of type, other types of variables within the template based on this type of derivation. </p>
+<p>declare a variable of type, other types of variables within the template based on this type of derivation.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Set (type name, type name)
 
 Example:
-# Set (User user, List <Book> books)
+# Set (User user, List<Book>books)
 </pre>
 
-<p> Note: only supports List and Map of a generic, multi-level generic able to resolve, but not derived. </p>
+<p>Note: only supports List and Map of a generic, multi-level generic able to resolve, but not derived.</p>
 
-<p> If there is a global variable can be used to configure the global import variable type declaration, there is no need for each template declaration: </p>
+<p>If there is a global variable can be used to configure the global import variable type declaration, there is no need for each template declaration:</p>
 
-<pre class="brush: java;"> import.variables + = User loginUser
+<pre class="brush: java;">import.variables + = User loginUser
 </pre>
 
-<p> default has been imported: (can be used directly in the template) </p>
+<p>default has been imported: (can be used directly in the template)</p>
 
-<pre class="brush: java;"> import.variables = Context parent, Template super, Template this, Engine engine
+<pre class="brush: java;">import.variables = Context parent, Template super, Template this, Engine engine
 </pre>
 
-HTTL <p> If you are using the built-in MVC integration, integration has been in default import some common variables associated, as described <a href="config.html#导入变量类型声明"> Configuration - Import variable type declaration < / a> a.
+HTTL<p>If you are using the built-in MVC integration, integration has been in default import some common variables associated, as described<a href="config.html#导入变量类型声明">Configuration - Import variable type declaration< / a>a.
 
-<p> If undeclared variable, default Object: (If it is a direct output variables, may declare type) </p>
+<p>If undeclared variable, default Object: (If it is a direct output variables, may declare type)</p>
 
-<pre class="brush: java;"> default.variable.type = java.lang.Object
+<pre class="brush: java;">default.variable.type = java.lang.Object
 </pre>
 
-<pre class="brush: xml;"> $ {obj} / / direct output, do not take the property, do not do arithmetic, no declared type
+<pre class="brush: xml;">$ {obj} / / direct output, do not take the property, do not do arithmetic, no declared type
 </pre>
 
-<p> If your system, most of the String type operation, you can also change the default type String: </p>
+<p>If your system, most of the String type operation, you can also change the default type String:</p>
 
-<pre class="brush: java;"> default.variable.type = java.lang.String
+<pre class="brush: java;">default.variable.type = java.lang.String
 </pre>
 
-<p> repeatedly to set the variable's type, if the type of parent-child relationship to subtype Priority: </p>
+<p>repeatedly to set the variable's type, if the type of parent-child relationship to subtype Priority:</p>
 
-<pre class="brush: xml;"> # set (ParentClass var1)
+<pre class="brush: xml;"># set (ParentClass var1)
 # Set (ChildClass var1)
 </pre>
 
-<p> regardless of the order, all with subtype Priority: </p>
+<p>regardless of the order, all with subtype Priority:</p>
 
-<pre class="brush: xml;"> # set (ChildClass var1)
+<pre class="brush: xml;"># set (ChildClass var1)
 # Set (ParentClass var1)
 </pre>
 
-<p> if it is two completely different types, error: </p>
+<p>if it is two completely different types, error:</p>
 
-<pre class="brush: xml;"> # set (OriginClass var1)
+<pre class="brush: xml;"># set (OriginClass var1)
 # Set (DiffrentClass var1)
 </pre>
 
-<h3> # set variable assignment </h3>
+<h3># set variable assignment</h3>
 
-<p> the expression evaluates into variable. </p>
+<p>the expression evaluates into variable.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Set (name = expression)
 # Set (type name = expression)
 
@@ -281,49 +281,49 @@ Example:
 # Set (int price = book.price * book.discount)
 </pre>
 
-<p> Note that in order to simplify the writing template, # set template variables are all valid, no restrictions within the instruction in the block: </p>
+<p>Note that in order to simplify the writing template, # set template variables are all valid, no restrictions within the instruction in the block:</p>
 
 <pre class="brush: xml;">
 # If (xxx)
-# Set (var = "value") / / Variable full template effectively, rather than if the block is valid
+# Set (var="value") / / Variable full template effectively, rather than if the block is valid
 # End
 $ {Var} / / can be accessed within the block if the value of var
 </pre>
 
-<p> not like Java: </p>
+<p>not like Java:</p>
 
 <pre class="brush: xml;">
 # Set (var = null)
 # If (xxx)
-# Set (var = "value")
+# Set (var="value")
 # End
 $ {Var}
 </pre>
 
-<p> type declarations, and can be used as casts, for example: </p>
+<p>type declarations, and can be used as casts, for example:</p>
 
-<pre class="brush: xml;"> # set (Book book = bookentry.value)
+<pre class="brush: xml;"># set (Book book = bookentry.value)
 </pre>
 
-<p> If bookentry.value type of loss, the above wording can recover book type. </p>
+<p>If bookentry.value type of loss, the above wording can recover book type.</p>
 
-<p> assignment will generate a local variable, it writes the current Context in
-If there include () sub-template, the template can also be in the child read the variable. </p>
+<p>assignment will generate a local variable, it writes the current Context in
+If there include () sub-template, the template can also be in the child read the variable.</p>
 
-<p> If you want to get in the parent template, template variables include the child, or you want to get after rendering the template variables
+<p>If you want to get in the parent template, template variables include the child, or you want to get after rendering the template variables
 Due to template rendering finished, it Context has pop (), so the need to write variables in the template will be higher Conetxt to read on the outside.
-If you need to use the Context assigned to the higher, you can use ": =" assignment, it will be variable write Context.getParent () in
-For example: </p>
+If you need to use the Context assigned to the higher, you can use":="assignment, it will be variable write Context.getParent () in
+For example:</p>
 
-<pre class="brush: xml;"> # set (price: = book.price * book.discount)
+<pre class="brush: xml;"># set (price: = book.price * book.discount)
 </pre>
 
-<p> you can render the template, through Context.getContext (). get ("price"); got the above variables. </p>
+<p>you can render the template, through Context.getContext (). get ("price"); got the above variables.</p>
 
-<p> Note: </p>
+<p>Note:</p>
 
-<pre class="brush: xml;"> / / you can put into the reference set unmodifiable Map, will not affect the operation.
-Map <String, Object> parameters = Collections.unmodifiableMap (parameters);
+<pre class="brush: xml;">/ / you can put into the reference set unmodifiable Map, will not affect the operation.
+Map<String, Object>parameters = Collections.unmodifiableMap (parameters);
 
 / / Incoming parameters in the rendering process will not always be modified,
 / / Make sure the rendering process without side effects, as well as multiple rendering idempotent.
@@ -336,50 +336,50 @@ Context.getContext (). Put ("price", x);
 Context.getContext (). Get ("price");
 </pre>
 
-<h2> conditional instructions </h2>
+<h2>conditional instructions</h2>
 
-<h3> # if condition </h3>
+<h3># if condition</h3>
 
-<p> If the conditional expression evaluates to true or a non-empty, then the output contained in the instruction blocks. </p>
+<p>If the conditional expression evaluates to true or a non-empty, then the output contained in the instruction blocks.</p>
 
-<p> Note: For non-Boolean value: non-zero number, non-empty string, non-empty, non-null object, is true. </p>
+<p>Note: For non-Boolean value: non-zero number, non-empty string, non-empty, non-null object, is true.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # If (expression)
 
 Example:
-# If (user.role == "admin")
+# If (user.role =="admin")
     ...
 # End
 </pre>
 
-<h3> # else condition otherwise </h3>
+<h3># else condition otherwise</h3>
 
-<p> If the preceding # if condition is not true, then the output # else directive contains blocks. </p>
+<p>If the preceding # if condition is not true, then the output # else directive contains blocks.</p>
 
-<p> Note: # else directives can be directly without conditions, to reduce the # if condition combinations. </p>
+<p>Note: # else directives can be directly without conditions, to reduce the # if condition combinations.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Else
 # Else (expression)
 
 Example:
-# If (user.role == "admin")
+# If (user.role =="admin")
     ...
-# Else (user.role == "member")
+# Else (user.role =="member")
     ...
 # Else
     ...
 # End
 </pre>
 
-<h2> loop instructions </h2>
+<h2>loop instructions</h2>
 
-<h3> # for loop </h3>
+<h3># for loop</h3>
 
-<p> resulting collection iteration expression, for each value in the set, repeatedly outputs the block contained in the instruction. </p>
+<p>resulting collection iteration expression, for each value in the set, repeatedly outputs the block contained in the instruction.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # For (name: expression)
 # For (type name: expression)
 
@@ -393,16 +393,16 @@ Example:
 # End
 </pre>
 
-<p> type declarations, and can be used as casts, for example: </p>
+<p>type declarations, and can be used as casts, for example:</p>
 
-<pre class="brush: xml;"> # for (Book book: booklist)
+<pre class="brush: xml;"># for (Book book: booklist)
     $ {Book.title}
 # End
 </pre>
 
-<p> If booklist generic lost, the above wording can recover book type. </p>
+<p>If booklist generic lost, the above wording can recover book type.</p>
 
-<p> in the iteration before, you can do the collection operations, such as: </p>
+<p>in the iteration before, you can do the collection operations, such as:</p>
 
 <pre class="brush: xml;">
 # # Perform nine times
@@ -427,13 +427,13 @@ Example:
 # For (Menu menu: menus.recursive ("getChildren"))
 </pre>
 
-<h3> # break cycle interrupts </h3>
+<h3># break cycle interrupts</h3>
 
-<p> When the conditional expression is true or non-empty interrupt the current iteration. </p>
+<p>When the conditional expression is true or non-empty interrupt the current iteration.</p>
 
-<p> Note: # break conditional parameters directly: # break (i ​​== j), need not be written: # if (i == j) # break # end </p>
+<p>Note: # break conditional parameters directly: # break (i ​​== j), need not be written: # if (i == j) # break # end</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Break
 # Break (expression)
 
@@ -445,13 +445,13 @@ Example:
 # End
 </pre>
 
-<h3> # else loop or </h3>
+<h3># else loop or</h3>
 
-<p> If the previous # for collection is empty, then the output # else directive contains blocks. </p>
+<p>If the previous # for collection is empty, then the output # else directive contains blocks.</p>
 
-<p> Note: # for # else directives can be directly used in combination, can reduce the # if not empty determine the conditions of writing. </p>
+<p>Note: # for # else directives can be directly used in combination, can reduce the # if not empty determine the conditions of writing.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Else
 # Else (expression)
 
@@ -463,13 +463,13 @@ Example:
 # End
 </pre>
 
-<h2> template directives </h2>
+<h2>template directives</h2>
 
-<h3> # macro template fragment </h3>
+<h3># macro template fragment</h3>
 
-<p> the instruction block encapsulated into reusable template fragments, which can be passed as a variable, you can repeat the output can be inherited overwritten. </p>
+<p>the instruction block encapsulated into reusable template fragments, which can be passed as a variable, you can repeat the output can be inherited overwritten.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Macro (name)
 # Macro (name (name, name))
 # Macro (name (type name, type name))
@@ -483,11 +483,11 @@ $ {Xxx} to execute the macro variables
 $ {Xxx (arg1, arg2)} method to execute the macro
 </pre>
 
-<p> template inheritance macro coverage, see: <a href="example.html#继承示例"> inheritance example </a> </p>
+<p>template inheritance macro coverage, see:<a href="example.html#继承示例">inheritance example</a></p>
 
-<p> while the macro definition, you can define the position while the output macro or the macro assigned to the variable, and define parameters for the macro to simplify the writing. </p>
+<p>while the macro definition, you can define the position while the output macro or the macro assigned to the variable, and define parameters for the macro to simplify the writing.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Macro ($ name)
 # Macro ($ name (name, name))
 # Macro ($ name (type name, type name))
@@ -496,13 +496,13 @@ $ {Xxx (arg1, arg2)} method to execute the macro
 # Macro (var = name (name, name))
 # Macro (var = name (type name, type name))
 
-# Macro ($ name => cache)
-# Macro ($ name (name, name) => cache)
-# Macro ($ name (type name, type name) => cache)
+# Macro ($ name =>cache)
+# Macro ($ name (name, name) =>cache)
+# Macro ($ name (type name, type name) =>cache)
 
-# Macro (var = name => cache)
-# Macro (var = name (name, name) => cache)
-# Macro (var = name (type name, type name) => cache)
+# Macro (var = name =>cache)
+# Macro (var = name (name, name) =>cache)
+# Macro (var = name (type name, type name) =>cache)
 
 Example:
 # Macro ($ xxx)
@@ -514,9 +514,9 @@ Example:
 # End
 </pre>
 
-<p> portfolio syntax equivalence relation: </p>
+<p>portfolio syntax equivalence relation:</p>
 
-<pre class="brush: xml;"> # macro ($ xxx)
+<pre class="brush: xml;"># macro ($ xxx)
     ...
 # End
 
@@ -528,7 +528,7 @@ Is equivalent to: (a position in the macro definition output simultaneously)
 $ {Xxx}
 </pre>
 
-<pre class="brush: xml;"> # macro (aaa = xxx)
+<pre class="brush: xml;"># macro (aaa = xxx)
     ...
 # End
 
@@ -540,7 +540,7 @@ Is equivalent to: (performed while the macro definition, and assigns the result 
 # Set (aaa = xxx)
 </pre>
 
-<pre class="brush: xml;"> # macro ($ xxx => cache)
+<pre class="brush: xml;"># macro ($ xxx =>cache)
     ...
 # End
 
@@ -552,7 +552,7 @@ Is equivalent to: (a position in the macro definition output simultaneously)
 $ {Cache (xxx)}
 </pre>
 
-<pre class="brush: xml;"> # macro (aaa = xxx => cache)
+<pre class="brush: xml;"># macro (aaa = xxx =>cache)
     ...
 # End
 
@@ -564,13 +564,13 @@ Is equivalent to: (performed while the macro definition, and assigns the result 
 # Set (aaa = cache (xxx))
 </pre>
 
-<h3> # break interrupt template </h3>
+<h3># break interrupt template</h3>
 
-<p> When the conditional expression is true or empty, interrupting the current template or macro execution. </p>
+<p>When the conditional expression is true or empty, interrupting the current template or macro execution.</p>
 
-<p> Note: Do not # for Directives # break, indicates that an interrupt template or macro execution. </p>
+<p>Note: Do not # for Directives # break, indicates that an interrupt template or macro execution.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # Break
 # Break (expression)
 
@@ -578,24 +578,24 @@ Example:
 # Break (debug)
 </pre>
 
-<h2> comment directive </h2>
+<h2>comment directive</h2>
 
-<h3> # # line comment </h3>
+<h3># # line comment</h3>
 
-<p> hidden line comment content, with a newline character, for the annotation process, or shielded instruction content. </p>
+<p>hidden line comment content, with a newline character, for the annotation process, or shielded instruction content.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # # Line comment
 
 Example:
 # # This is line comment
 </pre>
 
-<h3> # ** # block comment </h3>
+<h3># ** # block comment</h3>
 
-<p> hide content block comment can contain line breaks, for the annotation process, or shielded instruction content. </p>
+<p>hide content block comment can contain line breaks, for the annotation process, or shielded instruction content.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # * Block comment * #
 
 Example:
@@ -604,24 +604,24 @@ Example:
 * #
 </pre>
 
-<h2> escaped directive </h2>
+<h2>escaped directive</h2>
 
-<h3> # [] # do not parse block </h3>
+<h3># [] # do not parse block</h3>
 
-<p> template content is output to output plain text content, block or bulk escape special characters. </p>
+<p>template content is output to output plain text content, block or bulk escape special characters.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 # [No parse block] #
 
 Example:
 # [This is no parse block: # if $ {name}] #
 </pre>
 
-<h3> \ # \ $ special character escape </h3>
+<h3>\ # \ $ special character escape</h3>
 
-<p> instruction is output as special characters, used to output plain text content. </p>
+<p>instruction is output as special characters, used to output plain text content.</p>
 
-<pre class="brush: xml;"> Format:
+<pre class="brush: xml;">Format:
 \ #, \ $, \ \
 
 Example:
@@ -630,38 +630,38 @@ Example:
 \ \ $ {Xxx}
 </pre>
 
-<h1> Expressions </h1>
+<h1>Expressions</h1>
 
-<p> based on Java expressions and extension methods. </p>
+<p>based on Java expressions and extension methods.</p>
 
-<p> supports Java all expressions, the following list only different points in Java: </p>
+<p>supports Java all expressions, the following list only different points in Java:</p>
 
 <ul>
-<li> operations are all null values ​​returns null, for example: $ {foo.bar.blabla}, if foo is null, all subsequent operations ultimately is null, and not a null pointer. </li>
-<li> double equal sign "==" will be parsed equals () methods, rather than than the memory address. </li>
-<li> single and double quotation marks will produce the string: 'a' or "a" is of type String, if you want to declare literal char, please use backticks: `a` as char type. </li>
-<li> plus sign "+" digital first, $ {1 + "2"} output 3, instead of 12, string concatenation try to use $ {s1} $ {s2}, rather than $ {s1 + s2} </li>
-<li> Bean property getter method will resolve to call, $ {user.name} is equivalent to $ {user.getName ()} </li>
-<li> all implement Comparable objects support comparison operators, such as: # if (date1 <date2), you can compare the date of order. </li>
-<li> logic and supported by all objects or, respectively, returns null or non-null value, for example: $ {list1 | | list2}, if list1 is not empty then return list1, otherwise return list2. </li>
-<li> List and Map can be bracketed values, such as: list [0] is equivalent to list.get (0), map ["abc"] is equivalent to map.get ("abc") </li>
-<li> uppercase 3L will generate java.lang.Long value, lowercase 3l will generate long values. </li>
-<li> support is operator with instanceof same source C #. </li>
+<li>operations are all null values ​​returns null, for example: $ {foo.bar.blabla}, if foo is null, all subsequent operations ultimately is null, and not a null pointer.</li>
+<li>double equal sign"=="will be parsed equals () methods, rather than than the memory address.</li>
+<li>single and double quotation marks will produce the string: 'a' or"a" is of type String, if you want to declare literal char, please use backticks: `a` as char type.</li>
+<li>plus sign"+" digital first, $ {1 +"2"} output 3, instead of 12, string concatenation try to use $ {s1} $ {s2}, rather than $ {s1 + s2}</li>
+<li>Bean property getter method will resolve to call, $ {user.name} is equivalent to $ {user.getName ()}</li>
+<li>all implement Comparable objects support comparison operators, such as: # if (date1<date2), you can compare the date of order.</li>
+<li>logic and supported by all objects or, respectively, returns null or non-null value, for example: $ {list1 | | list2}, if list1 is not empty then return list1, otherwise return list2.</li>
+<li>List and Map can be bracketed values, such as: list [0] is equivalent to list.get (0), map ["abc"] is equivalent to map.get ("abc")</li>
+<li>uppercase 3L will generate java.lang.Long value, lowercase 3l will generate long values.</li>
+<li>support is operator with instanceof same source C #.</li>
 </ul>
 
-<p> attribute lookup order to $ {obj.foo} as an example: (compile-time decisions, does not affect performance) </p>
+<p>attribute lookup order to $ {obj.foo} as an example: (compile-time decisions, does not affect performance)</p>
 
 <ul>
-<li> first checks for any type of imported obj foo () static method </li>
-<li> then find obj.getFoo () function </li>
-<li> then find obj.isFoo () function </li>
-<li> then find obj.foo () function </li>
-<li> then find obj.foo properties </li>
-</ul> <h2> operator expression </h2>
+<li>first checks for any type of imported obj foo () static method</li>
+<li>then find obj.getFoo () function</li>
+<li>then find obj.isFoo () function</li>
+<li>then find obj.foo () function</li>
+<li>then find obj.foo properties</li>
+</ul><h2>operator expression</h2>
 
-<h3> set operator </h3>
+<h3>set operator</h3>
 
-<pre class="brush: xml;"> $ {list [0]} is equivalent to: $ {list.get (0)}
+<pre class="brush: xml;">$ {list [0]} is equivalent to: $ {list.get (0)}
 
 $ {Map.abc} is equivalent to: $ {map.get ("abc")}
 
@@ -673,15 +673,15 @@ For example:
 $ {I}
 # End
 
-List generated: [123, "abc", var]
+List generated: [123,"abc", var]
 For example:
-# For (color: ["red", "yellow", "blue"])
+# For (color: ["red","yellow","blue"])
 $ {Color}
 # End
 
-Map generator: ["xxx": 123, "yyy": "abc", "zzz": var]
+Map generator: ["xxx": 123,"yyy":"abc","zzz": var]
 For example: (this Map maintaining declaration order)
-# For (entry: ["red": "# FF0000", "yellow": "# 00FF00"])
+# For (entry: ["red":"# FF0000","yellow":"# 00FF00"])
 $ {Entry.key} = $ {entry.value}
 # End
 
@@ -692,38 +692,38 @@ $ {Item}
 # End
 </pre>
 
-<h3> logical operators </h3>
+<h3>logical operators</h3>
 
-<pre class="brush: xml;"> # if (object)
+<pre class="brush: xml;"># if (object)
 Is equivalent to:
 # If (object! = Null)
 
 # If (string)
 Is equivalent to:
-# If (string! = null && string.length ()> 0)
+# If (string! = null && string.length ()>0)
 
 # If (list)
 Is equivalent to:
-# If (list! = Null && list1.size ()> 0)
+# If (list! = Null && list1.size ()>0)
 
 # For (item: list1 | | list2)
 Is equivalent to:
-# For (item: list1! = Null && list1.size ()> 0? List1: list2)
+# For (item: list1! = Null && list1.size ()>0? List1: list2)
 </pre>
 
-<h3> Date Operator </h3>
+<h3>Date Operator</h3>
 
-<pre class="brush: xml;"> date1> date2
-date1> = date2
-date1 <date2
-date1 <= date2
+<pre class="brush: xml;">date1>date2
+date1>= date2
+date1<date2
+date1<= date2
 </pre>
 
-<h2> function expression </h2>
+<h2>function expression</h2>
 
-<h3> transformation function </h3>
+<h3>transformation function</h3>
 
-<pre class="brush: xml;"> obj.to ("com.foo.Bar")
+<pre class="brush: xml;">obj.to ("com.foo.Bar")
 obj.toMap
 num.toDate
 str.toDate
@@ -739,9 +739,9 @@ str.toClass
 str.toLocale
 </pre>
 
-<h3> aggregate function </h3>
+<h3>aggregate function</h3>
 
-<pre class="brush: xml;"> Array and List size method can be used to obtain the same size
+<pre class="brush: xml;">Array and List size method can be used to obtain the same size
 array.size
 list.size
 map.size
@@ -751,40 +751,40 @@ list.sort
 # End
 
 list.toCycle
-# Set (colors = ["red", "blue", "green"]. ToCycle)
+# Set (colors = ["red","blue","green"]. ToCycle)
 # For (item: list)
 $ {Colors.next}
 # End
 </pre>
 
-<h3> file functions </h3>
+<h3>file functions</h3>
 
-<pre class="brush: xml;"> inherited template to the current template macro, replace the parent of the same name in the template macro, execute the parent template, the output to the current location.
+<pre class="brush: xml;">inherited template to the current template macro, replace the parent of the same name in the template macro, execute the parent template, the output to the current location.
 $ {Extends ("/ layout.httl")}
-$ {Extends ("/ layout.httl", "UTF-8")}
+$ {Extends ("/ layout.httl","UTF-8")}
 $ {Extends (".. / Layout.httl")}
-$ {Extends (".. / Layout.httl", "UTF-8")}
+$ {Extends (".. / Layout.httl","UTF-8")}
 
 Contains a template, perform the target template, the output to the current location.
 $ {Include ("/ template.httl")}
-$ {Include ("/ template.httl", "UTF-8")}
-$ {Include ("/ template.httl", ["arg": "value"])}
+$ {Include ("/ template.httl","UTF-8")}
+$ {Include ("/ template.httl", ["arg":"value"])}
 $ {Include (".. / Template.httl")}
-$ {Include (".. / Template.httl", "UTF-8")}
+$ {Include (".. / Template.httl","UTF-8")}
 
 Template contains macros, perform target macro output to the current position.
 $ {Include ("/ template.httl # macro")}
-$ {Include ("/ template.httl # macro", "UTF-8")}
+$ {Include ("/ template.httl # macro","UTF-8")}
 $ {Include ("/ template.httl # macro")}
-$ {Include ("/ template.httl # macro", ["arg": "value"])}
+$ {Include ("/ template.httl # macro", ["arg":"value"])}
 
 Read the contents of the target file, output to the current position.
 $ {Read ("/ text.txt")}
-$ {Read ("/ text.txt", "UTF-8")} </pre>
+$ {Read ("/ text.txt","UTF-8")}</pre>
 
-<h3> internationalization function </h3>
+<h3>internationalization function</h3>
 
-<pre class="brush: xml;"> $ {"key". message} or $ {message ("key")}
+<pre class="brush: xml;">$ {"key". message} or $ {message ("key")}
 In localized = true when looking for the following sequence of key configuration files:
 basename_zh_CN.properties
 basename_zh.properties
@@ -797,9 +797,9 @@ template_zh.httl
 template.httl
 </pre>
 
-<p> httl.properties related configuration: </p>
+<p>httl.properties related configuration:</p>
 
-<pre class="brush: xml;"> # international prefix configuration file information, from the Loader looks / WEB-INF/messages_zh_CN.properties
+<pre class="brush: xml;"># international prefix configuration file information, from the Loader looks / WEB-INF/messages_zh_CN.properties
 message.basename = / WEB-INF/messages
 
 # Internationalized message formats, support for message and string
@@ -816,17 +816,17 @@ localized = true
 locale = zh_CN
 </pre>
 
-<h3> formatting function </h3>
+<h3>formatting function</h3>
 
-<pre class="brush: xml;"> num.format ("# # #, # # 0")
+<pre class="brush: xml;">num.format ("# # #, # # 0")
 num.format ("# # #, # # 0. # #")
 date.format ("yyyy-MM-dd")
 date.format ("yyyy-MM-dd HH: mm: ss")
 </pre>
 
-<h3> escape function </h3>
+<h3>escape function</h3>
 
-<pre class="brush: xml;"> str.escapeXml
+<pre class="brush: xml;">str.escapeXml
 str.unescapeXml
 str.escapeUrl
 str.unescapeUrl
@@ -836,9 +836,9 @@ str.escapeBase64
 str.unescapeBase64
 </pre>
 
-<h3> JSON function </h3>
+<h3>JSON function</h3>
 
-<pre class="brush: xml;"> # the object into a JSON string
+<pre class="brush: xml;"># the object into a JSON string
 obj.encodeJson
 
 # Parse the JSON string into a Map object
@@ -848,58 +848,58 @@ str.decodeJson.toMap
 str.decodeJson ("com.foo.Bar"). to ("com.foo.Bar")
 </pre>
 
-<p> default transcoding using the built-in parser JSON string. </p>
+<p>default transcoding using the built-in parser JSON string.</p>
 
-To use fastjson <p> transcoding, configure: </p>
+To use fastjson<p>transcoding, configure:</p>
 
-<p> httl.properties: </p>
+<p>httl.properties:</p>
 
-<pre class="brush: java;"> json.codec = httl.spi.codecs.FastjsonCodec
+<pre class="brush: java;">json.codec = httl.spi.codecs.FastjsonCodec
 </pre>
 
-<p> pom.xml: </p>
+<p>pom.xml:</p>
 
-<p> <a href="http://central.maven.org/maven2/com/alibaba/fastjson/1.1.25/fastjson-1.1.25.jar"> fastjson-1.1.25.jar </a> </p>
+<p><a href="http://central.maven.org/maven2/com/alibaba/fastjson/1.1.25/fastjson-1.1.25.jar">fastjson-1.1.25.jar</a></p>
 
-<pre class="brush: xml;"> <dependency>
-    <groupId> com.alibaba </groupId>
-    <artifactId> fastjson </artifactId>
-    <version> 1.1.25 </version>
+<pre class="brush: xml;"><dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.1.25</version>
 </dependency>
 </pre>
 
-<h3> XML function </h3>
+<h3>XML function</h3>
 
-<pre class="brush: xml;"> # the object into XML string
+<pre class="brush: xml;"># the object into XML string
 obj.encodeXml
 
 # Parse the XML string into an object
 str.decodeXml.to ("com.foo.Bar")
 </pre>
 
-<p> used by default java.beans.XMLEncoder transcoding. </p>
+<p>used by default java.beans.XMLEncoder transcoding.</p>
 
-To use xstream <p> transcoding, configure: </p>
+To use xstream<p>transcoding, configure:</p>
 
-<p> httl.properties: </p>
+<p>httl.properties:</p>
 
-<pre class="brush: java;"> xml.codec = httl.spi.codecs.XstreamCodec
+<pre class="brush: java;">xml.codec = httl.spi.codecs.XstreamCodec
 </pre>
 
-<p> pom.xml: </p>
+<p>pom.xml:</p>
 
-<p> <a href="http://central.maven.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.jar"> xstream-1.4.3.jar </a> </p>
+<p><a href="http://central.maven.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.jar">xstream-1.4.3.jar</a></p>
 
-<pre class="brush: xml;"> <dependency>
-    <groupId> com.thoughtworks.xstream </groupId>
-    <artifactId> xstream </artifactId>
-    <version> 1.4.3 </version>
+<pre class="brush: xml;"><dependency>
+    <groupId>com.thoughtworks.xstream</groupId>
+    <artifactId>xstream</artifactId>
+    <version>1.4.3</version>
 </dependency>
 </pre>
 
-<h3> digest function </h3>
+<h3>digest function</h3>
 
-<pre class="brush: xml;"> # generate MD5 code
+<pre class="brush: xml;"># generate MD5 code
 str.md5
 
 # Generate SHA code
@@ -910,7 +910,7 @@ str.digest ("MD5")
 str.digest ("SHA")
 </pre>
 
-<h3> naming conversion function </h3>
+<h3>naming conversion function</h3>
 
 <pre class="brush: xml;">
 # Convert underscores to separate naming
@@ -923,9 +923,9 @@ str.toCamelName
 str.toCapitalName
 </pre>
 
-<h3> system function </h3>
+<h3>system function</h3>
 
-<pre class="brush: xml;"> # current time
+<pre class="brush: xml;"># current time
 $ {Now ()}
 
 # Random number
@@ -935,168 +935,168 @@ $ {Random ()}
 uuid ()
 </pre>
 
-<h1> Velocity comparison </h1>
+<h1>Velocity comparison</h1>
 
-<p> If you used a Velocity template, you can view the following comparison, a better understanding of: </p>
+<p>If you used a Velocity template, you can view the following comparison, a better understanding of:</p>
 
-<h2> syntax contrast </h2>
+<h2>syntax contrast</h2>
 
 <ol>
-<li> <p> HTTL command variable without $ symbol, which only supports # if (x == y), does not support the # if ($ x == $ y), because the command string is not quoted variables, and conventional language syntax, like add $ bit rubbish, but also easy to forget to write. </p> </li>
-<li> <p> HTTL placeholder necessary to increase the brackets, only support $ {aaa}, does not support the $ aaa, because $ is legal in JavaScript variable name symbols, and $ {} is not to reduce the confusion, but also to prevent more human development, it was to increase the brackets, some without, simply did not have a choice, are added, consistent. </p> </li>
-<li> <p> HTTL placeholder when the variable is null output blank string, unlike Velocity command is output as the original, ie $ {aaa}, is equivalent to the Velocity $ {aaa}, so as not to forget to write Developers exclamation, expression leak source, for as output, use the escape \ $ {aaa},
-In HTTL in, $ {aaa} represents not content filtering for output as HTML fragments. </p> </li>
-<li> <p> HTTL support all local variables used for expression evaluation, that is, you do not like the Velocity as the first # set ($ j = $ i + 1) to a temporary variable, and then output the temporary variable $ {j}, HTTL can be directly output $ {i + 1}, other commands, too, such as: # if (i + 1 == n). </p> </li>
-<li> <p> HTTL method using extended Class native ways, such as: $ {"a". toChar}, rather than the Velocity Tool utility methods like: $ (StringTool.toChar ("a")), such call method is more intuitive, more in line with the code writing habits. </p> </li>
+<li><p>HTTL command variable without $ symbol, which only supports # if (x == y), does not support the # if ($ x == $ y), because the command string is not quoted variables, and conventional language syntax, like add $ bit rubbish, but also easy to forget to write.</p></li>
+<li><p>HTTL placeholder necessary to increase the brackets, only support $ {aaa}, does not support the $ aaa, because $ is legal in JavaScript variable name symbols, and $ {} is not to reduce the confusion, but also to prevent more human development, it was to increase the brackets, some without, simply did not have a choice, are added, consistent.</p></li>
+<li><p>HTTL placeholder when the variable is null output blank string, unlike Velocity command is output as the original, ie $ {aaa}, is equivalent to the Velocity $ {aaa}, so as not to forget to write Developers exclamation, expression leak source, for as output, use the escape \ $ {aaa},
+In HTTL in, $ {aaa} represents not content filtering for output as HTML fragments.</p></li>
+<li><p>HTTL support all local variables used for expression evaluation, that is, you do not like the Velocity as the first # set ($ j = $ i + 1) to a temporary variable, and then output the temporary variable $ {j}, HTTL can be directly output $ {i + 1}, other commands, too, such as: # if (i + 1 == n).</p></li>
+<li><p>HTTL method using extended Class native ways, such as: $ {"a". toChar}, rather than the Velocity Tool utility methods like: $ (StringTool.toChar ("a")), such call method is more intuitive, more in line with the code writing habits.</p></li>
 </ol>
 
-<h2> Directive contrast </h2>
+<h2>Directive contrast</h2>
 
 <table>
 <tr>
-<td> Velocity </td>
-<td> HTTL </td>
-<td> similarities </td>
-<td> function </td>
-<td> change </td>
+<td>Velocity</td>
+<td>HTTL</td>
+<td>similarities</td>
+<td>function</td>
+<td>change</td>
 </tr>
 <tr>
-<td> $ {xxx.yyy} <br> $ xxx.yyy </td>
-<td> $ {xxx.yyy} </td>
-<td> same </td>
-<td> output placeholder </td>
-<td> HTTL braces required </td>
+<td>$ {xxx.yyy}<br>$ xxx.yyy</td>
+<td>$ {xxx.yyy}</td>
+<td>same</td>
+<td>output placeholder</td>
+<td>HTTL braces required</td>
 </tr>
 <tr>
-<td> $! {xxx.yyy} <br> $! xxx.yyy </td>
-<td> $! {xxx.yyy} </td>
-<td> <font color="red"> different </font> </td>
-<td> null value does not show source </td>
-<td> VM null value does not show source <br> HTTL to not filter output </td>
+<td>$! {xxx.yyy}<br>$! xxx.yyy</td>
+<td>$! {xxx.yyy}</td>
+<td><font color="red">different</font></td>
+<td>null value does not show source</td>
+<td>VM null value does not show source<br>HTTL to not filter output</td>
 </tr>
 <tr>
-<td> # # ... <br> # * ... * # </td>
-<td> # # ... <br> # * ... * # </td>
-<td> same </td>
-<td> comment block is not displayed </td>
-<td> </td>
+<td># # ...<br># * ... * #</td>
+<td># # ...<br># * ... * #</td>
+<td>same</td>
+<td>comment block is not displayed</td>
+<td></td>
 </tr>
 <tr>
-<td> # [[...]] # </td>
-<td> # [...] # </td>
-<td> similar </td>
-<td> not parse text block </td>
-<td> HTTL little pair of brackets </td>
+<td># [[...]] #</td>
+<td># [...] #</td>
+<td>similar</td>
+<td>not parse text block</td>
+<td>HTTL little pair of brackets</td>
 </tr>
 <tr>
-<td> \ # \ $ \ \ </td>
-<td> \ # \ $ \ \ </td>
-<td> same </td>
-<td> special characters escaped </td>
-<td> </td>
+<td>\ # \ $ \ \</td>
+<td>\ # \ $ \ \</td>
+<td>same</td>
+<td>special characters escaped</td>
+<td></td>
 </tr>
 <tr>
-<td> # set ($ xxx = $ yyy) </td>
-<td> # set (xxx = yyy) <br/> # set (Type xxx = yyy) <br/> # set (Type xxx) </td>
-<td> same </td>
-<td> assign variables </td>
-<td> HTTL available with type declarations </td>
+<td># set ($ xxx = $ yyy)</td>
+<td># set (xxx = yyy)<br/># set (Type xxx = yyy)<br/># set (Type xxx)</td>
+<td>same</td>
+<td>assign variables</td>
+<td>HTTL available with type declarations</td>
 </tr>
 <tr>
-<td> # if ($ xxx == $ yyy) </td>
-<td> # if (xxx == yyy) </td>
-<td> same </td>
-<td> conditional </td>
-<td> </td>
+<td># if ($ xxx == $ yyy)</td>
+<td># if (xxx == yyy)</td>
+<td>same</td>
+<td>conditional</td>
+<td></td>
 </tr>
 <tr>
-<td> # elseif ($ xxx == $ yyy) </td>
-<td> # else (xxx == yyy) </td>
-<td> similar </td>
-<td> or conditional </td>
-<td> HTTL multiplexing # else directive </td>
+<td># elseif ($ xxx == $ yyy)</td>
+<td># else (xxx == yyy)</td>
+<td>similar</td>
+<td>or conditional</td>
+<td>HTTL multiplexing # else directive</td>
 </tr>
 <tr>
-<td> # else </td>
-<td> # else </td>
-<td> same </td>
-<td> otherwise determine </td>
-<td> </td>
+<td># else</td>
+<td># else</td>
+<td>same</td>
+<td>otherwise determine</td>
+<td></td>
 </tr>
 <tr>
-<td> # end </td>
-<td> # end <br/> # endif <br/> # end (if) </td>
-<td> same </td>
-<td> end instruction </td>
-<td> HTTL available with matching command names </td>
+<td># end</td>
+<td># end<br/># endif<br/># end (if)</td>
+<td>same</td>
+<td>end instruction</td>
+<td>HTTL available with matching command names</td>
 </tr>
 <tr>
-<td> # foreach ($ item in $ list) </td>
-<td> # for (item: list) <br/> # for (Type item: list) </td>
-<td> similar </td>
-<td> List cycle </td>
-<td> HTTL to Java format </td>
+<td># foreach ($ item in $ list)</td>
+<td># for (item: list)<br/># for (Type item: list)</td>
+<td>similar</td>
+<td>List cycle</td>
+<td>HTTL to Java format</td>
 </tr>
 <tr>
-<td> # break </td>
-<td> # break <br/> # break (xxx == yyy) </td>
-<td> same </td>
-<td> interrupt cycle </td>
-<td> HTTL directly with conditions </td>
+<td># break</td>
+<td># break<br/># break (xxx == yyy)</td>
+<td>same</td>
+<td>interrupt cycle</td>
+<td>HTTL directly with conditions</td>
 </tr>
 <tr>
-<td> # stop </td>
-<td> # break <br/> # break (xxx == yyy) </td>
-<td> similar </td>
-<td> stop template parsing </td>
-<td> HTTL multiplexing # break directive </td>
+<td># stop</td>
+<td># break<br/># break (xxx == yyy)</td>
+<td>similar</td>
+<td>stop template parsing</td>
+<td>HTTL multiplexing # break directive</td>
 </tr>
 <tr>
-<td> # macro ($ xxx) </td>
-<td> # macro (xxx) </td>
-<td> <font color="red"> different </font> </td>
-<td> reusable template fragments macro </td>
-<td> VM as the macro instruction execution <br> HTTL performed as a function </td>
+<td># macro ($ xxx)</td>
+<td># macro (xxx)</td>
+<td><font color="red">different</font></td>
+<td>reusable template fragments macro</td>
+<td>VM as the macro instruction execution<br>HTTL performed as a function</td>
 </tr>
 <tr>
-<td> # define ($ xxx) </td>
-<td> # macro (xxx = xxxmacro) </td>
-<td> similar </td>
-<td> catch block output to a variable </td>
-<td> HTTL multiplexing # macro directive </td>
+<td># define ($ xxx)</td>
+<td># macro (xxx = xxxmacro)</td>
+<td>similar</td>
+<td>catch block output to a variable</td>
+<td>HTTL multiplexing # macro directive</td>
 </tr>
 <tr>
-<td> # include ("xxx.txt") </td>
-<td> $ {read ("xxx.txt")} </td>
-<td> similar </td>
-<td> read text file content </td>
-<td> HTTL to function extensions </td>
+<td># include ("xxx.txt")</td>
+<td>$ {read ("xxx.txt")}</td>
+<td>similar</td>
+<td>read text file content</td>
+<td>HTTL to function extensions</td>
 </tr>
 <tr>
-<td> # parse ("xxx.vm") </td>
-<td> $ {include ("xxx.httl")} </td>
-<td> similar </td>
-<td> contains another template output </td>
-<td> HTTL to function extensions </td>
+<td># parse ("xxx.vm")</td>
+<td>$ {include ("xxx.httl")}</td>
+<td>similar</td>
+<td>contains another template output</td>
+<td>HTTL to function extensions</td>
 </tr>
 <tr>
-<td> # evaluate ("$ {1 + 2}") </td>
-<td> $ {render ("$ {1 + 2}")} </td>
-<td> similar </td>
-<td> template evaluation </td>
-<td> HTTL to function extensions </td>
+<td># evaluate ("$ {1 + 2}")</td>
+<td>$ {render ("$ {1 + 2}")}</td>
+<td>similar</td>
+<td>template evaluation</td>
+<td>HTTL to function extensions</td>
 </tr>
 </table>
 
-<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"> <a href = "#" onclick = "document.body.scrollTop = 0; return false;" > <img src="../img/up.png" /> <br/> Top </a> </div>
+<div id="docUp" style="position: fixed; right: 80px; bottom: 80px; display: none;"><a href="#" onclick="document.body.scrollTop = 0; return false;" ><img src="../img/up.png" /><br/>Top</a></div>
 </section>
 </div>
 
 <aside>
-<div style="text-align: right; padding-right: 10px;">English | <a href="../zh/syntax.html">&#20013;&#25991;</a></div>
+<div style="text-align: right; padding-right: 10px;">English |<a href="../zh/syntax.html">&#20013;&#25991;</a></div>
 <div class="standard-right-nav">
-  <p> documentation directory </p>
-  <div id="docIndex" class="nav-inner"> </div>
+  <p>documentation directory</p>
+  <div id="docIndex" class="nav-inner"></div>
 </div>
 </aside>
  
@@ -1105,7 +1105,7 @@ In HTTL in, $ {aaa} represents not content filtering for output as HTML fragment
     <footer>
       <nav class="footer-secondary-nav">
         <div class="companies">
-          <p> Copyright 2011 - <script type="text/javascript"> document.write (new Date (). getYear () + 1900); </script> HTTL development team. <br/> <br/> this station can be adaptive: mobile phone, tablet, computer, etc.. <br/> </p>
+          <p>Copyright 2011 -<script type="text/javascript">document.write (new Date (). getYear () + 1900);</script>HTTL development team.<br/><br/>this station can be adaptive: mobile phone, tablet, computer, etc..<br/></p>
         </div>
       </nav>
     </footer>
