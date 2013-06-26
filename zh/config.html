@@ -74,7 +74,7 @@
 <p>如果使用缺省值，可以不用配置，缺省值参见：
 <a href="https://github.com/httl/httl/blob/master/httl/src/main/resources/httl-default.properties">httl-default.properties</a></p>
 
-<p> <a href="#模式配置">模式配置</a> 和 <a href="integration.html#MVC集成">MVC集成</a> 会加载新的配置文件，详见对应小节说明。
+<p><a href="integration.html#MVC集成">MVC集成</a> 会加载：/WEB-INF/httl.properties</p>
 
 <h2>模式配置加载</h2>
 
@@ -103,27 +103,27 @@
 <p><ol>
 <li>以复数命名的配置项，表示可以填<b>多个值</b>，用逗号分隔。</li>
 <li><b><code>=</code></b>表示覆盖上一级或缺省配置。</li>
-<li><b><code>+=</code></b>表示在上一级或缺省配置值的前面插入值（多值项有效，注意：值插在前面，而不是追加在后面）</li>
-<li><b><code>-=</code></b>表示在上一级或缺省配置值上删除值（多值项有效，如果上一级配置如没有此值，则忽略）</li>
+<li><b><code>+=</code></b>表示在上一级或缺省配置值的前面插入值（多值配置使用，注意：值插在前面，而不是追加在后面）</li>
+<li><b><code>-=</code></b>表示在上一级或缺省配置值上删除值（多值配置使用，如果上一级配置如没有此值，则忽略）</li>
 </ol></p>
 
-<p>当测试人员或系统运维人员，在无法修改代码时，可以使用JVM -D选项或OS环境变量，来修改HTTL配置的值。</p>
+<p>当测试人员或运维人员，在无法修改代码时，可以使用JVM -D选项或OS环境变量，来修改HTTL配置的值。</p>
 
 <p>使用JVM -D选项配置HTTL时<b>注意</b>：</p>
 
 <p><ol>
-<li>键名加上<code>httl.</code>前缀。</li>
+<li>键名要加上<code>httl.</code>前缀。</li>
 </ol></p>
 
 <p>使用JVM -D选项配置HTTL的示例：</p>
-<pre class="brush: java;">$ java -Dhttl.reloadable=true -Dhttl.value.filters+=com.foo.FooFilter
+<pre class="brush: java;">$ java -Dhttl.reloadable=true -Dhttl.modes+=debug
 </pre>
 
 <p>Linux下Bash中使用环境变量配置HTTL时<b>注意</b>：</p>
 
 <p><ol>
 <li>键名要加上<code>httl_</code>前缀。</li>
-<li>环境变量名不支持使用点，改用下划线。</li>
+<li>环境变量名不支持使用点号，改用下划线。</li>
 <li><b><code>+=</code></b>和<b><code>-=</code></b>设置环境变量会出错，改用<b><code>=+</code></b>和<b><code>=-</code></b>。</li>
 </ol></p>
 
@@ -131,7 +131,7 @@
 
 <pre class="brush: java;">$ export httl_reloadable=true
 $ export httl_cache_capacity=1024
-$ export httl_value_filters=+com.foo.FooFilter
+$ export httl_modes=+debug
 </pre>
 
 <h2>配置一览表</h2>
