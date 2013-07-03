@@ -130,6 +130,14 @@ template.render(parameters, response.getOutputStream());
 
 <p>注：缺省必须要用JDK运行，如果只有JRE，请配置为JavassistCompiler。</p>
 
+<p>编程配置：</p>
+
+<pre class="brush: java;">
+Properties properties = new Properties();
+properties.setProperty("loaders", "com.your.YourLoader");
+Engine engine = Engine.getEngine("anyengineid", properties);
+</pre>
+
 <p>下面的调用只是演示集成中你能获取到的信息：</p>
 
 <pre class="brush: java;">

@@ -129,6 +129,20 @@ template.render (parameters, response.getOutputStream());
 
 <p>Note: The default JDK must be used to run, if only the JRE, configured as JavassistCompiler.</p>
 
+<p>Multi configuration:</p>
+
+<pre class="brush: java;">
+Engine engine = Engine.getEngine("xxx.properties"); // 不同配置产生不同Engine实例
+</pre>
+
+<p>Configure by programing:</p>
+
+<pre class="brush: java;">
+Properties properties = new Properties();
+properties.setProperty("loaders", "com.your.YourLoader");
+Engine engine = Engine.getEngine("xxx", properties); // 不同ID产生不同Engine实例
+</pre>
+
 <p>following call is a demonstration that you can get to the integration of information:</p>
 
 <pre class="brush: java;">
