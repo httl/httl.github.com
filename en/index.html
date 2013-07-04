@@ -70,6 +70,7 @@ Instructions and <a href="http://velocity.apache.org">Velocity</a> similar.</p>
 Retaining only the most basic conditions iterative control instructions, the rendering process is not allowed to modify the original data, to prevent the introduction of too much business logic in the template. HTML comment syntax used by default, to avoid interference with native HTML page.</p>
 
 <pre class="brush: xml;">
+&lt;!--#set(List&lt;Book&gt; books)--&gt;
 &lt;html&gt;
     &lt;body&gt;
         &lt;!--#if(books)--&gt;

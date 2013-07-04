@@ -70,6 +70,7 @@
 只保留最基本的条件迭代控制指令，渲染过程不允许修改原始数据，防止模板引入过多业务逻辑。默认使用HTML注释语法，避免干扰原生HTML页面。</p>
 
 <pre class="brush: xml;">
+&lt;!--#set(List&lt;Book&gt; books)--&gt;
 &lt;html&gt;
     &lt;body&gt;
         &lt;!--#if(books)--&gt;
