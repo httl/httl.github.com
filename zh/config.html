@@ -679,10 +679,13 @@ template.directory=/WEB-INF/templates
 
 <p>当前运行环境为JDK1.6以前版本时，AdaptiveCompiler将适配到JavassistCompiler，否则将适配到JdkCompiler。</p>
 
-<p>你可以强制指定使用jdk自带的编译器：(必需要用JDK运行，JRE不行)</p>
+<p>你可以强制指定使用jdk自带的编译器：(必需要用JDK运行，JRE不行，JDK比JRE多编译工具包)</p>
 
 <pre class="brush: xml;">compiler=httl.spi.compilers.JdkCompiler
 </pre>
+
+<p>Windows用户注意：JDK安装时，会在C:\Windows\System32下安装JRE的java命令，
+所以在设置Path环境变量时，%JAVA_HOME%\bin 必须放在 %SystemRoot%\system32 之前。</p>
 
 <p>你也可以换成javassist编译：(如果为JRE运行，请使用javassist编译)</p>
 
