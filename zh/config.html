@@ -684,9 +684,6 @@ template.directory=/WEB-INF/templates
 <pre class="brush: xml;">compiler=httl.spi.compilers.JdkCompiler
 </pre>
 
-<p>Windows用户注意：JDK安装时，会在C:\Windows\System32下安装JRE的java命令，
-所以在设置Path环境变量时，%JAVA_HOME%\bin 必须放在 %SystemRoot%\system32 之前。</p>
-
 <p>你也可以换成javassist编译：(如果为JRE运行，请使用javassist编译)</p>
 
 <pre class="brush: xml;">compiler=httl.spi.compilers.JavassistCompiler
