@@ -181,13 +181,11 @@ Subchen
 
 <p>请检查import.packages的包名是否正确。</p>
 
-<p>如果是JdkCompiler出现问题，可以尝试换成JavassistCompiler试试，确认是否为JdkCompiler的classpath加载问题。</p>
+<p>因为JdkCompiler必须用JDK运行，JRE不行，JDK比JRE多编译工具包，
+只有JRE时请用JavassistCompiler，参见配置：<a href="config.html#模板编译器">模板编译器</a></p>
 
 <p>Windows用户注意：JDK安装时，会在C:\Windows\System32下安装JRE的java命令，
 所以在设置Path环境变量时，%JAVA_HOME%\bin 必须放在 %SystemRoot%\system32 之前。</p>
-
-<p>因为JdkCompiler必须用JDK运行，JRE不行，JDK比JRE多编译工具包，
-只有JRE时请用JavassistCompiler，参见配置：<a href="config.html#模板编译器">模板编译器</a></p>
 
 <h2>出现找不到属性或方法怎么办?</h2>
 
