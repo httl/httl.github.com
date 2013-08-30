@@ -206,6 +206,21 @@ String result = (String) script.eval(bindings);
 
 <h2>扩展集成</h2>
 
+<h3>扩展约定</h3>
+
+<ul>
+<li>1. 通过setter注入配置项及依赖，如：setEncoding(String), setCompiler(Compiler)</li>
+<li>2. 属性用大写分隔，对应配置用点号分隔，如：setFooBar(String)，配置：foo.bar=val</li>
+<li>3. 当注入类型为数组时，以逗号分隔多个值，如：setFoo(String[])，配置：foo=v1,v2</li>
+<li>4. 如果值int或boolean等基本类型，将自动转换，如：setFoo(boolean)，配置：foo=true</li>
+<li>5. 如果值为空或字符串null时，注入的setter方法不会被执行，在setter内不用判断null值。</li>
+<li>6. 如果有init()初始化方法，将在属性注入完成后执行。</li>
+<li>7. 如果有inited()事件方法，将在所有扩展点初始化完后执行，以初始化先后逆序执行。</li>
+<li>8. 如果setter以@Reqiured标注，表示如果该属性没有注入，当前扩展点不加载。</li>
+<li>9. 如果setter以@Optional标注，表示如果没有任意一个Optional属性被注入，当前扩展点不加载。</li>
+<li>10. 基于同类型构造函数进行AOP包装，并用^=配置，如：public XxxWrapLoader(Loader) {}，配置：loader^=XxxWrapLoader</li>
+</ul>
+
 <h3>配置注入</h3>
 
 <pre class="brush: java;">
