@@ -402,6 +402,8 @@ Context.getContext().get("price");
 #end
 </pre>
 
+<p>多级#for循环，可以用${for.parent.index}或${for.parent.parent.index}获取状态。</p>
+
 <p>类型的声明，同时可以用作强制转型，比如：</p>
 
 <pre class="brush: xml;">#for(Book book : booklist)
@@ -410,8 +412,6 @@ Context.getContext().get("price");
 </pre>
 
 <p>如果booklist的泛型丢失，上面的写法可以恢复book的类型。</p>
-
-<p>另外，多级#for循环，可以用${for.parent.index}或${for.parent.parent.index}获取状态。</p>
 
 <p>在迭代前，可以对集合做操作，如：</p>
 
