@@ -201,20 +201,20 @@ public static String format(Date date, String format) {
          &lt;table&gt;
             &lt;tr&gt;
                 &lt;td&gt;
-                    &lt;!--#macro($!crumbs)--&gt;
+                    &lt;!--#macro($crumbs)--&gt;
                         &lt;a href="./"&gt;Home&lt;/a&gt;
                     &lt;!--#end--&gt;
                 &lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
                 &lt;td&gt;
-                    &lt;!--#macro($!menus)--&gt;
+                    &lt;!--#macro($menus)--&gt;
                         &lt;a href="/users"&gt;Users&lt;/a&gt;&lt;br/&gt;
                         &lt;a href="/books"&gt;Books&lt;/a&gt;&lt;br/&gt;
                     &lt;!--#end--&gt;
                 &lt;/td&gt;
                 &lt;td&gt;
-                    &lt;!--#macro($!main)--&gt;
+                    &lt;!--#macro($main)--&gt;
                         Building...
                     &lt;!--#end--&gt;
                 &lt;/td&gt;
@@ -224,15 +224,15 @@ public static String format(Date date, String format) {
 &lt;/html&gt;
 </pre>
 
-<p>其中，#macro($!crumbs)表示在宏定义的位置上同时输出，相当于#macro(crumbs)加$!{crumbs}。</p>
+<p>其中，#macro($crumbs)表示在宏定义的位置上同时输出，相当于#macro(crumbs)加${crumbs}。</p>
 
 <p>books.httl:</p>
 
 <pre class="brush: xml;">
-$!{extends("/layout.httl")}
+${extends("/layout.httl")}
 
 &lt;!--#macro(crumbs)--&gt;
-    $!{super.crumbs} &amp;gt; &lt;a href="/books"&gt;Books&lt;/a&gt;
+    ${super.crumbs} &amp;gt; &lt;a href="/books"&gt;Books&lt;/a&gt;
 &lt;!--#end--&gt;
 
 &lt;!--#macro(main)--&gt;
@@ -254,7 +254,7 @@ $!{extends("/layout.httl")}
 
 <p>你可继承多个模板，子模板本身在继承指令前后也可以带内容。</p>
 
-<p>crumbs宏里面的$!{super.crumbs}表示输出父模板中的crumbs宏。</p>
+<p>crumbs宏里面的${super.crumbs}表示输出父模板中的crumbs宏。</p>
 
 <p>你也可以基于CoC(Convention over Configuration)规则，自动继承模板：</p>
 
