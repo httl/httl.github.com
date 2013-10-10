@@ -395,10 +395,10 @@ Context.getContext().get("price");
 示例：
 #for(book : books)
     ...
-    ${for.index}
-    ${for.size}
-    ${for.first}
-    ${for.last}
+    ${for.index} //当前循环次数
+    ${for.size} //循环集合大小
+    ${for.first} //是否为第一次
+    ${for.last} //是否为最后一次
 #end
 </pre>
 
