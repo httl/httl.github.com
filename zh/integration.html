@@ -143,6 +143,17 @@ properties.setProperty("loaders", "com.your.YourLoader");
 Engine engine = Engine.getEngine("xxx", properties); // 不同ID产生不同Engine实例
 </pre>
 
+<p>获取属性：</p>
+
+<pre class="brush: java;">
+// 如果只配了单 Loader，可以通过这种方式获取属性实例：
+Loader loader = engine.getProperty("loaders", Loader.class); 
+// 如果你配了多个Loader，可以：
+Loader[] loaders = engine.getProperty("loaders", Loader[].class);
+// 如果是文本，可以直接获取：
+String encoding = engine.getProperty("output.encoding");
+</pre>
+
 <p>下面的调用只是演示集成中你能获取到的信息：</p>
 
 <pre class="brush: java;">

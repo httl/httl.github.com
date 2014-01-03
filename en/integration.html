@@ -146,7 +146,7 @@ Engine engine = Engine.getEngine("xxx", properties); // 不同ID产生不同Engi
 
 <pre class="brush: java;">
 // single instance property:
-StringLoader loader = engine.getProperty("loaders", StringLoader.class); 
+Loader loader = engine.getProperty("loaders", Loader.class); 
 // multi instances property:
 Loader[] loaders = engine.getProperty("loaders", Loader[].class);
 // string property:
