@@ -142,6 +142,17 @@ properties.setProperty("loaders", "com.your.YourLoader");
 Engine engine = Engine.getEngine("xxx", properties); // 不同ID产生不同Engine实例
 </pre>
 
+<p>Get the property:</p>
+
+<pre class="brush: java;">
+// single instance property:
+StringLoader loader = engine.getProperty("loaders", StringLoader.class); 
+// multi instances property:
+Loader[] loaders = engine.getProperty("loaders", Loader[].class);
+// string property:
+String encoding = engine.getProperty("output.encoding");
+</pre>
+
 <p>following call is a demonstration that you can get to the integration of information:</p>
 
 <pre class="brush: java;">
