@@ -209,6 +209,21 @@ $!{body}
 </pre>
 
 <p>注意：使用不过滤输出，请确保内容是开发者确定的安全内容，而不是由用户提交的内容，以防止HTML注入攻击，参见：<a href="example.html#安全示例">安全示例</a>。</p>
+<h2>导入包/类指令</h2>
+<h3>#import</h3>
+
+<p>导入包或者类，类名和包名必须复合Java规范，包名必须全小写，类名必须开头字母大写。</p>
+<pre class="brush: xml;">格式：
+#import(packages)
+#import(package1,package2,package3)
+#import(package1;package2;package3)
+#import(classFullName;package.ClassName;package3)
+
+示例：
+#import(com.github.httl)
+#import(com.github.httl.Template)
+#import(com.github.httl.util,com.github.httl.Template)
+</pre>
 
 <h2>变量指令</h2>
 
